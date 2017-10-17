@@ -81,11 +81,13 @@ extension TMDBManager {
     ///   - expectedStatusCode: Expected status code, usually 200.
     ///   - completion: Completion Handler.
     func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (DataReturn) -> ()) {
+        // Check API Key
         guard let apiKey = self.apiKey else {
-            completion(.fail(error: "API Key is nil, please call setupClient() first.".error()))
+            completion(.fail(error: "API Key is nil, please call setupClient(withApiKey:keyChainPrefix:) first.".error()))
             return
         }
         
+        // Construct URLComponments
         guard
             let baseUrl = URL(string: "https://api.themoviedb.org/3"),
             var componments = URLComponents(string: baseUrl.absoluteString)
@@ -94,8 +96,19 @@ extension TMDBManager {
                 return
         }
         componments.path += path
+        
+        // Append query items
         var queryItems = componments.queryItems ?? []
         queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
+        
+        if needAuthentication {
+            guard let sessionId = self.sessionId else {
+                completion(.fail(error: "Session ID is nil, please grant authentication first.".error()))
+                return
+            }
+            queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
+        }
+        
         if !query.isEmpty {
             for (key, value) in query {
                 queryItems.append(URLQueryItem(name: key, value: value))
@@ -103,12 +116,14 @@ extension TMDBManager {
         }
         componments.queryItems = queryItems
         
+        // Construct request
         guard
             let componmentsUrl = componments.url
             else { return }
         
         let request = URLRequest(url: componmentsUrl)
         
+        // Construct data task
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             
@@ -140,6 +155,7 @@ extension TMDBManager {
             completion(.success(data: responseData))
         })
         
+        // Resume task
         dataTask.resume()
     }
     
