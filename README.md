@@ -1,5 +1,5 @@
 # TMDBKit
-The Movie Database API v3 wrapper in Swift
+The Movie Database API v3 wrapper in Swift 4.
 
 # Usage
 First `import TMDBKit`, and in your `AppDelegate`'s `application(application:, didFinishLaunchingWithOptions launchOptions:)`:

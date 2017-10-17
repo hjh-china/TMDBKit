@@ -41,6 +41,7 @@
 		459E5C261F96541800AB28DE /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		459E5C281F96570600AB28DE /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		459E5C2A1F96647700AB28DE /* ReturnTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnTypes.swift; sourceTree = "<group>"; };
+		459E5C2C1F96742C00AB28DE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +66,7 @@
 		459E5BF91F96497700AB28DE = {
 			isa = PBXGroup;
 			children = (
+				459E5C2C1F96742C00AB28DE /* README.md */,
 				459E5C1D1F96497E00AB28DE /* Common */,
 				459E5C051F96497700AB28DE /* TMDBKit */,
 				459E5C101F96497700AB28DE /* TMDBKitTests */,

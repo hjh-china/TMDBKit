@@ -25,7 +25,7 @@ extension TMDBManager {
         
         let relativeUrlString = "/authentication/token/new"
         
-        performRequest(withRelativeUrl: relativeUrlString, needAuthentication: false) { (result: JSONReturn) in
+        performRequest(path: relativeUrlString, needAuthentication: false) { (result: JSONReturn) in
             switch result {
             case .success(let json):
                 if let success = json["success"].bool,
@@ -33,7 +33,7 @@ extension TMDBManager {
                     let expiresAt = json["expires_at"].string {
                     if success {
                         self.requestToken = requestToken
-                        self.requestTokenExpiresAt = expiresAt
+                        self.requestTokenExpiresAt = expiresAt.date()
                         completion(.success)
                     } else {
                         completion(.fail(error: "TMDB returned fail when creating request token.".error(domain: "authentication")))
@@ -42,6 +42,7 @@ extension TMDBManager {
                     completion(.fail(error: "JSON data returned from TMDB for creating request token cannot be serialized.".error(domain: "authentication")))
                 }
             case .fail(let error):
+                completion(.fail(error: error))
                 #if debug
                     print("Error Creating Request Token: \(error)")
                 #endif
@@ -52,16 +53,14 @@ extension TMDBManager {
     /// You can use this method to create a fully valid session ID once a user has validated the request token. More information about how this works can be found [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
     public func createSession(completion: @escaping (NilReturn) -> ()) {
         guard let requestToken = self.requestToken else {
-            #if debug
-                print("Request Token is nil, please call createRequestToken() ahead to create one.")
-            #endif
+            completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
             return
         }
         
         let relativeUrlString = "/authentication/session/new"
         let query = ["request_token": requestToken]
         
-        performRequest(withRelativeUrl: relativeUrlString, query: query, needAuthentication: false) { (result: JSONReturn) in
+        performRequest(path: relativeUrlString, query: query, needAuthentication: false) { (result: JSONReturn) in
             switch result {
             case .success(let json):
                 if let success = json["success"].bool,
@@ -75,6 +74,7 @@ extension TMDBManager {
                     completion(.fail(error: "JSON data returned from TMDB for creating session cannot be serialized.".error(domain: "authentication")))
                 }
             case .fail(let error):
+                completion(.fail(error: error))
                 #if debug
                     print("Error Creating Session: \(error)")
                 #endif
@@ -90,9 +90,7 @@ extension TMDBManager {
     ///   - password: User's password
     public func createSessionWithLogin(username: String, password: String, completion: @escaping (NilReturn) -> ()) {
         guard let requestToken = self.requestToken else {
-            #if debug
-                print("Request Token is nil, please call createRequestToken() ahead to create one.")
-            #endif
+            completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
             return
         }
         
@@ -100,7 +98,7 @@ extension TMDBManager {
         let query = ["username": username,
                      "password": password,
                      "request_token": requestToken]
-        performRequest(withRelativeUrl: relativeUrlString, query: query, needAuthentication: false) { (result: JSONReturn) in
+        performRequest(path: relativeUrlString, query: query, needAuthentication: false) { (result: JSONReturn) in
             switch result {
             case .success(let json):
                 if let success = json["success"].bool,
@@ -114,9 +112,7 @@ extension TMDBManager {
                     completion(.fail(error: "JSON data returned from TMDB for creating session with login cannot be serialized.".error(domain: "authentication")))
                 }
             case .fail(let error):
-                #if debug
-                    print("Error Creating Session: \(error)")
-                #endif
+                completion(.fail(error: error))
             }
         }
     }
@@ -128,7 +124,7 @@ extension TMDBManager {
     /// If a guest session is not used for the first time within 24 hours, it will be automatically deleted.
     public func createGuestSession(completion: @escaping (NilReturn) -> ()) {
         let relativeUrlString = "/authentication/guest_session/new"
-        performRequest(withRelativeUrl: relativeUrlString, needAuthentication: false) { (result: JSONReturn) in
+        performRequest(path: relativeUrlString, needAuthentication: false) { (result: JSONReturn) in
             switch result {
             case .success(let json):
                 if let success = json["success"].bool,
@@ -136,7 +132,8 @@ extension TMDBManager {
                     let expiresAt = json["expires_at"].string {
                     if success {
                         self.guestSessionId = guestSessionId
-                        self.guestSessionExpiresAt = expiresAt
+                        self.guestSessionExpiresAt = expiresAt.date()
+                        completion(.success)
                     } else {
                         completion(.fail(error: "TMDB returned fail when creating guest session".error(domain: "authentication")))
                     }
@@ -144,9 +141,7 @@ extension TMDBManager {
                     completion(.fail(error: "JSON data returned from TMDB for creating guest session cannot be serialized.".error(domain: "authentication")))
                 }
             case .fail(let error):
-                #if debug
-                    print("Error Creating Session: \(error)")
-                #endif
+                completion(.fail(error: error))
             }
         }
     }

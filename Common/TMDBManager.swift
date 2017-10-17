@@ -15,14 +15,14 @@ public class TMDBManager {
     var keyChainPrefix: String?
     
     var requestToken: String?
-    var requestTokenExpiresAt: String?
+    var requestTokenExpiresAt: Date?
     
     var sessionIdKey: String {
         return keyChainPrefix == nil ? "" : keyChainPrefix! + ".sessionId"
     }
     
     var guestSessionId: String?
-    var guestSessionExpiresAt: String?
+    var guestSessionExpiresAt: Date?
     
     public var sessionId: String? {
         get {
@@ -39,28 +39,36 @@ public class TMDBManager {
                 MLKeychain.deleteItem(forKey: sessionIdKey)
             } else {
                 let savingSucceeded = MLKeychain.setString(value: newValue!, forKey: sessionIdKey)
-                #if DEBUG
-                    print("SessionID saved successfully:\n\(savingSucceeded)")
-                #endif
+                print("SessionID saved successfully:\n\(savingSucceeded)")
             }
         }
     }
 }
 
 extension TMDBManager {
-    /// Setup the TMDB client
+    /// Setup the TMDB client.
     ///
     /// - Parameters:
     ///   - apiKey: Your API key, see [TMDB API - Introduction](https://developers.themoviedb.org/3/getting-started) for more info.
-    ///   - keyChainPrefix: Prefix for key chain keys. For example, you set this value as **com.yourCompanyName.yourAppName**, the session ID will be keyed **com.yourCompanyName.yourAppName.sessionId**.
+    ///   - keyChainPrefix: Prefix for key chain keys. Usually your app's bundle name. For example, you set this value as **com.yourCompanyName.yourAppName**, the session ID will be stored in key chain for key **com.yourCompanyName.yourAppName.sessionId**.
     public func setupClient(withApiKey apiKey: String, keyChainPrefix: String) {
         self.apiKey = apiKey
         self.keyChainPrefix = keyChainPrefix
     }
     
-    /// Check if the user is authrozied. Please note that this computed propety only checks the if the session ID exists and if the session ID is out of expire time. The user may invoke the session ID right through TMDB website.
+    /// Check if the session ID is nil.
     public var authrozied: Bool {
-        return true
+        return !(sessionId == nil)
+    }
+    
+    /// Check if Guest Session Id is nil or expired.
+    public var guestAzuthrozied: Bool {
+        guard
+            let _ = guestSessionId,
+            let d = guestSessionExpiresAt
+            else { return false }
+        
+        return d <= Date() ? true : false
     }
 }
 
@@ -72,21 +80,20 @@ extension TMDBManager {
     ///   - needAuthentication: Whether this request needs authentication.
     ///   - expectedStatusCode: Expected status code, usually 200.
     ///   - completion: Completion Handler.
-    func performRequest(withRelativeUrl relativeUrl: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (DataReturn) -> ()) {
+    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (DataReturn) -> ()) {
         guard let apiKey = self.apiKey else {
             completion(.fail(error: "API Key is nil, please call setupClient() first.".error()))
             return
         }
         
         guard
-            let baseUrl = URL(string: "https://api.themoviedb.org/3/"),
-            let url = URL(string: relativeUrl, relativeTo: baseUrl),
-            var componments = URLComponents(string: url.absoluteString)
+            let baseUrl = URL(string: "https://api.themoviedb.org/3"),
+            var componments = URLComponents(string: baseUrl.absoluteString)
             else {
-                completion(.fail(error: "Invalid relative url.".error()))
+                completion(.fail(error: "Invalid path.".error()))
                 return
         }
-        
+        componments.path += path
         var queryItems = componments.queryItems ?? []
         queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
         if !query.isEmpty {
@@ -121,12 +128,11 @@ extension TMDBManager {
                     } else if response == nil {
                         message += "HTTPResponse is nil."
                     } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != expectedStatusCode {
-                        message += "Response status code: \(httpResponse.statusCode), yet expecting \(expectedStatusCode)."
+                        message += "Response status code: \(httpResponse.statusCode), yet expecting \(expectedStatusCode). TMDB returned: \(String(describing: String(data: data!, encoding: .utf8)))"
                     } else {
                         completion(.fail(error: nil))
                         return
                     }
-                    
                     completion(.fail(error: message.error()))
                     return
             }
@@ -144,9 +150,9 @@ extension TMDBManager {
     ///   - needAuthentication: Whether this request needs authentication.
     ///   - expectedStatusCode: Expected status code, usually 200.
     ///   - completion: Completion Handler.
-    func performRequest(withRelativeUrl relativeUrl: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (JSONReturn) -> ()) {
+    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (JSONReturn) -> ()) {
         
-        performRequest(withRelativeUrl: relativeUrl, query: query, needAuthentication: needAuthentication) { (result: DataReturn) in
+        performRequest(path: path, query: query, needAuthentication: needAuthentication) { (result: DataReturn) in
             switch result {
             case .success(let data):
                 do {
@@ -168,9 +174,9 @@ extension TMDBManager {
     ///   - needAuthentication: Whether this request needs authentication.
     ///   - expectedStatusCode: Expected status code, usually 200.
     ///   - completion: Completion Handler.
-    func performRequest<T>(withRelativeUrl relativeUrl: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (ObjectReturn<T>) -> ()) {
+    func performRequest<T>(path: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (ObjectReturn<T>) -> ()) {
         
-        performRequest(withRelativeUrl: relativeUrl, query: query, needAuthentication: needAuthentication) { (result: DataReturn) in
+        performRequest(path: path, query: query, needAuthentication: needAuthentication) { (result: DataReturn) in
             switch result {
             case .success(let data):
                 do {
