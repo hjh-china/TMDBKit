@@ -185,19 +185,3 @@ extension TMDBManager {
         }
     }
 }
-
-enum ObjectReturn<T: Codable> {
-    case success(object: T)
-    case fail(error: Error?)
-}
-
-enum DataReturn {
-    case success(data: Data)
-    case fail(error: Error?)
-}
-
-enum JSONReturn {
-    case success(json: JSON)
-    case fail(error: Error?)
-}
-

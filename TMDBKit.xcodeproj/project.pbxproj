@@ -15,6 +15,7 @@
 		459E5C241F96520300AB28DE /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C231F96520300AB28DE /* Authentication.swift */; };
 		459E5C271F96541800AB28DE /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C261F96541800AB28DE /* String+.swift */; };
 		459E5C291F96570600AB28DE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C281F96570600AB28DE /* SwiftyJSON.swift */; };
+		459E5C2B1F96647700AB28DE /* ReturnTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C2A1F96647700AB28DE /* ReturnTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		459E5C231F96520300AB28DE /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		459E5C261F96541800AB28DE /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		459E5C281F96570600AB28DE /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		459E5C2A1F96647700AB28DE /* ReturnTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				459E5C221F9651D200AB28DE /* Wapper */,
 				459E5C1E1F96499200AB28DE /* TMDBManager.swift */,
 				459E5C201F9649FF00AB28DE /* KeyChainManager.swift */,
+				459E5C2A1F96647700AB28DE /* ReturnTypes.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				459E5C1F1F96499200AB28DE /* TMDBManager.swift in Sources */,
+				459E5C2B1F96647700AB28DE /* ReturnTypes.swift in Sources */,
 				459E5C211F9649FF00AB28DE /* KeyChainManager.swift in Sources */,
 				459E5C271F96541800AB28DE /* String+.swift in Sources */,
 				459E5C291F96570600AB28DE /* SwiftyJSON.swift in Sources */,

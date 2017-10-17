@@ -17,4 +17,13 @@ extension String {
         
         return error
     }
+    
+    func error(domain: String) -> Error {
+        let userInfo = ["title": "TMDB Kit Error",
+                        NSLocalizedDescriptionKey: self,
+                        NSLocalizedRecoverySuggestionErrorKey: ""]
+        let error = NSError(domain: "im.sr2k.TMDBKit.\(domain)", code: -1, userInfo: userInfo)
+        
+        return error
+    }
 }
