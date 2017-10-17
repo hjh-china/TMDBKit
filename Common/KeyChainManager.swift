@@ -8,20 +8,18 @@
 
 import Foundation
 
-import Foundation
-
-let serviceIdentifier = "com.litteral.TVShows"
-
-let kSecClassValue = kSecClass as String
-let kSecAttrAccountValue = kSecAttrAccount as String
-let kSecValueDataValue = kSecValueData as String
-let kSecClassGenericPasswordValue = kSecClassGenericPassword as String
-let kSecAttrServiceValue = kSecAttrService as String
-let kSecMatchLimitValue = kSecMatchLimit as String
-let kSecReturnDataValue = kSecReturnData as String
-let kSecMatchLimitOneValue = kSecMatchLimitOne as String
-
-public class MLKeychain {
+public class KeychainManager {
+    
+    static let serviceIdentifier = "im.sr2k.tmdbKit"
+    
+    static let kSecClassValue = kSecClass as String
+    static let kSecAttrAccountValue = kSecAttrAccount as String
+    static let kSecValueDataValue = kSecValueData as String
+    static let kSecClassGenericPasswordValue = kSecClassGenericPassword as String
+    static let kSecAttrServiceValue = kSecAttrService as String
+    static let kSecMatchLimitValue = kSecMatchLimit as String
+    static let kSecReturnDataValue = kSecReturnData as String
+    static let kSecMatchLimitOneValue = kSecMatchLimitOne as String
     
     class func setString(value: String, forKey key: String) -> Bool {
         let data = value.data(using: String.Encoding.utf8, allowLossyConversion: false)!

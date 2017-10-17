@@ -14,19 +14,16 @@ public class TMDBManager {
     var apiKey: String?
     var keyChainPrefix: String?
     
-    var requestToken: String?
-    var requestTokenExpiresAt: Date?
+    public var requestToken: String?
+    public var requestTokenExpiresAt: Date?
     
     var sessionIdKey: String {
         return keyChainPrefix == nil ? "" : keyChainPrefix! + ".sessionId"
     }
     
-    var guestSessionId: String?
-    var guestSessionExpiresAt: Date?
-    
     public var sessionId: String? {
         get {
-            if let accessTokenData = MLKeychain.loadData(forKey: sessionIdKey) {
+            if let accessTokenData = KeychainManager.loadData(forKey: sessionIdKey) {
                 if let accessTokenString = String.init(data: accessTokenData, encoding: .utf8) {
                     return accessTokenString
                 }
@@ -36,13 +33,16 @@ public class TMDBManager {
         }
         set {
             if newValue == nil {
-                MLKeychain.deleteItem(forKey: sessionIdKey)
+                KeychainManager.deleteItem(forKey: sessionIdKey)
             } else {
-                let savingSucceeded = MLKeychain.setString(value: newValue!, forKey: sessionIdKey)
+                let savingSucceeded = KeychainManager.setString(value: newValue!, forKey: sessionIdKey)
                 print("SessionID saved successfully:\n\(savingSucceeded)")
             }
         }
     }
+    
+    public var guestSessionId: String?
+    public var guestSessionExpiresAt: Date?
 }
 
 extension TMDBManager {
