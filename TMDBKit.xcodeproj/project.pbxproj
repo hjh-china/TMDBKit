@@ -10,6 +10,11 @@
 		459E5C0D1F96497700AB28DE /* TMDBKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459E5C031F96497700AB28DE /* TMDBKit.framework */; };
 		459E5C121F96497700AB28DE /* TMDBKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C111F96497700AB28DE /* TMDBKitTests.swift */; };
 		459E5C141F96497700AB28DE /* TMDBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 459E5C061F96497700AB28DE /* TMDBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		459E5C1F1F96499200AB28DE /* TMDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C1E1F96499200AB28DE /* TMDBManager.swift */; };
+		459E5C211F9649FF00AB28DE /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C201F9649FF00AB28DE /* KeyChainManager.swift */; };
+		459E5C241F96520300AB28DE /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C231F96520300AB28DE /* Authentication.swift */; };
+		459E5C271F96541800AB28DE /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C261F96541800AB28DE /* String+.swift */; };
+		459E5C291F96570600AB28DE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C281F96570600AB28DE /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +34,11 @@
 		459E5C0C1F96497700AB28DE /* TMDBKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDBKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		459E5C111F96497700AB28DE /* TMDBKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBKitTests.swift; sourceTree = "<group>"; };
 		459E5C131F96497700AB28DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		459E5C1E1F96499200AB28DE /* TMDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBManager.swift; sourceTree = "<group>"; };
+		459E5C201F9649FF00AB28DE /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		459E5C231F96520300AB28DE /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		459E5C261F96541800AB28DE /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		459E5C281F96570600AB28DE /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,7 @@
 		459E5BF91F96497700AB28DE = {
 			isa = PBXGroup;
 			children = (
+				459E5C1D1F96497E00AB28DE /* Common */,
 				459E5C051F96497700AB28DE /* TMDBKit */,
 				459E5C101F96497700AB28DE /* TMDBKitTests */,
 				459E5C041F96497700AB28DE /* Products */,
@@ -84,6 +95,34 @@
 				459E5C131F96497700AB28DE /* Info.plist */,
 			);
 			path = TMDBKitTests;
+			sourceTree = "<group>";
+		};
+		459E5C1D1F96497E00AB28DE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				459E5C281F96570600AB28DE /* SwiftyJSON.swift */,
+				459E5C251F96540E00AB28DE /* Extensions */,
+				459E5C221F9651D200AB28DE /* Wapper */,
+				459E5C1E1F96499200AB28DE /* TMDBManager.swift */,
+				459E5C201F9649FF00AB28DE /* KeyChainManager.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		459E5C221F9651D200AB28DE /* Wapper */ = {
+			isa = PBXGroup;
+			children = (
+				459E5C231F96520300AB28DE /* Authentication.swift */,
+			);
+			path = Wapper;
+			sourceTree = "<group>";
+		};
+		459E5C251F96540E00AB28DE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				459E5C261F96541800AB28DE /* String+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +187,7 @@
 				TargetAttributes = {
 					459E5C021F96497700AB28DE = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					459E5C0B1F96497700AB28DE = {
@@ -196,6 +236,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459E5C1F1F96499200AB28DE /* TMDBManager.swift in Sources */,
+				459E5C211F9649FF00AB28DE /* KeyChainManager.swift in Sources */,
+				459E5C271F96541800AB28DE /* String+.swift in Sources */,
+				459E5C291F96570600AB28DE /* SwiftyJSON.swift in Sources */,
+				459E5C241F96520300AB28DE /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +379,7 @@
 		459E5C181F96497700AB28DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -347,6 +393,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = im.sr2k.TMDBKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -355,6 +402,7 @@
 		459E5C191F96497700AB28DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -376,6 +424,7 @@
 		459E5C1B1F96497700AB28DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E479487U55;
 				INFOPLIST_FILE = TMDBKitTests/Info.plist;
@@ -390,6 +439,7 @@
 		459E5C1C1F96497700AB28DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E479487U55;
 				INFOPLIST_FILE = TMDBKitTests/Info.plist;
