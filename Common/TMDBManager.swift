@@ -80,7 +80,7 @@ extension TMDBManager {
     ///   - needAuthentication: Whether this request needs authentication.
     ///   - expectedStatusCode: Expected status code, usually 200.
     ///   - completion: Completion Handler.
-    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (DataReturn) -> ()) {
+    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (DataReturn) -> ()) {
         guard let apiKey = self.apiKey else {
             completion(.fail(error: "API Key is nil, please call setupClient() first.".error()))
             return
@@ -150,7 +150,7 @@ extension TMDBManager {
     ///   - needAuthentication: Whether this request needs authentication.
     ///   - expectedStatusCode: Expected status code, usually 200.
     ///   - completion: Completion Handler.
-    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (JSONReturn) -> ()) {
+    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (JSONReturn) -> ()) {
         
         performRequest(path: path, query: query, needAuthentication: needAuthentication) { (result: DataReturn) in
             switch result {
@@ -174,7 +174,7 @@ extension TMDBManager {
     ///   - needAuthentication: Whether this request needs authentication.
     ///   - expectedStatusCode: Expected status code, usually 200.
     ///   - completion: Completion Handler.
-    func performRequest<T>(path: String, query: [String: String] = [:], needAuthentication: Bool, expectedStatusCode: Int = 200, completion: @escaping (ObjectReturn<T>) -> ()) {
+    func performRequest<T>(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (ObjectReturn<T>) -> ()) {
         
         performRequest(path: path, query: query, needAuthentication: needAuthentication) { (result: DataReturn) in
             switch result {
