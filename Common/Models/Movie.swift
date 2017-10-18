@@ -9,26 +9,37 @@
 import Foundation
 
 public struct TMDBMovie: Codable {
-    let posterPath: String?
-    let adult: Bool
-    let overview: String
-    let releaseDate: String
-    let genreIds: [Int]
-    let id: Int
-    let originalTitle: String
-    let originalLanguage: String
-    let title: String
-    let backdropPath: String?
-    let popularity: Double
-    let voteCount: Int
-    let video: Bool
-    let voteAvrage: Double
+    public let posterPath: String?
+    public let adult: Bool
+    public let overview: String?
+    /// Raw **String** returned from TMDB, usually formatted as `YYYY-MM-dd`. Use `releaseDate` property for **Date**.
+    public let rawReleaseDateString: String?
+    public let genreIds: [Int]
+    public let id: Int
+    public let originalTitle: String
+    public let originalLanguage: String
+    public let title: String
+    public let backdropPath: String?
+    public let popularity: Double
+    public let voteCount: Int
+    public let video: Bool
+    public let voteAvrage: Double
+    /// Only for getRatedMovies()
+    public let rating: Int?
+    
+    public var releaseDate: Date? {
+        if let raw = rawReleaseDateString {
+            return raw.date(format: "YYYY-MM-dd")
+        } else {
+            return nil
+        }
+    }
     
     enum CodingKeys: String, CodingKey {
         case posterPath = "poster_path"
         case adult
         case overview
-        case releaseDate = "release_date"
+        case rawReleaseDateString = "release_date"
         case genreIds = "genre_ids"
         case id
         case originalTitle = "original_title"
@@ -39,5 +50,6 @@ public struct TMDBMovie: Codable {
         case voteCount = "vote_count"
         case video
         case voteAvrage = "vote_average"
+        case rating
     }
 }

@@ -9,16 +9,16 @@
 import Foundation
 
 public struct TMDBUser: Codable {
-    let avatar: gravatar
-    let id: Int
-    let language: String
-    let region: String
-    let name: String
-    let includeAdult: Bool
-    let username: String
+    public let avatar: gravatar
+    public let id: Int
+    public let language: String
+    public let region: String
+    public let name: String
+    public let includeAdult: Bool
+    public let username: String
     
-    struct gravatar: Codable {
-        let hash: String
+    public struct gravatar: Codable {
+        let hash: String?
     }
     
     enum CodingKeys: String, CodingKey {
