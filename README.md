@@ -1,6 +1,8 @@
 # TMDBKit
 The Movie Database API v3 wrapper in Swift 4.
+
 I'm just a very beginner to the Swift world. And I decide to take this project as my first step.
+
 All issues and pull requests are welcomed :-)
 
 # Usage
@@ -40,3 +42,8 @@ TMDBManager.shared.createRequestToken() { result
   }
 }
 ```
+
+## License
+TMDBKit is available under the MIT license. See the LICENSE file for more info.
+
+License for open source projects invoked can be found under `/Common/OpenSource/` folder

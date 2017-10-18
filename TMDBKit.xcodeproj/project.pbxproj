@@ -13,6 +13,9 @@
 		450D946A1F96B3C8005E2227 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D94691F96B3C8005E2227 /* Movie.swift */; };
 		450D946C1F96BEAF005E2227 /* MediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D946B1F96BEAF005E2227 /* MediaObject.swift */; };
 		450D946E1F96BF80005E2227 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D946D1F96BF80005E2227 /* TVShow.swift */; };
+		451DFBD81F98101500F501EB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBD71F98101500F501EB /* LICENSE */; };
+		451DFBDB1F9810FD00F501EB /* SwiftyJSON_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */; };
+		451DFBDD1F98111300F501EB /* TraktKit_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDC1F98111300F501EB /* TraktKit_LICENSE */; };
 		459E5C0D1F96497700AB28DE /* TMDBKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459E5C031F96497700AB28DE /* TMDBKit.framework */; };
 		459E5C121F96497700AB28DE /* TMDBKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C111F96497700AB28DE /* TMDBKitTests.swift */; };
 		459E5C141F96497700AB28DE /* TMDBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 459E5C061F96497700AB28DE /* TMDBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,6 +48,9 @@
 		450D94691F96B3C8005E2227 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		450D946B1F96BEAF005E2227 /* MediaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaObject.swift; sourceTree = "<group>"; };
 		450D946D1F96BF80005E2227 /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
+		451DFBD71F98101500F501EB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftyJSON_LICENSE; sourceTree = "<group>"; };
+		451DFBDC1F98111300F501EB /* TraktKit_LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = TraktKit_LICENSE; sourceTree = "<group>"; };
 		459E5C031F96497700AB28DE /* TMDBKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDBKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		459E5C061F96497700AB28DE /* TMDBKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDBKit.h; sourceTree = "<group>"; };
 		459E5C071F96497700AB28DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,9 +104,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		451DFBD91F98106900F501EB /* OpenSource */ = {
+			isa = PBXGroup;
+			children = (
+				459E5C201F9649FF00AB28DE /* KeyChainManager.swift */,
+				459E5C281F96570600AB28DE /* SwiftyJSON.swift */,
+				451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */,
+				451DFBDC1F98111300F501EB /* TraktKit_LICENSE */,
+			);
+			path = OpenSource;
+			sourceTree = "<group>";
+		};
 		459E5BF91F96497700AB28DE = {
 			isa = PBXGroup;
 			children = (
+				451DFBD71F98101500F501EB /* LICENSE */,
 				459E5C2C1F96742C00AB28DE /* README.md */,
 				459E5C1D1F96497E00AB28DE /* Common */,
 				459E5C051F96497700AB28DE /* TMDBKit */,
@@ -139,13 +157,12 @@
 		459E5C1D1F96497E00AB28DE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				450D94641F96A8F4005E2227 /* Models */,
-				459E5C281F96570600AB28DE /* SwiftyJSON.swift */,
-				459E5C251F96540E00AB28DE /* Extensions */,
-				459E5C221F9651D200AB28DE /* Wapper */,
-				459E5C1E1F96499200AB28DE /* TMDBManager.swift */,
-				459E5C201F9649FF00AB28DE /* KeyChainManager.swift */,
+				451DFBD91F98106900F501EB /* OpenSource */,
 				459E5C2A1F96647700AB28DE /* ReturnTypes.swift */,
+				459E5C1E1F96499200AB28DE /* TMDBManager.swift */,
+				459E5C251F96540E00AB28DE /* Extensions */,
+				450D94641F96A8F4005E2227 /* Models */,
+				459E5C221F9651D200AB28DE /* Wapper */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -153,8 +170,8 @@
 		459E5C221F9651D200AB28DE /* Wapper */ = {
 			isa = PBXGroup;
 			children = (
-				459E5C231F96520300AB28DE /* Authentication.swift */,
 				450D94621F96A6A5005E2227 /* Account.swift */,
+				459E5C231F96520300AB28DE /* Authentication.swift */,
 				45AECDD41F98040A008BE58F /* Certifications.swift */,
 			);
 			path = Wapper;
@@ -262,6 +279,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451DFBDB1F9810FD00F501EB /* SwiftyJSON_LICENSE in Resources */,
+				451DFBDD1F98111300F501EB /* TraktKit_LICENSE in Resources */,
+				451DFBD81F98101500F501EB /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
