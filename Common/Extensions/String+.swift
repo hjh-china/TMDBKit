@@ -27,12 +27,18 @@ extension String {
         return error
     }
     
-    func date() -> Date? {
+    func iso8601Date() -> Date? {
         let splited = self.split(separator: " ")
         if splited.count >= 2 {
             return ISO8601DateFormatter().date(from: splited[0] + "T" + splited[1] + "Z")
         } else {
             return nil
         }
+    }
+    
+    func date(format: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: self)
     }
 }
