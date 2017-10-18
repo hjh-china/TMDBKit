@@ -146,8 +146,8 @@ extension TMDBManager {
     ///     - minimum: 1
     ///     - maximum: 1000
     ///     - default: 1
-    public func getRatedTVEpisodes(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
-        performRequest(path: "/account/\(account)/rated/episodes",
+    public func getRatedTVEpisodes(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVEpisode>>) -> ()) {
+        performRequest(path: "/account/\(account)/rated/tv/episodes",
                        language: language,
                        sortBy: sortBy,
                        page: page,
@@ -207,25 +207,5 @@ extension TMDBManager {
                        dataObject: requestBody,
                        expectedStatusCode: requestBody.watchlist ? 201 : 200,
                        completion: completion)
-    }
-}
-
-extension TMDBManager {
-    /// Get paged objects
-    func performRequest<T>(path: String, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<T>>) -> ()) {
-        var query: [String: String] = [:]
-        
-        if let language = language {
-            query["language"] = language
-        }
-        
-        if let sortBy = sortBy {
-            query["sort_by"] = sortBy
-        }
-        
-        if let page = page {
-            query["page"] = "\(page)"
-        }
-        performRequest(path: path, query: query, needAuthentication: true, completion: completion)
     }
 }
