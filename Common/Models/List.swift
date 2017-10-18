@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDbList: Codable {
+public struct TMDBList: Codable {
     let description: String
     let favoriteCount: Int
     let id: Int

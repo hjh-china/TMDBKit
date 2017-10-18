@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDbMovie: Codable {
+public struct TMDBMovie: Codable {
     public let posterPath: String?
     public let adult: Bool
     public let overview: String?

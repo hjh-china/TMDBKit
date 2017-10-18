@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDbUser: Codable {
+public struct TMDBUser: Codable {
     public let avatar: gravatar
     public let id: Int
     public let language: String
