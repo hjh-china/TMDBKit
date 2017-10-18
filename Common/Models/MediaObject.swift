@@ -9,11 +9,23 @@
 import Foundation
 
 public struct TMDBFavoriteMediaObject: Codable {
-    let mediaType: MediaType
-    let mediaId: Int
-    let favorite: Bool
+    public let mediaType: MediaType
+    public let mediaId: Int
+    public let favorite: Bool
     
-    enum MediaType: String, Codable {
+    /// Init a TMDBFavoriteMediaObject instance.
+    ///
+    /// - Parameters:
+    ///   - mediaType: Movie or TV.
+    ///   - mediaId: Media ID.
+    ///   - favorite: If `true`, this item will be added to the favotites. If `false`, this item will be removed.
+    public init(mediaType: MediaType, mediaId: Int, favorite: Bool) {
+        self.mediaType = mediaType
+        self.mediaId = mediaId
+        self.favorite = favorite
+    }
+    
+    public enum MediaType: String, Codable {
         case movie
         case tv
     }
@@ -26,11 +38,23 @@ public struct TMDBFavoriteMediaObject: Codable {
 }
 
 public struct TMDBWatchlistMediaObject: Codable {
-    let mediaType: MediaType
-    let mediaId: Int
-    let watchlist: Bool
+    public let mediaType: MediaType
+    public let mediaId: Int
+    public let watchlist: Bool
     
-    enum MediaType: String, Codable {
+    /// Init a TMDBWatchlistMediaObject instance.
+    ///
+    /// - Parameters:
+    ///   - mediaType: Movie or TV.
+    ///   - mediaId: Media ID.
+    ///   - watchlist: If `true`, this item will be added to the watchlist. If `false`, this item will be removed.
+    public init(mediaType: MediaType, mediaId: Int, watchlist: Bool) {
+        self.mediaType = mediaType
+        self.mediaId = mediaId
+        self.watchlist = watchlist
+    }
+    
+    public enum MediaType: String, Codable {
         case movie
         case tv
     }
