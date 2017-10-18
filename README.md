@@ -46,4 +46,4 @@ TMDBManager.shared.createRequestToken() { result
 ## License
 TMDBKit is available under the MIT license. See the LICENSE file for more info.
 
-License for open source projects invoked can be found under `/Common/OpenSource/` folder
+License for open source projects invoked can be found under [/Common/OpenSource/ folder](https://github.com/SR2k/TMDBKit/tree/master/Common/OpenSource)
