@@ -237,6 +237,53 @@ extension TMDBManager {
             }
         }
     }
+    
+    /// Perform the GET request with Codable object returned in complition handler closure.
+    ///
+    /// - Parameters:
+    ///   - path: The relative path for the request, like "/movie/76341".
+    ///   - query: Query to be appended.
+    ///   - needAuthentication: Whether this request needs appending Seesion ID.
+    ///   - expectedStatusCode: Expected status code, usually 200. Will return an error if the server returns a different code.
+    ///   - completion: Completion Handler.
+    func performRequest(postPath: String, query: [String: String] = [:], headers: [String: String] = [:], data: Data?, needAuthentication: Bool = true, expectedStatusCode: Int = 201, completion: @escaping (DataReturn) -> ()) {
+        let _request = constructRequest(postPath: postPath,
+                                       query: query,
+                                       headers: headers,
+                                       data: data,
+                                       needAuthentication: needAuthentication,
+                                       expectedStatusCode: expectedStatusCode)
+        switch _request {
+        case .success(let request):
+            performRequest(request: request, expectedStatusCode: expectedStatusCode, completion: completion)
+        case .fail(let error):
+            completion(.fail(error: error))
+        }
+    }
+    
+    /// Perform the GET request with Codable object returned in complition handler closure.
+    ///
+    /// - Parameters:
+    ///   - path: The relative path for the request, like "/movie/76341".
+    ///   - query: Query to be appended.
+    ///   - needAuthentication: Whether this request needs appending Seesion ID.
+    ///   - expectedStatusCode: Expected status code, usually 200. Will return an error if the server returns a different code.
+    ///   - completion: Completion Handler.
+    func performRequest<T: Codable>(postPath: String, query: [String: String] = [:], headers: [String: String] = [:], dataObject: T, needAuthentication: Bool = true, expectedStatusCode: Int = 201, completion: @escaping (NilReturn) -> ()) {
+        do {
+            let data = try JSONEncoder().encode(dataObject)
+            performRequest(postPath: postPath, query: query, headers: headers, data: data, needAuthentication: needAuthentication, expectedStatusCode: expectedStatusCode) { result in
+                switch result {
+                case .success:
+                    completion(.success)
+                case .fail(let error):
+                    completion(.fail(error: error))
+                }
+            }
+        } catch let error {
+            completion(.fail(error: error))
+        }
+    }
 }
 
 extension TMDBManager {
@@ -250,7 +297,7 @@ extension TMDBManager {
     ///   - needAuthentication: Whether this request needs appending Seesion ID.
     ///   - expectedStatusCode: Expected status code.
     /// - Returns: An enum carrys the result URLRequest or Error.
-    func constructRequest(postPath path: String, query: [String: String] = [:], headers: [String: String] = [:], data: Data, needAuthentication: Bool = true, expectedStatusCode: Int = 201) -> AnyReturn<URLRequest> {
+    func constructRequest(postPath path: String, query: [String: String] = [:], headers: [String: String] = [:], data: Data?, needAuthentication: Bool = true, expectedStatusCode: Int = 201) -> AnyReturn<URLRequest> {
         let request: URLRequest!
         let _request = constructRequest(path: path,
                                         query: query,
@@ -265,7 +312,9 @@ extension TMDBManager {
         }
         
         request.httpMethod = "POST"
-        request.httpBody = data
+        if let data = data {
+            request.httpBody = data
+        }
         request.addValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         if !headers.isEmpty {
