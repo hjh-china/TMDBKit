@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - [Authentication API](https://developers.themoviedb.org/3/authentication).
 extension TMDBManager {
+
     public func authenticationURL(redirectURL: URL?) -> URL? {
         guard let requestToken = self.requestToken  else { return nil }
         var baseURLString = "https://www.themoviedb.org/authenticate/\(requestToken)"
@@ -33,7 +34,7 @@ extension TMDBManager {
                     let expiresAt = json["expires_at"].string {
                     if success {
                         self.requestToken = requestToken
-                        self.requestTokenExpiresAt = expiresAt.date()
+                        self.requestTokenExpiresAt = expiresAt.iso8601Date()
                         completion(.success)
                     } else {
                         completion(.fail(error: "TMDB returned fail when creating request token.".error(domain: "authentication")))
@@ -66,7 +67,7 @@ extension TMDBManager {
                 if let success = json["success"].bool,
                     let sessionId = json["session_id"].string {
                     if success {
-                        self.sessionId = sessionId
+                        self._sessionId = sessionId
                         completion(.success)
                     } else {
                         completion(.fail(error: "TMDB returned fail when creating session".error(domain: "authentication")))
@@ -105,7 +106,7 @@ extension TMDBManager {
                 if let success = json["success"].bool,
                     let sessionId = json["session_id"].string {
                     if success {
-                        self.sessionId = sessionId
+                        self._sessionId = sessionId
                         completion(.success)
                     } else {
                         completion(.fail(error: "TMDB returned fail when creating session with login".error(domain: "authentication")))
@@ -134,7 +135,7 @@ extension TMDBManager {
                     let expiresAt = json["expires_at"].string {
                     if success {
                         self.guestSessionId = guestSessionId
-                        self.guestSessionExpiresAt = expiresAt.date()
+                        self.guestSessionExpiresAt = expiresAt.iso8601Date()
                         completion(.success)
                     } else {
                         completion(.fail(error: "TMDB returned fail when creating guest session".error(domain: "authentication")))
