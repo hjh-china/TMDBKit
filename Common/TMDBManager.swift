@@ -73,57 +73,13 @@ extension TMDBManager {
 }
 
 extension TMDBManager {
-    /// Perform the request with Data returned in complition handler closure.
+    /// Base method for performming request.
     ///
     /// - Parameters:
-    ///   - relativeUrl: The relative URL for the request, like "movie/76341".
-    ///   - needAuthentication: Whether this request needs authentication.
-    ///   - expectedStatusCode: Expected status code, usually 200.
-    ///   - completion: Completion Handler.
-    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (DataReturn) -> ()) {
-        // Check API Key
-        guard let apiKey = self.apiKey else {
-            completion(.fail(error: "API Key is nil, please call setupClient(withApiKey:keyChainPrefix:) first.".error()))
-            return
-        }
-        
-        // Construct URLComponments
-        guard
-            let baseUrl = URL(string: "https://api.themoviedb.org/3"),
-            var componments = URLComponents(string: baseUrl.absoluteString)
-            else {
-                completion(.fail(error: "Invalid path.".error()))
-                return
-        }
-        componments.path += path
-        
-        // Append query items
-        var queryItems = componments.queryItems ?? []
-        queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
-        
-        if needAuthentication {
-            guard let sessionId = self.sessionId else {
-                completion(.fail(error: "Session ID is nil, please grant authentication first.".error()))
-                return
-            }
-            queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
-        }
-        
-        if !query.isEmpty {
-            for (key, value) in query {
-                queryItems.append(URLQueryItem(name: key, value: value))
-            }
-        }
-        componments.queryItems = queryItems
-        
-        // Construct request
-        guard
-            let componmentsUrl = componments.url
-            else { return }
-        
-        let request = URLRequest(url: componmentsUrl)
-        
-        // Construct data task
+    ///   - request: URLRequest that needs to be performmed.
+    ///   - expectedStatusCode: Expected status code. Will return an error if the server returns a different code.
+    ///   - completion: Completion handler with DataReturn enum.
+    func performRequest(request: URLRequest, expectedStatusCode: Int, completion: @escaping (DataReturn) -> ()) {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             
@@ -155,16 +111,90 @@ extension TMDBManager {
             completion(.success(data: responseData))
         })
         
-        // Resume task
         dataTask.resume()
     }
-    
-    /// Perform the request with JSON returned in complition handler closure.
+}
+
+extension TMDBManager {
+    /// Construct the basic (GET) URLRequest.
     ///
     /// - Parameters:
-    ///   - relativeUrl: The relative URL for the request, like "movie/76341".
-    ///   - needAuthentication: Whether this request needs authentication.
-    ///   - expectedStatusCode: Expected status code, usually 200.
+    ///   - path: The relative path for the request, like "/movie/76341".
+    ///   - query: Query to be appended.
+    ///   - needAuthentication: Whether this request needs appending Seesion ID.
+    ///   - expectedStatusCode: Expected status code.
+    /// - Returns: An enum carrys the result URLRequest or Error.
+    func constructRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200) -> AnyReturn<URLRequest> {
+        // Check API Key
+        guard let apiKey = self.apiKey else {
+            return .fail(error: "API Key is nil, please call setupClient(withApiKey:keyChainPrefix:) first.".error())
+        }
+        
+        // Construct URLComponments
+        guard
+            let baseUrl = URL(string: "https://api.themoviedb.org/3"),
+            var componments = URLComponents(string: baseUrl.absoluteString)
+            else {
+                return .fail(error: "Invalid path.".error())
+        }
+        componments.path += path
+        
+        // Append query items
+        var queryItems = componments.queryItems ?? []
+        queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
+        
+        if needAuthentication {
+            guard let sessionId = self.sessionId else {
+                return .fail(error: "Session ID is nil, please grant authentication first.".error())
+            }
+            queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
+        }
+        
+        if !query.isEmpty {
+            for (key, value) in query {
+                queryItems.append(URLQueryItem(name: key, value: value))
+            }
+        }
+        componments.queryItems = queryItems
+        
+        // Construct request
+        guard let componmentsUrl = componments.url else {
+            return .fail(error: "Fail constructing URLComponments".error())
+        }
+        
+        return .success(any: URLRequest(url: componmentsUrl))
+    }
+    
+    /// Perform the GET request with Data returned in complition handler closure.
+    ///
+    /// - Parameters:
+    ///   - path: The relative path for the request, like "/movie/76341".
+    ///   - query: Query to be appended.
+    ///   - needAuthentication: Whether this request needs appending Seesion ID.
+    ///   - expectedStatusCode: Expected status code, usually 200. Will return an error if the server returns a different code.
+    ///   - completion: Completion Handler.
+    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (DataReturn) -> ()) {
+        let _request = constructRequest(path: path,
+                                       query: query,
+                                       needAuthentication: needAuthentication,
+                                       expectedStatusCode: expectedStatusCode)
+        
+        switch _request {
+        case .success(let request):
+            performRequest(request: request, expectedStatusCode: expectedStatusCode, completion: completion)
+        case .fail(let error):
+            completion(.fail(error: error))
+        }
+        
+    }
+    
+    /// Perform the GET request with JSON returned in complition handler closure.
+    ///
+    /// - Parameters:
+    ///   - path: The relative path for the request, like "/movie/76341".
+    ///   - query: Query to be appended.
+    ///   - needAuthentication: Whether this request needs appending Seesion ID.
+    ///   - expectedStatusCode: Expected status code, usually 200. Will return an error if the server returns a different code.
     ///   - completion: Completion Handler.
     func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (JSONReturn) -> ()) {
         
@@ -183,12 +213,13 @@ extension TMDBManager {
         }
     }
     
-    /// Perform the request with Codable object returned in complition handler closure.
+    /// Perform the GET request with Codable object returned in complition handler closure.
     ///
     /// - Parameters:
-    ///   - relativeUrl: The relative URL for the request, like "movie/76341".
-    ///   - needAuthentication: Whether this request needs authentication.
-    ///   - expectedStatusCode: Expected status code, usually 200.
+    ///   - path: The relative path for the request, like "/movie/76341".
+    ///   - query: Query to be appended.
+    ///   - needAuthentication: Whether this request needs appending Seesion ID.
+    ///   - expectedStatusCode: Expected status code, usually 200. Will return an error if the server returns a different code.
     ///   - completion: Completion Handler.
     func performRequest<T>(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (ObjectReturn<T>) -> ()) {
         
@@ -205,5 +236,72 @@ extension TMDBManager {
                 completion(.fail(error: error))
             }
         }
+    }
+}
+
+extension TMDBManager {
+    /// Construct the POST URLRequest.
+    ///
+    /// - Parameters:
+    ///   - postPath: The relative path for the POST request, like "/list/12345/remove_item".
+    ///   - query: Query to be appended.
+    ///   - headers: POST header.
+    ///   - data: Request body.
+    ///   - needAuthentication: Whether this request needs appending Seesion ID.
+    ///   - expectedStatusCode: Expected status code.
+    /// - Returns: An enum carrys the result URLRequest or Error.
+    func constructRequest(postPath path: String, query: [String: String] = [:], headers: [String: String] = [:], data: Data, needAuthentication: Bool = true, expectedStatusCode: Int = 201) -> AnyReturn<URLRequest> {
+        let request: URLRequest!
+        let _request = constructRequest(path: path,
+                                        query: query,
+                                        needAuthentication: needAuthentication,
+                                        expectedStatusCode: expectedStatusCode)
+        
+        switch _request {
+        case .success(let _request):
+            request = _request
+        case .fail(let error):
+            return .fail(error: error)
+        }
+        
+        request.httpMethod = "POST"
+        request.httpBody = data
+        request.addValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        if !headers.isEmpty {
+            for (key, value) in headers {
+                request.addValue(value, forHTTPHeaderField: key)
+            }
+        }
+        
+        return .success(any: request)
+    }
+    
+    /// Construct the DELETE URLRequest.
+    ///
+    /// - Parameters:
+    ///   - deletePath: The relative path for the DELETE request, like "/list/12345/remove_item".
+    ///   - query: Query to be appended.
+    ///   - headers: POST header.
+    ///   - data: Request body.
+    ///   - needAuthentication: Whether this request needs appending Seesion ID.
+    ///   - expectedStatusCode: Expected status code.
+    /// - Returns: An enum carrys the result URLRequest or Error.
+    func constructRequest(deletePath path: String, query: [String: String] = [:], needAuthentication: Bool = true, expectedStatusCode: Int = 201) -> AnyReturn<URLRequest> {
+        let request: URLRequest!
+        let _request = constructRequest(path: path,
+                                        query: query,
+                                        needAuthentication: needAuthentication,
+                                        expectedStatusCode: expectedStatusCode)
+        
+        switch _request {
+        case .success(let _request):
+            request = _request
+        case .fail(let error):
+            return .fail(error: error)
+        }
+        
+        request.httpMethod = "DELETE"
+        return .success(any: request)
     }
 }

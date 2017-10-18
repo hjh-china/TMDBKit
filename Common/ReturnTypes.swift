@@ -27,3 +27,8 @@ public enum NilReturn {
     case success
     case fail(error: Error?)
 }
+
+public enum AnyReturn<T> {
+    case success(any: T)
+    case fail(error: Error?)
+}
