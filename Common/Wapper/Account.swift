@@ -28,17 +28,11 @@ extension TMDBManager {
     ///     - Maximum: 1000
     ///     - Default: 1
     public func getCreatedLists(accountId account: Int, language: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBList>>) -> ()) {
-        var query: [String: String] = [:]
-        
-        if let language = language {
-            query["language"] = language
-        }
-        
-        if let page = page {
-            query["page"] = "\(page)"
-        }
-        
-        performRequest(path: "/account/\(account)/lists", query: query, needAuthentication: true, completion: completion)
+        performRequest(path: "/account/\(account)/lists",
+                        language: language,
+                        sortBy: nil,
+                        page: page,
+                        completion: completion)
     }
     
     /// Get the list of your favorite movies.
@@ -55,20 +49,11 @@ extension TMDBManager {
     ///     - maximum: 1000
     ///     - default: 1
     public func getFavoriteMovies(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-        var query: [String: String] = [:]
-        
-        if let language = language {
-            query["language"] = language
-        }
-        
-        if let sortBy = sortBy {
-            query["sort_by"] = sortBy
-        }
-        
-        if let page = page {
-            query["page"] = "\(page)"
-        }
-        performRequest(path: "/account/\(account)/favorite/movies", query: query, needAuthentication: true, completion: completion)
+        performRequest(path: "/account/\(account)/favorite/movies",
+                        language: language,
+                        sortBy: sortBy,
+                        page: page,
+                        completion: completion)
     }
     
     /// Get the list of your favorite TV shows.
@@ -85,20 +70,11 @@ extension TMDBManager {
     ///     - maximum: 1000
     ///     - default: 1
     public func getFavoriteTVShows(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
-        var query: [String: String] = [:]
-        
-        if let language = language {
-            query["language"] = language
-        }
-        
-        if let sortBy = sortBy {
-            query["sort_by"] = sortBy
-        }
-        
-        if let page = page {
-            query["page"] = "\(page)"
-        }
-        performRequest(path: "/account/\(account)/favorite/tv", query: query, needAuthentication: true, completion: completion)
+        performRequest(path: "/account/\(account)/favorite/tv",
+                        language: language,
+                        sortBy: sortBy,
+                        page: page,
+                        completion: completion)
     }
     
     
@@ -156,20 +132,11 @@ extension TMDBManager {
     ///     - maximum: 1000
     ///     - default: 1
     public func getRatedTVShows(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
-        var query: [String: String] = [:]
-        
-        if let language = language {
-            query["language"] = language
-        }
-        
-        if let sortBy = sortBy {
-            query["sort_by"] = sortBy
-        }
-        
-        if let page = page {
-            query["page"] = "\(page)"
-        }
-        performRequest(path: "/account/\(account)/rated/tv", query: query, needAuthentication: true, completion: completion)
+        performRequest(path: "/account/\(account)/rated/tv",
+                        language: language,
+                        sortBy: sortBy,
+                        page: page,
+                        completion: completion)
     }
     
     /// Get a list of all the TV episodes you have rated.
@@ -186,20 +153,11 @@ extension TMDBManager {
     ///     - maximum: 1000
     ///     - default: 1
     public func getRatedTVEpisodes(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
-        var query: [String: String] = [:]
-        
-        if let language = language {
-            query["language"] = language
-        }
-        
-        if let sortBy = sortBy {
-            query["sort_by"] = sortBy
-        }
-        
-        if let page = page {
-            query["page"] = "\(page)"
-        }
-        performRequest(path: "/account/\(account)/rated/episodes", query: query, needAuthentication: true, completion: completion)
+        performRequest(path: "/account/\(account)/rated/episodes",
+                        language: language,
+                        sortBy: sortBy,
+                        page: page,
+                        completion: completion)
     }
     
     /// Get a list of all the movies you have added to your watchlist.
@@ -216,20 +174,11 @@ extension TMDBManager {
     ///     - maximum: 1000
     ///     - default: 1
     public func getMovieWatchlist(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-        var query: [String: String] = [:]
-        
-        if let language = language {
-            query["language"] = language
-        }
-        
-        if let sortBy = sortBy {
-            query["sort_by"] = sortBy
-        }
-        
-        if let page = page {
-            query["page"] = "\(page)"
-        }
-        performRequest(path: "/account/\(account)/watchlist/movies", query: query, needAuthentication: true, completion: completion)
+        performRequest(path: "/account/\(account)/watchlist/movies",
+                        language: language,
+                        sortBy: sortBy,
+                        page: page,
+                        completion: completion)
     }
     
     /// Get a list of all the TV shows you have added to your watchlist.
@@ -246,6 +195,27 @@ extension TMDBManager {
     ///     - maximum: 1000
     ///     - default: 1
     public func getTVShowWatchlist(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+        performRequest(path: "/account/\(account)/watchlist/tv",
+                        language: language,
+                        sortBy: sortBy,
+                        page: page,
+                        completion: completion)
+    }
+    
+    /// Add a movie or TV show to your watchlist.
+    /// - TODO: Finish POST method
+    ///
+    /// - Parameters:
+    ///   - accountId: Account ID for the user.
+    ///   - requestBody: A `TMDBWatchlistMediaObject`, use `TMDBWatchlistMediaObject(mediaType:mediaId:favorite)` to init one.
+    public func addToWatchlist(accountId: Int, requestBody: TMDBWatchlistMediaObject, completion: @escaping (NilReturn) -> () ) {
+        
+    }
+}
+
+extension TMDBManager {
+    /// Get paged objects
+    func performRequest<T>(path: String, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<T>>) -> ()) {
         var query: [String: String] = [:]
         
         if let language = language {
@@ -259,16 +229,6 @@ extension TMDBManager {
         if let page = page {
             query["page"] = "\(page)"
         }
-        performRequest(path: "/account/\(account)/watchlist/tv", query: query, needAuthentication: true, completion: completion)
-    }
-    
-    /// Add a movie or TV show to your watchlist.
-    /// - TODO: Finish POST method
-    ///
-    /// - Parameters:
-    ///   - accountId: Account ID for the user.
-    ///   - requestBody: A `TMDBWatchlistMediaObject`, use `TMDBWatchlistMediaObject(mediaType:mediaId:favorite)` to init one.
-    public func addToWatchlist(accountId: Int, requestBody: TMDBWatchlistMediaObject, completion: @escaping (NilReturn) -> () ) {
-        
+        performRequest(path: path, query: query, needAuthentication: true, completion: completion)
     }
 }
