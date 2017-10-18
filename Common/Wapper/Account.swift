@@ -9,9 +9,9 @@
 import Foundation
 
 // MARK: - [Account API](https://developers.themoviedb.org/3/account).
-extension TMDBManager {
+extension TMDbManager {
     /// Get your account details.
-    public func getDetails(completion: @escaping (ObjectReturn<TMDBUser>) -> ()) {
+    public func getDetails(completion: @escaping (ObjectReturn<TMDbUser>) -> ()) {
         performRequest(path: "/account", needAuthentication: true, completion: completion)
     }
     
@@ -27,7 +27,7 @@ extension TMDBManager {
     ///     - Minimum: 1
     ///     - Maximum: 1000
     ///     - Default: 1
-    public func getCreatedLists(accountId account: Int, language: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBList>>) -> ()) {
+    public func getCreatedLists(accountId account: Int, language: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<TMDbList>>) -> ()) {
         performRequest(path: "/account/\(account)/lists",
                        language: language,
                        sortBy: nil,
@@ -48,7 +48,7 @@ extension TMDBManager {
     ///     - minimum: 1
     ///     - maximum: 1000
     ///     - default: 1
-    public func getFavoriteMovies(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+    public func getFavoriteMovies(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<TMDbMovie>>) -> ()) {
         performRequest(path: "/account/\(account)/favorite/movies",
                        language: language,
                        sortBy: sortBy,
@@ -69,7 +69,7 @@ extension TMDBManager {
     ///     - minimum: 1
     ///     - maximum: 1000
     ///     - default: 1
-    public func getFavoriteTVShows(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+    public func getFavoriteTVShows(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<TMDbTVShow>>) -> ()) {
         performRequest(path: "/account/\(account)/favorite/tv",
                        language: language,
                        sortBy: sortBy,
@@ -84,7 +84,7 @@ extension TMDBManager {
     /// - Parameters:
     ///   - accountId: Account ID for the user.
     ///   - requestBody: A `TMDBFavoriteMediaObject`, use `TMDBFavoriteMediaObject(mediaType:mediaId:favorite)` to init one.
-    public func markAsFavorite(accountId: Int, requestBody: TMDBFavoriteMediaObject, completion: @escaping (NilReturn) -> () ) {        
+    public func markAsFavorite(accountId: Int, requestBody: TMDbFavoriteMediaObject, completion: @escaping (NilReturn) -> () ) {        
         performRequest(postPath: "/account/\(accountId)/favorite",
                        dataObject: requestBody,
                        expectedStatusCode: requestBody.favorite ? 201 : 200,
@@ -104,7 +104,7 @@ extension TMDBManager {
     ///     - minimum: 1
     ///     - maximum: 1000
     ///     - default: 1
-    public func getRatedMovies(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+    public func getRatedMovies(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<TMDbMovie>>) -> ()) {
         performRequest(path: "/account/\(account)/rated/movies",
                        language: language,
                        sortBy: sortBy,
@@ -125,7 +125,7 @@ extension TMDBManager {
     ///     - minimum: 1
     ///     - maximum: 1000
     ///     - default: 1
-    public func getRatedTVShows(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+    public func getRatedTVShows(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<TMDbTVShow>>) -> ()) {
         performRequest(path: "/account/\(account)/rated/tv",
                        language: language,
                        sortBy: sortBy,
@@ -146,7 +146,7 @@ extension TMDBManager {
     ///     - minimum: 1
     ///     - maximum: 1000
     ///     - default: 1
-    public func getRatedTVEpisodes(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVEpisode>>) -> ()) {
+    public func getRatedTVEpisodes(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<TMDbTVEpisode>>) -> ()) {
         performRequest(path: "/account/\(account)/rated/tv/episodes",
                        language: language,
                        sortBy: sortBy,
@@ -167,7 +167,7 @@ extension TMDBManager {
     ///     - minimum: 1
     ///     - maximum: 1000
     ///     - default: 1
-    public func getMovieWatchlist(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+    public func getMovieWatchlist(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<TMDbMovie>>) -> ()) {
         performRequest(path: "/account/\(account)/watchlist/movies",
                        language: language,
                        sortBy: sortBy,
@@ -188,7 +188,7 @@ extension TMDBManager {
     ///     - minimum: 1
     ///     - maximum: 1000
     ///     - default: 1
-    public func getTVShowWatchlist(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+    public func getTVShowWatchlist(accountId account: Int, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<TMDbTVShow>>) -> ()) {
         performRequest(path: "/account/\(account)/watchlist/tv",
                        language: language,
                        sortBy: sortBy,
@@ -202,7 +202,7 @@ extension TMDBManager {
     /// - Parameters:
     ///   - accountId: Account ID for the user.
     ///   - requestBody: A `TMDBWatchlistMediaObject`, use `TMDBWatchlistMediaObject(mediaType:mediaId:favorite)` to init one.
-    public func addToWatchlist(accountId: Int, requestBody: TMDBWatchlistMediaObject, completion: @escaping (NilReturn) -> () ) {
+    public func addToWatchlist(accountId: Int, requestBody: TMDbWatchlistMediaObject, completion: @escaping (NilReturn) -> () ) {
         performRequest(postPath: "/account/\(accountId)/watchlist",
                        dataObject: requestBody,
                        expectedStatusCode: requestBody.watchlist ? 201 : 200,

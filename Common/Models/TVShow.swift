@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDBTVShow: Codable {
+public struct TMDbTVShow: Codable {
     public let backdropPath: String?
     /// Raw **String** returned from TMDB, usually formatted as `YYYY-MM-dd`. Use `firstAirDate` property for **Date**.
     public let rawFirstAirDateString: String?

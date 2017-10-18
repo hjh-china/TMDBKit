@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - [Authentication API](https://developers.themoviedb.org/3/authentication).
-extension TMDBManager {
+extension TMDbManager {
 
     public func authenticationURL(redirectURL: URL?) -> URL? {
         guard let requestToken = self.requestToken  else { return nil }

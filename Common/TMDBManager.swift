@@ -9,9 +9,9 @@
 import Foundation
 
 /// The TMDB Manager. Takes all the stuff you need to use The Movie Database API v3 in Swift.
-public class TMDBManager {
+public class TMDbManager {
     /// Singleton instance for the `TMDBManager` class.
-    public static let shared = TMDBManager()
+    public static let shared = TMDbManager()
     
     var apiKey: String?
     var keyChainPrefix: String?
@@ -63,7 +63,7 @@ public class TMDBManager {
     public var guestSessionExpiresAt: Date?
 }
 
-extension TMDBManager {
+extension TMDbManager {
     /// Setup the TMDB client.
     ///
     /// - Parameters:
@@ -91,7 +91,7 @@ extension TMDBManager {
 }
 
 // MARK: - GET methods.
-extension TMDBManager {
+extension TMDbManager {
     /// Perform the GET request with Data returned in complition handler closure.
     ///
     /// - Parameters:
@@ -179,7 +179,7 @@ extension TMDBManager {
     ///     - maximum: 1000
     ///     - default: 1
     ///   - completion: Completion Handler.
-    func performRequest<T>(path: String, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<T>>) -> ()) {
+    func performRequest<T>(path: String, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDbPaged<T>>) -> ()) {
         var query: [String: String] = [:]
         
         if let language = language {
@@ -199,7 +199,7 @@ extension TMDBManager {
 }
 
 // MARK: - POST methods
-extension TMDBManager {
+extension TMDbManager {
     /// Perform the POST request with Data returned in complition handler closure.
     ///
     /// - Parameters:
@@ -253,7 +253,7 @@ extension TMDBManager {
 }
 
 // MARK: - Base request method.
-extension TMDBManager {
+extension TMDbManager {
     /// Base method for performming request.
     ///
     /// - Parameters:
@@ -297,7 +297,7 @@ extension TMDBManager {
 }
 
 // MARK: - Request constructers.
-extension TMDBManager {
+extension TMDbManager {
     /// Construct the basic (GET) URLRequest.
     ///
     /// - Parameters:

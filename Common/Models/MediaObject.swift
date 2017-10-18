@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDBFavoriteMediaObject: Codable {
+public struct TMDbFavoriteMediaObject: Codable {
     public let mediaType: MediaType
     public let mediaId: Int
     public let favorite: Bool
@@ -37,7 +37,7 @@ public struct TMDBFavoriteMediaObject: Codable {
     }
 }
 
-public struct TMDBWatchlistMediaObject: Codable {
+public struct TMDbWatchlistMediaObject: Codable {
     public let mediaType: MediaType
     public let mediaId: Int
     public let watchlist: Bool
