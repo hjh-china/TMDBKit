@@ -23,9 +23,9 @@
 		459E5C291F96570600AB28DE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C281F96570600AB28DE /* SwiftyJSON.swift */; };
 		459E5C2B1F96647700AB28DE /* ReturnTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C2A1F96647700AB28DE /* ReturnTypes.swift */; };
 		45AECDCF1F9803EA008BE58F /* Certification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDCE1F9803EA008BE58F /* Certification.swift */; };
-		45AECDD11F9803F2008BE58F /* Paged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDD01F9803F2008BE58F /* Paged.swift */; };
-		45AECDD31F9803F6008BE58F /* TVEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDD21F9803F6008BE58F /* TVEpisodes.swift */; };
 		45AECDD51F98040A008BE58F /* Certifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDD41F98040A008BE58F /* Certifications.swift */; };
+		45AECDDC1F980645008BE58F /* TVEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDDA1F980645008BE58F /* TVEpisodes.swift */; };
+		45AECDDD1F980645008BE58F /* Paged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDDB1F980645008BE58F /* Paged.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,9 +59,9 @@
 		459E5C2A1F96647700AB28DE /* ReturnTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnTypes.swift; sourceTree = "<group>"; };
 		459E5C2C1F96742C00AB28DE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		45AECDCE1F9803EA008BE58F /* Certification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certification.swift; sourceTree = "<group>"; };
-		45AECDD01F9803F2008BE58F /* Paged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Paged.swift; path = ../../../_TMDbKit/Common/Models/Paged.swift; sourceTree = "<group>"; };
-		45AECDD21F9803F6008BE58F /* TVEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TVEpisodes.swift; path = ../../../_TMDbKit/Common/Models/TVEpisodes.swift; sourceTree = "<group>"; };
 		45AECDD41F98040A008BE58F /* Certifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certifications.swift; sourceTree = "<group>"; };
+		45AECDDA1F980645008BE58F /* TVEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVEpisodes.swift; sourceTree = "<group>"; };
+		45AECDDB1F980645008BE58F /* Paged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paged.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +90,8 @@
 				450D94671F96AD49005E2227 /* List.swift */,
 				450D946B1F96BEAF005E2227 /* MediaObject.swift */,
 				450D94691F96B3C8005E2227 /* Movie.swift */,
-				45AECDD01F9803F2008BE58F /* Paged.swift */,
-				45AECDD21F9803F6008BE58F /* TVEpisodes.swift */,
+				45AECDDB1F980645008BE58F /* Paged.swift */,
+				45AECDDA1F980645008BE58F /* TVEpisodes.swift */,
 				450D946D1F96BF80005E2227 /* TVShow.swift */,
 				450D94651F96A8FF005E2227 /* User.swift */,
 			);
@@ -286,15 +286,15 @@
 				459E5C211F9649FF00AB28DE /* KeyChainManager.swift in Sources */,
 				459E5C271F96541800AB28DE /* String+.swift in Sources */,
 				45AECDD51F98040A008BE58F /* Certifications.swift in Sources */,
+				45AECDDD1F980645008BE58F /* Paged.swift in Sources */,
 				450D946C1F96BEAF005E2227 /* MediaObject.swift in Sources */,
 				450D946A1F96B3C8005E2227 /* Movie.swift in Sources */,
+				45AECDDC1F980645008BE58F /* TVEpisodes.swift in Sources */,
 				450D94661F96A8FF005E2227 /* User.swift in Sources */,
-				45AECDD31F9803F6008BE58F /* TVEpisodes.swift in Sources */,
 				459E5C291F96570600AB28DE /* SwiftyJSON.swift in Sources */,
 				459E5C241F96520300AB28DE /* Authentication.swift in Sources */,
 				450D94631F96A6A5005E2227 /* Account.swift in Sources */,
 				450D94681F96AD49005E2227 /* List.swift in Sources */,
-				45AECDD11F9803F2008BE58F /* Paged.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

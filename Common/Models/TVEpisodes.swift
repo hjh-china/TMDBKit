@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDbTVEpisode: Codable {
+public struct TMDBTVEpisode: Codable {
     public let _id: String?
     /// Raw **String** returned from TMDB, usually formatted as `yyyy-MM-dd`. Use `airDate` property for **Date**.
     public let rawAirDateString: String?

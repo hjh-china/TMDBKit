@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDbPaged<T: Codable>: Codable {
+public struct TMDBPaged<T: Codable>: Codable {
     public let page: Int
     public let results: [T]
     public let totalPages: Int
