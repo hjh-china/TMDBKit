@@ -61,6 +61,17 @@ public class TMDBManager {
     public var guestSessionId: String?
     /// The expire time for the guest session ID.
     public var guestSessionExpiresAt: Date?
+    
+    /// [Account API](https://developers.themoviedb.org/3/account) wrapper instance.
+    public let account = AccountAPIWrapper()
+    /// [Authentication API](https://developers.themoviedb.org/3/authentication) wrapper instance.
+    public let authentication = AuthenticationAPIWrapper()
+    /// [Certifications API](https://developers.themoviedb.org/3/certifications) wrapper instance.
+    public let certifications = CertificationsAPIWrapper()
+    /// [Changes API](https://developers.themoviedb.org/3/changes) wrapper instance.
+    public let changes = ChangesAPIWrapper()
+    /// [Collections API](https://developers.themoviedb.org/3/collections) wrapper instance.
+    public let collections = CollectionsAPIWrapper()
 }
 
 extension TMDBManager {

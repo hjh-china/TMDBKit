@@ -8,7 +8,9 @@
 
 import Foundation
 
-// MARK: - [Collections API](https://developers.themoviedb.org/3/collections)
 extension TMDBManager {
-    
+    /// [Collections API](https://developers.themoviedb.org/3/collections) wrapper class.
+    public class CollectionsAPIWrapper {
+        
+    }
 }
