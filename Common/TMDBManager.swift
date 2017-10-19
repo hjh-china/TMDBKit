@@ -72,6 +72,8 @@ public class TMDBManager {
     public let changes = ChangesAPIWrapper()
     /// [Collections API](https://developers.themoviedb.org/3/collections) wrapper instance.
     public let collections = CollectionsAPIWrapper()
+    /// [Companies API](https://developers.themoviedb.org/3/companies) wrapper instance.
+    public let companies = CompaniesAPIWrapper()
 }
 
 extension TMDBManager {
