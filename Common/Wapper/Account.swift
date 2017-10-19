@@ -13,7 +13,9 @@ extension TMDBManager {
     /// Get your account details.
     /// - Parameter completion: Completion handler.
     public func getDetails(completion: @escaping (ObjectReturn<TMDBUser>) -> ()) {
-        performRequest(path: "/account", needAuthentication: true, completion: completion)
+        performRequest(path: "/account",
+                       needAuthentication: true,
+                       completion: completion)
     }
     
     /// Get all of the lists created by an account. Will invlude private lists if you are the owner.
@@ -31,9 +33,8 @@ extension TMDBManager {
     ///   - completion: Completion handler.
     public func getCreatedLists(accountId account: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBList>>) -> ()) {
         performRequest(path: "/account/\(account)/lists",
-                       language: language,
-                       sortBy: nil,
-                       page: page,
+                       query: query(language: language, sortBy: nil, page: page),
+                       needAuthentication: true,
                        completion: completion)
     }
     
@@ -53,9 +54,8 @@ extension TMDBManager {
     ///   - completion: Completion handler.
     public func getFavoriteMovies(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
         performRequest(path: "/account/\(account)/favorite/movies",
-                       language: language,
-                       sortBy: sortBy,
-                       page: page,
+                       query: query(language: language, sortBy: sortBy, page: page),
+                       needAuthentication: true,
                        completion: completion)
     }
     
@@ -75,9 +75,8 @@ extension TMDBManager {
     ///   - completion: Completion handler.
     public func getFavoriteTVShows(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
         performRequest(path: "/account/\(account)/favorite/tv",
-                       language: language,
-                       sortBy: sortBy,
-                       page: page,
+                       query: query(language: language, sortBy: sortBy, page: page),
+                       needAuthentication: true,
                        completion: completion)
     }
     
@@ -111,9 +110,8 @@ extension TMDBManager {
     ///   - completion: Completion handler.
     public func getRatedMovies(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
         performRequest(path: "/account/\(account)/rated/movies",
-                       language: language,
-                       sortBy: sortBy,
-                       page: page,
+                       query: query(language: language, sortBy: sortBy, page: page),
+                       needAuthentication: true,
                        completion: completion)
     }
     
@@ -133,9 +131,8 @@ extension TMDBManager {
     ///   - completion: Completion handler.
     public func getRatedTVShows(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
         performRequest(path: "/account/\(account)/rated/tv",
-                       language: language,
-                       sortBy: sortBy,
-                       page: page,
+                       query: query(language: language, sortBy: sortBy, page: page),
+                       needAuthentication: true,
                        completion: completion)
     }
     
@@ -155,9 +152,8 @@ extension TMDBManager {
     ///   - completion: Completion handler.
     public func getRatedTVEpisodes(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
         performRequest(path: "/account/\(account)/rated/episodes",
-                       language: language,
-                       sortBy: sortBy,
-                       page: page,
+                       query: query(language: language, sortBy: sortBy, page: page),
+                       needAuthentication: true,
                        completion: completion)
     }
     
@@ -177,9 +173,8 @@ extension TMDBManager {
     ///   - completion: Completion handler.
     public func getMovieWatchlist(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
         performRequest(path: "/account/\(account)/watchlist/movies",
-                       language: language,
-                       sortBy: sortBy,
-                       page: page,
+                       query: query(language: language, sortBy: sortBy, page: page),
+                       needAuthentication: true,
                        completion: completion)
     }
     
@@ -199,9 +194,8 @@ extension TMDBManager {
     ///   - completion: Completion handler.
     public func getTVShowWatchlist(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
         performRequest(path: "/account/\(account)/watchlist/tv",
-                       language: language,
-                       sortBy: sortBy,
-                       page: page,
+                       query: query(language: language, sortBy: sortBy, page: page),
+                       needAuthentication: true,
                        completion: completion)
     }
     
@@ -216,5 +210,15 @@ extension TMDBManager {
                        dataObject: mediaObject,
                        expectedStatusCode: mediaObject.watchlist ? 201 : 200,
                        completion: completion)
+    }
+    
+    func query(language: String?, sortBy: String?, page: Int?) -> [String: String] {
+        var query: [String: String] = [:]
+        
+        if let language = language { query["language"] = language }
+        if let sortBy = sortBy { query["sort_by"] = sortBy }
+        if let page = page { query["page"] = "\(page)" }
+        
+        return query
     }
 }

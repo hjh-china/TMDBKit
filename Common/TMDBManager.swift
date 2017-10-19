@@ -163,39 +163,7 @@ extension TMDBManager {
                 completion(.fail(error: error))
             }
         }
-    }
-    
-    /// Perform the GET request with a `TMDBPaged` instance returned in complition handler closure.
-    ///
-    /// - Parameters:
-    ///   - path: The relative path for the request, like "/account/12345/rated/tv/episodes".
-    ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
-    ///     - minLength: 2
-    ///     - pattern: `([a-z]{2})-([A-Z]{2})`
-    ///     - default: en-US
-    ///   - sortBy: Sort the results. **Allowed Values:** `created_at.asc`, `created_at.desc`
-    ///   - page: Specify which page to query.
-    ///     - minimum: 1
-    ///     - maximum: 1000
-    ///     - default: 1
-    ///   - completion: Completion Handler.
-    func performRequest<T>(path: String, language: String?, sortBy: String?, page: Int?, completion: @escaping (ObjectReturn<TMDBPaged<T>>) -> ()) {
-        var query: [String: String] = [:]
-        
-        if let language = language {
-            query["language"] = language
-        }
-        
-        if let sortBy = sortBy {
-            query["sort_by"] = sortBy
-        }
-        
-        if let page = page {
-            query["page"] = "\(page)"
-        }
-        performRequest(path: path, query: query, needAuthentication: true, completion: completion)
-    }
-    
+    }    
 }
 
 // MARK: - POST methods
