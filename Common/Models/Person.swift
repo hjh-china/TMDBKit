@@ -8,34 +8,78 @@
 
 import Foundation
 
-public struct TMDBPerson: Codable {
-    public let profilePath: String
+public struct TMDBPerson {
+    public let profilePath: String?
     public let adult: Bool
     public let id: Int
-    public let knownForMovie: TMDBMovie?
-    public let knownForTVShow: TMDBTVShow?
+    public let knownForMovies: [TMDBMovie]
+    public let knownForTVShows: [TMDBTVShow]
     public let name: String
     public let popularity: Double
     
-    enum CodingKeys: String, CodingKey {
-        case profilePath = ""
-        case adult
-        case id
-        case knownForMovie = "known_for"
-        case knownForTVShow// = "known_for"
-        case name
-        case popularity
+    init(fromJSON json: JSON) throws {
+        guard
+            let adult = json["adult"].bool,
+            let id = json["id"].int,
+            let name = json["name"].string,
+            let popularity = json["popularity"].double
+        else {
+            throw "Error init TMDBPerson: one of adult/id/name/popularity is nil.".error(domain: "models.TMDBPerson")
+        }
+        
+        self.profilePath = json["profile_path"].string
+        self.adult       = adult
+        self.id          = id
+        self.name        = name
+        self.popularity  = popularity
+        
+        var knownForMovies: [TMDBMovie] = []
+        var knownForTVShows: [TMDBTVShow] = []
+        
+        if let arr = json["known_for"].array {
+            for obj in arr {
+                if let type = obj["media_type"].string {
+                    switch type {
+                    case "movie":
+                        do {
+                            let data = try obj.rawData()
+                            let movie = try JSONDecoder().decode(TMDBMovie.self, from: data)
+                            knownForMovies.append(movie)
+                        } catch let error {
+                            print("Error initing known-for TMDBMovie from JSON for people \(name), but TMDBPeople should continue to init ;-)\n\(error)")
+                        }
+                    case "tv":
+                        do {
+                            let data = try obj.rawData()
+                            let tvShow = try JSONDecoder().decode(TMDBTVShow.self, from: data)
+                            knownForTVShows.append(tvShow)
+                        } catch let error {
+                            print("Error initing known-for TMDBTVShow from JSON for people \(name), but TMDBPeople should continue to init ;-)\n\(error)")
+                        }
+                    default:
+                        continue
+                    }
+                }
+            }
+        }
+        
+        self.knownForMovies = knownForMovies
+        self.knownForTVShows = knownForTVShows
     }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        title = try container.decode(String.self, forKey: CodingKeys.title)
-        profilePath = try container.decode(String.self, forKey: .profilePath)
-        adult = try container.decode(Bool.self, forKey: .adult)
-        id = try container.decode(Int.self, forKey: .id)
-        knownForMovie = try container.decodeIfPresent(TMDBMovie.self, forKey: .knownForMovie)
-        knownForTVShow = try container.decodeIfPresent(TMDBTVShow.self, forKey: .knownForMovie)
-        name = try container.decode(String.self, forKey: .name)
-        popularity = try container.decode(Double.self, forKey: .popularity)
+}
+
+extension TMDBPerson: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return """
+        PEOPLE:       \(name)
+        ID:           \(id)
+        Adult:        \(adult)
+        Popularity:   \(popularity)
+        Profile path: \(profilePath ?? "Nil")
+        Known for movies [\(knownForMovies.count) items]:
+          - \(knownForMovies.map({ m in return m.title }))
+        Knwon for shows  [\(knownForTVShows.count) items]:
+          - \(knownForTVShows.map({ s in return s.name }))
+        """
     }
 }
