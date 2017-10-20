@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct DiscoverOption {
+public struct TMDBMovieDiscoverOption {
     public let key: String
     public let value: String
     
@@ -22,15 +22,15 @@ public struct DiscoverOption {
     }
     
     /// Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
-    ///     - Pattern: `^[A-Z]{2}$`
+    /// - Pattern: `^[A-Z]{2}$`
     public init(region: String) {
         self.key = "region"
         self.value = region
     }
     
     /// Choose from one of the many available sort options.
-    ///     - default: `.popularityDesc`
-    public init(sortBy: sortBy) {
+    /// - default: `.popularityDesc`
+    public init(sortBy: TMDBMovieDiscoverySortBy) {
         self.key = "sort_by"
         self.value = sortBy.rawValue
     }
@@ -83,7 +83,7 @@ public struct DiscoverOption {
     /// Filter and only include movies that have a primary release date that is greater or equal to the specified value.
     ///
     /// - TODO: Use Date instead of String.
-    ///     - Format: Date ("YYYY-MM-dd")
+    /// - Format: Date ("YYYY-MM-dd")
     public init(primaryReleaseDateGte: String) {
         self.key = "primary_release_date.gte"
         self.value = primaryReleaseDateGte
@@ -222,7 +222,7 @@ public struct DiscoverOption {
         self.value = withoutKeywords
     }
     
-    public enum sortBy: String {
+    public enum TMDBMovieDiscoverySortBy: String {
         case popularityAsc = "popularity.asc"
         case popularityDesc = "popularity.desc"
         case releaseDateAsc = "release_date.asc"
@@ -237,5 +237,163 @@ public struct DiscoverOption {
         case voteAverageDesc="vote_average.desc"
         case voteCountAsc="vote_count.asc"
         case voteCountDesc = "vote_count.desc"
+    }
+}
+
+// ----------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+public struct TMDBTVDiscoverOption {
+    public let key: String
+    public let value: String
+    
+    /// Specify a language to query translatable fields with.
+    /// - minLength: 2
+    /// - pattern: `([a-z]{2})-([A-Z]{2})`
+    /// - default: en-US
+    public init(language: String) {
+        self.key = "language"
+        self.value = language
+    }
+    
+    /// Choose from one of the many available sort options.
+    /// - default: `.popularityDesc`
+    public init(sortBy: TMDBTVDiscoverySortBy) {
+        self.key = "sort_by"
+        self.value = sortBy.rawValue
+    }
+    
+    /// Filter and only include TV shows that have a air date (by looking at all episodes) that is greater or equal to the specified value.
+    /// - TODO: Use Date instead of String.
+    /// - Format: Date ("YYYY-MM-dd")
+    public init(airDateGte: String) {
+        self.key = "air_date.gte"
+        self.value = airDateGte
+    }
+    
+    /// Filter and only include TV shows that have a air date (by looking at all episodes) that is less than or equal to the specified value.
+    /// - TODO: Use Date instead of String.
+    /// - Format: Date ("YYYY-MM-dd")
+    public init(airDateLte: String) {
+        self.key = "air_date.lte"
+        self.value = airDateLte
+    }
+    
+    /// Filter and only include TV shows that have a original air date that is greater or equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+    /// - TODO: Use Date instead of String.
+    /// - Format: Date ("YYYY-MM-dd")
+    public init(firstAirDateGte: String) {
+        self.key = "first_air_date.gte"
+        self.value = firstAirDateGte
+    }
+    
+    /// Filter and only include TV shows that have a original air date that is less than or equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+    /// - TODO: Use Date instead of String.
+    /// - Format: Date ("YYYY-MM-dd")
+    public init(firstAirDateLte: String) {
+        self.key = "first_air_date.lte"
+        self.value = firstAirDateLte
+    }
+    
+    /// Filter and only include TV shows that have a original air date year that equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+    init(firstAirDateYear: Int) {
+        self.key = "first_air_date_year"
+        self.value = "\(firstAirDateYear)"
+    }
+    
+    /// Specify the page of results to query.
+    /// - minimum: 1
+    /// - maximum: 1000
+    /// - default: 1
+    public init(page: Int) {
+        self.key = "page"
+        self.value = "\(page)"
+    }
+    
+    /// Used in conjunction with the air_date.gte/lte filter to calculate the proper UTC offset.
+    /// - default: America/New_York
+    public init(timezone: String) {
+        self.key = "timezone"
+        self.value = timezone
+    }
+    
+    /// Filter and only include movies that have a rating that is greater or equal to the specified value.
+    /// - minimum: 0
+    public init(voteAverageGte: Int) {
+        self.key = "vote_average.gte"
+        self.value = "\(voteAverageGte)"
+    }
+    
+    /// Filter and only include movies that have a vote count that is greater or equal to the specified value.
+    /// - TODO: Use Date instead of String.
+    /// - minimum: 0
+    public init(voteCountGte: Int) {
+        self.key = "vote_count.gte"
+        self.value = "\(voteCountGte)"
+    }
+    
+    /// Comma separated value of genre ids that you want to include in the results.
+    public init(withGenres: String) {
+        self.key = "with_genres"
+        self.value = withGenres
+    }
+    
+    /// Comma separated value of network ids that you want to include in the results.
+    init(withNetworks: String) {
+        self.key = "with_networks"
+        self.value = withNetworks
+    }
+    
+    /// Comma separated value of genre ids that you want to include in the results.
+    public init(withoutGenres: String) {
+        self.key = "without_genres"
+        self.value = withoutGenres
+    }
+    
+    /// Filter and only include movies that have a runtime that is greater or equal to a value.
+    public init(withRuntimeGte: Int) {
+        self.key = "with_runtime.gte"
+        self.value = "\(withRuntimeGte)"
+    }
+    
+    /// Filter and only include movies that have a runtime that is less than or equal to a value.
+    public init(withRuntimeLte: Int) {
+        self.key = "with_runtime.lte"
+        self.value = "\(withRuntimeLte)"
+    }
+    
+    public init(includeNullFirstAirDates: Bool) {
+        self.key = "include_null_first_air_dates"
+        self.value = includeNullFirstAirDates ? "true" : "false"
+    }
+    
+    /// Specify an ISO 639-1 string to filter results by their original language value.
+    public init(withOriginalLanguage: String) {
+        self.key = "with_original_language"
+        self.value = withOriginalLanguage
+    }
+    
+    /// Exclude items with certain keywords. You can comma and pipe seperate these values to create an 'AND' or 'OR' logic.
+    public init(withoutKeywords: String) {
+        self.key = "without_keywords"
+        self.value = withoutKeywords
+    }
+    
+    /// Filter results to include items that have been screened theatrically.
+    public init(screenedTheatrically: Bool) {
+        self.key = "screened_theatrically"
+        self.value = screenedTheatrically ? "true" : "false"
+    }
+    
+    public enum TMDBTVDiscoverySortBy: String {
+        case voteAverageAsc   = "vote_average.asc"
+        case voteAverageDesc  = "vote_average.desc"
+        case firstAirDateDesc = "first_air_date.desc"
+        case firstAirDateAsc  = "first_air_date.asc"
+        case popularityDesc   = "popularity.desc"
+        case popularityAsc    = "popularity.asc"
     }
 }
