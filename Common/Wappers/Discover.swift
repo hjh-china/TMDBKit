@@ -73,7 +73,7 @@ extension TMDBManager {
             if let page = page {
                 query["page"] = "\(page)"
             }
-            TMDBManager.shared.performRequest(path: "/discover/movie", query: query, completion: completion)
+            TMDBManager.shared.performRequest(path: "/discover/tv", query: query, completion: completion)
         }
     }
 }
