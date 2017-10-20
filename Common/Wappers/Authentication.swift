@@ -72,7 +72,7 @@ extension TMDBManager {
                     if let success = json["success"].bool,
                         let sessionId = json["session_id"].string {
                         if success {
-                            TMDBManager.shared._sessionId = sessionId
+                            TMDBManager.shared.sessionId = sessionId
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating session".error(domain: "authentication")))
@@ -111,7 +111,7 @@ extension TMDBManager {
                     if let success = json["success"].bool,
                         let sessionId = json["session_id"].string {
                         if success {
-                            TMDBManager.shared._sessionId = sessionId
+                            TMDBManager.shared.sessionId = sessionId
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating session with login".error(domain: "authentication")))
