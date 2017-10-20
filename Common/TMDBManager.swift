@@ -281,6 +281,8 @@ public class TMDBManager {
     public let companies = CompaniesAPIWrapper()
     /// [Configuration API](https://developers.themoviedb.org/3/configuration) wrapper instance.
     public let configuration = ConfigurationAPIWrapper()
+    /// [Credits API](https://developers.themoviedb.org/3/credits) wrapper class.
+    public let Credits = CreditsAPIWrapper()
 }
 
 extension TMDBManager {
