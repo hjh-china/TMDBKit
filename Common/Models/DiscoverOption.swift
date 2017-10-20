@@ -65,15 +65,6 @@ public struct TMDBMovieDiscoverOption {
         self.value = includeVideo ? "true" : "false"
     }
     
-    /// Specify the page of results to query.
-    /// - minimum: 1
-    /// - maximum: 1000
-    /// - default: 1
-    public init(page: Int) {
-        self.key = "page"
-        self.value = "\(page)"
-    }
-    
     /// A filter to limit the results to a specific primary release year.
     public init(primaryReleaseYear: Int) {
         self.key = "primary_release_year"
@@ -302,15 +293,6 @@ public struct TMDBTVDiscoverOption {
     init(firstAirDateYear: Int) {
         self.key = "first_air_date_year"
         self.value = "\(firstAirDateYear)"
-    }
-    
-    /// Specify the page of results to query.
-    /// - minimum: 1
-    /// - maximum: 1000
-    /// - default: 1
-    public init(page: Int) {
-        self.key = "page"
-        self.value = "\(page)"
     }
     
     /// Used in conjunction with the air_date.gte/lte filter to calculate the proper UTC offset.

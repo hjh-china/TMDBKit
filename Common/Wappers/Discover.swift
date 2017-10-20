@@ -25,16 +25,23 @@ extension TMDBManager {
         ///
         /// - Parameter options: Usage example:
         ///     ```swift
-        ///     var options: [MovieDiscoverOption] = []
+        ///     var options: [TMDBMovieDiscoverOption] = []
         ///     options.append(DiscoverOption(language: "zh"))
         ///     options.append(DiscoverOption(sortBy: .releaseDateAsc))
         ///     TMDBManager.shared.discovery.movieDiscover(options: options) { /* do someting... */ }
         ///     ```
+        /// - Parameter page: Specify the page of results to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
         /// - Parameter completion: Completion handler.
-        public func movieDiscover(options: [TMDBMovieDiscoverOption], completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func movieDiscover(options: [TMDBMovieDiscoverOption], page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             var query: [String: String] = [:]
             for option in options {
                 query[option.key] = option.value
+            }
+            if let page = page {
+                query["page"] = "\(page)"
             }
             TMDBManager.shared.performRequest(path: "/discover/movie", query: query, completion: completion)
         }
@@ -48,16 +55,23 @@ extension TMDBManager {
         /// Some examples of what can be done with discover can be found here.
         ///  - Parameter options: Usage example:
         ///     ```swift
-        ///     var options: [TVDiscoverOption] = []
+        ///     var options: [TMDBTVDiscoverOption] = []
         ///     options.append(DiscoverOption(language: "zh"))
         ///     options.append(DiscoverOption(sortBy: .releaseDateAsc))
         ///     TMDBManager.shared.discovery.movieDiscover(options: options) { /* do someting... */ }
         ///     ```
+        /// - Parameter page: Specify the page of results to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
         /// - Parameter completion: Completion handler.
-        public func tvDiscover(options: [TMDBTVDiscoverOption], completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+        public func tvDiscover(options: [TMDBTVDiscoverOption], page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             var query: [String: String] = [:]
             for option in options {
                 query[option.key] = option.value
+            }
+            if let page = page {
+                query["page"] = "\(page)"
             }
             TMDBManager.shared.performRequest(path: "/discover/movie", query: query, completion: completion)
         }
