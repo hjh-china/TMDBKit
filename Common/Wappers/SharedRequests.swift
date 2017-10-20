@@ -212,7 +212,7 @@ extension TMDBManager {
         queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
         
         if needAuthentication {
-            guard let sessionId = self._sessionId else {
+            guard let sessionId = self.sessionId else {
                 return .fail(error: "Session ID is nil, please grant authentication first.".error())
             }
             queryItems.append(URLQueryItem(name: "session_id", value: sessionId))

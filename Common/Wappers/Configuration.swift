@@ -20,14 +20,54 @@ extension TMDBManager {
         /// https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg
         /// ```
         /// The configuration method also contains the list of change keys which can be useful if you are building an app that consumes data from the change feed.
-        /// TODO: Save configurations
-        public func getAPIConfiguration() {
+        /// - Parameter completion: Completion handler.
+        public func getAPIConfiguration(completion: @escaping (NilReturn) -> ()) {
             TMDBManager.shared.performRequest(path: "/configuration") { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
-                    print(json)
+                    if let baseUrl = json["images"]["base_url"].string {
+                        TMDBManager.shared.imageBaseUrlString = baseUrl
+                    } else {
+                        print("❌ Fail to get image base url.")
+                    }
+                    if let secureImageBaseUrl = json["images"]["secure_base_url"].string {
+                        TMDBManager.shared.secureImageBaseUrlString = secureImageBaseUrl
+                    } else {
+                        print("❌ Fail to get secure (aka https) image base url.")
+                    }
+                    if let backdropSizes = json["images"]["backdrop_sizes"].arrayObject as? [String] {
+                        TMDBManager.shared.backdropSizes = backdropSizes
+                    } else {
+                        print("❌ Fail to get image backdrop sizes.")
+                    }
+                    if let logoSizes = json["images"]["logo_sizes"].arrayObject as? [String] {
+                        TMDBManager.shared.logoSizes = logoSizes
+                    } else {
+                        print("❌ Fail to get image logo sizes.")
+                    }
+                    if let posterSizes = json["images"]["poster_sizes"].arrayObject as? [String] {
+                        TMDBManager.shared.posterSizes = posterSizes
+                    } else {
+                        print("❌ Fail to get image poster sizes.")
+                    }
+                    if let profileSizes = json["images"]["profile_sizes"].arrayObject as? [String] {
+                        TMDBManager.shared.profileSizes = profileSizes
+                    } else {
+                        print("❌ Fail to get image profile sizes.")
+                    }
+                    if let stillSizes = json["images"]["still_sizes"].arrayObject as? [String] {
+                        TMDBManager.shared.stillSizes = stillSizes
+                    } else {
+                        print("❌ Fail to get image still sizes.")
+                    }
+                    if let changeKeys = json["change_keys"].arrayObject as? [String] {
+                        TMDBManager.shared.changeKeys = changeKeys
+                    } else {
+                        print("❌ Fail to get change keys.")
+                    }
+                    completion(.success)
                 case .fail(let error):
-                    print(error ?? "Error getting API configurations".error(domain: "configuration"))
+                    completion(.fail(error: error ?? "Error getting API configurations".error(domain: "configuration")))
                 }
             }
         }

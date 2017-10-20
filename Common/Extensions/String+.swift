@@ -41,4 +41,14 @@ extension String {
         dateFormatter.dateFormat = format
         return dateFormatter.date(from: self)
     }
+    
+    func sizeFormatted(wOrH: Character) -> Int? {
+        var s = self
+        if s.first == wOrH {
+            s.remove(at: String.Index(encodedOffset: 0))
+            return Int(s)
+        } else {
+            return nil
+        }
+    }
 }
