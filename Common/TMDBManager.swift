@@ -285,6 +285,8 @@ public class TMDBManager {
     public let credits = CreditsAPIWrapper()
     /// [Discover API](https://developers.themoviedb.org/3/discover) wrapper instance.
     public let discover = DiscoverAPIWrapper()
+    /// [Find API](https://developers.themoviedb.org/3/find) wrapper instance.
+    public let find = FindAPIWrapper()
 }
 
 extension TMDBManager {
