@@ -309,12 +309,16 @@ extension TMDBManager {
     }
     
     /// Make query dictionary.
-    func queryMaker(language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil) -> [String: String] {
+    func queryMaker(language: String? = nil,
+                    sortBy: TMDBSortOption? = nil,
+                    page: Int? = nil,
+                    includeAdult: Bool? = nil) -> [String: String] {
         var query: [String: String] = [:]
         
         if let language = language { query["language"] = language }
         if let sortBy = sortBy { query["sort_by"] = sortBy.rawValue }
         if let page = page { query["page"] = "\(page)" }
+        if let includeAdult = includeAdult { query["include_adult"] = includeAdult ? "true" : "false" }
         
         return query
     }

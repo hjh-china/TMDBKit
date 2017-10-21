@@ -54,11 +54,11 @@ extension TMDBManager {
         ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`.
         ///   - completion: Completion handler.
         public func getMovies(byGenreId genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            var query = TMDBManager.shared.queryMaker(language: language, sortBy: sortBy)
-            if let includeAdult = includeAdult {
-                query["include_adult"] = includeAdult ? "true" : "false"
-            }
-            TMDBManager.shared.performRequest(path: "/genre/\(genreId)/movies", query: query, completion: completion)
+            TMDBManager.shared.performRequest(path: "/genre/\(genreId)/movies",
+                                              query: TMDBManager.shared.queryMaker(language: language,
+                                                                                   sortBy: sortBy,
+                                                                                   includeAdult: includeAdult),
+                                              completion: completion)
         }
     }
 }
