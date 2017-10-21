@@ -10,17 +10,20 @@ import Foundation
 
 // MARK: - GET methods.
 extension TMDBManager {
-    /// Perform the GET request with Data returned in complition handler closure.
-    ///
-    /// - Parameters:
-    ///   - path: The relative path for the request, like "/movie/76341".
-    ///   - query: Query to be appended.
-    ///   - needAuthentication: Whether this request needs appending Seesion ID.
-    ///   - expectedStatusCode: Expected status code, usually 200. Will return an error if the server returns a different code.
-    ///   - completion: Completion Handler.
-    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (DataReturn) -> ()) {
-        let _request = constructRequest(path: path,
+    /// Perform the request with Data returned in complition handler closure.
+    func performRequest(method: String = "GET",
+                        path: String,
+                        query: [String: String] = [:],
+                        headers: [String: String] = [:],
+                        data: Data? = nil,
+                        needAuthentication: Bool = false,
+                        expectedStatusCode: Int = 200,
+                        completion: @escaping (DataReturn) -> ()) {
+        let _request = constructRequest(method: method,
+                                        path: path,
                                         query: query,
+                                        headers: headers,
+                                        data: data,
                                         needAuthentication: needAuthentication,
                                         expectedStatusCode: expectedStatusCode)
         
@@ -33,17 +36,22 @@ extension TMDBManager {
         
     }
     
-    /// Perform the GET request with JSON returned in complition handler closure.
-    ///
-    /// - Parameters:
-    ///   - path: The relative path for the request, like "/movie/76341".
-    ///   - query: Query to be appended.
-    ///   - needAuthentication: Whether this request needs appending Seesion ID.
-    ///   - expectedStatusCode: Expected status code, usually 200. Will return an error if the server returns a different code.
-    ///   - completion: Completion Handler.
-    func performRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (JSONReturn) -> ()) {
-        
-        performRequest(path: path, query: query, needAuthentication: needAuthentication) { (result: DataReturn) in
+    /// Perform the request with JSON returned in complition handler closure.
+    func performRequest(method: String = "GET",
+                        path: String,
+                        query: [String: String] = [:],
+                        headers: [String: String] = [:],
+                        data: Data? = nil,
+                        needAuthentication: Bool = false,
+                        expectedStatusCode: Int = 200,
+                        completion: @escaping (JSONReturn) -> ()) {
+        performRequest(method: method,
+                       path: path,
+                       query: query,
+                       headers: headers,
+                       data: data,
+                       needAuthentication: needAuthentication,
+                       expectedStatusCode: expectedStatusCode) { (result: DataReturn) in
             switch result {
             case .success(let data):
                 do {
@@ -58,17 +66,22 @@ extension TMDBManager {
         }
     }
     
-    /// Perform the GET request with Codable object returned in complition handler closure.
-    ///
-    /// - Parameters:
-    ///   - path: The relative path for the request, like "/movie/76341".
-    ///   - query: Query to be appended.
-    ///   - needAuthentication: Whether this request needs appending Seesion ID.
-    ///   - expectedStatusCode: Expected status code, usually 200. Will return an error if the server returns a different code.
-    ///   - completion: Completion Handler.
-    func performRequest<T>(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200, completion: @escaping (ObjectReturn<T>) -> ()) {
-        
-        performRequest(path: path, query: query, needAuthentication: needAuthentication) { (result: DataReturn) in
+    /// Perform the request with Codable object returned in complition handler closure.
+    func performRequest<T>(method: String = "GET",
+                           path: String,
+                           query: [String: String] = [:],
+                           headers: [String: String] = [:],
+                           data: Data? = nil,
+                           needAuthentication: Bool = false,
+                           expectedStatusCode: Int = 200,
+                           completion: @escaping (ObjectReturn<T>) -> ()) {
+        performRequest(method: method,
+                       path: path,
+                       query: query,
+                       headers: headers,
+                       data: data,
+                       needAuthentication: needAuthentication,
+                       expectedStatusCode: expectedStatusCode) { (result: DataReturn) in
             switch result {
             case .success(let data):
                 do {
@@ -82,58 +95,29 @@ extension TMDBManager {
             }
         }
     }
-}
-
-// MARK: - POST methods
-extension TMDBManager {
-    /// Perform the POST request with Data returned in complition handler closure.
-    ///
-    /// - Parameters:
-    ///   - postPath: The relative path for the request, like "/account/1234/watchlist".
-    ///   - query: Query to be appended.
-    ///   - headers: HTTP request headers.
-    ///   - data: HTTP request body.
-    ///   - needAuthentication: Whether this request needs appending Seesion ID.
-    ///   - expectedStatusCode: Expected status code, usually 201. Will return an error if the server returns a different code.
-    ///   - completion: Completion Handler.
-    func performRequest(postPath: String, query: [String: String] = [:], headers: [String: String] = [:], data: Data?, needAuthentication: Bool = true, expectedStatusCode: Int = 201, completion: @escaping (DataReturn) -> ()) {
-        let _request = constructRequest(postPath: postPath,
-                                        query: query,
-                                        headers: headers,
-                                        data: data,
-                                        needAuthentication: needAuthentication,
-                                        expectedStatusCode: expectedStatusCode)
-        switch _request {
-        case .success(let request):
-            performRequest(request: request, expectedStatusCode: expectedStatusCode, completion: completion)
-        case .fail(let error):
-            completion(.fail(error: error))
-        }
-    }
     
-    /// Perform the POST request with `Codable` object for HTTP request body, and returns data in complition handler closure.
-    ///
-    /// - Parameters:
-    ///   - postPath: The relative path for the request, like "/account/1234/watchlist".
-    ///   - query: Query to be appended.
-    ///   - headers: HTTP request headers.
-    ///   - dataObject: Object that complies to `Codable` protocol. Will be encoded to JSON for HTTP request body.
-    ///   - needAuthentication: Whether this request needs appending Seesion ID.
-    ///   - expectedStatusCode: Expected status code, usually 201. Will return an error if the server returns a different code.
-    ///   - completion: Completion Handler.
-    func performRequest<T: Codable>(postPath: String, query: [String: String] = [:], headers: [String: String] = [:], dataObject: T, needAuthentication: Bool = true, expectedStatusCode: Int = 201, completion: @escaping (NilReturn) -> ()) {
-        do {
-            let data = try JSONEncoder().encode(dataObject)
-            performRequest(postPath: postPath, query: query, headers: headers, data: data, needAuthentication: needAuthentication, expectedStatusCode: expectedStatusCode) { result in
-                switch result {
-                case .success:
-                    completion(.success)
-                case .fail(let error):
-                    completion(.fail(error: error))
-                }
+    /// Perform the request with nothing returned in complition handler closure.
+    func performRequest(method: String = "GET",
+                        path: String,
+                        query: [String: String] = [:],
+                        headers: [String: String] = [:],
+                        data: Data? = nil,
+                        needAuthentication: Bool = false,
+                        expectedStatusCode: Int = 200,
+                        completion: @escaping (NilReturn) -> ()) {
+        performRequest(method: method,
+                       path: path,
+                       query: query,
+                       headers: headers,
+                       data: data,
+                       needAuthentication: needAuthentication,
+                       expectedStatusCode: expectedStatusCode) { (result: DataReturn) in
+            switch result {
+            case .success:
+                completion(.success)
+            case .fail(let error):
+                completion(.fail(error: error))
             }
-        } catch let error {
-            completion(.fail(error: error))
         }
     }
 }
@@ -184,15 +168,22 @@ extension TMDBManager {
 
 // MARK: - Request constructers.
 extension TMDBManager {
-    /// Construct the basic (GET) URLRequest.
+    /// Construct URLRequest.
     ///
     /// - Parameters:
+    ///   - method: HTTP request method.
     ///   - path: The relative path for the request, like "/movie/76341".
     ///   - query: Query to be appended.
     ///   - needAuthentication: Whether this request needs appending Seesion ID.
     ///   - expectedStatusCode: Expected status code.
     /// - Returns: An enum carrys the result URLRequest or Error.
-    func constructRequest(path: String, query: [String: String] = [:], needAuthentication: Bool = false, expectedStatusCode: Int = 200) -> AnyReturn<URLRequest> {
+    func constructRequest(method: String,
+                          path: String,
+                          query: [String: String],
+                          headers: [String: String],
+                          data: Data?,
+                          needAuthentication: Bool,
+                          expectedStatusCode: Int) -> AnyReturn<URLRequest> {
         // Check API Key
         guard let apiKey = self.apiKey else {
             return .fail(error: "API Key is nil, please call setupClient(withApiKey:keyChainPrefix:) first.".error())
@@ -237,74 +228,19 @@ extension TMDBManager {
         guard let componmentsUrl = componments.url else {
             return .fail(error: "Fail constructing URLComponments".error())
         }
+        var request = URLRequest(url: componmentsUrl)
         
-        return .success(any: URLRequest(url: componmentsUrl))
-    }
-    
-    /// Construct the POST URLRequest.
-    ///
-    /// - Parameters:
-    ///   - postPath: The relative path for the POST request, like "/list/12345/remove_item".
-    ///   - query: Query to be appended.
-    ///   - headers: POST header.
-    ///   - data: Request body.
-    ///   - needAuthentication: Whether this request needs appending Seesion ID.
-    ///   - expectedStatusCode: Expected status code.
-    /// - Returns: An enum carrys the result URLRequest or Error.
-    func constructRequest(postPath path: String, query: [String: String] = [:], headers: [String: String] = [:], data: Data?, needAuthentication: Bool = true, expectedStatusCode: Int = 201) -> AnyReturn<URLRequest> {
-        let request: URLRequest!
-        let _request = constructRequest(path: path,
-                                        query: query,
-                                        needAuthentication: needAuthentication,
-                                        expectedStatusCode: expectedStatusCode)
-        
-        switch _request {
-        case .success(let _request):
-            request = _request
-        case .fail(let error):
-            return .fail(error: error)
+        // Set up headers and body
+        if method != "GET" {
+            request.addValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        }
+        request.httpMethod = method
+        for (headerField, value) in headers {
+            request.addValue(value, forHTTPHeaderField: headerField)
         }
         
-        request.httpMethod = "POST"
-        if let data = data {
-            request.httpBody = data
-        }
-        request.addValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = data
         
-        if !headers.isEmpty {
-            for (key, value) in headers {
-                request.addValue(value, forHTTPHeaderField: key)
-            }
-        }
-        
-        return .success(any: request)
-    }
-    
-    /// Construct the DELETE URLRequest.
-    ///
-    /// - Parameters:
-    ///   - deletePath: The relative path for the DELETE request, like "/list/12345/remove_item".
-    ///   - query: Query to be appended.
-    ///   - headers: POST header.
-    ///   - data: Request body.
-    ///   - needAuthentication: Whether this request needs appending Seesion ID.
-    ///   - expectedStatusCode: Expected status code.
-    /// - Returns: An enum carrys the result URLRequest or Error.
-    func constructRequest(deletePath path: String, query: [String: String] = [:], needAuthentication: Bool = true, expectedStatusCode: Int = 201) -> AnyReturn<URLRequest> {
-        let request: URLRequest!
-        let _request = constructRequest(path: path,
-                                        query: query,
-                                        needAuthentication: needAuthentication,
-                                        expectedStatusCode: expectedStatusCode)
-        
-        switch _request {
-        case .success(let _request):
-            request = _request
-        case .fail(let error):
-            return .fail(error: error)
-        }
-        
-        request.httpMethod = "DELETE"
         return .success(any: request)
     }
     

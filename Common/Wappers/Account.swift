@@ -89,10 +89,17 @@ extension TMDBManager {
         ///   - mediaObject: A `TMDBFavoriteMediaObject` which will be encoded into JSON as HTTP request body.
         ///   - completion: Completion handler.
         public func markAsFavorite(accountId: Int, mediaObject: TMDBFavoriteMediaObject, completion: @escaping (NilReturn) -> () ) {
-            TMDBManager.shared.performRequest(postPath: "/account/\(accountId)/favorite",
-                                              dataObject: mediaObject,
+            do {
+            let data = try JSONEncoder().encode(mediaObject)
+            TMDBManager.shared.performRequest(method: "POST",
+                                              path: "/account/\(accountId)/favorite",
+                                              data: data,
+                                              needAuthentication: true,
                                               expectedStatusCode: mediaObject.favorite ? 201 : 200,
                                               completion: completion)
+            } catch let error {
+                completion(.fail(error: error))
+            }
         }
         
         /// Get a list of all the movies you have rated.
@@ -207,10 +214,18 @@ extension TMDBManager {
         ///   - mediaObject: A `TMDBWatchlistMediaObject` which will be encoded into JSON as HTTP request body.
         ///   - completion: Completion handler.
         public func addToWatchlist(accountId: Int, mediaObject: TMDBWatchlistMediaObject, completion: @escaping (NilReturn) -> () ) {
-            TMDBManager.shared.performRequest(postPath: "/account/\(accountId)/watchlist",
-                                              dataObject: mediaObject,
-                                              expectedStatusCode: mediaObject.watchlist ? 201 : 200,
-                                              completion: completion)
+            do {
+                let data = try JSONEncoder().encode(mediaObject)
+                TMDBManager.shared.performRequest(method: "POST",
+                                                  path: "/account/\(accountId)/watchlist",
+                                                  data: data,
+                                                  needAuthentication: true,
+                                                  expectedStatusCode: mediaObject.watchlist ? 201 : 200,
+                                                  completion: completion)
+            } catch let error {
+                completion(.fail(error: error))
+            }
+            
         }
     }
 }
