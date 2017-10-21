@@ -47,13 +47,13 @@ extension TMDBManager {
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
-        ///   - sortBy: Sort the results. **Allowed Values:** `created_at.asc`, `created_at.desc`
+        ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`
         ///   - page: Specify which page to query.
         ///     - minimum: 1
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getFavoriteMovies(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getFavoriteMovies(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/favorite/movies",
                                               query: query(language: language, sortBy: sortBy, page: page),
                                               needAuthentication: true,
@@ -68,13 +68,13 @@ extension TMDBManager {
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
-        ///   - sortBy: Sort the results. **Allowed Values:** `created_at.asc`, `created_at.desc`
+        ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`
         ///   - page: Specify which page to query.
         ///     - minimum: 1
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getFavoriteTVShows(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+        public func getFavoriteTVShows(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/favorite/tv",
                                               query: query(language: language, sortBy: sortBy, page: page),
                                               needAuthentication: true,
@@ -103,13 +103,13 @@ extension TMDBManager {
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
-        ///   - sortBy: Sort the results. **Allowed Values:** `created_at.asc`, `created_at.desc`
+        ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`
         ///   - page: Specify which page to query.
         ///     - minimum: 1
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getRatedMovies(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getRatedMovies(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/rated/movies",
                                               query: query(language: language, sortBy: sortBy, page: page),
                                               needAuthentication: true,
@@ -124,13 +124,13 @@ extension TMDBManager {
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
-        ///   - sortBy: Sort the results. **Allowed Values:** `created_at.asc`, `created_at.desc`
+        ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`
         ///   - page: Specify which page to query.
         ///     - minimum: 1
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getRatedTVShows(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+        public func getRatedTVShows(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/rated/tv",
                                               query: query(language: language, sortBy: sortBy, page: page),
                                               needAuthentication: true,
@@ -145,13 +145,13 @@ extension TMDBManager {
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
-        ///   - sortBy: Sort the results. **Allowed Values:** `created_at.asc`, `created_at.desc`
+        ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`
         ///   - page: Specify which page to query.
         ///     - minimum: 1
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getRatedTVEpisodes(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+        public func getRatedTVEpisodes(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/rated/episodes",
                                               query: query(language: language, sortBy: sortBy, page: page),
                                               needAuthentication: true,
@@ -166,13 +166,13 @@ extension TMDBManager {
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
-        ///   - sortBy: Sort the results. **Allowed Values:** `created_at.asc`, `created_at.desc`
+        ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`
         ///   - page: Specify which page to query.
         ///     - minimum: 1
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getMovieWatchlist(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getMovieWatchlist(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/watchlist/movies",
                                               query: query(language: language, sortBy: sortBy, page: page),
                                               needAuthentication: true,
@@ -187,13 +187,13 @@ extension TMDBManager {
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
-        ///   - sortBy: Sort the results. **Allowed Values:** `created_at.asc`, `created_at.desc`
+        ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`
         ///   - page: Specify which page to query.
         ///     - minimum: 1
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getTVShowWatchlist(accountId account: Int, language: String? = nil, sortBy: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+        public func getTVShowWatchlist(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/watchlist/tv",
                                               query: query(language: language, sortBy: sortBy, page: page),
                                               needAuthentication: true,
@@ -213,11 +213,11 @@ extension TMDBManager {
                                               completion: completion)
         }
         
-        func query(language: String?, sortBy: String?, page: Int?) -> [String: String] {
+        func query(language: String?, sortBy: TMDBSortOption?, page: Int?) -> [String: String] {
             var query: [String: String] = [:]
             
             if let language = language { query["language"] = language }
-            if let sortBy = sortBy { query["sort_by"] = sortBy }
+            if let sortBy = sortBy { query["sort_by"] = sortBy.rawValue }
             if let page = page { query["page"] = "\(page)" }
             
             return query

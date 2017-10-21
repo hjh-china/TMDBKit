@@ -57,7 +57,7 @@ extension TMDBManager {
         ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
         ///   - sortBy: Sort the results. Allowed Values: `.createdAtAsc`, `.createdAtDesc`.
         ///   - completion: Completion handler.
-        public func getMovies(byGenreId genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: GetMoviesByGenreSortBy? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getMovies(byGenreId genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             var query: [String: String] = [:]
             if let language = language {
                 query["language"] = language
@@ -69,11 +69,6 @@ extension TMDBManager {
                 query["sort_by"] = sortBy.rawValue
             }
             TMDBManager.shared.performRequest(path: "/genre/\(genreId)/movies", query: query, completion: completion)
-        }
-        
-        public enum GetMoviesByGenreSortBy: String {
-            case createdAtAsc = "created_at.asc"
-            case createdAtDesc = "created_at.desc"
         }
     }
 }
