@@ -64,7 +64,7 @@ extension TMDBManager {
             TMDBManager.shared.performRequest(method: "POST",
                                               path: "/list",
                                               data: try! JSONEncoder().encode(list),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               expectedStatusCode: 201) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
@@ -93,7 +93,7 @@ extension TMDBManager {
             TMDBManager.shared.performRequest(method: "POST",
                                               path: "/list/\(list)/add_item",
                                               data: try! JSONEncoder().encode(["media_id": "\(movie)"]),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               expectedStatusCode: 201,
                                               completion: completion)
         }
@@ -108,7 +108,7 @@ extension TMDBManager {
             TMDBManager.shared.performRequest(method: "POST",
                                               path: "/list/\(list)/remove_item",
                                               data: try! JSONEncoder().encode(["media_id": "\(movie)"]),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               expectedStatusCode: 201,
                                               completion: completion)
         }
@@ -122,7 +122,7 @@ extension TMDBManager {
             TMDBManager.shared.performRequest(method: "POST",
                                               path: "/list/\(list)/remove_item",
                                               query: ["confirm": "true"],
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               expectedStatusCode: 201,
                                               completion: completion)
         }
@@ -135,7 +135,7 @@ extension TMDBManager {
         public func delete(list: Int, completion: @escaping (NilReturn) -> ()) {
             TMDBManager.shared.performRequest(method: "DELETE",
                                               path: "/list/\(list)/add_item",
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               expectedStatusCode: 201,
                                               completion: completion)
         }

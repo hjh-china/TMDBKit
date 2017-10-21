@@ -15,7 +15,7 @@ extension TMDBManager {
         /// - Parameter completion: Completion handler.
         public func getDetails(completion: @escaping (ObjectReturn<TMDBUser>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account",
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -35,7 +35,7 @@ extension TMDBManager {
         public func getCreatedLists(accountId account: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBList>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/lists",
                                               query: TMDBManager.shared.queryMaker(language: language, sortBy: nil, page: page),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -56,7 +56,7 @@ extension TMDBManager {
         public func getFavoriteMovies(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/favorite/movies",
                                               query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -77,7 +77,7 @@ extension TMDBManager {
         public func getFavoriteTVShows(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/favorite/tv",
                                               query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -94,7 +94,7 @@ extension TMDBManager {
             TMDBManager.shared.performRequest(method: "POST",
                                               path: "/account/\(accountId)/favorite",
                                               data: data,
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               expectedStatusCode: mediaObject.favorite ? 201 : 200,
                                               completion: completion)
             } catch let error {
@@ -119,7 +119,7 @@ extension TMDBManager {
         public func getRatedMovies(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/rated/movies",
                                               query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -140,7 +140,7 @@ extension TMDBManager {
         public func getRatedTVShows(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/rated/tv",
                                               query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -161,7 +161,7 @@ extension TMDBManager {
         public func getRatedTVEpisodes(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/rated/episodes",
                                               query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -182,7 +182,7 @@ extension TMDBManager {
         public func getMovieWatchlist(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/watchlist/movies",
                                               query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -203,7 +203,7 @@ extension TMDBManager {
         public func getTVShowWatchlist(accountId account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/account/\(account)/watchlist/tv",
                                               query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              needAuthentication: true,
+                                              authentication: .user,
                                               completion: completion)
         }
         
@@ -219,7 +219,7 @@ extension TMDBManager {
                 TMDBManager.shared.performRequest(method: "POST",
                                                   path: "/account/\(accountId)/watchlist",
                                                   data: data,
-                                                  needAuthentication: true,
+                                                  authentication: .user,
                                                   expectedStatusCode: mediaObject.watchlist ? 201 : 200,
                                                   completion: completion)
             } catch let error {

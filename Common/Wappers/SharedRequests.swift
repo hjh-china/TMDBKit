@@ -16,7 +16,7 @@ extension TMDBManager {
                         query: [String: String] = [:],
                         headers: [String: String] = [:],
                         data: Data? = nil,
-                        needAuthentication: Bool = false,
+                        authentication: AuthenticationType = .noAuthentication,
                         expectedStatusCode: Int = 200,
                         completion: @escaping (DataReturn) -> ()) {
         let _request = constructRequest(method: method,
@@ -24,7 +24,7 @@ extension TMDBManager {
                                         query: query,
                                         headers: headers,
                                         data: data,
-                                        needAuthentication: needAuthentication,
+                                        authentication: authentication,
                                         expectedStatusCode: expectedStatusCode)
         
         switch _request {
@@ -42,7 +42,7 @@ extension TMDBManager {
                         query: [String: String] = [:],
                         headers: [String: String] = [:],
                         data: Data? = nil,
-                        needAuthentication: Bool = false,
+                        authentication: AuthenticationType = .noAuthentication,
                         expectedStatusCode: Int = 200,
                         completion: @escaping (JSONReturn) -> ()) {
         performRequest(method: method,
@@ -50,7 +50,7 @@ extension TMDBManager {
                        query: query,
                        headers: headers,
                        data: data,
-                       needAuthentication: needAuthentication,
+                       authentication: authentication,
                        expectedStatusCode: expectedStatusCode) { (result: DataReturn) in
             switch result {
             case .success(let data):
@@ -72,7 +72,7 @@ extension TMDBManager {
                            query: [String: String] = [:],
                            headers: [String: String] = [:],
                            data: Data? = nil,
-                           needAuthentication: Bool = false,
+                           authentication: AuthenticationType = .noAuthentication,
                            expectedStatusCode: Int = 200,
                            completion: @escaping (ObjectReturn<T>) -> ()) {
         performRequest(method: method,
@@ -80,7 +80,7 @@ extension TMDBManager {
                        query: query,
                        headers: headers,
                        data: data,
-                       needAuthentication: needAuthentication,
+                       authentication: authentication,
                        expectedStatusCode: expectedStatusCode) { (result: DataReturn) in
             switch result {
             case .success(let data):
@@ -102,7 +102,7 @@ extension TMDBManager {
                         query: [String: String] = [:],
                         headers: [String: String] = [:],
                         data: Data? = nil,
-                        needAuthentication: Bool = false,
+                        authentication: AuthenticationType = .noAuthentication,
                         expectedStatusCode: Int = 200,
                         completion: @escaping (NilReturn) -> ()) {
         performRequest(method: method,
@@ -110,7 +110,7 @@ extension TMDBManager {
                        query: query,
                        headers: headers,
                        data: data,
-                       needAuthentication: needAuthentication,
+                       authentication: authentication,
                        expectedStatusCode: expectedStatusCode) { (result: DataReturn) in
             switch result {
             case .success:
@@ -182,7 +182,7 @@ extension TMDBManager {
                           query: [String: String],
                           headers: [String: String],
                           data: Data?,
-                          needAuthentication: Bool,
+                          authentication: AuthenticationType,
                           expectedStatusCode: Int) -> AnyReturn<URLRequest> {
         // Check API Key
         guard let apiKey = self.apiKey else {
@@ -202,19 +202,19 @@ extension TMDBManager {
         var queryItems = componments.queryItems ?? []
         queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
         
-        if needAuthentication {
-            switch useGuestSession {
-            case true:
-                guard let guestSessionId = self.guestSessionId else {
-                    return .fail(error: "Session ID is nil, please grant authentication first.".error())
-                }
-                queryItems.append(URLQueryItem(name: "guest_session_id", value: guestSessionId))
-            case false:
-                guard let sessionId = self.sessionId else {
-                    return .fail(error: "Session ID is nil, please grant authentication first.".error())
-                }
-                queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
+        switch authentication {
+        case .noAuthentication:
+            break
+        case .guest:
+            guard guestAzuthrozied else {
+                return .fail(error: "Guest session ID is nil or expired, please grant authentication first.".error())
             }
+            queryItems.append(URLQueryItem(name: "guest_session_id", value: guestSessionId))
+        case .user:
+            guard let sessionId = self.sessionId else {
+                return .fail(error: "Session ID is nil, please grant authentication first.".error())
+            }
+            queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
         }
         
         if !query.isEmpty {
@@ -257,6 +257,14 @@ extension TMDBManager {
         if let includeAdult = includeAdult { query["include_adult"] = includeAdult ? "true" : "false" }
         
         return query
+    }
+}
+
+extension TMDBManager {
+    public enum AuthenticationType {
+        case user
+        case guest
+        case noAuthentication
     }
 }
 

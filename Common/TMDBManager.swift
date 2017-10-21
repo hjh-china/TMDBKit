@@ -37,10 +37,7 @@ public class TMDBManager {
     var kGuestSessionIdExpiresAt: String {
         return persistencePrefix == nil ? "im.sr2k.TMDBKit.guestSessionIdExpDate" : persistencePrefix! + ".TMDBKit.guestSessionIdExpDate"
     }
-    /// Whether TMDB manager will use guest session ID.
-    /// - `true`: The manager will use **guest session ID** for methods which needs needAuthentication.
-    /// - `false`: The manager will use **session ID** for methods which needs needAuthentication.
-    public var useGuestSession = false
+    
     /// Read-only. The session ID persisted in keychain.
     ///
     /// See [The Movie Database API - Authentication](https://developers.themoviedb.org/3/authentication) for more info about session ID.
@@ -357,11 +354,11 @@ extension TMDBManager {
     /// Check if Guest Session Id is nil or expired.
     public var guestAzuthrozied: Bool {
         guard
-            let _ = guestSessionId,
-            let d = guestSessionExpiresAt
-            else { return false }
+            guestSessionId != nil,
+            let guestSessionExpiresAt = guestSessionExpiresAt
+        else { return false }
         
-        return d <= Date() ? true : false
+        return guestSessionExpiresAt <= Date()
     }
 }
 
