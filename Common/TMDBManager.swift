@@ -287,6 +287,8 @@ public class TMDBManager {
     public let discover = DiscoverAPIWrapper()
     /// [Find API](https://developers.themoviedb.org/3/find) wrapper instance.
     public let find = FindAPIWrapper()
+    /// [Genres API](https://developers.themoviedb.org/3/genres) wrapper instance.
+    public let genres =  GenresAPIWrapper()
 }
 
 extension TMDBManager {
