@@ -212,10 +212,18 @@ extension TMDBManager {
         queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
         
         if needAuthentication {
-            guard let sessionId = self.sessionId else {
-                return .fail(error: "Session ID is nil, please grant authentication first.".error())
+            switch useGuestSession {
+            case true:
+                guard let guestSessionId = self.guestSessionId else {
+                    return .fail(error: "Session ID is nil, please grant authentication first.".error())
+                }
+                queryItems.append(URLQueryItem(name: "guest_session_id", value: guestSessionId))
+            case false:
+                guard let sessionId = self.sessionId else {
+                    return .fail(error: "Session ID is nil, please grant authentication first.".error())
+                }
+                queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
             }
-            queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
         }
         
         if !query.isEmpty {

@@ -25,16 +25,28 @@ public class TMDBManager {
     /// The expire time for the request token. Usually 1 hour after you grant a token.
     public var requestTokenExpiresAt: Date?
     
-    /// Read-only. The key for session ID persistence in keychain.
-    var sessionIdKey: String {
-        return persistencePrefix == nil ? "" : persistencePrefix! + ".sessionId"
+    /// Read-only. The key for session ID persisted in keychain.
+    var kSessionId: String {
+        return persistencePrefix == nil ? "im.sr2k.TMDBKit.sessionId" : persistencePrefix! + "TMDBKit.sessionId"
     }
+    /// Read-only. The key for guest session ID persisted by UserDefaults.
+    var kGuestSessionId: String {
+        return persistencePrefix == nil ? "im.sr2k.TMDBKit.guestSessionId" : persistencePrefix! + ".TMDBKit.guestSessionId"
+    }
+    /// Read-only. The key for guest session ID expire date persisted by UserDefaults.
+    var kGuestSessionIdExpiresAt: String {
+        return persistencePrefix == nil ? "im.sr2k.TMDBKit.guestSessionIdExpDate" : persistencePrefix! + ".TMDBKit.guestSessionIdExpDate"
+    }
+    /// Whether TMDB manager will use guest session ID.
+    /// - `true`: The manager will use **guest session ID** for methods which needs needAuthentication.
+    /// - `false`: The manager will use **session ID** for methods which needs needAuthentication.
+    public var useGuestSession = false
     /// Read-only. The session ID persisted in keychain.
     ///
     /// See [The Movie Database API - Authentication](https://developers.themoviedb.org/3/authentication) for more info about session ID.
     internal(set) public var sessionId: String? {
         get {
-            if let accessTokenData = KeychainManager.loadData(forKey: sessionIdKey) {
+            if let accessTokenData = KeychainManager.loadData(forKey: kSessionId) {
                 if let accessTokenString = String.init(data: accessTokenData, encoding: .utf8) {
                     return accessTokenString
                 }
@@ -44,9 +56,9 @@ public class TMDBManager {
         }
         set {
             if newValue == nil {
-                KeychainManager.deleteItem(forKey: sessionIdKey)
+                KeychainManager.deleteItem(forKey: kSessionId)
             } else {
-                let savingSucceeded = KeychainManager.setString(value: newValue!, forKey: sessionIdKey)
+                let savingSucceeded = KeychainManager.setString(value: newValue!, forKey: kSessionId)
                 print("SessionID saved successfully:\n\(savingSucceeded)")
             }
         }
@@ -54,12 +66,35 @@ public class TMDBManager {
     
     /// Your guest session ID.
     ///
-    /// This value will **NOT** be persisted.
+    /// This value will be persisted by UserDefaults.
     ///
     /// See [The Movie Database API - Authentication - Create Guest Session](https://developers.themoviedb.org/3/authentication/create-guest-session) for more info about guest session ID.
-    internal(set) public var guestSessionId: String?
+    internal(set) public var guestSessionId: String? {
+        get {
+            return UserDefaults.standard.object(forKey: kGuestSessionId) as? String
+        }
+        
+        set {
+            guard let value = newValue else {
+                UserDefaults.standard.removeObject(forKey: kGuestSessionId)
+                return
+            }
+            UserDefaults.standard.set(value, forKey: kGuestSessionId)
+        }
+    }
     /// The expire time for the guest session ID.
-    internal(set) public var guestSessionExpiresAt: Date?
+    internal(set) public var guestSessionExpiresAt: Date? {
+        get {
+            return UserDefaults.standard.object(forKey: kGuestSessionIdExpiresAt) as? Date
+        }
+        set {
+            guard let value = newValue else {
+                UserDefaults.standard.removeObject(forKey: kGuestSessionIdExpiresAt)
+                return
+            }
+            UserDefaults.standard.set(value, forKey: kGuestSessionIdExpiresAt)
+        }
+    }
     
     /// Image base URL.
     internal(set) public var imageBaseUrlString: String? {
