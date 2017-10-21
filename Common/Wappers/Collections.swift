@@ -21,11 +21,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getDetails(collectionId: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBCollection>) -> ()) {
-            var query: [String: String] = [:]
-            if let language = language {
-                query["language"] = language
-            }
-            TMDBManager.shared.performRequest(path: "/collection/\(collectionId)", query: query, completion: completion)
+            TMDBManager.shared.performRequest(path: "/collection/\(collectionId)",
+                                              query: TMDBManager.shared.queryMaker(language: language),
+                                              completion: completion)
         }
         
         /// Get the images for a collection by id.
@@ -38,11 +36,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getImages(collectionId: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBImages>) -> ()) {
-            var query: [String: String] = [:]
-            if let language = language {
-                query["language"] = language
-            }
-            TMDBManager.shared.performRequest(path: "/collection/\(collectionId)", query: query, completion: completion)
+            TMDBManager.shared.performRequest(path: "/collection/\(collectionId)",
+                                              query: TMDBManager.shared.queryMaker(language: language),
+                                              completion: completion)
         }
     }
 }

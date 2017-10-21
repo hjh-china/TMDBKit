@@ -33,15 +33,8 @@ extension TMDBManager {
         ///   - page: Specify which page to query.
         ///   - completion: Completion handler.
         public func getMovies(companyId: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            var query: [String: String] = [:]
-            if let language = language {
-                query["language"] = language
-            }
-            if let page = page {
-                query["page"] = "\(page)"
-            }
             TMDBManager.shared.performRequest(path: "/company/\(companyId)/movies",
-                                              query: query,
+                                              query: TMDBManager.shared.queryMaker(language: language, page: page),
                                               completion: completion)
         }
     }

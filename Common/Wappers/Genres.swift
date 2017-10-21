@@ -21,11 +21,9 @@ extension TMDBManager {
         ///     - maxLength: 2
         ///   - completion: Completion handler.
         public func getMovieList(language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
-            var query: [String: String] = [:]
-            if let language = language {
-                query["language"] = language
-            }
-            TMDBManager.shared.performRequest(path: "/genre/movie/list", query: query, completion: completion)
+            TMDBManager.shared.performRequest(path: "/genre/movie/list",
+                                              query: TMDBManager.shared.queryMaker(language: language),
+                                              completion: completion)
         }
         
         /// Get the list of official genres for TV shows.
@@ -37,11 +35,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getTVList(language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
-            var query: [String: String] = [:]
-            if let language = language {
-                query["language"] = language
-            }
-            TMDBManager.shared.performRequest(path: "/genre/tv/list", query: query, completion: completion)
+            TMDBManager.shared.performRequest(path: "/genre/tv/list",
+                                              query: TMDBManager.shared.queryMaker(language: language),
+                                              completion: completion)
         }
         
         /// - IMPORTANT: This method is **deprecated**.
@@ -55,18 +51,12 @@ extension TMDBManager {
         ///     - pattern: ([a-z]{2})-([A-Z]{2})
         ///     - default: en-US
         ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
-        ///   - sortBy: Sort the results. Allowed Values: `.createdAtAsc`, `.createdAtDesc`.
+        ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`.
         ///   - completion: Completion handler.
         public func getMovies(byGenreId genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            var query: [String: String] = [:]
-            if let language = language {
-                query["language"] = language
-            }
+            var query = TMDBManager.shared.queryMaker(language: language, sortBy: sortBy)
             if let includeAdult = includeAdult {
                 query["include_adult"] = includeAdult ? "true" : "false"
-            }
-            if let sortBy = sortBy {
-                query["sort_by"] = sortBy.rawValue
             }
             TMDBManager.shared.performRequest(path: "/genre/\(genreId)/movies", query: query, completion: completion)
         }

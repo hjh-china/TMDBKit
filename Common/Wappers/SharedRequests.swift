@@ -307,5 +307,16 @@ extension TMDBManager {
         request.httpMethod = "DELETE"
         return .success(any: request)
     }
+    
+    /// Make query dictionary.
+    func queryMaker(language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil) -> [String: String] {
+        var query: [String: String] = [:]
+        
+        if let language = language { query["language"] = language }
+        if let sortBy = sortBy { query["sort_by"] = sortBy.rawValue }
+        if let page = page { query["page"] = "\(page)" }
+        
+        return query
+    }
 }
 
