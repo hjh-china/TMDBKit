@@ -323,7 +323,9 @@ public class TMDBManager {
     /// [Find API](https://developers.themoviedb.org/3/find) wrapper instance.
     public let find = FindAPIWrapper()
     /// [Genres API](https://developers.themoviedb.org/3/genres) wrapper instance.
-    public let genres =  GenresAPIWrapper()
+    public let genres = GenresAPIWrapper()
+    /// [Guest Sessions API](https://developers.themoviedb.org/3/guest-sessions) wrapper instance.
+    public let guestSession = GuestSessionAPIWrapper()
 }
 
 extension TMDBManager {
