@@ -326,6 +326,10 @@ public class TMDBManager {
     public let genres = GenresAPIWrapper()
     /// [Guest Sessions API](https://developers.themoviedb.org/3/guest-sessions) wrapper instance.
     public let guestSession = GuestSessionAPIWrapper()
+    /// [Jobs API](https://developers.themoviedb.org/3/jobs) wrapper instance.
+    public let jobs = JobsAPIWrapper()
+    /// [Keywords API](https://developers.themoviedb.org/3/keywords) wrapper instance.
+    public let keywords = KeywordsAPIWrapper()
 }
 
 extension TMDBManager {

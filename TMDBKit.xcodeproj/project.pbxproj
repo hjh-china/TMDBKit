@@ -16,6 +16,8 @@
 		451DFBD81F98101500F501EB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBD71F98101500F501EB /* LICENSE */; };
 		451DFBDB1F9810FD00F501EB /* SwiftyJSON_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */; };
 		451DFBDD1F98111300F501EB /* TraktKit_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDC1F98111300F501EB /* TraktKit_LICENSE */; };
+		4522269C1F9B649700A433F8 /* GuestSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522269B1F9B649700A433F8 /* GuestSessions.swift */; };
+		4522269E1F9B683900A433F8 /* SortBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522269D1F9B683900A433F8 /* SortBy.swift */; };
 		4522CA461F9A0618003E9153 /* DiscoverOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CA451F9A0618003E9153 /* DiscoverOption.swift */; };
 		4522CA481F9A19B2003E9153 /* Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CA471F9A19B2003E9153 /* Find.swift */; };
 		4522CA4B1F9A24DE003E9153 /* FindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CA4A1F9A24DE003E9153 /* FindResult.swift */; };
@@ -91,6 +93,8 @@
 		4522CAC51F9A6990003E9153 /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598FF7D1F99F78700571DE0 /* Discover.swift */; };
 		4522CAC61F9A6990003E9153 /* Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CA471F9A19B2003E9153 /* Find.swift */; };
 		4522CAC71F9A6990003E9153 /* SharedRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598FF751F99A77700571DE0 /* SharedRequests.swift */; };
+		4522CAC91F9B3632003E9153 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CAC81F9B3632003E9153 /* Genres.swift */; };
+		4522CACB1F9B3858003E9153 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CACA1F9B3858003E9153 /* Genre.swift */; };
 		4524D2A51F9817720037D7E1 /* Changes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4524D2A41F9817720037D7E1 /* Changes.swift */; };
 		4524D2A71F9819630037D7E1 /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4524D2A61F9819630037D7E1 /* Change.swift */; };
 		4598FF6F1F98A5E600571DE0 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598FF6E1F98A5E600571DE0 /* Configuration.swift */; };
@@ -110,6 +114,26 @@
 		45AECDD51F98040A008BE58F /* Certifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDD41F98040A008BE58F /* Certifications.swift */; };
 		45AECDDC1F980645008BE58F /* TVEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDDA1F980645008BE58F /* TVEpisodes.swift */; };
 		45AECDDD1F980645008BE58F /* Paged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDDB1F980645008BE58F /* Paged.swift */; };
+		45D049821F9BB440005A4D74 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049811F9BB440005A4D74 /* Job.swift */; };
+		45D049841F9BB4B1005A4D74 /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049831F9BB4B1005A4D74 /* Jobs.swift */; };
+		45D049861F9BCA8E005A4D74 /* KeyWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049851F9BCA8E005A4D74 /* KeyWords.swift */; };
+		45D049871F9BCA8E005A4D74 /* KeyWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049851F9BCA8E005A4D74 /* KeyWords.swift */; };
+		45D049881F9BCA8E005A4D74 /* KeyWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049851F9BCA8E005A4D74 /* KeyWords.swift */; };
+		45D049B11F9BCB2D005A4D74 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CACA1F9B3858003E9153 /* Genre.swift */; };
+		45D049B21F9BCB2D005A4D74 /* SortBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522269D1F9B683900A433F8 /* SortBy.swift */; };
+		45D049B31F9BCB2D005A4D74 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049811F9BB440005A4D74 /* Job.swift */; };
+		45D049B41F9BCB2D005A4D74 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CAC81F9B3632003E9153 /* Genres.swift */; };
+		45D049B51F9BCB2D005A4D74 /* GuestSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522269B1F9B649700A433F8 /* GuestSessions.swift */; };
+		45D049B61F9BCB2D005A4D74 /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049831F9BB4B1005A4D74 /* Jobs.swift */; };
+		45D049B71F9BCB3F005A4D74 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CACA1F9B3858003E9153 /* Genre.swift */; };
+		45D049B81F9BCB3F005A4D74 /* SortBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522269D1F9B683900A433F8 /* SortBy.swift */; };
+		45D049B91F9BCB3F005A4D74 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049811F9BB440005A4D74 /* Job.swift */; };
+		45D049BA1F9BCB3F005A4D74 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CAC81F9B3632003E9153 /* Genres.swift */; };
+		45D049BB1F9BCB3F005A4D74 /* GuestSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522269B1F9B649700A433F8 /* GuestSessions.swift */; };
+		45D049BC1F9BCB3F005A4D74 /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049831F9BB4B1005A4D74 /* Jobs.swift */; };
+		45D049BE1F9BCBEC005A4D74 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049BD1F9BCBEC005A4D74 /* Keyword.swift */; };
+		45D049BF1F9BCBEC005A4D74 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049BD1F9BCBEC005A4D74 /* Keyword.swift */; };
+		45D049C01F9BCBEC005A4D74 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049BD1F9BCBEC005A4D74 /* Keyword.swift */; };
 		45D254DD1F983C0900155882 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D254DC1F983C0900155882 /* Collections.swift */; };
 		45D254DF1F98430000155882 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D254DE1F98430000155882 /* Collection.swift */; };
 		45D254E11F98969D00155882 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D254E01F98969D00155882 /* Image.swift */; };
@@ -151,6 +175,8 @@
 		451DFBD71F98101500F501EB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftyJSON_LICENSE; sourceTree = "<group>"; };
 		451DFBDC1F98111300F501EB /* TraktKit_LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = TraktKit_LICENSE; sourceTree = "<group>"; };
+		4522269B1F9B649700A433F8 /* GuestSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestSessions.swift; sourceTree = "<group>"; };
+		4522269D1F9B683900A433F8 /* SortBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortBy.swift; sourceTree = "<group>"; };
 		4522CA451F9A0618003E9153 /* DiscoverOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverOption.swift; sourceTree = "<group>"; };
 		4522CA471F9A19B2003E9153 /* Find.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Find.swift; sourceTree = "<group>"; };
 		4522CA4A1F9A24DE003E9153 /* FindResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindResult.swift; sourceTree = "<group>"; };
@@ -168,6 +194,8 @@
 		4522CA991F9A6969003E9153 /* TMDBKitTVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDBKitTVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4522CA9E1F9A6969003E9153 /* TMDBKitTVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBKitTVTests.swift; sourceTree = "<group>"; };
 		4522CAA01F9A6969003E9153 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4522CAC81F9B3632003E9153 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
+		4522CACA1F9B3858003E9153 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		4524D2A41F9817720037D7E1 /* Changes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Changes.swift; sourceTree = "<group>"; };
 		4524D2A61F9819630037D7E1 /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 		4598FF6E1F98A5E600571DE0 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -193,6 +221,10 @@
 		45AECDD41F98040A008BE58F /* Certifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certifications.swift; sourceTree = "<group>"; };
 		45AECDDA1F980645008BE58F /* TVEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVEpisodes.swift; sourceTree = "<group>"; };
 		45AECDDB1F980645008BE58F /* Paged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paged.swift; sourceTree = "<group>"; };
+		45D049811F9BB440005A4D74 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		45D049831F9BB4B1005A4D74 /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
+		45D049851F9BCA8E005A4D74 /* KeyWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyWords.swift; sourceTree = "<group>"; };
+		45D049BD1F9BCBEC005A4D74 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		45D254DC1F983C0900155882 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		45D254DE1F98430000155882 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		45D254E01F98969D00155882 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -258,6 +290,7 @@
 				45D254E41F989FD700155882 /* Company.swift */,
 				4522CA451F9A0618003E9153 /* DiscoverOption.swift */,
 				4522CA4A1F9A24DE003E9153 /* FindResult.swift */,
+				4522CACA1F9B3858003E9153 /* Genre.swift */,
 				45D254E01F98969D00155882 /* Image.swift */,
 				450D94671F96AD49005E2227 /* List.swift */,
 				450D946B1F96BEAF005E2227 /* MediaObject.swift */,
@@ -268,6 +301,9 @@
 				4522CA4E1F9A29E5003E9153 /* TVSeason.swift */,
 				450D946D1F96BF80005E2227 /* TVShow.swift */,
 				450D94651F96A8FF005E2227 /* User.swift */,
+				4522269D1F9B683900A433F8 /* SortBy.swift */,
+				45D049811F9BB440005A4D74 /* Job.swift */,
+				45D049BD1F9BCBEC005A4D74 /* Keyword.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -402,7 +438,11 @@
 				4598FF701F98AC9300571DE0 /* Credits.swift */,
 				4598FF7D1F99F78700571DE0 /* Discover.swift */,
 				4522CA471F9A19B2003E9153 /* Find.swift */,
+				4522CAC81F9B3632003E9153 /* Genres.swift */,
+				4522269B1F9B649700A433F8 /* GuestSessions.swift */,
 				4598FF751F99A77700571DE0 /* SharedRequests.swift */,
+				45D049831F9BB4B1005A4D74 /* Jobs.swift */,
+				45D049851F9BCA8E005A4D74 /* KeyWords.swift */,
 			);
 			path = Wappers;
 			sourceTree = "<group>";
@@ -676,6 +716,7 @@
 				4522CA741F9A692F003E9153 /* Company.swift in Sources */,
 				4522CA751F9A692F003E9153 /* DiscoverOption.swift in Sources */,
 				4522CA761F9A692F003E9153 /* FindResult.swift in Sources */,
+				45D049B11F9BCB2D005A4D74 /* Genre.swift in Sources */,
 				4522CA771F9A692F003E9153 /* Image.swift in Sources */,
 				4522CA781F9A692F003E9153 /* List.swift in Sources */,
 				4522CA791F9A692F003E9153 /* MediaObject.swift in Sources */,
@@ -685,7 +726,10 @@
 				4522CA7D1F9A692F003E9153 /* TVEpisodes.swift in Sources */,
 				4522CA7E1F9A692F003E9153 /* TVSeason.swift in Sources */,
 				4522CA7F1F9A692F003E9153 /* TVShow.swift in Sources */,
+				45D049BF1F9BCBEC005A4D74 /* Keyword.swift in Sources */,
 				4522CA801F9A692F003E9153 /* User.swift in Sources */,
+				45D049B21F9BCB2D005A4D74 /* SortBy.swift in Sources */,
+				45D049B31F9BCB2D005A4D74 /* Job.swift in Sources */,
 				4522CA811F9A6935003E9153 /* Account.swift in Sources */,
 				4522CA821F9A6935003E9153 /* Authentication.swift in Sources */,
 				4522CA831F9A6935003E9153 /* Certifications.swift in Sources */,
@@ -696,7 +740,11 @@
 				4522CA881F9A6935003E9153 /* Credits.swift in Sources */,
 				4522CA891F9A6935003E9153 /* Discover.swift in Sources */,
 				4522CA8A1F9A6935003E9153 /* Find.swift in Sources */,
+				45D049B41F9BCB2D005A4D74 /* Genres.swift in Sources */,
+				45D049B51F9BCB2D005A4D74 /* GuestSessions.swift in Sources */,
 				4522CA8B1F9A6935003E9153 /* SharedRequests.swift in Sources */,
+				45D049B61F9BCB2D005A4D74 /* Jobs.swift in Sources */,
+				45D049871F9BCA8E005A4D74 /* KeyWords.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +771,7 @@
 				4522CAB01F9A6990003E9153 /* Company.swift in Sources */,
 				4522CAB11F9A6990003E9153 /* DiscoverOption.swift in Sources */,
 				4522CAB21F9A6990003E9153 /* FindResult.swift in Sources */,
+				45D049B71F9BCB3F005A4D74 /* Genre.swift in Sources */,
 				4522CAB31F9A6990003E9153 /* Image.swift in Sources */,
 				4522CAB41F9A6990003E9153 /* List.swift in Sources */,
 				4522CAB51F9A6990003E9153 /* MediaObject.swift in Sources */,
@@ -732,7 +781,10 @@
 				4522CAB91F9A6990003E9153 /* TVEpisodes.swift in Sources */,
 				4522CABA1F9A6990003E9153 /* TVSeason.swift in Sources */,
 				4522CABB1F9A6990003E9153 /* TVShow.swift in Sources */,
+				45D049C01F9BCBEC005A4D74 /* Keyword.swift in Sources */,
 				4522CABC1F9A6990003E9153 /* User.swift in Sources */,
+				45D049B81F9BCB3F005A4D74 /* SortBy.swift in Sources */,
+				45D049B91F9BCB3F005A4D74 /* Job.swift in Sources */,
 				4522CABD1F9A6990003E9153 /* Account.swift in Sources */,
 				4522CABE1F9A6990003E9153 /* Authentication.swift in Sources */,
 				4522CABF1F9A6990003E9153 /* Certifications.swift in Sources */,
@@ -743,7 +795,11 @@
 				4522CAC41F9A6990003E9153 /* Credits.swift in Sources */,
 				4522CAC51F9A6990003E9153 /* Discover.swift in Sources */,
 				4522CAC61F9A6990003E9153 /* Find.swift in Sources */,
+				45D049BA1F9BCB3F005A4D74 /* Genres.swift in Sources */,
+				45D049BB1F9BCB3F005A4D74 /* GuestSessions.swift in Sources */,
 				4522CAC71F9A6990003E9153 /* SharedRequests.swift in Sources */,
+				45D049BC1F9BCB3F005A4D74 /* Jobs.swift in Sources */,
+				45D049881F9BCA8E005A4D74 /* KeyWords.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,9 +817,11 @@
 			files = (
 				459E5C1F1F96499200AB28DE /* TMDBManager.swift in Sources */,
 				459E5C2B1F96647700AB28DE /* ReturnTypes.swift in Sources */,
+				4522269C1F9B649700A433F8 /* GuestSessions.swift in Sources */,
 				45AECDCF1F9803EA008BE58F /* Certification.swift in Sources */,
 				450D946E1F96BF80005E2227 /* TVShow.swift in Sources */,
 				4524D2A51F9817720037D7E1 /* Changes.swift in Sources */,
+				4522269E1F9B683900A433F8 /* SortBy.swift in Sources */,
 				4524D2A71F9819630037D7E1 /* Change.swift in Sources */,
 				4598FF6F1F98A5E600571DE0 /* Configuration.swift in Sources */,
 				459E5C211F9649FF00AB28DE /* KeyChainManager.swift in Sources */,
@@ -774,19 +832,25 @@
 				45AECDD51F98040A008BE58F /* Certifications.swift in Sources */,
 				45AECDDD1F980645008BE58F /* Paged.swift in Sources */,
 				450D946C1F96BEAF005E2227 /* MediaObject.swift in Sources */,
+				4522CAC91F9B3632003E9153 /* Genres.swift in Sources */,
 				45D254DF1F98430000155882 /* Collection.swift in Sources */,
 				450D946A1F96B3C8005E2227 /* Movie.swift in Sources */,
 				45AECDDC1F980645008BE58F /* TVEpisodes.swift in Sources */,
+				45D049BE1F9BCBEC005A4D74 /* Keyword.swift in Sources */,
 				450D94661F96A8FF005E2227 /* User.swift in Sources */,
+				45D049861F9BCA8E005A4D74 /* KeyWords.swift in Sources */,
 				459E5C291F96570600AB28DE /* SwiftyJSON.swift in Sources */,
 				4522CA4B1F9A24DE003E9153 /* FindResult.swift in Sources */,
 				45D254E31F989F4B00155882 /* Companies.swift in Sources */,
 				4522CA4F1F9A29E5003E9153 /* TVSeason.swift in Sources */,
 				4598FF7E1F99F78700571DE0 /* Discover.swift in Sources */,
 				45D254E51F989FD700155882 /* Company.swift in Sources */,
+				45D049821F9BB440005A4D74 /* Job.swift in Sources */,
 				459E5C241F96520300AB28DE /* Authentication.swift in Sources */,
+				4522CACB1F9B3858003E9153 /* Genre.swift in Sources */,
 				4522CA461F9A0618003E9153 /* DiscoverOption.swift in Sources */,
 				450D94631F96A6A5005E2227 /* Account.swift in Sources */,
+				45D049841F9BB4B1005A4D74 /* Jobs.swift in Sources */,
 				45D254DD1F983C0900155882 /* Collections.swift in Sources */,
 				4598FF761F99A77700571DE0 /* SharedRequests.swift in Sources */,
 				4522CA481F9A19B2003E9153 /* Find.swift in Sources */,
