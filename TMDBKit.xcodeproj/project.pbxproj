@@ -139,6 +139,12 @@
 		45D254E11F98969D00155882 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D254E01F98969D00155882 /* Image.swift */; };
 		45D254E31F989F4B00155882 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D254E21F989F4B00155882 /* Companies.swift */; };
 		45D254E51F989FD700155882 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D254E41F989FD700155882 /* Company.swift */; };
+		45EEC71D1F9BCF780040FCC9 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC71C1F9BCF780040FCC9 /* Lists.swift */; };
+		45EEC71E1F9BCF780040FCC9 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC71C1F9BCF780040FCC9 /* Lists.swift */; };
+		45EEC71F1F9BCF780040FCC9 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC71C1F9BCF780040FCC9 /* Lists.swift */; };
+		45EEC7211F9BD1D90040FCC9 /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC7201F9BD1D90040FCC9 /* ItemStatus.swift */; };
+		45EEC7221F9BD1D90040FCC9 /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC7201F9BD1D90040FCC9 /* ItemStatus.swift */; };
+		45EEC7231F9BD1D90040FCC9 /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC7201F9BD1D90040FCC9 /* ItemStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,6 +236,8 @@
 		45D254E01F98969D00155882 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		45D254E21F989F4B00155882 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		45D254E41F989FD700155882 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		45EEC71C1F9BCF780040FCC9 /* Lists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lists.swift; sourceTree = "<group>"; };
+		45EEC7201F9BD1D90040FCC9 /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +312,7 @@
 				4522269D1F9B683900A433F8 /* SortBy.swift */,
 				45D049811F9BB440005A4D74 /* Job.swift */,
 				45D049BD1F9BCBEC005A4D74 /* Keyword.swift */,
+				45EEC7201F9BD1D90040FCC9 /* ItemStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -443,6 +452,7 @@
 				4598FF751F99A77700571DE0 /* SharedRequests.swift */,
 				45D049831F9BB4B1005A4D74 /* Jobs.swift */,
 				45D049851F9BCA8E005A4D74 /* KeyWords.swift */,
+				45EEC71C1F9BCF780040FCC9 /* Lists.swift */,
 			);
 			path = Wappers;
 			sourceTree = "<group>";
@@ -723,7 +733,9 @@
 				4522CA7A1F9A692F003E9153 /* Movie.swift in Sources */,
 				4522CA7B1F9A692F003E9153 /* Paged.swift in Sources */,
 				4522CA7C1F9A692F003E9153 /* Person.swift in Sources */,
+				45EEC7221F9BD1D90040FCC9 /* ItemStatus.swift in Sources */,
 				4522CA7D1F9A692F003E9153 /* TVEpisodes.swift in Sources */,
+				45EEC71E1F9BCF780040FCC9 /* Lists.swift in Sources */,
 				4522CA7E1F9A692F003E9153 /* TVSeason.swift in Sources */,
 				4522CA7F1F9A692F003E9153 /* TVShow.swift in Sources */,
 				45D049BF1F9BCBEC005A4D74 /* Keyword.swift in Sources */,
@@ -778,7 +790,9 @@
 				4522CAB61F9A6990003E9153 /* Movie.swift in Sources */,
 				4522CAB71F9A6990003E9153 /* Paged.swift in Sources */,
 				4522CAB81F9A6990003E9153 /* Person.swift in Sources */,
+				45EEC7231F9BD1D90040FCC9 /* ItemStatus.swift in Sources */,
 				4522CAB91F9A6990003E9153 /* TVEpisodes.swift in Sources */,
+				45EEC71F1F9BCF780040FCC9 /* Lists.swift in Sources */,
 				4522CABA1F9A6990003E9153 /* TVSeason.swift in Sources */,
 				4522CABB1F9A6990003E9153 /* TVShow.swift in Sources */,
 				45D049C01F9BCBEC005A4D74 /* Keyword.swift in Sources */,
@@ -833,7 +847,9 @@
 				45AECDDD1F980645008BE58F /* Paged.swift in Sources */,
 				450D946C1F96BEAF005E2227 /* MediaObject.swift in Sources */,
 				4522CAC91F9B3632003E9153 /* Genres.swift in Sources */,
+				45EEC7211F9BD1D90040FCC9 /* ItemStatus.swift in Sources */,
 				45D254DF1F98430000155882 /* Collection.swift in Sources */,
+				45EEC71D1F9BCF780040FCC9 /* Lists.swift in Sources */,
 				450D946A1F96B3C8005E2227 /* Movie.swift in Sources */,
 				45AECDDC1F980645008BE58F /* TVEpisodes.swift in Sources */,
 				45D049BE1F9BCBEC005A4D74 /* Keyword.swift in Sources */,

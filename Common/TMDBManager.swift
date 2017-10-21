@@ -330,6 +330,8 @@ public class TMDBManager {
     public let jobs = JobsAPIWrapper()
     /// [Keywords API](https://developers.themoviedb.org/3/keywords) wrapper instance.
     public let keywords = KeywordsAPIWrapper()
+    /// [Lists API](https://developers.themoviedb.org/3/lists) wrapper instance.
+    public let lists = ListsAPIWrapper()
 }
 
 extension TMDBManager {
