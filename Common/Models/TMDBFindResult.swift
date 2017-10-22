@@ -45,7 +45,7 @@ extension TMDBFindResult: CustomDebugStringConvertible {
         
         str += "0⃣️ Movies [\(movieResults.count) items]: \n"
         if !movieResults.isEmpty {
-            for m in 0..movieResults.count {
+            for m in 0..<movieResults.count {
                 str += """
                 👉 No. \(m):
                 \(movieResults[m])
@@ -56,7 +56,7 @@ extension TMDBFindResult: CustomDebugStringConvertible {
         
         str += "1⃣️ Persons [\(personResults.count) items]: \n"
         if !personResults.isEmpty {
-            for p in 0..personResults.count {
+            for p in 0..<personResults.count {
                 str += """
                 👉 No. \(p):
                 \(personResults[p])
@@ -67,7 +67,7 @@ extension TMDBFindResult: CustomDebugStringConvertible {
 
         str += "2⃣️ TV Shows [\(tvResults.count) items]: \n"
         if !tvResults.isEmpty {
-            for s in 0..tvResults.count {
+            for s in 0..<tvResults.count {
                 str += """
                 👉 No. \(s):
                 \(tvResults[s])
@@ -78,7 +78,7 @@ extension TMDBFindResult: CustomDebugStringConvertible {
 
         str += "3⃣️ TV Seasons [\(tvSeasonResults.count) items]: \n"
         if !tvSeasonResults.isEmpty {
-            for s in 0..tvSeasonResults.count {
+            for s in 0..<tvSeasonResults.count {
                 str += """
                 👉 No. \(s):
                 \(tvSeasonResults[s])
@@ -89,7 +89,7 @@ extension TMDBFindResult: CustomDebugStringConvertible {
 
         str += "4⃣️ TV Episodes [\(tvEpisodeResults.count) items]: \n"
         if !tvEpisodeResults.isEmpty {
-            for e in 0...tvEpisodeResults.count - 1 {
+            for e in 0..<tvEpisodeResults.count {
                 str += """
                 👉 No. \(e):
                 \(tvEpisodeResults[e])
