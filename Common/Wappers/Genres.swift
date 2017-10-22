@@ -20,7 +20,7 @@ extension TMDBManager {
         ///     - default: en-US
         ///     - maxLength: 2
         ///   - completion: Completion handler.
-        public func getMovieList(language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
+        public func getMovieList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
             TMDBManager.shared.performRequest(path: "/genre/movie/list",
                                               query: TMDBManager.shared.queryMaker(language: language),
                                               completion: completion)
@@ -34,7 +34,7 @@ extension TMDBManager {
         ///     - pattern: ([a-z]{2})-([A-Z]{2})
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getTVList(language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
+        public func getTVList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
             TMDBManager.shared.performRequest(path: "/genre/tv/list",
                                               query: TMDBManager.shared.queryMaker(language: language),
                                               completion: completion)
@@ -53,7 +53,7 @@ extension TMDBManager {
         ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
         ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`.
         ///   - completion: Completion handler.
-        public func getMovies(byGenreId genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getMovies(byGenre genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/genre/\(genreId)/movies",
                                               query: TMDBManager.shared.queryMaker(language: language,
                                                                                    sortBy: sortBy,

@@ -39,7 +39,7 @@ extension TMDBManager {
         ///         - minimum: 1
         ///         - maximum: 1000
         ///         - default: 1
-        public func getTVChangeList(startDate: String? = nil, endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBChange>>) -> ()) {
+        public func getTVChangeList(from startDate: String? = nil, to endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBChange>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/tv/changes",
                                               query: query(startDate: startDate, endDate: endDate, page: page),
                                               completion: completion)
@@ -56,7 +56,7 @@ extension TMDBManager {
         ///         - minimum: 1
         ///         - maximum: 1000
         ///         - default: 1
-        public func getPersonChangeList(startDate: String? = nil, endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBChange>>) -> ()) {
+        public func getPersonChangeList(from startDate: String? = nil, to endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBChange>>) -> ()) {
             TMDBManager.shared.performRequest(path: "/person/changes",
                                               query: query(startDate: startDate, endDate: endDate, page: page),
                                               completion: completion)

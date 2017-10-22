@@ -35,7 +35,7 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         /// - Parameter completion: Completion handler.
-        public func movieDiscover(options: [TMDBMovieDiscoverOption], page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func movieDiscover(withOptions options: [TMDBMovieDiscoverOption], inPage page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             var query: [String: String] = [:]
             for option in options {
                 query[option.key] = option.value
@@ -65,7 +65,7 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         /// - Parameter completion: Completion handler.
-        public func tvDiscover(options: [TMDBTVDiscoverOption], page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+        public func tvDiscover(withOptions options: [TMDBTVDiscoverOption], inPage page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
             var query: [String: String] = [:]
             for option in options {
                 query[option.key] = option.value
