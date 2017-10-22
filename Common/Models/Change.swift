@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDBChange: Codable {
+public struct TMDBChanges: Codable {
     public let id: Int
     public let adult: Bool?
 }
