@@ -169,14 +169,6 @@ extension TMDBManager {
 // MARK: - Request constructers.
 extension TMDBManager {
     /// Construct URLRequest.
-    ///
-    /// - Parameters:
-    ///   - method: HTTP request method.
-    ///   - path: The relative path for the request, like "/movie/76341".
-    ///   - query: Query to be appended.
-    ///   - needAuthentication: Whether this request needs appending Seesion ID.
-    ///   - expectedStatusCode: Expected status code.
-    /// - Returns: An enum carrys the result URLRequest or Error.
     func constructRequest(method: String,
                           path: String,
                           query: [String: String],
