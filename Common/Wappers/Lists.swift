@@ -92,7 +92,7 @@ extension TMDBManager {
         public func add(movie: Int, toList list: Int, completion: @escaping (NilReturn) -> ()) {
             manager.performRequest(method: "POST",
                                    path: "/list/\(list)/add_item",
-                                   data: try! JSONEncoder().encode(["media_id": "\(movie)"]),
+                                   data: try! JSONEncoder().encode(["media_id": movie]),
                                    authentication: .user,
                                    expectedStatusCode: 201,
                                    completion: completion)
@@ -107,7 +107,7 @@ extension TMDBManager {
         public func remove(movie: Int, fromList list: Int, completion: @escaping (NilReturn) -> ()) {
             manager.performRequest(method: "POST",
                                    path: "/list/\(list)/remove_item",
-                                   data: try! JSONEncoder().encode(["media_id": "\(movie)"]),
+                                   data: try! JSONEncoder().encode(["media_id": movie]),
                                    authentication: .user,
                                    expectedStatusCode: 201,
                                    completion: completion)
