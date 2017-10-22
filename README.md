@@ -1,5 +1,8 @@
 # TMDBKit
 ![](https://github.com/SR2k/TMDBKit/blob/master/Common/Supporting/Logo.svg)
+
+![license](https://img.shields.io/github/license/mashape/apistatus.svg)
+
 The Movie Database API v3 wrapper in Swift 4.
 
 I'm just a very beginner to the Swift world. And I decide to take this project as my first step.
