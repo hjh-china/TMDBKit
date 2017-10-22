@@ -243,6 +243,7 @@ extension TMDBManager {
                     startDate: String? = nil,
                     endDate: String? = nil,
                     country: String? = nil,
+                    region: String? = nil,
                     includeAdult: Bool? = nil) -> [String: String] {
         var query: [String: String] = [:]
         
@@ -252,6 +253,7 @@ extension TMDBManager {
         if let startDate = startDate { query["start_date"] = startDate }
         if let endDate = endDate { query["end_date"] = endDate }
         if let country = country { query["country"] = country }
+        if let region = region { query["region"] = region }
         if let includeAdult = includeAdult { query["include_adult"] = includeAdult ? "true" : "false" }
         
         return query
