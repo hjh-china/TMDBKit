@@ -177,6 +177,12 @@
 		45EBF6951F9D3C2700D0AA62 /* TMDBNowPlayingMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF6941F9D3C2700D0AA62 /* TMDBNowPlayingMovies.swift */; };
 		45EBF6961F9D3EBB00D0AA62 /* TMDBNowPlayingMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF6941F9D3C2700D0AA62 /* TMDBNowPlayingMovies.swift */; };
 		45EBF6971F9D3EBF00D0AA62 /* TMDBNowPlayingMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF6941F9D3C2700D0AA62 /* TMDBNowPlayingMovies.swift */; };
+		45EBF69B1F9D3F4700D0AA62 /* Networks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF69A1F9D3F4700D0AA62 /* Networks.swift */; };
+		45EBF69C1F9D3F4700D0AA62 /* Networks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF69A1F9D3F4700D0AA62 /* Networks.swift */; };
+		45EBF69D1F9D3F4700D0AA62 /* Networks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF69A1F9D3F4700D0AA62 /* Networks.swift */; };
+		45EBF69F1F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF69E1F9D3FF800D0AA62 /* TMDBNetwork.swift */; };
+		45EBF6A01F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF69E1F9D3FF800D0AA62 /* TMDBNetwork.swift */; };
+		45EBF6A11F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF69E1F9D3FF800D0AA62 /* TMDBNetwork.swift */; };
 		45EEC71E1F9BCF780040FCC9 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC71C1F9BCF780040FCC9 /* Lists.swift */; };
 		45EEC71F1F9BCF780040FCC9 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC71C1F9BCF780040FCC9 /* Lists.swift */; };
 		45EEC7221F9BD1D90040FCC9 /* TMDBItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEC7201F9BD1D90040FCC9 /* TMDBItemStatus.swift */; };
@@ -284,6 +290,8 @@
 		45D254E21F989F4B00155882 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		45D254E41F989FD700155882 /* TMDBCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBCompany.swift; sourceTree = "<group>"; };
 		45EBF6941F9D3C2700D0AA62 /* TMDBNowPlayingMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBNowPlayingMovies.swift; sourceTree = "<group>"; };
+		45EBF69A1F9D3F4700D0AA62 /* Networks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networks.swift; sourceTree = "<group>"; };
+		45EBF69E1F9D3FF800D0AA62 /* TMDBNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBNetwork.swift; sourceTree = "<group>"; };
 		45EEC71C1F9BCF780040FCC9 /* Lists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lists.swift; sourceTree = "<group>"; };
 		45EEC7201F9BD1D90040FCC9 /* TMDBItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBItemStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -372,6 +380,7 @@
 				450D94651F96A8FF005E2227 /* TMDBUser.swift */,
 				45A0935E1F9D1C6800D0FCC5 /* TMDBVideos.swift */,
 				45EBF6941F9D3C2700D0AA62 /* TMDBNowPlayingMovies.swift */,
+				45EBF69E1F9D3FF800D0AA62 /* TMDBNetwork.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -513,6 +522,7 @@
 				45EEC71C1F9BCF780040FCC9 /* Lists.swift */,
 				45C8DF361F9C9E2400D925E8 /* Movies.swift */,
 				4598FF751F99A77700571DE0 /* SharedRequests.swift */,
+				45EBF69A1F9D3F4700D0AA62 /* Networks.swift */,
 			);
 			path = Wappers;
 			sourceTree = "<group>";
@@ -796,6 +806,7 @@
 				4522CA791F9A692F003E9153 /* TMDBMediaObject.swift in Sources */,
 				45A093601F9D1C6800D0FCC5 /* TMDBVideos.swift in Sources */,
 				4522CA7A1F9A692F003E9153 /* TMDBMovie.swift in Sources */,
+				45EBF6A01F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */,
 				45A093181F9D157100D0FCC5 /* TMDBMovieDetailed.swift in Sources */,
 				45A093641F9D237F00D0FCC5 /* TMDBTranslations.swift in Sources */,
 				4522CA7B1F9A692F003E9153 /* TMDBPaged.swift in Sources */,
@@ -817,6 +828,7 @@
 				4522CA861F9A6935003E9153 /* Companies.swift in Sources */,
 				4522CA871F9A6935003E9153 /* Configuration.swift in Sources */,
 				45A0935C1F9D1A8900D0FCC5 /* TMDBReleaseDates.swift in Sources */,
+				45EBF69C1F9D3F4700D0AA62 /* Networks.swift in Sources */,
 				4522CA881F9A6935003E9153 /* Credits.swift in Sources */,
 				45A093681F9D25BB00D0FCC5 /* TMDBReview.swift in Sources */,
 				4522CA891F9A6935003E9153 /* Discover.swift in Sources */,
@@ -865,6 +877,7 @@
 				4522CAB51F9A6990003E9153 /* TMDBMediaObject.swift in Sources */,
 				45A093611F9D1C6800D0FCC5 /* TMDBVideos.swift in Sources */,
 				4522CAB61F9A6990003E9153 /* TMDBMovie.swift in Sources */,
+				45EBF6A11F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */,
 				45A0931D1F9D157E00D0FCC5 /* TMDBMovieDetailed.swift in Sources */,
 				45A093651F9D237F00D0FCC5 /* TMDBTranslations.swift in Sources */,
 				4522CAB71F9A6990003E9153 /* TMDBPaged.swift in Sources */,
@@ -886,6 +899,7 @@
 				4522CAC21F9A6990003E9153 /* Companies.swift in Sources */,
 				4522CAC31F9A6990003E9153 /* Configuration.swift in Sources */,
 				45A0935D1F9D1A8900D0FCC5 /* TMDBReleaseDates.swift in Sources */,
+				45EBF69D1F9D3F4700D0AA62 /* Networks.swift in Sources */,
 				4522CAC41F9A6990003E9153 /* Credits.swift in Sources */,
 				45A093691F9D25BB00D0FCC5 /* TMDBReview.swift in Sources */,
 				4522CAC51F9A6990003E9153 /* Discover.swift in Sources */,
@@ -934,6 +948,7 @@
 				45A093361F9D17B600D0FCC5 /* TMDBMediaObject.swift in Sources */,
 				45A0935F1F9D1C6800D0FCC5 /* TMDBVideos.swift in Sources */,
 				45A093371F9D17B600D0FCC5 /* TMDBMovie.swift in Sources */,
+				45EBF69F1F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */,
 				45A093381F9D17B600D0FCC5 /* TMDBMovieDetailed.swift in Sources */,
 				45A093631F9D237F00D0FCC5 /* TMDBTranslations.swift in Sources */,
 				45A093391F9D17B600D0FCC5 /* TMDBPaged.swift in Sources */,
@@ -955,6 +970,7 @@
 				45A093471F9D17B600D0FCC5 /* Companies.swift in Sources */,
 				45A093481F9D17B600D0FCC5 /* Configuration.swift in Sources */,
 				45A0935B1F9D1A8900D0FCC5 /* TMDBReleaseDates.swift in Sources */,
+				45EBF69B1F9D3F4700D0AA62 /* Networks.swift in Sources */,
 				45A093491F9D17B600D0FCC5 /* Credits.swift in Sources */,
 				45A093671F9D25BB00D0FCC5 /* TMDBReview.swift in Sources */,
 				45A0934A1F9D17B600D0FCC5 /* Discover.swift in Sources */,
