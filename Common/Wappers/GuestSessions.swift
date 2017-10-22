@@ -33,7 +33,7 @@ extension TMDBManager {
                 gsid = _gsid
             }
             manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                                   query: manager.queryMaker(language: language, sortBy: sortBy),
+                                   query: queryMaker(language: language, sortBy: sortBy),
                                    completion: completin)
         }
         
@@ -59,7 +59,7 @@ extension TMDBManager {
                 gsid = _gsid
             }
             manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                                   query: manager.queryMaker(language: language, sortBy: sortBy),
+                                   query: queryMaker(language: language, sortBy: sortBy),
                                    completion: completin)
         }
         
@@ -85,7 +85,7 @@ extension TMDBManager {
                 gsid = _gsid
             }
             manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                                   query: manager.queryMaker(language: language, sortBy: sortBy),
+                                   query: queryMaker(language: language, sortBy: sortBy),
                                    completion: completin)
         }
     }

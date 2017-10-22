@@ -34,7 +34,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getDetails(forList list: Int, language: String?, completion: @escaping (ObjectReturn<TMDBList>) -> ()) {
             manager.performRequest(path: "/list/\(list)",
-                                   query: manager.queryMaker(language: language),
+                                   query: queryMaker(language: language),
                                    completion: completion)
         }
         

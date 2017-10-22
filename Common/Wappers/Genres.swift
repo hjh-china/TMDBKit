@@ -22,7 +22,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getMovieList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
             manager.performRequest(path: "/genre/movie/list",
-                                   query: manager.queryMaker(language: language),
+                                   query: queryMaker(language: language),
                                    completion: completion)
         }
         
@@ -36,7 +36,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getTVList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
             manager.performRequest(path: "/genre/tv/list",
-                                   query: manager.queryMaker(language: language),
+                                   query: queryMaker(language: language),
                                    completion: completion)
         }
         
@@ -55,9 +55,9 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getMovies(byGenre genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             manager.performRequest(path: "/genre/\(genreId)/movies",
-                                   query: manager.queryMaker(language: language,
-                                                             sortBy: sortBy,
-                                                             includeAdult: includeAdult),
+                                   query: queryMaker(language: language,
+                                                     sortBy: sortBy,
+                                                     includeAdult: includeAdult),
                                    completion: completion)
         }
     }

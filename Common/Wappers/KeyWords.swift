@@ -33,7 +33,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getMovies(forKeywordId keywordId: Int, language: String? = nil, includeAdult: Bool? = nil, completion: @escaping(ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
             manager.performRequest(path: "/keyword/{keyword_id}/movies",
-                                   query: manager.queryMaker(language: language, includeAdult: includeAdult),
+                                   query: queryMaker(language: language, includeAdult: includeAdult),
                                    completion: completion)
         }
     }

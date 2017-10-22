@@ -22,7 +22,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getDetails(forCollection collectionId: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBCollection>) -> ()) {
             manager.performRequest(path: "/collection/\(collectionId)",
-                                   query: manager.queryMaker(language: language),
+                                   query: queryMaker(language: language),
                                    completion: completion)
         }
         
@@ -37,7 +37,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getImages(forCollection collectionId: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBImages>) -> ()) {
             manager.performRequest(path: "/collection/\(collectionId)",
-                                   query: manager.queryMaker(language: language),
+                                   query: queryMaker(language: language),
                                    completion: completion)
         }
     }

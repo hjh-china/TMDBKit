@@ -13,7 +13,7 @@ extension TMDBManager {
     public class PeopleAPIWrapper: APIWrapper {
         public func getDetails(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBPerson>) -> ()) {
             manager.performRequest(path: "/person/\(person)",
-                                   query: manager.queryMaker(language: language),
+                                   query: queryMaker(language: language),
                                    completion: completion)
         }
     }
