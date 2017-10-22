@@ -11,13 +11,13 @@ import Foundation
 
 extension TMDBManager {
     /// [Authentication API](https://developers.themoviedb.org/3/authentication) wrapper class.
-    public class AuthenticationAPIWrapper {
+    public class AuthenticationAPIWrapper: APIWrapper {        
         /// Returns the authentication URL.
         ///
         /// - Parameter redirectURL: Where your user will be redirected to after authentication.
         /// - Returns: The authentication URL. Can be nil if `requestToken` is nil.
         public func authenticationURL(redirectURL: URL?) -> URL? {
-            guard let requestToken = TMDBManager.shared.requestToken  else { return nil }
+            guard let requestToken = manager.requestToken  else { return nil }
             var baseURLString = "https://www.themoviedb.org/authenticate/\(requestToken)"
             if let redirectURL = redirectURL {
                 baseURLString += "redirect_to=\(redirectURL)"
@@ -31,15 +31,15 @@ extension TMDBManager {
             
             let relativeUrlString = "/authentication/token/new"
             
-            TMDBManager.shared.performRequest(path: relativeUrlString) { (result: JSONReturn) in
+            manager.performRequest(path: relativeUrlString) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let success = json["success"].bool,
                         let requestToken = json["request_token"].string,
                         let expiresAt = json["expires_at"].string {
                         if success {
-                            TMDBManager.shared.requestToken = requestToken
-                            TMDBManager.shared.requestTokenExpiresAt = expiresAt.iso8601Date()
+                            self.manager.requestToken = requestToken
+                            self.manager.requestTokenExpiresAt = expiresAt.iso8601Date()
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating request token.".error(domain: "authentication")))
@@ -58,7 +58,7 @@ extension TMDBManager {
         
         /// You can use this method to create a fully valid session ID once a user has validated the request token. More information about how this works can be found [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
         public func createSession(completion: @escaping (NilReturn) -> ()) {
-            guard let requestToken = TMDBManager.shared.requestToken else {
+            guard let requestToken = manager.requestToken else {
                 completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
                 return
             }
@@ -66,13 +66,13 @@ extension TMDBManager {
             let relativeUrlString = "/authentication/session/new"
             let query = ["request_token": requestToken]
             
-            TMDBManager.shared.performRequest(path: relativeUrlString, query: query) { (result: JSONReturn) in
+            manager.performRequest(path: relativeUrlString, query: query) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let success = json["success"].bool,
                         let sessionId = json["session_id"].string {
                         if success {
-                            TMDBManager.shared.sessionId = sessionId
+                            self.manager.sessionId = sessionId
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating session".error(domain: "authentication")))
@@ -96,7 +96,7 @@ extension TMDBManager {
         ///   - username: User's username
         ///   - password: User's password
         public func createSessionWithLogin(username: String, password: String, completion: @escaping (NilReturn) -> ()) {
-            guard let requestToken = TMDBManager.shared.requestToken else {
+            guard let requestToken = manager.requestToken else {
                 completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
                 return
             }
@@ -105,13 +105,13 @@ extension TMDBManager {
             let query = ["username": username,
                          "password": password,
                          "request_token": requestToken]
-            TMDBManager.shared.performRequest(path: relativeUrlString, query: query) { (result: JSONReturn) in
+            manager.performRequest(path: relativeUrlString, query: query) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let success = json["success"].bool,
                         let sessionId = json["session_id"].string {
                         if success {
-                            TMDBManager.shared.sessionId = sessionId
+                            self.manager.sessionId = sessionId
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating session with login".error(domain: "authentication")))
@@ -132,15 +132,15 @@ extension TMDBManager {
         /// If a guest session is not used for the first time within 24 hours, it will be automatically deleted.
         public func createGuestSession(completion: @escaping (NilReturn) -> ()) {
             let relativeUrlString = "/authentication/guest_session/new"
-            TMDBManager.shared.performRequest(path: relativeUrlString) { (result: JSONReturn) in
+            manager.performRequest(path: relativeUrlString) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let success = json["success"].bool,
                         let guestSessionId = json["guest_session_id"].string,
                         let expiresAt = json["expires_at"].string {
                         if success {
-                            TMDBManager.shared.guestSessionId = guestSessionId
-                            TMDBManager.shared.guestSessionExpiresAt = expiresAt.iso8601Date()
+                            self.manager.guestSessionId = guestSessionId
+                            self.manager.guestSessionExpiresAt = expiresAt.iso8601Date()
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating guest session".error(domain: "authentication")))

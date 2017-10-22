@@ -10,7 +10,7 @@ import Foundation
 
 extension TMDBManager {
     /// [Collections API](https://developers.themoviedb.org/3/collections) wrapper class.
-    public class CollectionsAPIWrapper {
+    public class CollectionsAPIWrapper: APIWrapper {
         /// Get collection details by id.
         ///
         /// - Parameters:
@@ -21,9 +21,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getDetails(forCollection collectionId: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBCollection>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/collection/\(collectionId)",
-                                              query: TMDBManager.shared.queryMaker(language: language),
-                                              completion: completion)
+            manager.performRequest(path: "/collection/\(collectionId)",
+                                   query: manager.queryMaker(language: language),
+                                   completion: completion)
         }
         
         /// Get the images for a collection by id.
@@ -36,9 +36,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getImages(forCollection collectionId: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBImages>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/collection/\(collectionId)",
-                                              query: TMDBManager.shared.queryMaker(language: language),
-                                              completion: completion)
+            manager.performRequest(path: "/collection/\(collectionId)",
+                                   query: manager.queryMaker(language: language),
+                                   completion: completion)
         }
     }
 }

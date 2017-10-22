@@ -10,7 +10,7 @@ import Foundation
 
 extension TMDBManager {
     /// [Find API](https://developers.themoviedb.org/3/find) wrapper class.
-    public class FindAPIWrapper {
+    public class FindAPIWrapper: APIWrapper {
         /// The find method makes it easy to search for objects in our database by an external id. For instance, an IMDB ID.
         ///
         /// This method will search all objects (movies, TV shows and people) and return the results in a single response.
@@ -35,7 +35,7 @@ extension TMDBManager {
                 query["language"] = language
             }
             query["external_source"] = externalDource.rawValue
-            TMDBManager.shared.performRequest(path: "/find/\(externalId)", query: query) { (result: JSONReturn) in
+            manager.performRequest(path: "/find/\(externalId)", query: query) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     do {

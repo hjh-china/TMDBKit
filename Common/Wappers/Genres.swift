@@ -10,7 +10,7 @@ import Foundation
 
 extension TMDBManager {
     /// [Genres API](https://developers.themoviedb.org/3/genres) wrapper class.
-    public class GenresAPIWrapper {
+    public class GenresAPIWrapper: APIWrapper {
         /// Get the list of official genres for movies.
         ///
         /// - Parameters:
@@ -21,9 +21,9 @@ extension TMDBManager {
         ///     - maxLength: 2
         ///   - completion: Completion handler.
         public func getMovieList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/genre/movie/list",
-                                              query: TMDBManager.shared.queryMaker(language: language),
-                                              completion: completion)
+            manager.performRequest(path: "/genre/movie/list",
+                                   query: manager.queryMaker(language: language),
+                                   completion: completion)
         }
         
         /// Get the list of official genres for TV shows.
@@ -35,9 +35,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getTVList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/genre/tv/list",
-                                              query: TMDBManager.shared.queryMaker(language: language),
-                                              completion: completion)
+            manager.performRequest(path: "/genre/tv/list",
+                                   query: manager.queryMaker(language: language),
+                                   completion: completion)
         }
         
         /// - IMPORTANT: This method is **deprecated**.
@@ -54,11 +54,11 @@ extension TMDBManager {
         ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`.
         ///   - completion: Completion handler.
         public func getMovies(byGenre genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/genre/\(genreId)/movies",
-                                              query: TMDBManager.shared.queryMaker(language: language,
-                                                                                   sortBy: sortBy,
-                                                                                   includeAdult: includeAdult),
-                                              completion: completion)
+            manager.performRequest(path: "/genre/\(genreId)/movies",
+                                   query: manager.queryMaker(language: language,
+                                                             sortBy: sortBy,
+                                                             includeAdult: includeAdult),
+                                   completion: completion)
         }
     }
 }

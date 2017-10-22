@@ -10,14 +10,15 @@ import Foundation
 
 extension TMDBManager {
     /// [Companies API](https://developers.themoviedb.org/3/companies) wrapper class.
-    public class CompaniesAPIWrapper {
+    public class CompaniesAPIWrapper: APIWrapper {
         /// Get a companies details by id.
         ///
         /// - Parameters:
         ///   - companyId: The company's ID.
         ///   - completion: Completion handler.
         public func getDetails(forCompany companyId: Int, completion: @escaping (ObjectReturn<TMDBCompany>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/company/\(companyId)", completion: completion)
+            manager.performRequest(path: "/company/\(companyId)",
+                                   completion: completion)
         }
         
         /// Get the movies of a company by id.
@@ -33,9 +34,9 @@ extension TMDBManager {
         ///   - page: Specify which page to query.
         ///   - completion: Completion handler.
         public func getMovies(fromCompany companyId: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/company/\(companyId)/movies",
-                                              query: TMDBManager.shared.queryMaker(language: language, page: page),
-                                              completion: completion)
+            manager.performRequest(path: "/company/\(companyId)/movies",
+                                   query: TMDBManager.shared.queryMaker(language: language, page: page),
+                                   completion: completion)
         }
     }
     

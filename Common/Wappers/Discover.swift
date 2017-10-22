@@ -10,7 +10,7 @@ import Foundation
 
 extension TMDBManager {
     /// [Discover API](https://developers.themoviedb.org/3/discover) wrapper class.
-    public class DiscoverAPIWrapper {
+    public class DiscoverAPIWrapper: APIWrapper {
         /// Discover movies by different types of data like average rating, number of votes, genres and certifications. You can get a valid list of certifications from the [certifications list method](https://developers.themoviedb.org/3/certifications/get-movie-certifications).
         ///
         /// Discover also supports a nice list of sort options. See below for all of the available options.
@@ -43,7 +43,9 @@ extension TMDBManager {
             if let page = page {
                 query["page"] = "\(page)"
             }
-            TMDBManager.shared.performRequest(path: "/discover/movie", query: query, completion: completion)
+            manager.performRequest(path: "/discover/movie",
+                                   query: query,
+                                   completion: completion)
         }
         
         /// Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.
@@ -73,7 +75,9 @@ extension TMDBManager {
             if let page = page {
                 query["page"] = "\(page)"
             }
-            TMDBManager.shared.performRequest(path: "/discover/tv", query: query, completion: completion)
+            manager.performRequest(path: "/discover/tv",
+                                   query: query,
+                                   completion: completion)
         }
     }
 }

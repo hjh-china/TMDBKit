@@ -10,7 +10,7 @@ import Foundation
 
 extension TMDBManager {
     /// [Configuration API](https://developers.themoviedb.org/3/configuration) wrapper class.
-    public class ConfigurationAPIWrapper {
+    public class ConfigurationAPIWrapper: APIWrapper {
         /// Get the system wide configuration information. Some elements of the API require some knowledge of this configuration data. The purpose of this is to try and keep the actual API responses as light as possible. It is recommended you cache this data within your application and check for updates every few days.
         ///
         /// This method currently holds the data relevant to building image URLs as well as the change key map.
@@ -22,7 +22,7 @@ extension TMDBManager {
         /// The configuration method also contains the list of change keys which can be useful if you are building an app that consumes data from the change feed.
         /// - Parameter completion: Completion handler.
         public func getAPIConfiguration(completion: @escaping (NilReturn) -> ()) {
-            TMDBManager.shared.performRequest(path: "/configuration") { (result: JSONReturn) in
+            manager.performRequest(path: "/configuration") { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let baseUrl = json["images"]["base_url"].string {

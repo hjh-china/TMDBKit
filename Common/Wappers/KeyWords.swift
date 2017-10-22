@@ -10,14 +10,14 @@ import Foundation
 
 extension TMDBManager {
     /// [Keywords API](https://developers.themoviedb.org/3/keywords) wrapper class.
-    public class KeywordsAPIWrapper {
+    public class KeywordsAPIWrapper: APIWrapper {
         /// Get certain keyword's detail with its ID.
         ///
         /// - Parameters:
         ///   - keywordId: Keyword's ID.
         ///   - completion: Completion handler.
         public func getDetails(forKeywordId keywordId: Int, completion: @escaping (ObjectReturn<TMDBKeyword>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/keyword/\(keywordId)", completion: completion)
+            manager.performRequest(path: "/keyword/\(keywordId)", completion: completion)
         }
         
         /// Get the movies that belong to a keyword.
@@ -32,9 +32,9 @@ extension TMDBManager {
         ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
         ///   - completion: Completion handler.
         public func getMovies(forKeywordId keywordId: Int, language: String? = nil, includeAdult: Bool? = nil, completion: @escaping(ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/keyword/{keyword_id}/movies",
-                                              query: TMDBManager.shared.queryMaker(language: language, includeAdult: includeAdult),
-                                              completion: completion)
+            manager.performRequest(path: "/keyword/{keyword_id}/movies",
+                                   query: manager.queryMaker(language: language, includeAdult: includeAdult),
+                                   completion: completion)
         }
     }
 }

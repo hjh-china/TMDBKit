@@ -10,13 +10,13 @@ import Foundation
 
 extension TMDBManager {
     /// [Account API](https://developers.themoviedb.org/3/account) wrapper class.
-    public class AccountAPIWrapper {
+    public class AccountAPIWrapper: APIWrapper {
         /// Get your account details.
         /// - Parameter completion: Completion handler.
         public func getDetails(completion: @escaping (ObjectReturn<TMDBUser>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account",
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account",
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         /// Get all of the lists created by an account. Will invlude private lists if you are the owner.
@@ -33,10 +33,12 @@ extension TMDBManager {
         ///     - Default: 1
         ///   - completion: Completion handler.
         public func getCreatedLists(byAccount account: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBList>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account/\(account)/lists",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: nil, page: page),
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account/\(account)/lists",
+                                   query: manager.queryMaker(language: language,
+                                                             sortBy: nil,
+                                                             page: page),
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         /// Get the list of your favorite movies.
@@ -54,10 +56,12 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getFavoriteMovies(inAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account/\(account)/favorite/movies",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account/\(account)/favorite/movies",
+                                   query: manager.queryMaker(language: language,
+                                                             sortBy: sortBy,
+                                                             page: page),
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         /// Get the list of your favorite TV shows.
@@ -75,10 +79,12 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getFavoriteTVShows(inAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account/\(account)/favorite/tv",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account/\(account)/favorite/tv",
+                                   query: manager.queryMaker(language: language,
+                                                             sortBy: sortBy,
+                                                             page: page),
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         
@@ -91,12 +97,12 @@ extension TMDBManager {
         public func markAsFavorite(forAccount account: Int, mediaObject: TMDBFavoriteMediaObject, completion: @escaping (NilReturn) -> () ) {
             do {
             let data = try JSONEncoder().encode(mediaObject)
-            TMDBManager.shared.performRequest(method: "POST",
-                                              path: "/account/\(account)/favorite",
-                                              data: data,
-                                              authentication: .user,
-                                              expectedStatusCode: mediaObject.favorite ? 201 : 200,
-                                              completion: completion)
+            manager.performRequest(method: "POST",
+                                   path: "/account/\(account)/favorite",
+                                   data: data,
+                                   authentication: .user,
+                                   expectedStatusCode: mediaObject.favorite ? 201 : 200,
+                                   completion: completion)
             } catch let error {
                 completion(.fail(error: error))
             }
@@ -117,10 +123,12 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getRatedMovies(byAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account/\(account)/rated/movies",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account/\(account)/rated/movies",
+                                   query: manager.queryMaker(language: language,
+                                                             sortBy: sortBy,
+                                                             page: page),
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         /// Get a list of all the TV shows you have rated.
@@ -138,10 +146,10 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getRatedTVShows(byAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account/\(account)/rated/tv",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account/\(account)/rated/tv",
+                                   query: manager.queryMaker(language: language, sortBy: sortBy, page: page),
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         /// Get a list of all the TV episodes you have rated.
@@ -159,10 +167,12 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getRatedTVEpisodes(byAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account/\(account)/rated/episodes",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account/\(account)/rated/episodes",
+                                   query: manager.queryMaker(language: language,
+                                                             sortBy: sortBy,
+                                                             page: page),
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         /// Get a list of all the movies you have added to your watchlist.
@@ -180,10 +190,12 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getMovieWatchlist(inAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account/\(account)/watchlist/movies",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account/\(account)/watchlist/movies",
+                                   query: manager.queryMaker(language: language,
+                                                             sortBy: sortBy,
+                                                             page: page),
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         /// Get a list of all the TV shows you have added to your watchlist.
@@ -201,10 +213,12 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getTVShowWatchlist(inAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
-            TMDBManager.shared.performRequest(path: "/account/\(account)/watchlist/tv",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy, page: page),
-                                              authentication: .user,
-                                              completion: completion)
+            manager.performRequest(path: "/account/\(account)/watchlist/tv",
+                                   query: manager.queryMaker(language: language,
+                                                             sortBy: sortBy,
+                                                             page: page),
+                                   authentication: .user,
+                                   completion: completion)
         }
         
         /// Add a movie or TV show to your watchlist.
@@ -216,12 +230,12 @@ extension TMDBManager {
         public func addToWatchlist(forAccount account: Int, mediaObject: TMDBWatchlistMediaObject, completion: @escaping (NilReturn) -> () ) {
             do {
                 let data = try JSONEncoder().encode(mediaObject)
-                TMDBManager.shared.performRequest(method: "POST",
-                                                  path: "/account/\(account)/watchlist",
-                                                  data: data,
-                                                  authentication: .user,
-                                                  expectedStatusCode: mediaObject.watchlist ? 201 : 200,
-                                                  completion: completion)
+                manager.performRequest(method: "POST",
+                                       path: "/account/\(account)/watchlist",
+                                       data: data,
+                                       authentication: .user,
+                                       expectedStatusCode: mediaObject.watchlist ? 201 : 200,
+                                       completion: completion)
             } catch let error {
                 completion(.fail(error: error))
             }

@@ -10,7 +10,7 @@ import Foundation
 
 extension TMDBManager {
     /// [Guest Sessions API](https://developers.themoviedb.org/3/guest-sessions) wrapper class.
-    public class GuestSessionAPIWrapper {
+    public class GuestSessionAPIWrapper: APIWrapper {
         /// Get the rated movies for a guest session.
         ///
         /// - Parameters:
@@ -26,15 +26,15 @@ extension TMDBManager {
             if guestSessionId != nil {
                 gsid = guestSessionId!
             } else {
-                guard let _gsid = TMDBManager.shared.guestSessionId else {
+                guard let _gsid = manager.guestSessionId else {
                     completin(.fail(error: "Fail to get rated movies for guest session ID: No guest session ID is passed as parameter or persisted with UserDefaults.".error(domain: "guestSession")))
                     return
                 }
                 gsid = _gsid
             }
-            TMDBManager.shared.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy),
-                                              completion: completin)
+            manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
+                                   query: manager.queryMaker(language: language, sortBy: sortBy),
+                                   completion: completin)
         }
         
         /// Get the rated TV shows for a guest session.
@@ -52,15 +52,15 @@ extension TMDBManager {
             if guestSessionId != nil {
                 gsid = guestSessionId!
             } else {
-                guard let _gsid = TMDBManager.shared.guestSessionId else {
+                guard let _gsid = manager.guestSessionId else {
                     completin(.fail(error: "Fail to get rated movies for guest session ID: No guest session ID is passed as parameter or persisted with UserDefaults.".error(domain: "guestSession")))
                     return
                 }
                 gsid = _gsid
             }
-            TMDBManager.shared.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                                              query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy),
-                                              completion: completin)
+            manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
+                                   query: manager.queryMaker(language: language, sortBy: sortBy),
+                                   completion: completin)
         }
         
         /// Get the rated TV episodes for a guest session.
@@ -78,15 +78,15 @@ extension TMDBManager {
             if guestSessionId != nil {
                 gsid = guestSessionId!
             } else {
-                guard let _gsid = TMDBManager.shared.guestSessionId else {
+                guard let _gsid = manager.guestSessionId else {
                     completin(.fail(error: "Fail to get rated movies for guest session ID: No guest session ID is passed as parameter or persisted with UserDefaults.".error(domain: "guestSession")))
                     return
                 }
                 gsid = _gsid
             }
-            TMDBManager.shared.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                query: TMDBManager.shared.queryMaker(language: language, sortBy: sortBy),
-                completion: completin)
+            manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
+                                   query: manager.queryMaker(language: language, sortBy: sortBy),
+                                   completion: completin)
         }
     }
 }
