@@ -16,7 +16,7 @@ extension TMDBManager {
         /// - Parameters:
         ///   - keywordId: Keyword's ID.
         ///   - completion: Completion handler.
-        public func getDetails(forKeywordId keywordId: Int, completion: @escaping (ObjectReturn<TMDBKeyword>) -> ()) {
+        public func getDetails(forKeywordId keywordId: Int, completion: @escaping (ObjectReturn<TMDBKeywords.TMDBKeyword>) -> ()) {
             manager.performRequest(path: "/keyword/\(keywordId)", completion: completion)
         }
         
