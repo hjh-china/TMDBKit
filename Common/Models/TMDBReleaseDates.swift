@@ -13,11 +13,11 @@ public struct TMDBReleaseDates: Codable {
     public let results: [TMDBReleaseDateResult]
     
     public struct TMDBReleaseDateResult: Codable {
-        public let country: String
+        public let region: String
         public let results: [TMDBReleaseDate]
         
         enum CodingKeys: String, CodingKey {
-            case country = "iso_3166_1"
+            case region = "iso_3166_1"
             case results
         }
         

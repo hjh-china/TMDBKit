@@ -14,13 +14,13 @@ public struct TMDBTranslations: Codable {
     
     public struct TMDBTranslation: Codable {
         public let language: String
-        public let country: String
+        public let region: String
         public let name: String
         public let englishName: String
         
         enum CodingKeys: String, CodingKey {
             case language = "iso_639_1"
-            case country = "iso_3166_1"
+            case region = "iso_3166_1"
             case name
             case englishName = "english_name"
         }

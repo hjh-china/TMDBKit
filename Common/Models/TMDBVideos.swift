@@ -15,7 +15,7 @@ public struct TMDBVideos: Codable {
     public struct TMDBVideo: Codable {
         public let id: String
         public let language: String
-        public let country: String
+        public let region: String
         public let key: String
         public let name: String
         public let site: String
@@ -32,7 +32,7 @@ public struct TMDBVideos: Codable {
         enum CodingKeys: String, CodingKey {
             case id
             case language = "iso_639_1"
-            case country = "iso_3166_1"
+            case region = "iso_3166_1"
             case key
             case name
             case site
