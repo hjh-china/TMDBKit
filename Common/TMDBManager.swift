@@ -299,36 +299,38 @@ public class TMDBManager {
         }
     }
     
-    /// [Account API](https://developers.themoviedb.org/3/account) wrapper instance.
+    /// [Account API](https://developers.themoviedb.org/3/account) wrapper.
     public let account = AccountAPIWrapper()
-    /// [Authentication API](https://developers.themoviedb.org/3/authentication) wrapper instance.
+    /// [Authentication API](https://developers.themoviedb.org/3/authentication) wrapper.
     public let authentication = AuthenticationAPIWrapper()
-    /// [Certifications API](https://developers.themoviedb.org/3/certifications) wrapper instance.
+    /// [Certifications API](https://developers.themoviedb.org/3/certifications) wrapper.
     public let certifications = CertificationsAPIWrapper()
-    /// [Changes API](https://developers.themoviedb.org/3/changes) wrapper instance.
+    /// [Changes API](https://developers.themoviedb.org/3/changes) wrapper.
     public let changes = ChangesAPIWrapper()
-    /// [Collections API](https://developers.themoviedb.org/3/collections) wrapper instance.
+    /// [Collections API](https://developers.themoviedb.org/3/collections) wrapper.
     public let collections = CollectionsAPIWrapper()
-    /// [Companies API](https://developers.themoviedb.org/3/companies) wrapper instance.
+    /// [Companies API](https://developers.themoviedb.org/3/companies) wrapper.
     public let companies = CompaniesAPIWrapper()
-    /// [Configuration API](https://developers.themoviedb.org/3/configuration) wrapper instance.
+    /// [Configuration API](https://developers.themoviedb.org/3/configuration) wrapper.
     public let configuration = ConfigurationAPIWrapper()
-    /// [Credits API](https://developers.themoviedb.org/3/credits) wrapper instance.
+    /// [Credits API](https://developers.themoviedb.org/3/credits) wrapper.
     public let credits = CreditsAPIWrapper()
-    /// [Discover API](https://developers.themoviedb.org/3/discover) wrapper instance.
+    /// [Discover API](https://developers.themoviedb.org/3/discover) wrapper.
     public let discover = DiscoverAPIWrapper()
-    /// [Find API](https://developers.themoviedb.org/3/find) wrapper instance.
+    /// [Find API](https://developers.themoviedb.org/3/find) wrapper.
     public let find = FindAPIWrapper()
-    /// [Genres API](https://developers.themoviedb.org/3/genres) wrapper instance.
+    /// [Genres API](https://developers.themoviedb.org/3/genres) wrapper.
     public let genres = GenresAPIWrapper()
-    /// [Guest Sessions API](https://developers.themoviedb.org/3/guest-sessions) wrapper instance.
+    /// [Guest Sessions API](https://developers.themoviedb.org/3/guest-sessions) wrapper.
     public let guestSession = GuestSessionAPIWrapper()
-    /// [Jobs API](https://developers.themoviedb.org/3/jobs) wrapper instance.
+    /// [Jobs API](https://developers.themoviedb.org/3/jobs) wrapper.
     public let jobs = JobsAPIWrapper()
-    /// [Keywords API](https://developers.themoviedb.org/3/keywords) wrapper instance.
+    /// [Keywords API](https://developers.themoviedb.org/3/keywords) wrapper.
     public let keywords = KeywordsAPIWrapper()
-    /// [Lists API](https://developers.themoviedb.org/3/lists) wrapper instance.
+    /// [Lists API](https://developers.themoviedb.org/3/lists) wrapper.
     public let lists = ListsAPIWrapper()
+    /// [Movies API](https://developers.themoviedb.org/3/movies) wrapper.
+    public let movies = MoviesAPIWrapper()
 }
 
 extension TMDBManager {

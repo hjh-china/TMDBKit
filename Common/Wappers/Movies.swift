@@ -300,11 +300,93 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getLatest(language: String? = nil, completion: @escaping (ObjectReturn<TMDBMovieDetailed>) -> ()) {
-            performRequest(path: "/movie/latest",
-                           query: manager.queryMaker(language: language),
-                           completion: completion)
+            manager.performRequest(path: "/movie/latest",
+                                   query: manager.queryMaker(language: language),
+                                   completion: completion)
         }
         
+        /// Get a list of movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.
+        ///
+        /// You can optionally specify a `region` prameter which will narrow the search to only look for theatrical release dates within the specified country.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - region: Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
+        ///     - pattern: `^[A-Z]{2}$`
+        ///   - completion: Completion handler.
+        public func getNowPlaying(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBNowPlayingMovies>) -> ()) {
+            manager.performRequest(path: "/movie/now_playing",
+                                   query: manager.queryMaker(language: language, page: page, region: region),
+                                   completion: completion)
+        }
         
+        /// Get a list of the current popular movies on TMDb. This list updates daily.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - region: Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
+        ///     - pattern: `^[A-Z]{2}$`
+        ///   - completion: Completion handler.
+        public func getPopular(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+            manager.performRequest(path: "/movie/popular",
+                                   query: manager.queryMaker(language: language, page: page, region: region),
+                                   completion: completion)
+        }
+        
+        /// Get the top rated movies on TMDb.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - region: Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
+        ///     - pattern: `^[A-Z]{2}$`
+        ///   - completion: Completion handler.
+        public func getTopRated(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+            manager.performRequest(path: "/movie/top_rated",
+                                   query: manager.queryMaker(language: language, page: page, region: region),
+                                   completion: completion)
+        }
+        
+        /// Get a list of upcoming movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.
+        
+        /// You can optionally specify a `region` prameter which will narrow the search to only look for theatrical release dates within the specified country.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - region: Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
+        ///     - pattern: `^[A-Z]{2}$`
+        ///   - completion: Completion handler.
+        public func getUpcoming(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+            manager.performRequest(path: "/movie/upcoming",
+                                   query: manager.queryMaker(language: language, page: page, region: region),
+                                   completion: completion)
+        }
     }
 }
