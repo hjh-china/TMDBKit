@@ -9,6 +9,13 @@ I'm just a very beginner to the Swift world. And I decide to take this project a
 
 All issues and pull requests are welcomed :-)
 
+# Important
+This framework is still under development. **DO NOT** use it... just yet 😂.
+Current progress:
+| Section | Build | Test | To-dos|
+|----------|:------:|:-----:|--------|
+|Shared methods| ☑️ | | |
+
 # Usage
 First `import TMDBKit`, and in your `AppDelegate`'s `application(application:, didFinishLaunchingWithOptions launchOptions:)`:
 ```swift
