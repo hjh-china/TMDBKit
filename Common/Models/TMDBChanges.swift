@@ -30,3 +30,32 @@ public struct TMDBChanges: Codable {
         }
     }
 }
+
+public struct TMDBPersonChanges: Codable {
+    public let key: String
+    public let items: [TMDBPersonChange]
+    
+    public struct TMDBPersonChange: Codable {
+        public let id: String
+        public let action: String
+        public let time: String
+        public let originalValue: TMDBPersonChangeOriginalValue
+        
+        public struct TMDBPersonChangeOriginalValue: Codable {
+            public let profile: TMDBPersonChangeOriginalValueProfile
+            public struct TMDBPersonChangeOriginalValueProfile: Codable {
+                public let filePath: String
+                enum CodingKeys: String, CodingKey {
+                    case filePath = "file_path"
+                }
+            }
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id
+            case action
+            case time
+            case originalValue = "original_value"
+        }
+    }
+}

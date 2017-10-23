@@ -333,6 +333,8 @@ public class TMDBManager {
     public let movies = MoviesAPIWrapper()
     /// [Networks API](https://developers.themoviedb.org/3/networks) wrapper.
     public let networks = NetworksAPIWrapper()
+    /// [People API](https://developers.themoviedb.org/3/people) wrapper.
+    public let people = PeopleAPIWrapper()
 }
 
 extension TMDBManager {

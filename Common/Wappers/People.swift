@@ -120,7 +120,7 @@ extension TMDBManager {
         ///     - minimum: 1
         ///     - maximum: 1000
         ///     - default: 1
-        ///   - completion: ompletion handler.
+        ///   - completion: Completion handler.
         public func getTaggedImages(forPerson person: Int, language: String? = nil, page: Int? = nil, completion: @escaping (AnyReturn<TMDBTaggedImages>) -> ()) {
             performRequest(path: "/person/\(person)/tagged_images", query: queryMaker(language: language, page: page)) { (result: JSONReturn) in
                 switch result {
@@ -137,6 +137,76 @@ extension TMDBManager {
             }
         }
         
+        /// Get the changes for a person. By default only the last 24 hours are returned.
+        ///
+        /// You can query up to 14 days in a single query by using the start_date and end_date query parameters.
+        ///
+        /// - Parameters:
+        ///   - person: Person's ID.
+        ///   - startDate: Filter the results with a start date. Formatted in `YYYY-MM-dd`.
+        ///   - endDate: Filter the results with a end date. Formatted in `YYYY-MM-dd`.
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - completion: Completion handler.
+        public func getChanges(forPerson person: Int, from startDate: String? = nil, to endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<[TMDBPersonChanges]>) -> ()) {
+            performRequest(path: "/movie/\(person)/changes",
+                           query: queryMaker(startDate: startDate,
+                                             endDate: endDate,
+                                             page: page)) { (result: ObjectReturn<[String: [TMDBPersonChanges]]>) in
+                switch result {
+                case .success(let _results):
+                    if let results = _results["changes"] {
+                        completion(.success(object: results))
+                    } else {
+                        completion(.fail(error: "Error get changes for person.".error(domain: "movies")))
+                    }
+                case .fail(let error):
+                    completion(.fail(error: error))
+                }
+            }
+        }
         
+        /// Get the most newly created person. This is a live response and will continuously change.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - completion: Completion handler.
+        public func getLatest(language: String? = nil, completion: @escaping (ObjectReturn<TMDBPerson>) -> ()) {
+            performRequest(path: "/person/latest",
+                           query: queryMaker(language: language),
+                           completion: completion)
+        }
+        
+        /// Get the list of popular people on TMDb. This list updates daily.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - completion: Completion handler.
+        public func getPopular(language: String? = nil, page: Int? = nil, completion: @escaping (AnyReturn<TMDBPersonWithKnownForMedia>) -> ()) {
+            performRequest(path: "/person/popular", query: queryMaker(language: language, page: page)) { (result: JSONReturn) in
+                switch result {
+                case .success(let json):
+                    do {
+                        completion(.success(any: try TMDBPersonWithKnownForMedia(fromJSON: json)))
+                    } catch let error {
+                        completion(.fail(error: error))
+                    }
+                case .fail(let error):
+                    completion(.fail(error: error))
+                }
+            }
+        }
     }
 }
