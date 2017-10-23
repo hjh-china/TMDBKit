@@ -10,6 +10,9 @@
 		450EC1331F9E967B00B45852 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1321F9E967B00B45852 /* Protocols.swift */; };
 		450EC1341F9E967B00B45852 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1321F9E967B00B45852 /* Protocols.swift */; };
 		450EC1351F9E967B00B45852 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1321F9E967B00B45852 /* Protocols.swift */; };
+		450EC1371F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */; };
+		450EC1381F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */; };
+		450EC1391F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */; };
 		451DFBD81F98101500F501EB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBD71F98101500F501EB /* LICENSE */; };
 		451DFBDB1F9810FD00F501EB /* SwiftyJSON_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */; };
 		451DFBDD1F98111300F501EB /* TraktKit_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDC1F98111300F501EB /* TraktKit_LICENSE */; };
@@ -230,6 +233,7 @@
 		450D946B1F96BEAF005E2227 /* TMDBMediaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBMediaObject.swift; sourceTree = "<group>"; };
 		450D946D1F96BF80005E2227 /* TMDBTVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBTVShow.swift; sourceTree = "<group>"; };
 		450EC1321F9E967B00B45852 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAvaliableSizes.swift; sourceTree = "<group>"; };
 		451DFBD71F98101500F501EB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftyJSON_LICENSE; sourceTree = "<group>"; };
 		451DFBDC1F98111300F501EB /* TraktKit_LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = TraktKit_LICENSE; sourceTree = "<group>"; };
@@ -394,6 +398,7 @@
 				450D946D1F96BF80005E2227 /* TMDBTVShow.swift */,
 				450D94651F96A8FF005E2227 /* TMDBUser.swift */,
 				45A0935E1F9D1C6800D0FCC5 /* TMDBVideos.swift */,
+				450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -830,6 +835,7 @@
 				457B6BE71F9CFE330058EDD0 /* TMDBAccountState.swift in Sources */,
 				4522CA7D1F9A692F003E9153 /* TMDBTVEpisodes.swift in Sources */,
 				4522CA7E1F9A692F003E9153 /* TMDBTVSeason.swift in Sources */,
+				450EC1381F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */,
 				45EBF6961F9D3EBB00D0AA62 /* TMDBNowPlayingMovies.swift in Sources */,
 				4522CA7F1F9A692F003E9153 /* TMDBTVShow.swift in Sources */,
 				4522CA801F9A692F003E9153 /* TMDBUser.swift in Sources */,
@@ -904,6 +910,7 @@
 				457B6BE81F9CFE330058EDD0 /* TMDBAccountState.swift in Sources */,
 				45EBF6971F9D3EBF00D0AA62 /* TMDBNowPlayingMovies.swift in Sources */,
 				4522CAB91F9A6990003E9153 /* TMDBTVEpisodes.swift in Sources */,
+				450EC1391F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */,
 				4522CABA1F9A6990003E9153 /* TMDBTVSeason.swift in Sources */,
 				4522CABB1F9A6990003E9153 /* TMDBTVShow.swift in Sources */,
 				4522CABC1F9A6990003E9153 /* TMDBUser.swift in Sources */,
@@ -978,6 +985,7 @@
 				45A0933C1F9D17B600D0FCC5 /* TMDBAccountState.swift in Sources */,
 				45A0933D1F9D17B600D0FCC5 /* TMDBTVEpisodes.swift in Sources */,
 				45A0933E1F9D17B600D0FCC5 /* TMDBTVSeason.swift in Sources */,
+				450EC1371F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */,
 				45A0933F1F9D17B600D0FCC5 /* TMDBTVShow.swift in Sources */,
 				45EBF6951F9D3C2700D0AA62 /* TMDBNowPlayingMovies.swift in Sources */,
 				45A093401F9D17B600D0FCC5 /* TMDBUser.swift in Sources */,

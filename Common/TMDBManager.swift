@@ -16,9 +16,7 @@ public class TMDBManager {
     var apiKey: String?
     var persistencePrefix: String?
     
-    /// Your request token.
-    ///
-    /// This value will **NOT** be persisted.
+    /// Your request token. This value will **NOT** be persisted.
     ///
     /// See [this](https://developers.themoviedb.org/3/authentication) for more
     /// info about request token.
@@ -69,9 +67,7 @@ public class TMDBManager {
         }
     }
     
-    /// Your guest session ID.
-    ///
-    /// This value will be persisted by UserDefaults.
+    /// Your guest session ID. This value will be persisted by UserDefaults.
     ///
     /// See [this](https://developers.themoviedb.org/3/authentication/create-guest-session)
     /// for more info about guest session ID.
@@ -149,179 +145,35 @@ public class TMDBManager {
         }
     }
     
-    /// Avaliable widths for backdrops. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliableBackdropHeights` property and "original" size avaliable.
-    public lazy var avaliableBackdropWidths: [Int] = {
-        guard let sizes = backdropSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
-    }()
     
-    /// Avaliable heights for backdrops. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliableBackdropWidths` property and "original" size avaliable.
-    public lazy var avaliableBackdropHeights: [Int] = {
-        guard let sizes = backdropSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
-    }()
-    
-    var backdropSizes: [String]? {
-        get {
-            return persistencePrefix == nil ?
-                nil :
-                UserDefaults.standard.object(forKey: "\(persistencePrefix!).backdropSizes") as? [String]
-        }
-        
-        set {
-            guard let persistencePrefix = persistencePrefix else { return }
-            UserDefaults.standard.set(newValue, forKey: "\(persistencePrefix).backdropSizes")
-        }
+    /// Avaliable backdrop sizes, include `rawSizes`, `width`, `heights` properties.
+    /// Use configuration API to get this. This value will be persisted via UserDefaults.
+    internal(set) public var avaliableBackdropSizes: TMDBAvaliableSizes? {
+        get { return getImageSizes("backdropSizes") } set { setImageSizes("backdropSizes", newValue) }
     }
     
-    /// Avaliable widths for logos. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliableLogoHeights` property and "original" size avaliable.
-    public lazy var avaliableLogoWidths: [Int] = {
-        guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
-    }()
-    
-    /// Avaliable heights for logos. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliableLogoWidths` property and "original" size avaliable.
-    public lazy var avaliableLogoHeights: [Int] = {
-        guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
-    }()
-    
-    var logoSizes: [String]? {
-        get {
-            return persistencePrefix == nil ?
-                nil :
-                UserDefaults.standard.object(forKey: "\(persistencePrefix!).logoSizes") as? [String]
-        }
-        
-        set {
-            guard let persistencePrefix = persistencePrefix else { return }
-            UserDefaults.standard.set(newValue, forKey: "\(persistencePrefix).logoSizes")
-        }
+    /// Avaliable logo sizes, include `rawSizes`, `width`, `heights` properties.
+    /// Use configuration API to get this. This value will be persisted via UserDefaults.
+    internal(set) public var avaliableLogoSizes: TMDBAvaliableSizes? {
+        get { return getImageSizes("logoSizes") } set { setImageSizes("logoSizes", newValue) }
     }
     
-    /// Avaliable widths for posters. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliablePosterHeights` property and "original" size avaliable.
-    public lazy var avaliablePosterWidths: [Int] = {
-        guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
-    }()
-    
-    /// Avaliable heights for posters. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliablePosterWidths` property and "original" size avaliable.
-    public lazy var avaliablePosterHeights: [Int] = {
-        guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
-    }()
-    
-    var posterSizes: [String]? {
-        get {
-            return persistencePrefix == nil ?
-                nil :
-                UserDefaults.standard.object(forKey: "\(persistencePrefix!).posterSizes") as? [String]
-        }
-        
-        set {
-            guard let persistencePrefix = persistencePrefix else { return }
-            UserDefaults.standard.set(newValue, forKey: "\(persistencePrefix).posterSizes")
-        }
+    /// Avaliable poster sizes, include `rawSizes`, `width`, `heights` properties.
+    /// Use configuration API to get this. This value will be persisted via UserDefaults.
+    internal(set) public var avaliablePosterSizes: TMDBAvaliableSizes? {
+        get { return getImageSizes("posterSizes") } set { setImageSizes("posterSizes", newValue) }
     }
     
-    /// Avaliable widths for profile. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliableProfileHeights` property and "original" size avaliable.
-    public lazy var avaliableProfileWidths: [Int] = {
-        guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
-    }()
-    
-    /// Avaliable heights for profile. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliableProfileWidths` property and "original" size avaliable.
-    public lazy var avaliableProfileHeights: [Int] = {
-        guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
-    }()
-    
-    var profileSizes: [String]? {
-        get {
-            return persistencePrefix == nil ?
-                nil :
-                UserDefaults.standard.object(forKey: "\(persistencePrefix!).profileSizes") as? [String]
-        }
-        
-        set {
-            guard let persistencePrefix = persistencePrefix else { return }
-            UserDefaults.standard.set(newValue, forKey: "\(persistencePrefix).profileSizes")
-        }
+    /// Avaliable profile sizes, include `rawSizes`, `width`, `heights` properties.
+    /// Use configuration API to get this. This value will be persisted via UserDefaults.
+    internal(set) public var avaliableProfileSizes: TMDBAvaliableSizes? {
+        get { return getImageSizes("profileSizes") } set { setImageSizes("profileSizes", newValue) }
     }
     
-    /// Avaliable widths for stills. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliableStillHeights` property and "original" size avaliable.
-    public lazy var avaliableStillWidths: [Int] = {
-        guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
-    }()
-    
-    /// Avaliable heights for stills. Use this method to get this value:
-    /// ```
-    /// TMDBManager.shared.configuration.getAPIConfiguration()
-    /// ```
-    ///
-    /// There is also a `avaliableStillWidths` property and "original" size avaliable.
-    public lazy var avaliableStillHeights: [Int] = {
-        guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
-    }()
-    
-    var stillSizes: [String]? {
-        get {
-            return persistencePrefix == nil ?
-                nil :
-                UserDefaults.standard.object(forKey: "\(persistencePrefix!).stillSizes") as? [String]
-        }
-        
-        set {
-            guard let persistencePrefix = persistencePrefix else { return }
-            UserDefaults.standard.set(newValue, forKey: "\(persistencePrefix).stillSizes")
-        }
+    /// Avaliable still sizes, include `rawSizes`, `width`, `heights` properties.
+    /// Use configuration API to get this. This value will be persisted via UserDefaults.
+    internal(set) public var avaliableStillSizes: TMDBAvaliableSizes? {
+        get { return getImageSizes("stillSizes") } set { setImageSizes("stillSizes", newValue) }
     }
     
     /// [Account API](https://developers.themoviedb.org/3/account) wrapper.
@@ -402,5 +254,22 @@ extension TMDBManager {
         else { return false }
         
         return guestSessionExpiresAt <= Date()
+    }
+}
+
+extension TMDBManager {
+    func getImageSizes(_ type: String) -> TMDBAvaliableSizes? {
+        return persistencePrefix == nil ?
+            nil :
+            UserDefaults.standard.object(forKey: "\(persistencePrefix!).\(type)") as? TMDBAvaliableSizes
+    }
+    
+    func setImageSizes(_ type: String, _ newValue: TMDBAvaliableSizes?) {
+        guard let persistencePrefix = persistencePrefix else { return }
+        if let newValue = newValue {
+            UserDefaults.standard.set(newValue, forKey: "\(persistencePrefix).\(type)")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "\(persistencePrefix).\(type)")
+        }
     }
 }
