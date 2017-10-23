@@ -16,7 +16,7 @@ extension TMDBManager {
                         query: [String: String] = [:],
                         headers: [String: String] = [:],
                         data: Data? = nil,
-                        authentication: AuthenticationType = .noAuthentication,
+                        authentication: TMDBAuthenticationType = .noAuthentication,
                         expectedStatusCode: Int = 200,
                         completion: @escaping (DataReturn) -> ()) {
         let _request = constructRequest(method: method,
@@ -42,7 +42,7 @@ extension TMDBManager {
                         query: [String: String] = [:],
                         headers: [String: String] = [:],
                         data: Data? = nil,
-                        authentication: AuthenticationType = .noAuthentication,
+                        authentication: TMDBAuthenticationType = .noAuthentication,
                         expectedStatusCode: Int = 200,
                         completion: @escaping (JSONReturn) -> ()) {
         performRequest(method: method,
@@ -72,7 +72,7 @@ extension TMDBManager {
                            query: [String: String] = [:],
                            headers: [String: String] = [:],
                            data: Data? = nil,
-                           authentication: AuthenticationType = .noAuthentication,
+                           authentication: TMDBAuthenticationType = .noAuthentication,
                            expectedStatusCode: Int = 200,
                            completion: @escaping (ObjectReturn<T>) -> ()) {
         performRequest(method: method,
@@ -102,7 +102,7 @@ extension TMDBManager {
                         query: [String: String] = [:],
                         headers: [String: String] = [:],
                         data: Data? = nil,
-                        authentication: AuthenticationType = .noAuthentication,
+                        authentication: TMDBAuthenticationType = .noAuthentication,
                         expectedStatusCode: Int = 200,
                         completion: @escaping (NilReturn) -> ()) {
         performRequest(method: method,
@@ -174,7 +174,7 @@ extension TMDBManager {
                           query: [String: String],
                           headers: [String: String],
                           data: Data?,
-                          authentication: AuthenticationType,
+                          authentication: TMDBAuthenticationType,
                           expectedStatusCode: Int) -> AnyReturn<URLRequest> {
         // Check API Key
         guard let apiKey = self.apiKey else {
@@ -238,10 +238,6 @@ extension TMDBManager {
 }
 
 extension TMDBManager {
-    public enum AuthenticationType {
-        case user
-        case guest
-        case noAuthentication
-    }
+    
 }
 

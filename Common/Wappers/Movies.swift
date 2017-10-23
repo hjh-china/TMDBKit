@@ -36,7 +36,7 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - authentication: Authentication type. **Accepted values:** `.user`, `.guest`.
         ///   - completion: Completion handler.
-        public func getAccountStates(forMovie movie: Int, authentication: TMDBManager.AuthenticationType, completion: @escaping (AnyReturn<TMDBAccountStete>) -> ()) {
+        public func getAccountStates(forMovie movie: Int, authentication: TMDBAuthenticationType, completion: @escaping (AnyReturn<TMDBAccountStete>) -> ()) {
             guard authentication != .noAuthentication else {
                 completion(.fail(error: "Get account states needs authentication.".error(domain: "movies")))
                 return
@@ -267,7 +267,7 @@ extension TMDBManager {
         ///     - maximum: 10
         ///   - authentication: Authentication type. Accepted `.user` or `.guest`.
         ///   - completion: Completion handler.
-        public func rate(movie: Int, rating: Double, authentication: TMDBManager.AuthenticationType, completion: @escaping (NilReturn) -> ()) {
+        public func rate(movie: Int, rating: Double, authentication: TMDBAuthenticationType, completion: @escaping (NilReturn) -> ()) {
             manager.performRequest(method: "POST",
                                    path: "/movie/\(movie)/rating",
                                    data: try! JSONEncoder().encode(["value": rating]),
@@ -283,7 +283,7 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - authentication: Authentication type. Accepted `.user` or `.guest`.
         ///   - completion: Completion handler.
-        public func removeRating(forMovie movie: Int, authentication: TMDBManager.AuthenticationType, completion: @escaping (NilReturn) -> ()) {
+        public func removeRating(forMovie movie: Int, authentication: TMDBAuthenticationType, completion: @escaping (NilReturn) -> ()) {
             manager.performRequest(method: "DELETE",
                                    path: "/movie/\(movie)/rating",
                                    completion: completion)
