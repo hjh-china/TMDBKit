@@ -1,7 +1,7 @@
-# TMDBKit
 ![](https://github.com/SR2k/TMDBKit/blob/master/Common/Supporting/Logo.svg)
-
+# TMDBKit
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SR2k/TMDBKit/blob/master/LICENSE)
+[![codebeat badge](https://codebeat.co/badges/4370eef5-bf1b-4b46-82a6-587278edd73a)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
 
 The Movie Database API wrapper in Swift.
 
