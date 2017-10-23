@@ -80,7 +80,8 @@ public struct TMDBMovieDiscoverOption {
         self.value = primaryReleaseDateGte
     }
     
-    /// Filter and only include movies that have a primary release date that is less than or equal to the specified value.
+    /// Filter and only include movies that have a primary release date that is less than or equal to the
+    /// specified value.
     /// - TODO: Use Date instead of String.
     /// - Format: Date ("YYYY-MM-dd")
     public init(primaryReleaseDateLte: String) {
@@ -88,7 +89,8 @@ public struct TMDBMovieDiscoverOption {
         self.value = primaryReleaseDateLte
     }
     
-    /// Filter and only include movies that have a release date (looking at all release dates) that is greater or equal to the specified value.
+    /// Filter and only include movies that have a release date (looking at all release dates) that is
+    /// greater or equal to the specified value.
     /// - TODO: Use Date instead of String.
     /// - Format: Date ("YYYY-MM-dd")
     public init(releaseDateGte: String) {
@@ -96,7 +98,8 @@ public struct TMDBMovieDiscoverOption {
         self.value = releaseDateGte
     }
     
-    /// Filter and only include movies that have a release date (looking at all release dates) that is less than or equal to the specified value.
+    /// Filter and only include movies that have a release date (looking at all release dates) that is
+    /// less than or equal to the specified value.
     /// - TODO: Use Date instead of String.
     /// - Format: Date ("YYYY-MM-dd")
     public init(releaseDateLte: String) {
@@ -145,7 +148,8 @@ public struct TMDBMovieDiscoverOption {
         self.value = withCrew
     }
     
-    /// A comma separated list of production company ID's. Only include movies that have one of the ID's added as a production company.
+    /// A comma separated list of production company ID's. Only include movies that have one of the ID's
+    /// added as a production company.
     public init(withCompanies: String) {
         self.key = "with_companies"
         self.value = withCompanies
@@ -163,7 +167,8 @@ public struct TMDBMovieDiscoverOption {
         self.value = withKeywords
     }
     
-    /// A comma separated list of person ID's. Only include movies that have one of the ID's added as a either a actor or a crew member.
+    /// A comma separated list of person ID's. Only include movies that have one of the ID's added as
+    /// a either a actor or a crew member.
     public init(withPeople: String) {
         self.key = "with_people"
         self.value = withPeople
@@ -193,7 +198,8 @@ public struct TMDBMovieDiscoverOption {
         self.value = "\(withRuntimeLte)"
     }
     
-    /// Specify a comma (AND) or pipe (OR) separated value to filter release types by. These release types map to the same values found on the movie release date method.
+    /// Specify a comma (AND) or pipe (OR) separated value to filter release types by. These release types
+    /// map to the same values found on the movie release date method.
     /// - minimum: 1
     /// - maximum: 6
     public init(withReleaseType: Int) {
@@ -207,7 +213,8 @@ public struct TMDBMovieDiscoverOption {
         self.value = withOriginalLanguage
     }
     
-    /// Exclude items with certain keywords. You can comma and pipe seperate these values to create an 'AND' or 'OR' logic.
+    /// Exclude items with certain keywords. You can comma and pipe seperate these values to create an
+    /// 'AND' or 'OR' logic.
     public init(withoutKeywords: String) {
         self.key = "without_keywords"
         self.value = withoutKeywords
@@ -257,7 +264,8 @@ public struct TMDBTVDiscoverOption {
         self.value = sortBy.rawValue
     }
     
-    /// Filter and only include TV shows that have a air date (by looking at all episodes) that is greater or equal to the specified value.
+    /// Filter and only include TV shows that have a air date (by looking at all episodes) that is greater
+    /// or equal to the specified value.
     /// - TODO: Use Date instead of String.
     /// - Format: Date ("YYYY-MM-dd")
     public init(airDateGte: String) {
@@ -265,7 +273,8 @@ public struct TMDBTVDiscoverOption {
         self.value = airDateGte
     }
     
-    /// Filter and only include TV shows that have a air date (by looking at all episodes) that is less than or equal to the specified value.
+    /// Filter and only include TV shows that have a air date (by looking at all episodes) that is less
+    /// than or equal to the specified value.
     /// - TODO: Use Date instead of String.
     /// - Format: Date ("YYYY-MM-dd")
     public init(airDateLte: String) {
@@ -273,7 +282,9 @@ public struct TMDBTVDiscoverOption {
         self.value = airDateLte
     }
     
-    /// Filter and only include TV shows that have a original air date that is greater or equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+    /// Filter and only include TV shows that have a original air date that is greater or equal to the specified
+    /// value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include
+    /// items with no air date.
     /// - TODO: Use Date instead of String.
     /// - Format: Date ("YYYY-MM-dd")
     public init(firstAirDateGte: String) {
@@ -281,7 +292,9 @@ public struct TMDBTVDiscoverOption {
         self.value = firstAirDateGte
     }
     
-    /// Filter and only include TV shows that have a original air date that is less than or equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+    /// Filter and only include TV shows that have a original air date that is less than or equal to the specified
+    /// value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include
+    /// items with no air date.
     /// - TODO: Use Date instead of String.
     /// - Format: Date ("YYYY-MM-dd")
     public init(firstAirDateLte: String) {
@@ -289,7 +302,9 @@ public struct TMDBTVDiscoverOption {
         self.value = firstAirDateLte
     }
     
-    /// Filter and only include TV shows that have a original air date year that equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+    /// Filter and only include TV shows that have a original air date year that equal to the specified value. Can
+    /// be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no
+    /// air date.
     init(firstAirDateYear: Int) {
         self.key = "first_air_date_year"
         self.value = "\(firstAirDateYear)"
@@ -358,7 +373,8 @@ public struct TMDBTVDiscoverOption {
         self.value = withOriginalLanguage
     }
     
-    /// Exclude items with certain keywords. You can comma and pipe seperate these values to create an 'AND' or 'OR' logic.
+    /// Exclude items with certain keywords. You can comma and pipe seperate these values to create an 'AND' or
+    /// 'OR' logic.
     public init(withoutKeywords: String) {
         self.key = "without_keywords"
         self.value = withoutKeywords

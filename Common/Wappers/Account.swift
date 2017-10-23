@@ -98,7 +98,6 @@ extension TMDBManager {
                            completion: completion)
         }
         
-        
         /// This method allows you to mark a movie or TV show as a favorite item.
         ///
         /// - Parameters:

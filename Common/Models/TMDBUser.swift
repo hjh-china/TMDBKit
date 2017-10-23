@@ -9,7 +9,7 @@
 import Foundation
 
 public struct TMDBUser: Codable {
-    public let avatar: gravatar
+    public let avatar: Gravatar
     public let id: Int
     public let language: String
     public let region: String
@@ -17,7 +17,7 @@ public struct TMDBUser: Codable {
     public let includeAdult: Bool
     public let username: String
     
-    public struct gravatar: Codable {
+    public struct Gravatar: Codable {
         let hash: String?
     }
     

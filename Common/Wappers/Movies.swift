@@ -297,11 +297,15 @@ extension TMDBManager {
                          rating: Double,
                          authentication: TMDBAuthenticationType,
                          completion: @escaping (NilReturn) -> Void) {
-            performRequest(method: "POST",
-                           path: "/movie/\(movie)/rating",
-                           data: try! JSONEncoder().encode(["value": rating]),
-                           expectedStatusCode: 201,
-                           completion: completion)
+            do {
+                performRequest(method: "POST",
+                               path: "/movie/\(movie)/rating",
+                               data: try JSONEncoder().encode(["value": rating]),
+                               expectedStatusCode: 201,
+                               completion: completion)
+            } catch let error {
+                completion(.fail(error: error))
+            }
         }
         
         /// Remove your rating for a movie.

@@ -183,7 +183,9 @@ extension TMDBManager {
                         } else if
                             let httpResponse = response as? HTTPURLResponse,
                             httpResponse.statusCode != expectedStatusCode {
-                            message += "Response status code: \(httpResponse.statusCode), yet expecting \(expectedStatusCode). TMDB returned: \(String(describing: String(data: data!, encoding: .utf8)))"
+                            message += "Response status code: \(httpResponse.statusCode), "
+                                + "yet expecting \(expectedStatusCode). "
+                                + "TMDB returned: \(String(describing: String(data: data!, encoding: .utf8)))"
                         } else {
                             completion(.fail(error: nil))
                             return

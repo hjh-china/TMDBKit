@@ -66,28 +66,32 @@ extension TMDBManager {
                                description: String,
                                language: String,
                                completion: @escaping (AnyReturn<Int>) -> Void) {
-            let list = ["name": name,
-                        "description": description,
-                        "language": language]
-            performRequest(method: "POST",
-                           path: "/list",
-                           data: try! JSONEncoder().encode(list),
-                           authentication: .user,
-                           expectedStatusCode: 201) { (result: JSONReturn) in
-                switch result {
-                case .success(let json):
-                    guard
-                        let success = json["success"].bool,
-                        success == true,
-                        let listId = json["list_id"].int
-                    else {
-                        completion(.fail(error: "Error creating list.".error(domain: "lists")))
-                        return
+            do {
+                let list = ["name": name,
+                            "description": description,
+                            "language": language]
+                performRequest(method: "POST",
+                               path: "/list",
+                               data: try JSONEncoder().encode(list),
+                               authentication: .user,
+                               expectedStatusCode: 201) { (result: JSONReturn) in
+                    switch result {
+                    case .success(let json):
+                        guard
+                            let success = json["success"].bool,
+                            success == true,
+                            let listId = json["list_id"].int
+                        else {
+                            completion(.fail(error: "Error creating list.".error(domain: "lists")))
+                            return
+                        }
+                        completion(.success(any: listId))
+                    case .fail(let error):
+                        completion(.fail(error: error))
                     }
-                    completion(.success(any: listId))
-                case .fail(let error):
-                    completion(.fail(error: error))
                 }
+            } catch let error {
+                completion(.fail(error: error))
             }
         }
         
@@ -98,12 +102,16 @@ extension TMDBManager {
         ///   - list: List's ID
         ///   - completion: Completion handler.
         public func add(movie: Int, toList list: Int, completion: @escaping (NilReturn) -> Void) {
-            performRequest(method: "POST",
-                           path: "/list/\(list)/add_item",
-                           data: try! JSONEncoder().encode(["media_id": movie]),
-                           authentication: .user,
-                           expectedStatusCode: 201,
-                           completion: completion)
+            do {
+                performRequest(method: "POST",
+                               path: "/list/\(list)/add_item",
+                               data: try JSONEncoder().encode(["media_id": movie]),
+                               authentication: .user,
+                               expectedStatusCode: 201,
+                               completion: completion)
+            } catch let error {
+                completion(.fail(error: error))
+            }
         }
         
         /// Remove a movie from a list.
@@ -113,12 +121,16 @@ extension TMDBManager {
         ///   - list: List's ID.
         ///   - completion: Completion handler.
         public func remove(movie: Int, fromList list: Int, completion: @escaping (NilReturn) -> Void) {
-            performRequest(method: "POST",
-                           path: "/list/\(list)/remove_item",
-                           data: try! JSONEncoder().encode(["media_id": movie]),
-                           authentication: .user,
-                           expectedStatusCode: 201,
-                           completion: completion)
+            do {
+                performRequest(method: "POST",
+                               path: "/list/\(list)/remove_item",
+                               data: try JSONEncoder().encode(["media_id": movie]),
+                               authentication: .user,
+                               expectedStatusCode: 201,
+                               completion: completion)
+            } catch let error {
+                completion(.fail(error: error))
+            }
         }
         
         /// Clear all of the items from a list.
