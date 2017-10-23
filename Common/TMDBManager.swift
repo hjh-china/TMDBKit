@@ -314,6 +314,7 @@ public class TMDBManager {
     /// [Configuration API](https://developers.themoviedb.org/3/configuration) wrapper.
     public let configuration = ConfigurationAPIWrapper()
     /// [Credits API](https://developers.themoviedb.org/3/credits) wrapper.
+    /// - TODO: A lot 😂
     public let credits = CreditsAPIWrapper()
     /// [Discover API](https://developers.themoviedb.org/3/discover) wrapper.
     public let discover = DiscoverAPIWrapper()
@@ -330,10 +331,14 @@ public class TMDBManager {
     /// [Lists API](https://developers.themoviedb.org/3/lists) wrapper.
     public let lists = ListsAPIWrapper()
     /// [Movies API](https://developers.themoviedb.org/3/movies) wrapper.
+    /// - TODO:
+    ///   - Credits
+    ///   - append_to_response support
     public let movies = MoviesAPIWrapper()
     /// [Networks API](https://developers.themoviedb.org/3/networks) wrapper.
     public let networks = NetworksAPIWrapper()
     /// [People API](https://developers.themoviedb.org/3/people) wrapper.
+    /// - TODO: append_to_response support
     public let people = PeopleAPIWrapper()
     /// [Search API](https://developers.themoviedb.org/3/search) wrapper class.
     /// - TODO: Multi search.

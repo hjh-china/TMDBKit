@@ -10,6 +10,7 @@ import Foundation
 
 extension TMDBManager {
     /// [People API](https://developers.themoviedb.org/3/people) wrapper class.
+    /// - TODO: append_to_response support
     public class PeopleAPIWrapper: APIWrapper {
         /// Get the primary person details by id.
         ///

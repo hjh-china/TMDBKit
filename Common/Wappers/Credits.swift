@@ -10,6 +10,7 @@ import Foundation
 
 extension TMDBManager {
     /// [Credits API](https://developers.themoviedb.org/3/credits) wrapper class.
+    /// - TODO: A lot 😂
     public class CreditsAPIWrapper: APIWrapper {
         /// Get a movie or TV credit details by id.
         /// TODO: What's credit???? I wish I have take English class more seriously😂.
