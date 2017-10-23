@@ -1,7 +1,7 @@
 # TMDBKit
 ![](https://github.com/SR2k/TMDBKit/blob/master/Common/Supporting/Logo.svg)
 
-![license](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SR2k/TMDBKit/blob/master/LICENSE)
 
 The Movie Database API wrapper in Swift.
 
