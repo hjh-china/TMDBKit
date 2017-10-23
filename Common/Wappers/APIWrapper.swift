@@ -245,19 +245,21 @@ extension TMDBManager {
                         page: Int? = nil,
                         country: String? = nil,
                         region: String? = nil,
+                        query: String? = nil,
                         includeAdult: Bool? = nil) -> [String: String] {
-            var query: [String: String] = [:]
+            var _query: [String: String] = [:]
             
-            if let language = language { query["language"] = language }
-            if let sortBy = sortBy { query["sort_by"] = sortBy.rawValue }
-            if let startDate = startDate { query["start_date"] = startDate }
-            if let endDate = endDate { query["end_date"] = endDate }
-            if let page = page { query["page"] = "\(page)" }
-            if let country = country { query["country"] = country }
-            if let region = region { query["region"] = region }
-            if let includeAdult = includeAdult { query["include_adult"] = includeAdult ? "true" : "false" }
+            if let language = language   { _query["language"] = language }
+            if let sortBy = sortBy       { _query["sort_by"] = sortBy.rawValue }
+            if let startDate = startDate { _query["start_date"] = startDate }
+            if let endDate = endDate     { _query["end_date"] = endDate }
+            if let page = page           { _query["page"] = "\(page)" }
+            if let country = country     { _query["country"] = country }
+            if let region = region       { _query["region"] = region }
+            if let query = query         { _query["query"] = query }
+            if let includeAdult = includeAdult { _query["include_adult"] = includeAdult ? "true" : "false" }
             
-            return query
+            return _query
         }
     }
 

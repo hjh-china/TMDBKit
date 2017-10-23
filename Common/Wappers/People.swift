@@ -19,7 +19,7 @@ extension TMDBManager {
         ///   - person: Person's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
-        ///     - pattern: ([a-z]{2})-([A-Z]{2})
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getDetails(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBPerson>) -> ()) {
@@ -34,7 +34,7 @@ extension TMDBManager {
         ///   - person: Person's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
-        ///     - pattern: ([a-z]{2})-([A-Z]{2})
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getMovieCredits(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBCredits>) -> ()) {
@@ -51,7 +51,7 @@ extension TMDBManager {
         ///   - person: Person's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
-        ///     - pattern: ([a-z]{2})-([A-Z]{2})
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getTVCredits(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBCredits>) -> ()) {
@@ -90,7 +90,7 @@ extension TMDBManager {
         ///   - person: Person's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
-        ///     - pattern: ([a-z]{2})-([A-Z]{2})
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getExternalIds(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBExternalIds>) -> ()) {

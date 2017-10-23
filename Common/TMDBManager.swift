@@ -335,6 +335,9 @@ public class TMDBManager {
     public let networks = NetworksAPIWrapper()
     /// [People API](https://developers.themoviedb.org/3/people) wrapper.
     public let people = PeopleAPIWrapper()
+    /// [Search API](https://developers.themoviedb.org/3/search) wrapper class.
+    /// - TODO: Multi search.
+    public let search = SearchAPIWrapper()
 }
 
 extension TMDBManager {

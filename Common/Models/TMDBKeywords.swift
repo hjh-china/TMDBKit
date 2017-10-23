@@ -11,9 +11,9 @@ import Foundation
 public struct TMDBKeywords: Codable {
     public let id: String
     public let keywords: [TMDBKeyword]
-    
-    public struct TMDBKeyword: Codable {
-        public let id: Int
-        public let name: String
-    }
+}
+
+public struct TMDBKeyword: Codable {
+    public let id: Int
+    public let name: String
 }
