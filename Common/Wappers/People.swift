@@ -137,21 +137,10 @@ extension TMDBManager {
         public func getTaggedImages(forPerson person: Int,
                                     language: String? = nil,
                                     page: Int? = nil,
-                                    completion: @escaping (AnyReturn<TMDBTaggedImages>) -> Void) {
+                                    completion: @escaping (JSONInitableReturn<TMDBTaggedImages>) -> Void) {
             performRequest(path: "/person/\(person)/tagged_images",
-                           query: queryMaker(language: language, page: page)) { (result: JSONReturn) in
-                switch result {
-                case .success(let json):
-                    do {
-                        let taggedImages = try TMDBTaggedImages(fromJSON: json)
-                        completion(.success(any: taggedImages))
-                    } catch let error {
-                        completion(.fail(error:error))
-                    }
-                case .fail(let error):
-                    completion(.fail(error:error))
-                }
-            }
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
         }
         
         /// Get the changes for a person. By default only the last 24 hours are returned.
@@ -217,20 +206,10 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getPopular(language: String? = nil,
                                page: Int? = nil,
-                               completion: @escaping (AnyReturn<TMDBPersonWithKnownForMedia>) -> Void) {
+                               completion: @escaping (JSONInitableReturn<TMDBPersonWithKnownForMedia>) -> Void) {
             performRequest(path: "/person/popular",
-                           query: queryMaker(language: language, page: page)) { (result: JSONReturn) in
-                switch result {
-                case .success(let json):
-                    do {
-                        completion(.success(any: try TMDBPersonWithKnownForMedia(fromJSON: json)))
-                    } catch let error {
-                        completion(.fail(error: error))
-                    }
-                case .fail(let error):
-                    completion(.fail(error: error))
-                }
-            }
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
         }
     }
 }

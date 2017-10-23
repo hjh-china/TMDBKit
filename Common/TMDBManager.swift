@@ -20,7 +20,7 @@ public class TMDBManager {
     ///
     /// This value will **NOT** be persisted.
     ///
-    /// See [The Movie Database API - Authentication](https://developers.themoviedb.org/3/authentication) for more
+    /// See [this](https://developers.themoviedb.org/3/authentication) for more
     /// info about request token.
     public var requestToken: String?
     /// The expire time for the request token. Usually 1 hour after you grant a token.
@@ -47,7 +47,7 @@ public class TMDBManager {
     
     /// Read-only. The session ID persisted in keychain.
     ///
-    /// See [The Movie Database API - Authentication](https://developers.themoviedb.org/3/authentication)
+    /// See [this](https://developers.themoviedb.org/3/authentication)
     /// for more info about session ID.
     internal(set) public var sessionId: String? {
         get {
@@ -73,7 +73,7 @@ public class TMDBManager {
     ///
     /// This value will be persisted by UserDefaults.
     ///
-    /// See [The Movie Database API - Create Guest Session](https://developers.themoviedb.org/3/authentication/create-guest-session)
+    /// See [this](https://developers.themoviedb.org/3/authentication/create-guest-session)
     /// for more info about guest session ID.
     internal(set) public var guestSessionId: String? {
         get {
@@ -157,7 +157,7 @@ public class TMDBManager {
     /// There is also a `avaliableBackdropHeights` property and "original" size avaliable.
     public lazy var avaliableBackdropWidths: [Int] = {
         guard let sizes = backdropSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "w") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
     }()
     
     /// Avaliable heights for backdrops. Use this method to get this value:
@@ -168,7 +168,7 @@ public class TMDBManager {
     /// There is also a `avaliableBackdropWidths` property and "original" size avaliable.
     public lazy var avaliableBackdropHeights: [Int] = {
         guard let sizes = backdropSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "h") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
     }()
     
     var backdropSizes: [String]? {
@@ -192,7 +192,7 @@ public class TMDBManager {
     /// There is also a `avaliableLogoHeights` property and "original" size avaliable.
     public lazy var avaliableLogoWidths: [Int] = {
         guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "w") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
     }()
     
     /// Avaliable heights for logos. Use this method to get this value:
@@ -203,7 +203,7 @@ public class TMDBManager {
     /// There is also a `avaliableLogoWidths` property and "original" size avaliable.
     public lazy var avaliableLogoHeights: [Int] = {
         guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "h") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
     }()
     
     var logoSizes: [String]? {
@@ -227,7 +227,7 @@ public class TMDBManager {
     /// There is also a `avaliablePosterHeights` property and "original" size avaliable.
     public lazy var avaliablePosterWidths: [Int] = {
         guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "w") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
     }()
     
     /// Avaliable heights for posters. Use this method to get this value:
@@ -238,7 +238,7 @@ public class TMDBManager {
     /// There is also a `avaliablePosterWidths` property and "original" size avaliable.
     public lazy var avaliablePosterHeights: [Int] = {
         guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "h") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
     }()
     
     var posterSizes: [String]? {
@@ -262,7 +262,7 @@ public class TMDBManager {
     /// There is also a `avaliableProfileHeights` property and "original" size avaliable.
     public lazy var avaliableProfileWidths: [Int] = {
         guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "w") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
     }()
     
     /// Avaliable heights for profile. Use this method to get this value:
@@ -273,7 +273,7 @@ public class TMDBManager {
     /// There is also a `avaliableProfileWidths` property and "original" size avaliable.
     public lazy var avaliableProfileHeights: [Int] = {
         guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "h") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
     }()
     
     var profileSizes: [String]? {
@@ -297,7 +297,7 @@ public class TMDBManager {
     /// There is also a `avaliableStillHeights` property and "original" size avaliable.
     public lazy var avaliableStillWidths: [Int] = {
         guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "w") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
     }()
     
     /// Avaliable heights for stills. Use this method to get this value:
@@ -308,7 +308,7 @@ public class TMDBManager {
     /// There is also a `avaliableStillWidths` property and "original" size avaliable.
     public lazy var avaliableStillHeights: [Int] = {
         guard let sizes = logoSizes else { return [] }
-        return sizes.flatMap({ s in s.sizeFormatted(wOrH: "h") })
+        return sizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
     }()
     
     var stillSizes: [String]? {
@@ -404,5 +404,3 @@ extension TMDBManager {
         return guestSessionExpiresAt <= Date()
     }
 }
-
-

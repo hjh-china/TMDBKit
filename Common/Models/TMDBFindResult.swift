@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct TMDBFindResult {
+public struct TMDBFindResult: TMDBJsonInitable {
     public let movieResults: [TMDBMovieGeneral]
     public let personResults: [TMDBPersonWithKnownForMedia]
     public let tvResults: [TMDBTVShow]
     public let tvEpisodeResults: [TMDBTVEpisode]
     public let tvSeasonResults: [TMDBTVSeason]
     
-    init(fromJSON json: JSON) throws {
+    public init(fromJSON json: JSON) throws {
         let decoder = JSONDecoder()
         
         let movieData = try json["movie_results"].rawData()

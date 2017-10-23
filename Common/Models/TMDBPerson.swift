@@ -46,7 +46,7 @@ public struct TMDBPerson: Codable {
     }
 }
 
-public struct TMDBPersonWithKnownForMedia: CustomDebugStringConvertible {
+public struct TMDBPersonWithKnownForMedia: TMDBJsonInitable, CustomDebugStringConvertible {
     public let profilePath: String?
     public let adult: Bool
     public let id: Int
@@ -55,14 +55,14 @@ public struct TMDBPersonWithKnownForMedia: CustomDebugStringConvertible {
     public let name: String
     public let popularity: Double
     
-    init(fromJSON json: JSON) throws {
+    public init(fromJSON json: JSON) throws {
         guard
             let adult = json["adult"].bool,
             let id = json["id"].int,
             let name = json["name"].string,
             let popularity = json["popularity"].double
         else {
-            throw "Error init TMDBPerson: one of adult/id/name/popularity is nil.".error(domain: "models.TMDBPerson")
+            throw "Cannot init TMDBPersonWithKnownForMedia from JSON".error(domain: "models")
         }
         
         self.profilePath = json["profile_path"].string

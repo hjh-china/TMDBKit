@@ -40,14 +40,14 @@ public struct TMDBImages: Codable {
     public let posters: [TMDBImage]
 }
 
-public struct TMDBTaggedImages {
+public struct TMDBTaggedImages: TMDBJsonInitable {
     public let id: Int
     public let page: Int
     public let results: [TMDBTaggedImage]
     public let totalPages: Int
     public let totalResults: Int
     
-    init(fromJSON json: JSON) throws {
+    public init(fromJSON json: JSON) throws {
         guard
             let id = json["id"].int,
             let page = json["page"].int,

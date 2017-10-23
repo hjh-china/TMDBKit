@@ -43,24 +43,14 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getAccountStates(forMovie movie: Int,
                                      authentication: TMDBAuthenticationType,
-                                     completion: @escaping (AnyReturn<TMDBAccountStete>) -> Void) {
+                                     completion: @escaping (JSONInitableReturn<TMDBAccountStete>) -> Void) {
             guard authentication != .noAuthentication else {
                 completion(.fail(error: "Get account states needs authentication.".error(domain: "movies")))
                 return
             }
             performRequest(path: "/movie/\(movie)/account_states",
-                           authentication: authentication) { (result: JSONReturn) in
-                switch result {
-                case .success(let json):
-                    if let accountState = TMDBAccountStete(fromJSON: json) {
-                        completion(.success(any: accountState))
-                    } else {
-                        completion(.fail(error: "Cannot init account state object from data returned from TMDB.".error(domain: "movies")))
-                    }
-                case .fail(let error):
-                    completion(.fail(error: error))
-                }
-            }
+                           authentication: authentication,
+                           completion: completion)
         }
         
         /// Get all of the alternative titles for a movie.

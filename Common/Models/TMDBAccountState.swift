@@ -8,20 +8,20 @@
 
 import Foundation
 
-public struct TMDBAccountStete {
+public struct TMDBAccountStete: TMDBJsonInitable {
     public let id: Int
     public let favorite: Bool
     public let rated: Bool
     public let rating: Int?
     public let watchlist: Bool
     
-    init?(fromJSON json: JSON) {
+    public init(fromJSON json: JSON) throws {
         guard
             let id = json["id"].int,
             let favorite = json["rated"].bool,
             let watchlist = json["watchlist"].bool
         else {
-            return nil
+            throw "Cannot init TMDBAccountStete from JSON".error(domain: "models")
         }
         
         self.id = id

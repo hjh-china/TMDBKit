@@ -127,24 +127,14 @@ extension TMDBManager {
                            page: Int? = nil,
                            includeAdult: Bool? = nil,
                            region: String? = nil,
-                           completion: @escaping (AnyReturn<TMDBPersonWithKnownForMedia>) -> Void) {
+                           completion: @escaping (JSONInitableReturn<TMDBPersonWithKnownForMedia>) -> Void) {
             performRequest(path: "/search/person",
                            query: queryMaker(language: language,
                                              page: page,
                                              region: region,
                                              query: person,
-                                             includeAdult: includeAdult)){ (result: JSONReturn) in
-                switch result {
-                case .success(let json):
-                    do {
-                        completion(.success(any: try TMDBPersonWithKnownForMedia(fromJSON: json)))
-                    } catch let error {
-                        completion(.fail(error: error))
-                    }
-                case .fail(let error):
-                    completion(.fail(error: error))
-                }
-            }
+                                             includeAdult: includeAdult),
+                           completion: completion)
         }
         
         /// Search TV Shows.

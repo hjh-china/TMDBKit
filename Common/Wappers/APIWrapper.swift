@@ -98,6 +98,36 @@ extension TMDBManager {
             }
         }
         
+        /// Perform the request with object that needs manual initialization from JSON
+        /// returned in complition handler closure.
+        func performRequest<T>(method: String = "GET",
+                               path: String,
+                               query: [String: String] = [:],
+                               headers: [String: String] = [:],
+                               data: Data? = nil,
+                               authentication: TMDBAuthenticationType = .noAuthentication,
+                               expectedStatusCode: Int = 200,
+                               completion: @escaping (JSONInitableReturn<T>) -> Void) {
+            performRequest(method: method,
+                           path: path,
+                           query: query,
+                           headers: headers,
+                           data: data,
+                           authentication: authentication,
+                           expectedStatusCode: expectedStatusCode) { (result: JSONReturn) in
+                switch result {
+                case .success(let json):
+                    do {
+                        completion(.success(object: try T(fromJSON: json)))
+                    } catch let error {
+                        completion(.fail(error: error))
+                    }
+                case .fail(let error):
+                    completion(.fail(error: error))
+                }
+            }
+        }
+        
         /// Perform the request with nothing returned in complition handler closure.
         func performRequest(method: String = "GET",
                             path: String,
