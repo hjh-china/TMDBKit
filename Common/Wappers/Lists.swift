@@ -33,9 +33,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getDetails(forList list: Int, language: String?, completion: @escaping (ObjectReturn<TMDBList>) -> ()) {
-            manager.performRequest(path: "/list/\(list)",
-                                   query: queryMaker(language: language),
-                                   completion: completion)
+            performRequest(path: "/list/\(list)",
+                           query: queryMaker(language: language),
+                           completion: completion)
         }
         
         /// You can use this method to check if a movie has already been added to the list.
@@ -45,9 +45,9 @@ extension TMDBManager {
         ///   - list: List's ID.
         ///   - completion: Completion handler.
         public func checkItemStatus(whetherMovie movie: Int, isInList list: Int, completion: @escaping (ObjectReturn<TMDBItemStatus>) -> ()) {
-            manager.performRequest(path: "/list/\(list)/item_status",
-                                   query: ["movie_id": "\(movie)"],
-                                   completion: completion)
+            performRequest(path: "/list/\(list)/item_status",
+                           query: ["movie_id": "\(movie)"],
+                           completion: completion)
         }
         
         /// Create List.
@@ -61,11 +61,11 @@ extension TMDBManager {
             let list = ["name": name,
                         "description": description,
                         "language": language]
-            manager.performRequest(method: "POST",
-                                   path: "/list",
-                                   data: try! JSONEncoder().encode(list),
-                                   authentication: .user,
-                                   expectedStatusCode: 201) { (result: JSONReturn) in
+            performRequest(method: "POST",
+                           path: "/list",
+                           data: try! JSONEncoder().encode(list),
+                           authentication: .user,
+                           expectedStatusCode: 201) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     guard
@@ -90,12 +90,12 @@ extension TMDBManager {
         ///   - list: List's ID
         ///   - completion: Completion handler.
         public func add(movie: Int, toList list: Int, completion: @escaping (NilReturn) -> ()) {
-            manager.performRequest(method: "POST",
-                                   path: "/list/\(list)/add_item",
-                                   data: try! JSONEncoder().encode(["media_id": movie]),
-                                   authentication: .user,
-                                   expectedStatusCode: 201,
-                                   completion: completion)
+            performRequest(method: "POST",
+                           path: "/list/\(list)/add_item",
+                           data: try! JSONEncoder().encode(["media_id": movie]),
+                           authentication: .user,
+                           expectedStatusCode: 201,
+                           completion: completion)
         }
         
         /// Remove a movie from a list.
@@ -105,12 +105,12 @@ extension TMDBManager {
         ///   - list: List's ID.
         ///   - completion: Completion handler.
         public func remove(movie: Int, fromList list: Int, completion: @escaping (NilReturn) -> ()) {
-            manager.performRequest(method: "POST",
-                                   path: "/list/\(list)/remove_item",
-                                   data: try! JSONEncoder().encode(["media_id": movie]),
-                                   authentication: .user,
-                                   expectedStatusCode: 201,
-                                   completion: completion)
+            performRequest(method: "POST",
+                           path: "/list/\(list)/remove_item",
+                           data: try! JSONEncoder().encode(["media_id": movie]),
+                           authentication: .user,
+                           expectedStatusCode: 201,
+                           completion: completion)
         }
         
         /// Clear all of the items from a list.
@@ -119,12 +119,12 @@ extension TMDBManager {
         ///   - list: List's ID.
         ///   - completion: Completion handler.
         public func clear(list: Int, completion: @escaping (NilReturn) -> ()) {
-            manager.performRequest(method: "POST",
-                                   path: "/list/\(list)/remove_item",
-                                   query: ["confirm": "true"],
-                                   authentication: .user,
-                                   expectedStatusCode: 201,
-                                   completion: completion)
+            performRequest(method: "POST",
+                           path: "/list/\(list)/remove_item",
+                           query: ["confirm": "true"],
+                           authentication: .user,
+                           expectedStatusCode: 201,
+                           completion: completion)
         }
         
         /// Delete List
@@ -133,11 +133,11 @@ extension TMDBManager {
         ///   - list: List's ID.
         ///   - completion: Completion handler.
         public func delete(list: Int, completion: @escaping (NilReturn) -> ()) {
-            manager.performRequest(method: "DELETE",
-                                   path: "/list/\(list)/add_item",
-                                   authentication: .user,
-                                   expectedStatusCode: 201,
-                                   completion: completion)
+            performRequest(method: "DELETE",
+                           path: "/list/\(list)/add_item",
+                           authentication: .user,
+                           expectedStatusCode: 201,
+                           completion: completion)
         }
     }
 }

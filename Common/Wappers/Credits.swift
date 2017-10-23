@@ -17,7 +17,7 @@ extension TMDBManager {
         ///   - creditId: Credit's id.
         ///   - completiomn: Completion handler.
         public func getDetails(forCredit creditId: Int, completiomn: @escaping (JSONReturn) -> ()) {
-            manager.performRequest(path: "/credit/\(creditId)", completion: completiomn)
+            performRequest(path: "/credit/\(creditId)", completion: completiomn)
         }
     }
 }

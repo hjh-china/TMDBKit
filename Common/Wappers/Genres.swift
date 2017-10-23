@@ -21,9 +21,9 @@ extension TMDBManager {
         ///     - maxLength: 2
         ///   - completion: Completion handler.
         public func getMovieList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
-            manager.performRequest(path: "/genre/movie/list",
-                                   query: queryMaker(language: language),
-                                   completion: completion)
+            performRequest(path: "/genre/movie/list",
+                           query: queryMaker(language: language),
+                           completion: completion)
         }
         
         /// Get the list of official genres for TV shows.
@@ -35,9 +35,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getTVList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
-            manager.performRequest(path: "/genre/tv/list",
-                                   query: queryMaker(language: language),
-                                   completion: completion)
+            performRequest(path: "/genre/tv/list",
+                           query: queryMaker(language: language),
+                           completion: completion)
         }
         
         /// - IMPORTANT: This method is **deprecated**.
@@ -54,11 +54,11 @@ extension TMDBManager {
         ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`.
         ///   - completion: Completion handler.
         public func getMovies(byGenre genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
-            manager.performRequest(path: "/genre/\(genreId)/movies",
-                                   query: queryMaker(language: language,
-                                                     sortBy: sortBy,
-                                                     includeAdult: includeAdult),
-                                   completion: completion)
+            performRequest(path: "/genre/\(genreId)/movies",
+                           query: queryMaker(language: language,
+                                             sortBy: sortBy,
+                                             includeAdult: includeAdult),
+                           completion: completion)
         }
     }
 }

@@ -17,7 +17,7 @@ extension TMDBManager {
         ///   - companyId: The company's ID.
         ///   - completion: Completion handler.
         public func getDetails(forCompany companyId: Int, completion: @escaping (ObjectReturn<TMDBCompany>) -> ()) {
-            manager.performRequest(path: "/company/\(companyId)",
+            performRequest(path: "/company/\(companyId)",
                                    completion: completion)
         }
         
@@ -34,7 +34,7 @@ extension TMDBManager {
         ///   - page: Specify which page to query.
         ///   - completion: Completion handler.
         public func getMovies(fromCompany companyId: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
-            manager.performRequest(path: "/company/\(companyId)/movies",
+            performRequest(path: "/company/\(companyId)/movies",
                                    query: queryMaker(language: language, page: page),
                                    completion: completion)
         }

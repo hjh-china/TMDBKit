@@ -17,7 +17,7 @@ extension TMDBManager {
         ///   - keywordId: Keyword's ID.
         ///   - completion: Completion handler.
         public func getDetails(forKeywordId keywordId: Int, completion: @escaping (ObjectReturn<TMDBKeywords.TMDBKeyword>) -> ()) {
-            manager.performRequest(path: "/keyword/\(keywordId)", completion: completion)
+            performRequest(path: "/keyword/\(keywordId)", completion: completion)
         }
         
         /// Get the movies that belong to a keyword.
@@ -32,9 +32,9 @@ extension TMDBManager {
         ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
         ///   - completion: Completion handler.
         public func getMovies(forKeywordId keywordId: Int, language: String? = nil, includeAdult: Bool? = nil, completion: @escaping(ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
-            manager.performRequest(path: "/keyword/{keyword_id}/movies",
-                                   query: queryMaker(language: language, includeAdult: includeAdult),
-                                   completion: completion)
+            performRequest(path: "/keyword/{keyword_id}/movies",
+                           query: queryMaker(language: language, includeAdult: includeAdult),
+                           completion: completion)
         }
     }
 }

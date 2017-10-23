@@ -21,9 +21,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getDetails(forMovie movie: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBMovieDetailed>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)",
-                                   query: queryMaker(language: language),
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)",
+                           query: queryMaker(language: language),
+                           completion: completion)
         }
         
         /// Grab the following account states for a session:
@@ -41,8 +41,7 @@ extension TMDBManager {
                 completion(.fail(error: "Get account states needs authentication.".error(domain: "movies")))
                 return
             }
-            manager.performRequest(path: "/movie/\(movie)/account_states",
-                                   authentication: authentication) { (result: JSONReturn) in
+            performRequest(path: "/movie/\(movie)/account_states", authentication: authentication) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let accountState = TMDBAccountStete(fromJSON: json) {
@@ -63,9 +62,9 @@ extension TMDBManager {
         ///   - country: Country code.
         ///   - completion: Completion hanlder.
         public func getAlternativeTitles(forMovie movie: Int, country: String? = nil, completion: @escaping (ObjectReturn<TMDBAlternativeTitles>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/alternative_titles",
-                                   query: queryMaker(country: country),
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)/alternative_titles",
+                           query: queryMaker(country: country),
+                           completion: completion)
         }
         
         /// Get the changes for a movie. By default only the last 24 hours are returned.
@@ -82,10 +81,10 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getChanges(forMovie movie: Int, from startDate: String? = nil, to endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<[TMDBChanges]>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/changes",
-                                   query: queryMaker(page: page,
-                                                     startDate: startDate,
-                                                     endDate: endDate)) { (result: ObjectReturn<[String: [TMDBChanges]]>) in
+            performRequest(path: "/movie/\(movie)/changes",
+                           query: queryMaker(startDate: startDate,
+                                             endDate: endDate,
+                                             page: page)) { (result: ObjectReturn<[String: [TMDBChanges]]>) in
                 switch result {
                 case .success(let _results):
                     if let results = _results["changes"] {
@@ -105,8 +104,8 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
         public func getCredits(forMovie movie: Int, completion: @escaping (JSONReturn) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/credits",
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)/credits",
+                           completion: completion)
         }
 
         /// Get the images that belong to a movie.
@@ -129,9 +128,9 @@ extension TMDBManager {
             if let includeImageLanguage = includeImageLanguage {
                 query["include_image_language"] = includeImageLanguage
             }
-            manager.performRequest(path: "/movie/\(movie)/images",
-                                   query: query,
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)/images",
+                           query: query,
+                           completion: completion)
         }
         
         /// Get the keywords that have been added to a movie.
@@ -140,8 +139,8 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
         public func getKeywords(forMovie movie: Int, completion: @escaping (ObjectReturn<TMDBKeywords>) -> ()) {
-            manager.performRequest(path: "movie/\(movie)/keywords",
-                                   completion: completion)
+            performRequest(path: "movie/\(movie)/keywords",
+                           completion: completion)
         }
         
         /// Get the release date along with the certification for a movie.
@@ -150,8 +149,8 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
         public func getReleaseDates(forMovie movie: Int, completion: @escaping (ObjectReturn<TMDBReleaseDates>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/release_dates",
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)/release_dates",
+                           completion: completion)
         }
         
         /// Get the videos that have been added to a movie.
@@ -164,9 +163,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getVideos(forMovie movie: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBVideos>) -> ()) {
-            manager.performRequest(path: "/movie/{movie_id}/videos",
-                                   query: queryMaker(language: language),
-                                   completion: completion)
+            performRequest(path: "/movie/{movie_id}/videos",
+                           query: queryMaker(language: language),
+                           completion: completion)
         }
         
         /// Get a list of translations that have been created for a movie.
@@ -175,7 +174,7 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
         public func getTranslations(forMovie movie: Int, completion: @escaping (ObjectReturn<TMDBTranslations>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/translations", completion: completion)
+            performRequest(path: "/movie/\(movie)/translations", completion: completion)
         }
         
         /// Get a list of recommended movies for a movie.
@@ -192,9 +191,9 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getRecommendations(forMovie movie: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/recommendations",
-                                   query: queryMaker(language: language, page: page),
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)/recommendations",
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
         }
         
         /// Get a list of similar movies. This is **not** the same as the "Recommendation" system you see on the website.
@@ -213,9 +212,9 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getSimilarMovies(forMovie movie: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/similar",
-                                   query: queryMaker(language: language, page: page),
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)/similar",
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
         }
         
         /// Get the user reviews for a movie.
@@ -232,9 +231,9 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getReviews(forMovie movie: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBReview>>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/reviews",
-                                   query: queryMaker(language: language, page: page),
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)/reviews",
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
         }
         
         /// Get a list of lists that this movie belongs to.
@@ -251,9 +250,9 @@ extension TMDBManager {
         ///     - default: 1
         ///   - completion: Completion handler.
         public func getLists(forMovie movie: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBList>>) -> ()) {
-            manager.performRequest(path: "/movie/\(movie)/lists",
-                                   query: queryMaker(language: language, page: page),
-                                   completion: completion)
+            performRequest(path: "/movie/\(movie)/lists",
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
         }
         
         /// Rate a movie.
@@ -268,11 +267,11 @@ extension TMDBManager {
         ///   - authentication: Authentication type. Accepted `.user` or `.guest`.
         ///   - completion: Completion handler.
         public func rate(movie: Int, rating: Double, authentication: TMDBAuthenticationType, completion: @escaping (NilReturn) -> ()) {
-            manager.performRequest(method: "POST",
-                                   path: "/movie/\(movie)/rating",
-                                   data: try! JSONEncoder().encode(["value": rating]),
-                                   expectedStatusCode: 201,
-                                   completion: completion)
+            performRequest(method: "POST",
+                           path: "/movie/\(movie)/rating",
+                           data: try! JSONEncoder().encode(["value": rating]),
+                           expectedStatusCode: 201,
+                           completion: completion)
         }
         
         /// Remove your rating for a movie.
@@ -284,9 +283,9 @@ extension TMDBManager {
         ///   - authentication: Authentication type. Accepted `.user` or `.guest`.
         ///   - completion: Completion handler.
         public func removeRating(forMovie movie: Int, authentication: TMDBAuthenticationType, completion: @escaping (NilReturn) -> ()) {
-            manager.performRequest(method: "DELETE",
-                                   path: "/movie/\(movie)/rating",
-                                   completion: completion)
+            performRequest(method: "DELETE",
+                           path: "/movie/\(movie)/rating",
+                           completion: completion)
         }
         
         /// Get the most newly created movie. This is a live response and will continuously change.
@@ -298,9 +297,9 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getLatest(language: String? = nil, completion: @escaping (ObjectReturn<TMDBMovieDetailed>) -> ()) {
-            manager.performRequest(path: "/movie/latest",
-                                   query: queryMaker(language: language),
-                                   completion: completion)
+            performRequest(path: "/movie/latest",
+                           query: queryMaker(language: language),
+                           completion: completion)
         }
         
         /// Get a list of movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.
@@ -320,9 +319,9 @@ extension TMDBManager {
         ///     - pattern: `^[A-Z]{2}$`
         ///   - completion: Completion handler.
         public func getNowPlaying(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBNowPlayingMovies>) -> ()) {
-            manager.performRequest(path: "/movie/now_playing",
-                                   query: queryMaker(language: language, page: page, region: region),
-                                   completion: completion)
+            performRequest(path: "/movie/now_playing",
+                           query: queryMaker(language: language, page: page, region: region),
+                           completion: completion)
         }
         
         /// Get a list of the current popular movies on TMDb. This list updates daily.
@@ -340,9 +339,9 @@ extension TMDBManager {
         ///     - pattern: `^[A-Z]{2}$`
         ///   - completion: Completion handler.
         public func getPopular(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
-            manager.performRequest(path: "/movie/popular",
-                                   query: queryMaker(language: language, page: page, region: region),
-                                   completion: completion)
+            performRequest(path: "/movie/popular",
+                           query: queryMaker(language: language, page: page, region: region),
+                           completion: completion)
         }
         
         /// Get the top rated movies on TMDb.
@@ -360,9 +359,9 @@ extension TMDBManager {
         ///     - pattern: `^[A-Z]{2}$`
         ///   - completion: Completion handler.
         public func getTopRated(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
-            manager.performRequest(path: "/movie/top_rated",
-                                   query: queryMaker(language: language, page: page, region: region),
-                                   completion: completion)
+            performRequest(path: "/movie/top_rated",
+                           query: queryMaker(language: language, page: page, region: region),
+                           completion: completion)
         }
         
         /// Get a list of upcoming movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.
@@ -382,9 +381,9 @@ extension TMDBManager {
         ///     - pattern: `^[A-Z]{2}$`
         ///   - completion: Completion handler.
         public func getUpcoming(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
-            manager.performRequest(path: "/movie/upcoming",
-                                   query: queryMaker(language: language, page: page, region: region),
-                                   completion: completion)
+            performRequest(path: "/movie/upcoming",
+                           query: queryMaker(language: language, page: page, region: region),
+                           completion: completion)
         }
     }
 }

@@ -35,7 +35,7 @@ extension TMDBManager {
                 query["language"] = language
             }
             query["external_source"] = externalDource.rawValue
-            manager.performRequest(path: "/find/\(externalId)", query: query) { (result: JSONReturn) in
+            performRequest(path: "/find/\(externalId)", query: query) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     do {

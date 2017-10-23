@@ -12,9 +12,9 @@ extension TMDBManager {
     /// [People API](https://developers.themoviedb.org/3/people) wrapper class.
     public class PeopleAPIWrapper: APIWrapper {
         public func getDetails(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBPerson>) -> ()) {
-            manager.performRequest(path: "/person/\(person)",
-                                   query: queryMaker(language: language),
-                                   completion: completion)
+            performRequest(path: "/person/\(person)",
+                           query: queryMaker(language: language),
+                           completion: completion)
         }
     }
 }

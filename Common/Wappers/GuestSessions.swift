@@ -32,9 +32,9 @@ extension TMDBManager {
                 }
                 gsid = _gsid
             }
-            manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                                   query: queryMaker(language: language, sortBy: sortBy),
-                                   completion: completin)
+            performRequest(path: "/guest_session/\(gsid)/rated/movies",
+                           query: queryMaker(language: language, sortBy: sortBy),
+                           completion: completin)
         }
         
         /// Get the rated TV shows for a guest session.
@@ -58,9 +58,9 @@ extension TMDBManager {
                 }
                 gsid = _gsid
             }
-            manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                                   query: queryMaker(language: language, sortBy: sortBy),
-                                   completion: completin)
+            performRequest(path: "/guest_session/\(gsid)/rated/movies",
+                           query: queryMaker(language: language, sortBy: sortBy),
+                           completion: completin)
         }
         
         /// Get the rated TV episodes for a guest session.
@@ -84,9 +84,9 @@ extension TMDBManager {
                 }
                 gsid = _gsid
             }
-            manager.performRequest(path: "/guest_session/\(gsid)/rated/movies",
-                                   query: queryMaker(language: language, sortBy: sortBy),
-                                   completion: completin)
+            performRequest(path: "/guest_session/\(gsid)/rated/movies",
+                           query: queryMaker(language: language, sortBy: sortBy),
+                           completion: completin)
         }
     }
 }

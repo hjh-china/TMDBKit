@@ -31,7 +31,7 @@ extension TMDBManager {
             
             let relativeUrlString = "/authentication/token/new"
             
-            manager.performRequest(path: relativeUrlString) { (result: JSONReturn) in
+            performRequest(path: relativeUrlString) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let success = json["success"].bool,
@@ -66,7 +66,7 @@ extension TMDBManager {
             let relativeUrlString = "/authentication/session/new"
             let query = ["request_token": requestToken]
             
-            manager.performRequest(path: relativeUrlString, query: query) { (result: JSONReturn) in
+            performRequest(path: relativeUrlString, query: query) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let success = json["success"].bool,
@@ -105,7 +105,7 @@ extension TMDBManager {
             let query = ["username": username,
                          "password": password,
                          "request_token": requestToken]
-            manager.performRequest(path: relativeUrlString, query: query) { (result: JSONReturn) in
+            performRequest(path: relativeUrlString, query: query) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let success = json["success"].bool,
@@ -132,7 +132,7 @@ extension TMDBManager {
         /// If a guest session is not used for the first time within 24 hours, it will be automatically deleted.
         public func createGuestSession(completion: @escaping (NilReturn) -> ()) {
             let relativeUrlString = "/authentication/guest_session/new"
-            manager.performRequest(path: relativeUrlString) { (result: JSONReturn) in
+            performRequest(path: relativeUrlString) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     if let success = json["success"].bool,

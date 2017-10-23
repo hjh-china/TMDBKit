@@ -23,11 +23,11 @@ extension TMDBManager {
         ///         - maximum: 1000
         ///         - default: 1
         public func getMovieChangeList(startDate: String? = nil, endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangesListItem>>) -> ()) {
-            manager.performRequest(path: "/movie/changes",
-                                   query: query(startDate: startDate,
-                                                endDate: endDate,
-                                                page: page),
-                                   completion: completion)
+            performRequest(path: "/movie/changes",
+                           query: queryMaker(startDate: startDate,
+                                             endDate: endDate,
+                                             page: page),
+                           completion: completion)
         }
         
         /// Get a list of all of the TV Show ids that have been changed in the past 24 hours.
@@ -42,11 +42,11 @@ extension TMDBManager {
         ///         - maximum: 1000
         ///         - default: 1
         public func getTVChangeList(from startDate: String? = nil, to endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangesListItem>>) -> ()) {
-            manager.performRequest(path: "/tv/changes",
-                                   query: query(startDate: startDate,
-                                                endDate: endDate,
-                                                page: page),
-                                   completion: completion)
+            performRequest(path: "/tv/changes",
+                           query: queryMaker(startDate: startDate,
+                                             endDate: endDate,
+                                             page: page),
+                           completion: completion)
         }
         
         /// Get a list of all of the person ids that have been changed in the past 24 hours.
@@ -61,21 +61,11 @@ extension TMDBManager {
         ///         - maximum: 1000
         ///         - default: 1
         public func getPersonChangeList(from startDate: String? = nil, to endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangesListItem>>) -> ()) {
-            manager.performRequest(path: "/person/changes",
-                                   query: query(startDate: startDate,
-                                                endDate: endDate,
-                                                page: page),
-                                   completion: completion)
-        }
-        
-        func query(startDate: String?, endDate: String?, page: Int?) -> [String: String] {
-            var query: [String: String] = [:]
-            
-            if let startDate = startDate { query["start_date"] = startDate }
-            if let endDate = endDate { query["end_date"] = endDate }
-            if let page = page { query["page"] = "\(page)" }
-            
-            return query
+            performRequest(path: "/person/changes",
+                           query: queryMaker(startDate: startDate,
+                                             endDate: endDate,
+                                             page: page),
+                           completion: completion)
         }
     }
 }

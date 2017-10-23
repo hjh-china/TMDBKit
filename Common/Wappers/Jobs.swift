@@ -12,7 +12,7 @@ extension TMDBManager {
     /// [Jobs API](https://developers.themoviedb.org/3/jobs) wrapper class.
     public class JobsAPIWrapper: APIWrapper {
         public func getJobs(completion: @escaping (ObjectReturn<[TMDBJob]>) -> ()) {
-            manager.performRequest(path: "/job/list") { (result: ObjectReturn<[String: [TMDBJob]]>) in
+            performRequest(path: "/job/list") { (result: ObjectReturn<[String: [TMDBJob]]>) in
                 switch result {
                 case .success(let _jobs):
                     if let jobs = _jobs["jobs"] {

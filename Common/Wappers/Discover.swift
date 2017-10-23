@@ -43,9 +43,9 @@ extension TMDBManager {
             if let page = page {
                 query["page"] = "\(page)"
             }
-            manager.performRequest(path: "/discover/movie",
-                                   query: query,
-                                   completion: completion)
+            performRequest(path: "/discover/movie",
+                           query: query,
+                           completion: completion)
         }
         
         /// Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.
@@ -75,9 +75,9 @@ extension TMDBManager {
             if let page = page {
                 query["page"] = "\(page)"
             }
-            manager.performRequest(path: "/discover/tv",
-                                   query: query,
-                                   completion: completion)
+            performRequest(path: "/discover/tv",
+                           query: query,
+                           completion: completion)
         }
     }
 }
