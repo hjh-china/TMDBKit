@@ -10,7 +10,7 @@ import Foundation
 
 public struct TMDBNowPlayingMovies: Codable {
     public let page: Int
-    public let results: [TMDBMovie]
+    public let results: [TMDBMovieGeneral]
     public let totalPages: Int
     public let totalResults: Int
     public let dates: TMDBNowPlayingDates

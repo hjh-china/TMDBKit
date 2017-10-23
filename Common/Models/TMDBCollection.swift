@@ -14,7 +14,7 @@ public struct TMDBCollection: Codable {
     let overview: String
     let posterPath: String?
     let backdropPath: String?
-    let parts: [TMDBMovie]
+    let parts: [TMDBMovieGeneral]
     
     enum CodingKeys: String, CodingKey {
         case id

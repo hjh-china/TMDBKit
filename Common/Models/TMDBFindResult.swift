@@ -9,7 +9,7 @@
 import Foundation
 
 public struct TMDBFindResult {
-    public let movieResults: [TMDBMovie]
+    public let movieResults: [TMDBMovieGeneral]
     public let personResults: [TMDBFindPersonResult]
     public let tvResults: [TMDBTVShow]
     public let tvEpisodeResults: [TMDBTVEpisode]
@@ -19,7 +19,7 @@ public struct TMDBFindResult {
         public let profilePath: String?
         public let adult: Bool
         public let id: Int
-        public let knownForMovies: [TMDBMovie]
+        public let knownForMovies: [TMDBMovieGeneral]
         public let knownForTVShows: [TMDBTVShow]
         public let name: String
         public let popularity: Double
@@ -40,7 +40,7 @@ public struct TMDBFindResult {
             self.name        = name
             self.popularity  = popularity
             
-            var knownForMovies: [TMDBMovie] = []
+            var knownForMovies: [TMDBMovieGeneral] = []
             var knownForTVShows: [TMDBTVShow] = []
             
             if let arr = json["known_for"].array {
@@ -50,7 +50,7 @@ public struct TMDBFindResult {
                         case "movie":
                             do {
                                 let data = try obj.rawData()
-                                let movie = try JSONDecoder().decode(TMDBMovie.self, from: data)
+                                let movie = try JSONDecoder().decode(TMDBMovieGeneral.self, from: data)
                                 knownForMovies.append(movie)
                             } catch let error {
                                 print("Error initing known-for TMDBMovie from JSON for people \(name), but TMDBPeople should continue to init ;-)\n\(error)")
@@ -79,7 +79,7 @@ public struct TMDBFindResult {
         let decoder = JSONDecoder()
         
         let movieData = try json["movie_results"].rawData()
-        movieResults = try decoder.decode([TMDBMovie].self, from: movieData)
+        movieResults = try decoder.decode([TMDBMovieGeneral].self, from: movieData)
         let tvData = try json["tv_results"].rawData()
         tvResults = try decoder.decode([TMDBTVShow].self, from: tvData)
         let tvEpisodeData = try json["tv_episode_results"].rawData()

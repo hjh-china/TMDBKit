@@ -21,7 +21,7 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - sortBy: Sort the results. Allowed Values: `.createdAtAsc`, `.createdAtDesc`.
         ///   - completin: Completion handler.
-        public func getRatedMovies(byGuestSessionId guestSessionId: String? = nil, language: String? = nil, sortBy: TMDBSortOption? = nil, completin: @escaping(ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getRatedMovies(byGuestSessionId guestSessionId: String? = nil, language: String? = nil, sortBy: TMDBSortOption? = nil, completin: @escaping(ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             var gsid = ""
             if guestSessionId != nil {
                 gsid = guestSessionId!

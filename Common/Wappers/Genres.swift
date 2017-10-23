@@ -53,7 +53,7 @@ extension TMDBManager {
         ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
         ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`.
         ///   - completion: Completion handler.
-        public func getMovies(byGenre genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getMovies(byGenre genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/genre/\(genreId)/movies",
                                    query: queryMaker(language: language,
                                                      sortBy: sortBy,

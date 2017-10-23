@@ -55,7 +55,7 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getFavoriteMovies(inAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getFavoriteMovies(inAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/account/\(account)/favorite/movies",
                                    query: queryMaker(language: language,
                                                      sortBy: sortBy,
@@ -122,7 +122,7 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getRatedMovies(byAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getRatedMovies(byAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/account/\(account)/rated/movies",
                                    query: queryMaker(language: language,
                                                      sortBy: sortBy,
@@ -189,7 +189,7 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getMovieWatchlist(inAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getMovieWatchlist(inAccount account: Int, language: String? = nil, sortBy: TMDBSortOption? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/account/\(account)/watchlist/movies",
                                    query: queryMaker(language: language,
                                                      sortBy: sortBy,

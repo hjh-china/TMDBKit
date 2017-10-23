@@ -31,7 +31,7 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
         ///   - completion: Completion handler.
-        public func getMovies(forKeywordId keywordId: Int, language: String? = nil, includeAdult: Bool? = nil, completion: @escaping(ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getMovies(forKeywordId keywordId: Int, language: String? = nil, includeAdult: Bool? = nil, completion: @escaping(ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/keyword/{keyword_id}/movies",
                                    query: queryMaker(language: language, includeAdult: includeAdult),
                                    completion: completion)

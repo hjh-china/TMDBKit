@@ -191,7 +191,7 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getRecommendations(forMovie movie: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getRecommendations(forMovie movie: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/movie/\(movie)/recommendations",
                                    query: queryMaker(language: language, page: page),
                                    completion: completion)
@@ -212,7 +212,7 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getSimilarMovies(forMovie movie: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getSimilarMovies(forMovie movie: Int, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/movie/\(movie)/similar",
                                    query: queryMaker(language: language, page: page),
                                    completion: completion)
@@ -339,7 +339,7 @@ extension TMDBManager {
         ///   - region: Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
         ///     - pattern: `^[A-Z]{2}$`
         ///   - completion: Completion handler.
-        public func getPopular(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getPopular(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/movie/popular",
                                    query: queryMaker(language: language, page: page, region: region),
                                    completion: completion)
@@ -359,7 +359,7 @@ extension TMDBManager {
         ///   - region: Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
         ///     - pattern: `^[A-Z]{2}$`
         ///   - completion: Completion handler.
-        public func getTopRated(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getTopRated(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/movie/top_rated",
                                    query: queryMaker(language: language, page: page, region: region),
                                    completion: completion)
@@ -381,7 +381,7 @@ extension TMDBManager {
         ///   - region: Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
         ///     - pattern: `^[A-Z]{2}$`
         ///   - completion: Completion handler.
-        public func getUpcoming(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovie>>) -> ()) {
+        public func getUpcoming(language: String? = nil, page: Int? = nil, region: String? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
             manager.performRequest(path: "/movie/upcoming",
                                    query: queryMaker(language: language, page: page, region: region),
                                    completion: completion)
