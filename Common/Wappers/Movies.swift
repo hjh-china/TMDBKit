@@ -10,6 +10,9 @@ import Foundation
 
 extension TMDBManager {
     /// [Movies API](https://developers.themoviedb.org/3/movies) wrapper class.
+    /// - TODO:
+    ///   - Credits
+    ///   - append_to_response support
     public class MoviesAPIWrapper: APIWrapper {
         /// Get the primary information about a movie.
         ///
