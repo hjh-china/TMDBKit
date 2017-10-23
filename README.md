@@ -3,16 +3,14 @@
 
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 
-The Movie Database API v3 wrapper in Swift 4.
+The Movie Database API wrapper in Swift.
 
-I'm just a very beginner to the Swift world. And I decide to take this project as my first step.
+I'm just a very beginner to the Swift world. And I decide to take this project as my first step. So all issues and pull requests are welcomed :-)
 
-All issues and pull requests are welcomed :-)
-
-## Important
+## Project progress
 This framework is still under development. **DO NOT** use it... just yet 😂.
 
-### v3 current progress::
+### v3 current progress:
 |Section        |Build   |Test    |To-dos  |
 |---------------|:------:|:------:|--------|
 |Shared methods |☑️       |        |        |
@@ -23,7 +21,7 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 |Collections    |☑️       |        |        |
 |Companies      |☑️       |        |        |
 |Configuration  |☑️       |        |        |
-|Credits        |☑️       |        |        |
+|Credits        |☑️       |        |What's credits😂 I wish I have take English class more seriously.|
 |Discover       |☑️       |        |        |
 |Find           |☑️       |        |        |
 |Genres         |☑️       |        |        |
@@ -31,9 +29,9 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 |Jobs           |☑️       |        |        |
 |Keywords       |☑️       |        |        |
 |Lists          |☑️       |        |        |
-|Movies         |☑️       |        |        |
+|Movies         |☑️       |        |Cresits & append to response support|
 |Networks       |☑️       |        |        |
-|People         |☑️       |        |        |
+|People         |☑️       |        |Append to response support|
 |Reviews        |☑️       |        |        |
 |Search         |☑️       |        |        |
 |Timezones      |☑️       |        |        |
