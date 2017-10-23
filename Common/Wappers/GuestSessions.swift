@@ -14,14 +14,18 @@ extension TMDBManager {
         /// Get the rated movies for a guest session.
         ///
         /// - Parameters:
-        ///   - guestSessionId: Pass in a guest session ID to get the rated movies for this guest session. If set to `nil`, the manager will take persisted guest session ID.
+        ///   - guestSessionId: Pass in a guest session ID to get the rated movies for this guest session.
+        /// If set to `nil`, the manager will take persisted guest session ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - sortBy: Sort the results. Allowed Values: `.createdAtAsc`, `.createdAtDesc`.
         ///   - completin: Completion handler.
-        public func getRatedMovies(byGuestSessionId guestSessionId: String? = nil, language: String? = nil, sortBy: TMDBSortOption? = nil, completin: @escaping(ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
+        public func getRatedMovies(byGuestSessionId guestSessionId: String? = nil,
+                                   language: String? = nil,
+                                   sortBy: TMDBSortOption? = nil,
+                                   completin: @escaping(ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
             var gsid = ""
             if guestSessionId != nil {
                 gsid = guestSessionId!
@@ -40,14 +44,18 @@ extension TMDBManager {
         /// Get the rated TV shows for a guest session.
         ///
         /// - Parameters:
-        ///   - guestSessionId: Pass in a guest session ID to get the rated TV Shows for this guest session. If set to `nil`, the manager will take persisted guest session ID.
+        ///   - guestSessionId: Pass in a guest session ID to get the rated TV Shows for this guest session.
+        /// If set to `nil`, the manager will take persisted guest session ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - sortBy: Sort the results. Allowed Values: `.createdAtAsc`, `.createdAtDesc`.
         ///   - completin: Completion handler.
-        public func getRatedTVShows(byGuestSessionId guestSessionId: String? = nil, language: String? = nil, sortBy: TMDBSortOption? = nil, completin: @escaping(ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+        public func getRatedTVShows(byGuestSessionId guestSessionId: String? = nil,
+                                    language: String? = nil,
+                                    sortBy: TMDBSortOption? = nil,
+                                    completin: @escaping(ObjectReturn<TMDBPaged<TMDBTVShow>>) -> Void) {
             var gsid = ""
             if guestSessionId != nil {
                 gsid = guestSessionId!
@@ -66,14 +74,18 @@ extension TMDBManager {
         /// Get the rated TV episodes for a guest session.
         ///
         /// - Parameters:
-        ///   - guestSessionId: Pass in a guest session ID to get the rated TV Episodes for this guest session. If set to `nil`, the manager will take persisted guest session ID.
+        ///   - guestSessionId: Pass in a guest session ID to get the rated TV Episodes for this guest session.
+        /// If set to `nil`, the manager will take persisted guest session ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - sortBy: Sort the results. Allowed Values: `.createdAtAsc`, `.createdAtDesc`.
         ///   - completin: Completion handler.
-        public func getRatedTVEpisodes(byGuestSessionId guestSessionId: String? = nil, language: String? = nil, sortBy: TMDBSortOption? = nil, completin: @escaping(ObjectReturn<TMDBPaged<TMDBTVEpisode>>) -> ()) {
+        public func getRatedTVEpisodes(byGuestSessionId guestSessionId: String? = nil,
+                                       language: String? = nil,
+                                       sortBy: TMDBSortOption? = nil,
+                                       completin: @escaping(ObjectReturn<TMDBPaged<TMDBTVEpisode>>) -> Void) {
             var gsid = ""
             if guestSessionId != nil {
                 gsid = guestSessionId!

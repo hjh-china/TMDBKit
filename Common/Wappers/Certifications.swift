@@ -13,9 +13,11 @@ extension TMDBManager {
     public class CertificationsAPIWrapper: APIWrapper {        
         /// Get an up to date list of the officially supported movie certifications on TMDb.
         ///
-        /// - Parameter completion: Completion handler. If `.success`, carrys a value of `[String: [TMDBCertification]]`, of which key is country code, value is certifications for that country.
+        /// - Parameter completion: Completion handler. If `.success`, carrys a value of
+        /// `[String: [TMDBCertification]]`, of which key is country code, value is certifications for that country.
         public func getMovieCertifications(completion: @escaping (ObjectReturn<[String: [TMDBCertification]]>)-> ()) {
-            performRequest(path: "/certification/movie/list") { (result: ObjectReturn<[String: [String: [TMDBCertification]]]>) in
+            performRequest(path: "/certification/movie/list") {
+                (result: ObjectReturn<[String: [String: [TMDBCertification]]]>) in
                 switch result {
                 case .success(let _certifications):
                     if let certifications = _certifications["certifications"] {
@@ -31,9 +33,12 @@ extension TMDBManager {
         
         /// Get an up to date list of the officially supported TV show certifications on TMDb.
         ///
-        /// - Parameter completion: Completion handler. If `.success`, carrys a value of `[String: [TMDBCertification]]`, of which key is country code, value is certifications for that country.
+        /// - Parameter completion: Completion handler. If `.success`, carrys a value of
+        /// `[String: [TMDBCertification]]`, of which key is country code, value is certifications
+        /// for that country.
         public func getTVCertifications(completion: @escaping (ObjectReturn<[String: [TMDBCertification]]>)-> ()) {
-            performRequest(path: "/certification/tv/list") { (result: ObjectReturn<[String: [String: [TMDBCertification]]]>) in
+            performRequest(path: "/certification/tv/list") {
+                (result: ObjectReturn<[String: [String: [TMDBCertification]]]>) in
                 switch result {
                 case .success(let _certifications):
                     if let certifications = _certifications["certifications"] {

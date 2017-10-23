@@ -11,9 +11,11 @@ import Foundation
 extension TMDBManager {
     /// [Find API](https://developers.themoviedb.org/3/find) wrapper class.
     public class FindAPIWrapper: APIWrapper {
-        /// The find method makes it easy to search for objects in our database by an external id. For instance, an IMDB ID.
+        /// The find method makes it easy to search for objects in our database by an external id. For instance,
+        /// an IMDB ID.
         ///
-        /// This method will search all objects (movies, TV shows and people) and return the results in a single response.
+        /// This method will search all objects (movies, TV shows and people) and return the results in a
+        /// single response.
         ///
         /// The supported external sources for each object are as follows.
         /// - **IMDB ID:** movies, TV Shows, TV Episodes, people
@@ -29,7 +31,10 @@ extension TMDBManager {
         ///     - pattern: ([a-z]{2})-([A-Z]{2})
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func find(byExternalId externalId: String, externalDource: ExternalSource, language: String? = nil, completion: @escaping (AnyReturn<TMDBFindResult>) -> ()) {
+        public func find(byExternalId externalId: String,
+                         externalDource: ExternalSource,
+                         language: String? = nil,
+                         completion: @escaping (AnyReturn<TMDBFindResult>) -> Void) {
             var query: [String: String] = [:]
             if let language = language {
                 query["language"] = language

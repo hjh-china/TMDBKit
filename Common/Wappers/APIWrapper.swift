@@ -20,7 +20,7 @@ extension TMDBManager {
                             data: Data? = nil,
                             authentication: TMDBAuthenticationType = .noAuthentication,
                             expectedStatusCode: Int = 200,
-                            completion: @escaping (DataReturn) -> ()) {
+                            completion: @escaping (DataReturn) -> Void) {
             let _request = constructRequest(method: method,
                                             path: path,
                                             query: query,
@@ -46,7 +46,7 @@ extension TMDBManager {
                             data: Data? = nil,
                             authentication: TMDBAuthenticationType = .noAuthentication,
                             expectedStatusCode: Int = 200,
-                            completion: @escaping (JSONReturn) -> ()) {
+                            completion: @escaping (JSONReturn) -> Void) {
             performRequest(method: method,
                            path: path,
                            query: query,
@@ -76,7 +76,7 @@ extension TMDBManager {
                                data: Data? = nil,
                                authentication: TMDBAuthenticationType = .noAuthentication,
                                expectedStatusCode: Int = 200,
-                               completion: @escaping (ObjectReturn<T>) -> ()) {
+                               completion: @escaping (ObjectReturn<T>) -> Void) {
             performRequest(method: method,
                            path: path,
                            query: query,
@@ -106,7 +106,7 @@ extension TMDBManager {
                             data: Data? = nil,
                             authentication: TMDBAuthenticationType = .noAuthentication,
                             expectedStatusCode: Int = 200,
-                            completion: @escaping (NilReturn) -> ()) {
+                            completion: @escaping (NilReturn) -> Void) {
             performRequest(method: method,
                            path: path,
                            query: query,
@@ -131,7 +131,7 @@ extension TMDBManager {
         ///   - request: URLRequest that needs to be performmed.
         ///   - expectedStatusCode: Expected status code. Will return an error if the server returns a different code.
         ///   - completion: Completion handler with `DataReturn` enum.
-        func performRequest(request: URLRequest, expectedStatusCode: Int, completion: @escaping (DataReturn) -> ()) {
+        func performRequest(request: URLRequest, expectedStatusCode: Int, completion: @escaping (DataReturn) -> Void) {
             let session = URLSession.shared
             let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
                 
@@ -150,7 +150,9 @@ extension TMDBManager {
                             message += "Data returned from server is nil."
                         } else if response == nil {
                             message += "HTTPResponse is nil."
-                        } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != expectedStatusCode {
+                        } else if
+                            let httpResponse = response as? HTTPURLResponse,
+                            httpResponse.statusCode != expectedStatusCode {
                             message += "Response status code: \(httpResponse.statusCode), yet expecting \(expectedStatusCode). TMDB returned: \(String(describing: String(data: data!, encoding: .utf8)))"
                         } else {
                             completion(.fail(error: nil))
@@ -179,7 +181,7 @@ extension TMDBManager {
                               expectedStatusCode: Int) -> AnyReturn<URLRequest> {
             // Check API Key
             guard let apiKey = manager.apiKey else {
-                return .fail(error: "API Key is nil, please call setupClient(withApiKey:keyChainPrefix:) first.".error())
+                return .fail(error: "API Key is nil, call setupClient(withApiKey:keyChainPrefix:) first plz.".error())
             }
             
             // Construct URLComponments
@@ -200,7 +202,7 @@ extension TMDBManager {
                 break
             case .guest:
                 guard manager.guestAzuthrozied else {
-                    return .fail(error: "Guest session ID is nil or expired, please grant authentication first.".error())
+                    return .fail(error: "Guest session ID is nil or expired, grant authentication first plz.".error())
                 }
                 queryItems.append(URLQueryItem(name: "guest_session_id", value: manager.guestSessionId))
             case .user:

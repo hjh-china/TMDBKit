@@ -20,27 +20,35 @@ public class TMDBManager {
     ///
     /// This value will **NOT** be persisted.
     ///
-    /// See [The Movie Database API - Authentication](https://developers.themoviedb.org/3/authentication) for more info about request token.
+    /// See [The Movie Database API - Authentication](https://developers.themoviedb.org/3/authentication) for more
+    /// info about request token.
     public var requestToken: String?
     /// The expire time for the request token. Usually 1 hour after you grant a token.
     public var requestTokenExpiresAt: Date?
     
     /// Read-only. The key for session ID persisted in keychain.
     var kSessionId: String {
-        return persistencePrefix == nil ? "im.sr2k.TMDBKit.sessionId" : persistencePrefix! + "TMDBKit.sessionId"
+        return persistencePrefix == nil ?
+            "im.sr2k.TMDBKit.sessionId" :
+            persistencePrefix! + "TMDBKit.sessionId"
     }
     /// Read-only. The key for guest session ID persisted by UserDefaults.
     var kGuestSessionId: String {
-        return persistencePrefix == nil ? "im.sr2k.TMDBKit.guestSessionId" : persistencePrefix! + ".TMDBKit.guestSessionId"
+        return persistencePrefix == nil ?
+            "im.sr2k.TMDBKit.guestSessionId" :
+            persistencePrefix! + ".TMDBKit.guestSessionId"
     }
     /// Read-only. The key for guest session ID expire date persisted by UserDefaults.
     var kGuestSessionIdExpiresAt: String {
-        return persistencePrefix == nil ? "im.sr2k.TMDBKit.guestSessionIdExpDate" : persistencePrefix! + ".TMDBKit.guestSessionIdExpDate"
+        return persistencePrefix == nil ?
+            "im.sr2k.TMDBKit.guestSessionIdExpDate" :
+            persistencePrefix! + ".TMDBKit.guestSessionIdExpDate"
     }
     
     /// Read-only. The session ID persisted in keychain.
     ///
-    /// See [The Movie Database API - Authentication](https://developers.themoviedb.org/3/authentication) for more info about session ID.
+    /// See [The Movie Database API - Authentication](https://developers.themoviedb.org/3/authentication)
+    /// for more info about session ID.
     internal(set) public var sessionId: String? {
         get {
             if let accessTokenData = KeychainManager.loadData(forKey: kSessionId) {
@@ -65,7 +73,8 @@ public class TMDBManager {
     ///
     /// This value will be persisted by UserDefaults.
     ///
-    /// See [The Movie Database API - Authentication - Create Guest Session](https://developers.themoviedb.org/3/authentication/create-guest-session) for more info about guest session ID.
+    /// See [The Movie Database API - Create Guest Session](https://developers.themoviedb.org/3/authentication/create-guest-session)
+    /// for more info about guest session ID.
     internal(set) public var guestSessionId: String? {
         get {
             return UserDefaults.standard.object(forKey: kGuestSessionId) as? String
@@ -96,7 +105,9 @@ public class TMDBManager {
     /// Image base URL.
     internal(set) public var imageBaseUrlString: String? {
         get {
-            return persistencePrefix == nil ? nil : UserDefaults.standard.object(forKey: "\(persistencePrefix!).imageBaseUrlString") as? String
+            return persistencePrefix == nil ?
+                nil :
+                UserDefaults.standard.object(forKey: "\(persistencePrefix!).imageBaseUrlString") as? String
         }
         
         set {
@@ -109,7 +120,9 @@ public class TMDBManager {
     /// Image base URL with HTTPS.
     internal(set) public var secureImageBaseUrlString: String? {
         get {
-            return persistencePrefix == nil ? nil : UserDefaults.standard.object(forKey: "\(persistencePrefix!).secureImageBaseUrlString") as? String
+            return persistencePrefix == nil ?
+                nil :
+                UserDefaults.standard.object(forKey: "\(persistencePrefix!).secureImageBaseUrlString") as? String
         }
         
         set {
@@ -121,7 +134,9 @@ public class TMDBManager {
     /// Change keys.
     internal(set) public var changeKeys: [String] {
         get {
-            if let persistencePrefix = persistencePrefix, let changeKeys = UserDefaults.standard.object(forKey: "\(persistencePrefix).changeKeys") as? [String] {
+            if
+                let persistencePrefix = persistencePrefix,
+                let changeKeys = UserDefaults.standard.object(forKey: "\(persistencePrefix).changeKeys") as? [String] {
                 return changeKeys
             } else {
                 return []
@@ -158,7 +173,9 @@ public class TMDBManager {
     
     var backdropSizes: [String]? {
         get {
-            return persistencePrefix == nil ? nil : UserDefaults.standard.object(forKey: "\(persistencePrefix!).backdropSizes") as? [String]
+            return persistencePrefix == nil ?
+                nil :
+                UserDefaults.standard.object(forKey: "\(persistencePrefix!).backdropSizes") as? [String]
         }
         
         set {
@@ -191,7 +208,9 @@ public class TMDBManager {
     
     var logoSizes: [String]? {
         get {
-            return persistencePrefix == nil ? nil : UserDefaults.standard.object(forKey: "\(persistencePrefix!).logoSizes") as? [String]
+            return persistencePrefix == nil ?
+                nil :
+                UserDefaults.standard.object(forKey: "\(persistencePrefix!).logoSizes") as? [String]
         }
         
         set {
@@ -224,7 +243,9 @@ public class TMDBManager {
     
     var posterSizes: [String]? {
         get {
-            return persistencePrefix == nil ? nil : UserDefaults.standard.object(forKey: "\(persistencePrefix!).posterSizes") as? [String]
+            return persistencePrefix == nil ?
+                nil :
+                UserDefaults.standard.object(forKey: "\(persistencePrefix!).posterSizes") as? [String]
         }
         
         set {
@@ -257,7 +278,9 @@ public class TMDBManager {
     
     var profileSizes: [String]? {
         get {
-            return persistencePrefix == nil ? nil : UserDefaults.standard.object(forKey: "\(persistencePrefix!).profileSizes") as? [String]
+            return persistencePrefix == nil ?
+                nil :
+                UserDefaults.standard.object(forKey: "\(persistencePrefix!).profileSizes") as? [String]
         }
         
         set {
@@ -290,7 +313,9 @@ public class TMDBManager {
     
     var stillSizes: [String]? {
         get {
-            return persistencePrefix == nil ? nil : UserDefaults.standard.object(forKey: "\(persistencePrefix!).stillSizes") as? [String]
+            return persistencePrefix == nil ?
+                nil :
+                UserDefaults.standard.object(forKey: "\(persistencePrefix!).stillSizes") as? [String]
         }
         
         set {
@@ -343,14 +368,18 @@ public class TMDBManager {
     /// [Search API](https://developers.themoviedb.org/3/search) wrapper class.
     /// - TODO: Multi search.
     public let search = SearchAPIWrapper()
+    /// [Timezones API](https://developers.themoviedb.org/3/timezones) wrapper.
+    public let timezones = TimezonesAPIWrapper()
 }
 
 extension TMDBManager {
     /// Setup the TMDB client.
     ///
     /// - Parameters:
-    ///   - apiKey: Your API key, see [TMDB API - Introduction](https://developers.themoviedb.org/3/getting-started) for more info.
-    ///   - persistencePrefix: Prefix for persistence keys. Usually your app's bundle name. For example, you set this value as **com.yourCompanyName.yourAppName**, this value is used as:
+    ///   - apiKey: Your API key, see [TMDB API - Introduction](https://developers.themoviedb.org/3/getting-started)
+    /// for more info.
+    ///   - persistencePrefix: Prefix for persistence keys. Usually your app's bundle name. For example, you set
+    /// this value as **com.yourCompanyName.yourAppName**, this value is used as:
     ///     - the session ID will be persisted in keychain for key</br>
     ///     **com.yourCompanyName.yourAppName.sessionId**.
     ///     - avaliable logo sizes will be persisted with `UserDefaults` for key</br>

@@ -16,8 +16,10 @@ extension TMDBManager {
         /// - Parameters:
         ///   - network: Network's ID.
         ///   - completion: Completion handler.
-        public func getDetails(forNetwork network: Int, completion: @escaping(ObjectReturn<TMDBNetwork>) -> ()) {
-            performRequest(path: "/network/\(network)", completion: completion)
+        public func getDetails(forNetwork network: Int,
+                               completion: @escaping(ObjectReturn<TMDBNetwork>) -> Void) {
+            performRequest(path: "/network/\(network)",
+                           completion: completion)
         }
     }
 }

@@ -9,14 +9,13 @@
 import Foundation
 
 extension TMDBManager {
-    /// [Search API](https://developers.themoviedb.org/3/search) wrapper class.
-    /// - TODO: Multi search.
-    public class SearchAPIWrapper: APIWrapper {
+    /// [Timezones API](https://developers.themoviedb.org/3/timezones) wrapper class.
+    public class TimezonesAPIWrapper: APIWrapper {
         /// Get the list of supported timezones on TMDb.
         ///
         /// Returned dictonary in completion hanlder is `[CountryCode: [Timezone]]`.
         /// - Parameter completion: Completion handler.
-        public func getList(completion: @escaping (ObjectReturn<[String: [String]]>) -> ()) {
+        public func getList(completion: @escaping (ObjectReturn<[String: [String]]>) -> Void) {
             performRequest(path: "/timezones/list", completion: completion)
         }
     }

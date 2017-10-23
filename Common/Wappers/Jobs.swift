@@ -11,7 +11,7 @@ import Foundation
 extension TMDBManager {
     /// [Jobs API](https://developers.themoviedb.org/3/jobs) wrapper class.
     public class JobsAPIWrapper: APIWrapper {
-        public func getJobs(completion: @escaping (ObjectReturn<[TMDBJob]>) -> ()) {
+        public func getJobs(completion: @escaping (ObjectReturn<[TMDBJob]>) -> Void) {
             performRequest(path: "/job/list") { (result: ObjectReturn<[String: [TMDBJob]]>) in
                 switch result {
                 case .success(let _jobs):

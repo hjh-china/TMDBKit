@@ -26,8 +26,10 @@ extension TMDBManager {
             return URL(string: baseURLString)
         }
         
-        /// Create a temporary request token that can be used to validate a TMDb user login. More details about how this works can be found [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
-        public func createRequestToken(completion: @escaping (NilReturn) -> ()) {
+        /// Create a temporary request token that can be used to validate a TMDb user login. More details about
+        /// how this works can be found
+        /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
+        public func createRequestToken(completion: @escaping (NilReturn) -> Void) {
             
             let relativeUrlString = "/authentication/token/new"
             
@@ -42,10 +44,12 @@ extension TMDBManager {
                             self.manager.requestTokenExpiresAt = expiresAt.iso8601Date()
                             completion(.success)
                         } else {
-                            completion(.fail(error: "TMDB returned fail when creating request token.".error(domain: "authentication")))
+                            let err = "TMDB returned fail when creating request token.".error(domain: "authentication")
+                            completion(.fail(error: err))
                         }
                     } else {
-                        completion(.fail(error: "JSON data returned from TMDB for creating request token cannot be serialized.".error(domain: "authentication")))
+                        let err = "JSON data returned from TMDB for creating request token cannot be serialized.".error(domain: "authentication")
+                        completion(.fail(error: err))
                     }
                 case .fail(let error):
                     completion(.fail(error: error))
@@ -56,8 +60,10 @@ extension TMDBManager {
             }
         }
         
-        /// You can use this method to create a fully valid session ID once a user has validated the request token. More information about how this works can be found [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
-        public func createSession(completion: @escaping (NilReturn) -> ()) {
+        /// You can use this method to create a fully valid session ID once a user has validated
+        /// the request token. More information about how this works can be found
+        /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
+        public func createSession(completion: @escaping (NilReturn) -> Void) {
             guard let requestToken = manager.requestToken else {
                 completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
                 return
@@ -91,11 +97,14 @@ extension TMDBManager {
         
         /// This method allows an application to validate a request token by entering a username and password.
         ///
-        /// **Caution:** Please note, using this method is **strongly discouraged**. The preferred method of validating a request token is to have a user authenticate the request via the TMDb website. You can read about that method [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
+        /// **Caution:** Please note, using this method is **strongly discouraged**.
+        /// The preferred method of validating a request token is to have a user authenticate the request
+        /// via the TMDb website. You can read about that method
+        /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
         /// - Parameters:
         ///   - username: User's username
         ///   - password: User's password
-        public func createSessionWithLogin(username: String, password: String, completion: @escaping (NilReturn) -> ()) {
+        public func createSessionWithLogin(username: String, password: String, completion: @escaping (NilReturn) -> Void) {
             guard let requestToken = manager.requestToken else {
                 completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
                 return
@@ -125,12 +134,17 @@ extension TMDBManager {
             }
         }
         
-        /// This method will let you create a new guest session. Guest sessions are a type of session that will let a user rate movies and TV shows but not require them to have a TMDb user account. More information about user authentication can be found [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
+        /// This method will let you create a new guest session. Guest sessions are a type of session that
+        /// will let a user rate movies and TV shows but not require them to have a TMDb user account. More
+        /// information about user authentication can be found
+        /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
         ///
-        /// Please note, you should only generate a single guest session per user (or device) as you will be able to attach the ratings to a TMDb user account in the future. There is also IP limits in place so you should always make sure it's the end user doing the guest session actions.
+        /// Please note, you should only generate a single guest session per user (or device) as you will be
+        /// able to attach the ratings to a TMDb user account in the future. There is also IP limits in place
+        /// so you should always make sure it's the end user doing the guest session actions.
         ///
         /// If a guest session is not used for the first time within 24 hours, it will be automatically deleted.
-        public func createGuestSession(completion: @escaping (NilReturn) -> ()) {
+        public func createGuestSession(completion: @escaping (NilReturn) -> Void) {
             let relativeUrlString = "/authentication/guest_session/new"
             performRequest(path: relativeUrlString) { (result: JSONReturn) in
                 switch result {

@@ -21,7 +21,9 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func search(company: String, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBCompanyBasic>>) -> ()) {
+        public func search(company: String,
+                           page: Int? = nil,
+                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBCompanyBasic>>) -> Void) {
             performRequest(path: "/search/company",
                            query: queryMaker(page: page, query: company),
                            completion: completion)
@@ -40,7 +42,10 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func search(collection: String, language: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBCollectionBasic>>) -> ()) {
+        public func search(collection: String,
+                           language: String? = nil,
+                           page: Int? = nil,
+                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBCollectionBasic>>) -> Void) {
             performRequest(path: "/search/collection",
                            query: queryMaker(language: language, page: page, query: collection),
                            completion: completion)
@@ -55,7 +60,9 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func search(keyword: String, page: Int? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBKeyword>>) -> ()) {
+        public func search(keyword: String,
+                           page: Int? = nil,
+                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBKeyword>>) -> Void) {
             performRequest(path: "/search/keyword",
                            query: queryMaker(page: page, query: keyword),
                            completion: completion)
@@ -84,7 +91,7 @@ extension TMDBManager {
                            region: String? = nil,
                            year: Int? = nil,
                            primaryReleaseYear: Int? = nil,
-                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBCollectionBasic>>) -> ()) {
+                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBCollectionBasic>>) -> Void) {
             var query = queryMaker(language: language,
                                    page: page,
                                    region: region,
@@ -120,7 +127,7 @@ extension TMDBManager {
                            page: Int? = nil,
                            includeAdult: Bool? = nil,
                            region: String? = nil,
-                           completion: @escaping (AnyReturn<TMDBPersonWithKnownForMedia>) -> ()) {
+                           completion: @escaping (AnyReturn<TMDBPersonWithKnownForMedia>) -> Void) {
             performRequest(path: "/search/person",
                            query: queryMaker(language: language,
                                              page: page,
@@ -157,7 +164,7 @@ extension TMDBManager {
                            language: String? = nil,
                            page: Int? = nil,
                            firstAirDateYear: Int? = nil,
-                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> ()) {
+                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> Void) {
             var query = queryMaker(language: language, page: page, query: tvShow)
             if let firstAirDateYear = firstAirDateYear {
                 query["first_air_date_year"] = "\(firstAirDateYear)"

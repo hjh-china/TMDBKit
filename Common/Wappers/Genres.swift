@@ -20,7 +20,8 @@ extension TMDBManager {
         ///     - default: en-US
         ///     - maxLength: 2
         ///   - completion: Completion handler.
-        public func getMovieList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
+        public func getMovieList(inLanguage language: String? = nil,
+                                 completion: @escaping (ObjectReturn<TMDBGenres>) -> Void) {
             performRequest(path: "/genre/movie/list",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -34,7 +35,8 @@ extension TMDBManager {
         ///     - pattern: ([a-z]{2})-([A-Z]{2})
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getTVList(inLanguage language: String? = nil, completion: @escaping (ObjectReturn<TMDBGenres>) -> ()) {
+        public func getTVList(inLanguage language: String? = nil,
+                              completion: @escaping (ObjectReturn<TMDBGenres>) -> Void) {
             performRequest(path: "/genre/tv/list",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -42,7 +44,9 @@ extension TMDBManager {
         
         /// - IMPORTANT: This method is **deprecated**.
         ///
-        /// We highly recommend using [movie discover](https://developers.themoviedb.org/3/discover/movie-discover) instead of this method as it is much more flexible and will provide the same data with many more options and filters.
+        /// We highly recommend using
+        /// [movie discover](https://developers.themoviedb.org/3/discover/movie-discover) instead of this method
+        /// as it is much more flexible and will provide the same data with many more options and filters.
         ///
         /// - Parameters:
         ///   - genreId: Genre's ID.
@@ -53,7 +57,11 @@ extension TMDBManager {
         ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
         ///   - sortBy: Sort the results. **Allowed Values:** `.createdAtAsc`, `.createdAtDesc`.
         ///   - completion: Completion handler.
-        public func getMovies(byGenre genreId: Int, language: String? = nil, includeAdult: Bool? = nil, sortBy: TMDBSortOption? = nil, completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> ()) {
+        public func getMovies(byGenre genreId: Int,
+                              language: String? = nil,
+                              includeAdult: Bool? = nil,
+                              sortBy: TMDBSortOption? = nil,
+                              completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
             performRequest(path: "/genre/\(genreId)/movies",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,

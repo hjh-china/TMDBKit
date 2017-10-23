@@ -14,7 +14,8 @@ extension TMDBManager {
     public class PeopleAPIWrapper: APIWrapper {
         /// Get the primary person details by id.
         ///
-        /// **New as of November 9, 2016:** Biographies are now translatable on TMDb. This means you can query person details with a language parameter.
+        /// **New as of November 9, 2016:** Biographies are now translatable on TMDb. This means you can
+        /// query person details with a language parameter.
         ///
         /// - Parameters:
         ///   - person: Person's ID.
@@ -23,7 +24,9 @@ extension TMDBManager {
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getDetails(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBPerson>) -> ()) {
+        public func getDetails(forPerson person: Int,
+                               language: String? = nil,
+                               completion: @escaping (ObjectReturn<TMDBPerson>) -> Void) {
             performRequest(path: "/person/\(person)",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -38,7 +41,9 @@ extension TMDBManager {
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getMovieCredits(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBCredits>) -> ()) {
+        public func getMovieCredits(forPerson person: Int,
+                                    language: String? = nil,
+                                    completion: @escaping (ObjectReturn<TMDBCredits>) -> Void) {
             performRequest(path: "/person/\(person)/movie_credits",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -46,7 +51,8 @@ extension TMDBManager {
         
         /// Get the TV show credits for a person.
         ///
-        /// You can query for some extra details about the credit with the [credit method](https://developers.themoviedb.org/3/credits/get-credit-details).
+        /// You can query for some extra details about the credit with the
+        /// [credit method](https://developers.themoviedb.org/3/credits/get-credit-details).
         ///
         /// - Parameters:
         ///   - person: Person's ID.
@@ -55,7 +61,9 @@ extension TMDBManager {
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getTVCredits(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBCredits>) -> ()) {
+        public func getTVCredits(forPerson person: Int,
+                                 language: String? = nil,
+                                 completion: @escaping (ObjectReturn<TMDBCredits>) -> Void) {
             performRequest(path: "/person/\(person)/tv_credits",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -70,7 +78,9 @@ extension TMDBManager {
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getCombinedCredits(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBCredits>) -> ()) {
+        public func getCombinedCredits(forPerson person: Int,
+                                       language: String? = nil,
+                                       completion: @escaping (ObjectReturn<TMDBCredits>) -> Void) {
             performRequest(path: "/person/\(person)/combined_credits",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -94,7 +104,9 @@ extension TMDBManager {
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getExternalIds(forPerson person: Int, language: String? = nil, completion: @escaping (ObjectReturn<TMDBExternalIds>) -> ()) {
+        public func getExternalIds(forPerson person: Int,
+                                   language: String? = nil,
+                                   completion: @escaping (ObjectReturn<TMDBExternalIds>) -> Void) {
             performRequest(path: "/person/\(person)/external_ids",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -105,7 +117,7 @@ extension TMDBManager {
         /// - Parameters:
         ///   - person: Person's ID.
         ///   - completion: Completion handler.
-        public func getImages(forPerson person: Int, completion: @escaping (ObjectReturn<TMDBImage>) -> ()) {
+        public func getImages(forPerson person: Int, completion: @escaping (ObjectReturn<TMDBImage>) -> Void) {
             performRequest(path: "/person/\(person)/images", completion: completion)
         }
         
@@ -122,8 +134,12 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getTaggedImages(forPerson person: Int, language: String? = nil, page: Int? = nil, completion: @escaping (AnyReturn<TMDBTaggedImages>) -> ()) {
-            performRequest(path: "/person/\(person)/tagged_images", query: queryMaker(language: language, page: page)) { (result: JSONReturn) in
+        public func getTaggedImages(forPerson person: Int,
+                                    language: String? = nil,
+                                    page: Int? = nil,
+                                    completion: @escaping (AnyReturn<TMDBTaggedImages>) -> Void) {
+            performRequest(path: "/person/\(person)/tagged_images",
+                           query: queryMaker(language: language, page: page)) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     do {
@@ -151,7 +167,11 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getChanges(forPerson person: Int, from startDate: String? = nil, to endDate: String? = nil, page: Int? = nil, completion: @escaping (ObjectReturn<[TMDBPersonChanges]>) -> ()) {
+        public func getChanges(forPerson person: Int,
+                               from startDate: String? = nil,
+                               to endDate: String? = nil,
+                               page: Int? = nil,
+                               completion: @escaping (ObjectReturn<[TMDBPersonChanges]>) -> Void) {
             performRequest(path: "/movie/\(person)/changes",
                            query: queryMaker(startDate: startDate,
                                              endDate: endDate,
@@ -177,7 +197,7 @@ extension TMDBManager {
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getLatest(language: String? = nil, completion: @escaping (ObjectReturn<TMDBPerson>) -> ()) {
+        public func getLatest(language: String? = nil, completion: @escaping (ObjectReturn<TMDBPerson>) -> Void) {
             performRequest(path: "/person/latest",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -195,8 +215,11 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getPopular(language: String? = nil, page: Int? = nil, completion: @escaping (AnyReturn<TMDBPersonWithKnownForMedia>) -> ()) {
-            performRequest(path: "/person/popular", query: queryMaker(language: language, page: page)) { (result: JSONReturn) in
+        public func getPopular(language: String? = nil,
+                               page: Int? = nil,
+                               completion: @escaping (AnyReturn<TMDBPersonWithKnownForMedia>) -> Void) {
+            performRequest(path: "/person/popular",
+                           query: queryMaker(language: language, page: page)) { (result: JSONReturn) in
                 switch result {
                 case .success(let json):
                     do {
