@@ -9,50 +9,43 @@ I'm just a very beginner to the Swift world. And I decide to take this project a
 
 All issues and pull requests are welcomed :-)
 
-# Important
+## Important
 This framework is still under development. **DO NOT** use it... just yet 😂.
-Current progress:
-| Section | Build | Test | To-dos|
-|----------|:------:|:-----:|--------|
-|Shared methods| ☑️ | | |
 
-# Usage
-First `import TMDBKit`, and in your `AppDelegate`'s `application(application:, didFinishLaunchingWithOptions launchOptions:)`:
-```swift
-TMDBManager.shared.setupClient(withApiKey: "Your API Key", keyChainPrefix: "Your bundle identifier")
-```
+### v3 current progress::
+|Section        |Build   |Test    |To-dos  |
+|---------------|:------:|:------:|--------|
+|Shared methods |☑️       |        |        |
+|Account        |☑️       |        |        |
+|Authentication |☑️       |        |        |
+|Certifications |☑️       |        |        |
+|Changes        |☑️       |        |        |
+|Collections    |☑️       |        |        |
+|Companies      |☑️       |        |        |
+|Configuration  |☑️       |        |        |
+|Credits        |☑️       |        |        |
+|Discover       |☑️       |        |        |
+|Find           |☑️       |        |        |
+|Genres         |☑️       |        |        |
+|Guest Sessions |☑️       |        |        |
+|Jobs           |☑️       |        |        |
+|Keywords       |☑️       |        |        |
+|Lists          |☑️       |        |        |
+|Movies         |☑️       |        |        |
+|Networks       |☑️       |        |        |
+|People         |☑️       |        |        |
+|Reviews        |☑️       |        |        |
+|Search         |☑️       |        |        |
+|Timezones      |☑️       |        |        |
+|TV             |        |        |        |
+|TV Seasons     |        |        |        |
+|TV Episodes    |        |        |        |
+|Cleaning job   |        |        |        |
 
-## Get authentication
-First create a new request token and forward your user to the authentication URL:
-```swift
-// Create a new request token
-TMDBManager.shared.createRequestToken() { result in
-  switch result {
-  case .success:
-    guard 
-      let redirectURL = URL(string: "Your redirect url"),
-      let authURL = TMDBManager.shared.authenticationURL(redirectURL: redirectURL) 
-    else { return }
-    // Forward your user to the authentication URL
-    let TMDBAuth = SFSafariViewController(URL: authURL)
-    TMDBAuth.delegate = self
-    self.presentViewController(TMDBAuth, animated: true, completion: nil)
-  case .fail(let error):
-    print(error)
-  }
-}
-```
-After your user approves your request token, create a seesion ID:
-```swift
-TMDBManager.shared.createRequestToken() { result
-  switch result {
-  case .success:
-    // Do something...
-  case .fail(let error):
-    print(error)
-  }
-}
-```
+### v4 current progress::
+Will begin soon.
+
+## Usage
 
 ## License
 TMDBKit is available under the MIT license. See the LICENSE file for more info.
