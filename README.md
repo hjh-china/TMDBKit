@@ -13,28 +13,28 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 ### v3 current progress:
 |Section        |Build   |Test    |To-dos  |
 |---------------|:------:|:------:|--------|
-|Shared methods |☑️       |        |        |
-|Account        |☑️       |        |        |
-|Authentication |☑️       |        |        |
-|Certifications |☑️       |        |        |
-|Changes        |☑️       |        |        |
-|Collections    |☑️       |        |        |
-|Companies      |☑️       |        |        |
-|Configuration  |☑️       |        |        |
-|Credits        |☑️       |        |What's credits😂 I wish I have take English class more seriously.|
-|Discover       |☑️       |        |        |
-|Find           |☑️       |        |        |
-|Genres         |☑️       |        |        |
-|Guest Sessions |☑️       |        |        |
-|Jobs           |☑️       |        |        |
-|Keywords       |☑️       |        |        |
-|Lists          |☑️       |        |        |
-|Movies         |☑️       |        |Cresits & append to response support|
-|Networks       |☑️       |        |        |
-|People         |☑️       |        |Append to response support|
-|Reviews        |☑️       |        |        |
-|Search         |☑️       |        |        |
-|Timezones      |☑️       |        |        |
+|Shared methods |☑️      |☑️      |        |
+|Account        |☑️      |        |        |
+|Authentication |☑️      |        |        |
+|Certifications |☑️      |        |        |
+|Changes        |☑️      |        |        |
+|Collections    |☑️      |        |        |
+|Companies      |☑️      |        |        |
+|Configuration  |☑️      |        |        |
+|Credits        |☑️      |        |What is credits? I wish I have take English class more seriously😂.|
+|Discover       |☑️      |        |        |
+|Find           |☑️      |        |        |
+|Genres         |☑️      |        |        |
+|Guest Sessions |☑️      |        |        |
+|Jobs           |☑️      |        |        |
+|Keywords       |☑️      |        |        |
+|Lists          |☑️      |        |        |
+|Movies         |☑️      |        |Cresits & append to response support|
+|Networks       |☑️      |        |        |
+|People         |☑️      |        |Append to response support|
+|Reviews        |☑️      |        |        |
+|Search         |☑️      |        |        |
+|Timezones      |☑️      |        |        |
 |TV             |        |        |        |
 |TV Seasons     |        |        |        |
 |TV Episodes    |        |        |        |
