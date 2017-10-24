@@ -1,7 +1,7 @@
 
 .DS_Store
 Pods/
-TMDBKit.xcworkspace/xcuserdata/
+*.xcuserstate
 
 # Created by https://www.gitignore.io/api/swift,xcode,cobjective-c
 
@@ -104,4 +104,3 @@ fastlane/screenshots
 fastlane/test_output
 
 RevealServer.framework
-*.xcuserstate
