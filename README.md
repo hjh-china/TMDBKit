@@ -35,8 +35,8 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 |Reviews        |☑️      |        |        |
 |Search         |☑️      |        |        |
 |Timezones      |☑️      |        |        |
-|TV             |        |        |        |
-|TV Seasons     |        |        |        |
+|TV             |☑️      |        |        |
+|TV Seasons     |👊      |        |        |
 |TV Episodes    |        |        |        |
 |Cleaning job   |        |        |        |
 
