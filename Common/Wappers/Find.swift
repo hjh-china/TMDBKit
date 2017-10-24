@@ -34,11 +34,8 @@ extension TMDBManager {
         public func find(byExternalId externalId: String,
                          externalDource: ExternalSource,
                          language: String? = nil,
-                         completion: @escaping (JSONInitableReturn<TMDBFindResult>) -> Void) {
-            var query: [String: String] = [:]
-            if let language = language {
-                query["language"] = language
-            }
+                         completion: @escaping JSONInitableHandler<TMDBFindResult>) {
+            var query = queryMaker(language: language)
             query["external_source"] = externalDource.rawValue
             performRequest(path: "/find/\(externalId)",
                            query: query,

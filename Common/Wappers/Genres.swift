@@ -21,7 +21,7 @@ extension TMDBManager {
         ///     - maxLength: 2
         ///   - completion: Completion handler.
         public func getMovieList(inLanguage language: String? = nil,
-                                 completion: @escaping (ObjectReturn<TMDBGenres>) -> Void) {
+                                 completion: @escaping ObjectHandler<TMDBGenres>) {
             performRequest(path: "/genre/movie/list",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -36,7 +36,7 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getTVList(inLanguage language: String? = nil,
-                              completion: @escaping (ObjectReturn<TMDBGenres>) -> Void) {
+                              completion: @escaping ObjectHandler<TMDBGenres>) {
             performRequest(path: "/genre/tv/list",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -61,7 +61,7 @@ extension TMDBManager {
                               language: String? = nil,
                               includeAdult: Bool? = nil,
                               sortBy: TMDBSortOption? = nil,
-                              completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                              completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/genre/\(genreId)/movies",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,

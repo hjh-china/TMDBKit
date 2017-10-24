@@ -30,7 +30,7 @@ extension TMDBManager {
                                seasonNum: Int,
                                episodeNum: Int,
                                language: String? = nil,
-                               completion: @escaping (ObjectReturn<TMDBTVEpisodeDetailed>) -> Void) {
+                               completion: @escaping ObjectHandler<TMDBTVEpisodeDetailed>) {
             performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/episode/\(episodeNum)",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -53,7 +53,7 @@ extension TMDBManager {
                                from startDate: String? = nil,
                                to endDate: String? = nil,
                                page: Int? = nil,
-                               completion: @escaping (JSONReturn) -> Void) {
+                               completion: @escaping JSONHandler) {
             performRequest(path: "/tv/episode/\(tvEpisode)/changes",
                            query: queryMaker(startDate: startDate,
                                              endDate: endDate,
@@ -77,7 +77,7 @@ extension TMDBManager {
                                      seasonNum: Int,
                                      episodeNum: Int,
                                      authentication: TMDBAuthenticationType,
-                                     completion: @escaping (JSONInitableReturn<TMDBAccountStete>) -> Void) {
+                                     completion: @escaping JSONInitableHandler<TMDBAccountStete>) {
             guard authentication != .noAuthentication else {
                 completion(.fail(error: "Get account states needs authentication.".error(domain: "tv")))
                 return
@@ -102,7 +102,7 @@ extension TMDBManager {
                                seasonNum: Int,
                                episodeNum: Int,
                                language: String? = nil,
-                               completion: @escaping (ObjectReturn<TMDBTVEpisodeCredits>) -> ()) {
+                               completion: @escaping ObjectHandler<TMDBTVEpisodeCredits>) {
             performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/episode/\(episodeNum)/credits",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -126,7 +126,7 @@ extension TMDBManager {
         public func getExternalIds(forTVShow tvShow: Int,
                                    seasonNum: Int,
                                    episodeNum: Int,
-                                   completion: @escaping (ObjectReturn<TMDBExternalIds>) -> Void) {
+                                   completion: @escaping ObjectHandler<TMDBExternalIds>) {
             performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/episode/\(episodeNum)/external_ids",
                            completion: completion)
         }
@@ -159,7 +159,7 @@ extension TMDBManager {
                               episodeNum: Int,
                               language: String? = nil,
                               includeImageLanguage: String? = nil,
-                              completion: @escaping (ObjectReturn<TMDBStills>) -> Void) {
+                              completion: @escaping ObjectHandler<TMDBStills>) {
             var query = queryMaker(language: language)
             if let includeImageLanguage = includeImageLanguage {
                 query["include_image_language"] = includeImageLanguage
@@ -186,7 +186,7 @@ extension TMDBManager {
                               seasonNum: Int,
                               episodeNum: Int,
                               language: String? = nil,
-                              completion: @escaping (ObjectReturn<TMDBVideos>) -> Void) {
+                              completion: @escaping ObjectHandler<TMDBVideos>) {
             performRequest(path: "/tv/\(tvShow)/sesson/\(seasonNum)/videos",
                            query: queryMaker(language: language),
                            completion: completion)

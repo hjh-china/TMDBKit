@@ -25,7 +25,7 @@ extension TMDBManager {
         public func getRatedMovies(byGuestSessionId guestSessionId: String? = nil,
                                    language: String? = nil,
                                    sortBy: TMDBSortOption? = nil,
-                                   completin: @escaping(ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                                   completin: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             do {
                 let gsid = try prepare(guestSessionId: guestSessionId)
                 performRequest(path: "/guest_session/\(gsid)/rated/movies",
@@ -50,7 +50,7 @@ extension TMDBManager {
         public func getRatedTVShows(byGuestSessionId guestSessionId: String? = nil,
                                     language: String? = nil,
                                     sortBy: TMDBSortOption? = nil,
-                                    completin: @escaping(ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+                                    completin: @escaping ObjectHandler<TMDBPaged<TMDBTVShowGeneral>>) {
             do {
                 let gsid = try prepare(guestSessionId: guestSessionId)
                 performRequest(path: "/guest_session/\(gsid)/rated/tv",
@@ -75,7 +75,7 @@ extension TMDBManager {
         public func getRatedTVEpisodes(byGuestSessionId guestSessionId: String? = nil,
                                        language: String? = nil,
                                        sortBy: TMDBSortOption? = nil,
-                                       completin: @escaping(ObjectReturn<TMDBPaged<TMDBTVEpisodeGeneral>>) -> Void) {
+                                       completin: @escaping ObjectHandler<TMDBPaged<TMDBTVEpisodeGeneral>>) {
             do {
                 let gsid = try prepare(guestSessionId: guestSessionId)
                 performRequest(path: "/guest_session/\(gsid)/rated/tv/episodes",

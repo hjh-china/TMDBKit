@@ -161,10 +161,10 @@ extension TMDBManager {
                                to endDate: String? = nil,
                                page: Int? = nil,
                                completion: @escaping (ObjectReturn<[TMDBPersonChanges]>) -> Void) {
-            performRequest(path: "/movie/\(person)/changes",
-                           query: queryMaker(startDate: startDate,
-                                             endDate: endDate,
-                                             page: page)) { (result: ObjectReturn<[String: [TMDBPersonChanges]]>) in
+            performRequest(
+                path: "/movie/\(person)/changes",
+                query: queryMaker(startDate: startDate, endDate: endDate, page: page)
+            ){ (result: ObjectReturn<[String: [TMDBPersonChanges]]>) in
                 switch result {
                 case .success(let _results):
                     if let results = _results["changes"] {
@@ -186,7 +186,8 @@ extension TMDBManager {
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getLatest(language: String? = nil, completion: @escaping (ObjectReturn<TMDBPersonGeneral>) -> Void) {
+        public func getLatest(language: String? = nil,
+                              completion: @escaping (ObjectReturn<TMDBPersonGeneral>) -> Void) {
             performRequest(path: "/person/latest",
                            query: queryMaker(language: language),
                            completion: completion)

@@ -13,7 +13,7 @@ extension TMDBManager {
     public class AccountAPIWrapper: APIWrapper {
         /// Get your account details.
         /// - Parameter completion: Completion handler.
-        public func getDetails(completion: @escaping (ObjectReturn<TMDBUser>) -> Void) {
+        public func getDetails(completion: @escaping ObjectHandler<TMDBUser>) {
             performRequest(path: "/account",
                            authentication: .user,
                            completion: completion)
@@ -35,7 +35,7 @@ extension TMDBManager {
         public func getCreatedLists(byAccount account: Int,
                                     language: String? = nil,
                                     page: Int? = nil,
-                                    completion: @escaping (ObjectReturn<TMDBPaged<TMDBList>>) -> Void) {
+                                    completion: @escaping ObjectHandler<TMDBPaged<TMDBList>>) {
             performRequest(path: "/account/\(account)/lists",
                            query: queryMaker(language: language,
                                              sortBy: nil,
@@ -62,7 +62,7 @@ extension TMDBManager {
                                       language: String? = nil,
                                       sortBy: TMDBSortOption? = nil,
                                       page: Int? = nil,
-                                      completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                                      completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/account/\(account)/favorite/movies",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,
@@ -89,7 +89,7 @@ extension TMDBManager {
                                        language: String? = nil,
                                        sortBy: TMDBSortOption? = nil,
                                        page: Int? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+                                       completion: @escaping ObjectHandler<TMDBPaged<TMDBTVShowGeneral>>) {
             performRequest(path: "/account/\(account)/favorite/tv",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,
@@ -106,7 +106,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func markAsFavorite(forAccount account: Int,
                                    mediaObject: TMDBFavoriteMediaObject,
-                                   completion: @escaping (NilReturn) -> Void ) {
+                                   completion: @escaping Handler) {
             do {
             let data = try JSONEncoder().encode(mediaObject)
             performRequest(method: "POST",
@@ -138,7 +138,7 @@ extension TMDBManager {
                                    language: String? = nil,
                                    sortBy: TMDBSortOption? = nil,
                                    page: Int? = nil,
-                                   completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                                   completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/account/\(account)/rated/movies",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,
@@ -165,7 +165,7 @@ extension TMDBManager {
                                     language: String? = nil,
                                     sortBy: TMDBSortOption? = nil,
                                     page: Int? = nil,
-                                    completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+                                    completion: @escaping ObjectHandler<TMDBPaged<TMDBTVShowGeneral>>) {
             performRequest(path: "/account/\(account)/rated/tv",
                            query: queryMaker(language: language, sortBy: sortBy, page: page),
                            authentication: .user,
@@ -190,7 +190,7 @@ extension TMDBManager {
                                        language: String? = nil,
                                        sortBy: TMDBSortOption? = nil,
                                        page: Int? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+                                       completion: @escaping ObjectHandler<TMDBPaged<TMDBTVShowGeneral>>) {
             performRequest(path: "/account/\(account)/rated/episodes",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,
@@ -217,7 +217,7 @@ extension TMDBManager {
                                       language: String? = nil,
                                       sortBy: TMDBSortOption? = nil,
                                       page: Int? = nil,
-                                      completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                                      completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/account/\(account)/watchlist/movies",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,
@@ -244,7 +244,7 @@ extension TMDBManager {
                                        language: String? = nil,
                                        sortBy: TMDBSortOption? = nil,
                                        page: Int? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+                                       completion: @escaping ObjectHandler<TMDBPaged<TMDBTVShowGeneral>>) {
             performRequest(path: "/account/\(account)/watchlist/tv",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,
@@ -261,7 +261,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func addToWatchlist(forAccount account: Int,
                                    mediaObject: TMDBWatchlistMediaObject,
-                                   completion: @escaping (NilReturn) -> Void ) {
+                                   completion: @escaping Handler) {
             do {
                 let data = try JSONEncoder().encode(mediaObject)
                 performRequest(method: "POST",

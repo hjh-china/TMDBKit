@@ -48,7 +48,7 @@ extension TMDBManager {
         /// - Parameter completion: Completion handler.
         public func movieDiscover(withOptions options: [TMDBMovieDiscoverOption],
                                   inPage page: Int? = nil,
-                                  completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                                  completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             var query: [String: String] = [:]
             for option in options {
                 query[option.key] = option.value
@@ -84,7 +84,7 @@ extension TMDBManager {
         /// - Parameter completion: Completion handler.
         public func tvDiscover(withOptions options: [TMDBTVDiscoverOption],
                                inPage page: Int? = nil,
-                               completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+                               completion: @escaping ObjectHandler<TMDBPaged<TMDBTVShowGeneral>>) {
             var query: [String: String] = [:]
             for option in options {
                 query[option.key] = option.value

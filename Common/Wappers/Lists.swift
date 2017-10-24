@@ -35,7 +35,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getDetails(forList list: Int,
                                language: String?,
-                               completion: @escaping (ObjectReturn<TMDBList>) -> Void) {
+                               completion: @escaping ObjectHandler<TMDBList>) {
             performRequest(path: "/list/\(list)",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -49,7 +49,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func checkItemStatus(whetherMovie movie: Int,
                                     isInList list: Int,
-                                    completion: @escaping (ObjectReturn<TMDBItemStatus>) -> Void) {
+                                    completion: @escaping ObjectHandler<TMDBItemStatus>) {
             performRequest(path: "/list/\(list)/item_status",
                            query: ["movie_id": "\(movie)"],
                            completion: completion)
@@ -65,7 +65,7 @@ extension TMDBManager {
         public func createList(named name: String,
                                description: String,
                                language: String,
-                               completion: @escaping (AnyReturn<Int>) -> Void) {
+                               completion: @escaping AnyHandler<Int>) {
             do {
                 let list = ["name": name,
                             "description": description,
@@ -101,7 +101,7 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - list: List's ID
         ///   - completion: Completion handler.
-        public func add(movie: Int, toList list: Int, completion: @escaping (NilReturn) -> Void) {
+        public func add(movie: Int, toList list: Int, completion: @escaping Handler) {
             do {
                 performRequest(method: "POST",
                                path: "/list/\(list)/add_item",
@@ -120,7 +120,7 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - list: List's ID.
         ///   - completion: Completion handler.
-        public func remove(movie: Int, fromList list: Int, completion: @escaping (NilReturn) -> Void) {
+        public func remove(movie: Int, fromList list: Int, completion: @escaping Handler) {
             do {
                 performRequest(method: "POST",
                                path: "/list/\(list)/remove_item",
@@ -138,7 +138,7 @@ extension TMDBManager {
         /// - Parameters:
         ///   - list: List's ID.
         ///   - completion: Completion handler.
-        public func clear(list: Int, completion: @escaping (NilReturn) -> Void) {
+        public func clear(list: Int, completion: @escaping Handler) {
             performRequest(method: "POST",
                            path: "/list/\(list)/remove_item",
                            query: ["confirm": "true"],
@@ -152,7 +152,7 @@ extension TMDBManager {
         /// - Parameters:
         ///   - list: List's ID.
         ///   - completion: Completion handler.
-        public func delete(list: Int, completion: @escaping (NilReturn) -> Void) {
+        public func delete(list: Int, completion: @escaping Handler) {
             performRequest(method: "DELETE",
                            path: "/list/\(list)/add_item",
                            authentication: .user,

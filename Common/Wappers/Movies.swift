@@ -25,7 +25,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getDetails(forMovie movie: Int,
                                language: String? = nil,
-                               completion: @escaping (ObjectReturn<TMDBMovieDetailed>) -> Void) {
+                               completion: @escaping ObjectHandler<TMDBMovieDetailed>) {
             performRequest(path: "/movie/\(movie)",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -43,9 +43,10 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getAccountStates(forMovie movie: Int,
                                      authentication: TMDBAuthenticationType,
-                                     completion: @escaping (JSONInitableReturn<TMDBAccountStete>) -> Void) {
+                                     completion: @escaping JSONInitableHandler<TMDBAccountStete>) {
             guard authentication != .noAuthentication else {
-                completion(.fail(error: "Get account states needs authentication.".error(domain: "movies")))
+                let msg = "Get account states needs authentication."
+                completion(.fail(error: msg.error(domain: "movies")))
                 return
             }
             performRequest(path: "/movie/\(movie)/account_states",
@@ -61,7 +62,7 @@ extension TMDBManager {
         ///   - completion: Completion hanlder.
         public func getAlternativeTitles(forMovie movie: Int,
                                          country: String? = nil,
-                                         completion: @escaping (ObjectReturn<TMDBAlternativeTitles>) -> Void) {
+                                         completion: @escaping ObjectHandler<TMDBAlternativeTitles>) {
             performRequest(path: "/movie/\(movie)/alternative_titles",
                            query: queryMaker(country: country),
                            completion: completion)
@@ -83,7 +84,7 @@ extension TMDBManager {
         public func getChanges(forMovie movie: Int,
                                from startDate: String? = nil,
                                to endDate: String? = nil,
-                               page: Int? = nil, completion: @escaping (ObjectReturn<[TMDBChangeDetailed]>) -> Void) {
+                               page: Int? = nil, completion: @escaping ObjectHandler<[TMDBChangeDetailed]>) {
             performRequest(path: "/movie/\(movie)/changes",
                            query: queryMaker(startDate: startDate,
                                              endDate: endDate,
@@ -107,7 +108,7 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
         public func getCredits(forMovie movie: Int,
-                               completion: @escaping (ObjectReturn<TMDBCreditsBasic>) -> Void) {
+                               completion: @escaping ObjectHandler<TMDBCreditsBasic>) {
             performRequest(path: "/movie/\(movie)/credits",
                            completion: completion)
         }
@@ -132,7 +133,7 @@ extension TMDBManager {
         public func getImages(forMovie movie: Int,
                               language: String? = nil,
                               includeImageLanguage: String? = nil,
-                              completion: @escaping (ObjectReturn<TMDBImages>) -> Void) {
+                              completion: @escaping ObjectHandler<TMDBImages>) {
             var query = queryMaker(language: language)
             if let includeImageLanguage = includeImageLanguage {
                 query["include_image_language"] = includeImageLanguage
@@ -147,7 +148,7 @@ extension TMDBManager {
         /// - Parameters:
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
-        public func getKeywords(forMovie movie: Int, completion: @escaping (ObjectReturn<TMDBKeywords>) -> Void) {
+        public func getKeywords(forMovie movie: Int, completion: @escaping ObjectHandler<TMDBKeywords>) {
             performRequest(path: "movie/\(movie)/keywords",
                            completion: completion)
         }
@@ -158,7 +159,7 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
         public func getReleaseDates(forMovie movie: Int,
-                                    completion: @escaping (ObjectReturn<TMDBReleaseDates>) -> Void) {
+                                    completion: @escaping ObjectHandler<TMDBReleaseDates>) {
             performRequest(path: "/movie/\(movie)/release_dates",
                            completion: completion)
         }
@@ -174,7 +175,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getVideos(forMovie movie: Int,
                               language: String? = nil,
-                              completion: @escaping (ObjectReturn<TMDBVideos>) -> Void) {
+                              completion: @escaping ObjectHandler<TMDBVideos>) {
             performRequest(path: "/movie/\(movie)/videos",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -186,7 +187,7 @@ extension TMDBManager {
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
         public func getTranslations(forMovie movie: Int,
-                                    completion: @escaping (ObjectReturn<TMDBTranslations>) -> Void) {
+                                    completion: @escaping ObjectHandler<TMDBTranslations>) {
             performRequest(path: "/movie/\(movie)/translations", completion: completion)
         }
         
@@ -206,7 +207,7 @@ extension TMDBManager {
         public func getRecommendations(forMovie movie: Int,
                                        language: String? = nil,
                                        page: Int? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                                       completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/movie/\(movie)/recommendations",
                            query: queryMaker(language: language, page: page),
                            completion: completion)
@@ -231,7 +232,7 @@ extension TMDBManager {
         public func getSimilar(forMovie movie: Int,
                                language: String? = nil,
                                page: Int? = nil,
-                               completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                               completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/movie/\(movie)/similar",
                            query: queryMaker(language: language, page: page),
                            completion: completion)
@@ -253,7 +254,7 @@ extension TMDBManager {
         public func getReviews(forMovie movie: Int,
                                language: String? = nil,
                                page: Int? = nil,
-                               completion: @escaping (ObjectReturn<TMDBPaged<TMDBReview>>) -> Void) {
+                               completion: @escaping ObjectHandler<TMDBPaged<TMDBReview>>) {
             performRequest(path: "/movie/\(movie)/reviews",
                            query: queryMaker(language: language, page: page),
                            completion: completion)
@@ -275,7 +276,7 @@ extension TMDBManager {
         public func getLists(forMovie movie: Int,
                              language: String? = nil,
                              page: Int? = nil,
-                             completion: @escaping (ObjectReturn<TMDBPaged<TMDBList>>) -> Void) {
+                             completion: @escaping ObjectHandler<TMDBPaged<TMDBList>>) {
             performRequest(path: "/movie/\(movie)/lists",
                            query: queryMaker(language: language, page: page),
                            completion: completion)
@@ -297,7 +298,7 @@ extension TMDBManager {
         public func rate(movie: Int,
                          rating: Double,
                          authentication: TMDBAuthenticationType,
-                         completion: @escaping (NilReturn) -> Void) {
+                         completion: @escaping Handler) {
             guard authentication != .noAuthentication else {
                 completion(.fail(error: "Rate a movie needs authentication.".error(domain: "movies")))
                 return
@@ -325,7 +326,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func removeRating(forMovie movie: Int,
                                  authentication: TMDBAuthenticationType,
-                                 completion: @escaping (NilReturn) -> Void) {
+                                 completion: @escaping Handler) {
             guard authentication != .noAuthentication else {
                 completion(.fail(error: "Remove a rating needs authentication.".error(domain: "movies")))
                 return
@@ -345,7 +346,7 @@ extension TMDBManager {
         ///     - default: en-US
         ///   - completion: Completion handler.
         public func getLatest(language: String? = nil,
-                              completion: @escaping (ObjectReturn<TMDBMovieDetailed>) -> Void) {
+                              completion: @escaping ObjectHandler<TMDBMovieDetailed>) {
             performRequest(path: "/movie/latest",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -372,7 +373,7 @@ extension TMDBManager {
         public func getNowPlaying(language: String? = nil,
                                   page: Int? = nil,
                                   region: String? = nil,
-                                  completion: @escaping (ObjectReturn<TMDBNowPlayingMovies>) -> Void) {
+                                  completion: @escaping ObjectHandler<TMDBNowPlayingMovies>) {
             performRequest(path: "/movie/now_playing",
                            query: queryMaker(language: language, page: page, region: region),
                            completion: completion)
@@ -395,7 +396,7 @@ extension TMDBManager {
         public func getPopular(language: String? = nil,
                                page: Int? = nil,
                                region: String? = nil,
-                               completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                               completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/movie/popular",
                            query: queryMaker(language: language, page: page, region: region),
                            completion: completion)
@@ -418,7 +419,7 @@ extension TMDBManager {
         public func getTopRated(language: String? = nil,
                                 page: Int? = nil,
                                 region: String? = nil,
-                                completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                                completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/movie/top_rated",
                            query: queryMaker(language: language, page: page, region: region),
                            completion: completion)
@@ -445,7 +446,7 @@ extension TMDBManager {
         public func getUpcoming(language: String? = nil,
                                 page: Int? = nil,
                                 region: String? = nil,
-                                completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+                                completion: @escaping ObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
             performRequest(path: "/movie/upcoming",
                            query: queryMaker(language: language, page: page, region: region),
                            completion: completion)

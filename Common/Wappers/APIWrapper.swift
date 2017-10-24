@@ -21,7 +21,7 @@ extension TMDBManager {
                             data: Data? = nil,
                             authentication: TMDBAuthenticationType = .noAuthentication,
                             expectedStatusCode: Int = 200,
-                            completion: @escaping (DataReturn) -> Void) {
+                            completion: @escaping DataHandler) {
             let _request = constructRequest(method: method,
                                             path: path,
                                             query: query,
@@ -47,7 +47,7 @@ extension TMDBManager {
                             data: Data? = nil,
                             authentication: TMDBAuthenticationType = .noAuthentication,
                             expectedStatusCode: Int = 200,
-                            completion: @escaping (JSONReturn) -> Void) {
+                            completion: @escaping JSONHandler) {
             performRequest(method: method,
                            path: path,
                            query: query,
@@ -57,12 +57,8 @@ extension TMDBManager {
                            expectedStatusCode: expectedStatusCode) { (result: DataReturn) in
                 switch result {
                 case .success(let data):
-                    do {
-                        let json = try JSON(data: data)
-                        completion(.success(json: json))
-                    } catch let error {
-                        completion(.fail(error: error))
-                    }
+                    let json = JSON(data: data)
+                    completion(.success(json: json))
                 case .fail(let error):
                     completion(.fail(error: error))
                 }
@@ -77,7 +73,7 @@ extension TMDBManager {
                                data: Data? = nil,
                                authentication: TMDBAuthenticationType = .noAuthentication,
                                expectedStatusCode: Int = 200,
-                               completion: @escaping (ObjectReturn<T>) -> Void) {
+                               completion: @escaping ObjectHandler<T>) {
             performRequest(method: method,
                            path: path,
                            query: query,
@@ -108,7 +104,7 @@ extension TMDBManager {
                                data: Data? = nil,
                                authentication: TMDBAuthenticationType = .noAuthentication,
                                expectedStatusCode: Int = 200,
-                               completion: @escaping (JSONInitableReturn<T>) -> Void) {
+                               completion: @escaping JSONInitableHandler<T>) {
             performRequest(method: method,
                            path: path,
                            query: query,
@@ -137,7 +133,7 @@ extension TMDBManager {
                             data: Data? = nil,
                             authentication: TMDBAuthenticationType = .noAuthentication,
                             expectedStatusCode: Int = 200,
-                            completion: @escaping (NilReturn) -> Void) {
+                            completion: @escaping Handler) {
             performRequest(method: method,
                            path: path,
                            query: query,
@@ -162,7 +158,7 @@ extension TMDBManager {
         ///   - request: URLRequest that needs to be performmed.
         ///   - expectedStatusCode: Expected status code. Will return an error if the server returns a different code.
         ///   - completion: Completion handler with `DataReturn` enum.
-        func performRequest(request: URLRequest, expectedStatusCode: Int, completion: @escaping (DataReturn) -> Void) {
+        func performRequest(request: URLRequest, expectedStatusCode: Int, completion: @escaping DataHandler) {
             let session = URLSession.shared
             let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
                 

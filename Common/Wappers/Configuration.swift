@@ -26,7 +26,7 @@ extension TMDBManager {
         /// The configuration method also contains the list of change keys which can be useful if you are
         /// building an app that consumes data from the change feed.
         /// - Parameter completion: Completion handler.
-        public func getAPIConfiguration(completion: @escaping (NilReturn) -> Void) {
+        public func getAPIConfiguration(completion: @escaping Handler) {
             performRequest(path: "/configuration") { (result: JSONReturn) in
                 switch result {
                 case .success(let json):

@@ -29,7 +29,7 @@ extension TMDBManager {
         /// Create a temporary request token that can be used to validate a TMDb user login. More details about
         /// how this works can be found
         /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
-        public func createRequestToken(completion: @escaping (NilReturn) -> Void) {
+        public func createRequestToken(completion: @escaping Handler) {
             
             let relativeUrlString = "/authentication/token/new"
             
@@ -63,7 +63,7 @@ extension TMDBManager {
         /// You can use this method to create a fully valid session ID once a user has validated
         /// the request token. More information about how this works can be found
         /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
-        public func createSession(completion: @escaping (NilReturn) -> Void) {
+        public func createSession(completion: @escaping Handler) {
             guard let requestToken = manager.requestToken else {
                 completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
                 return
@@ -104,7 +104,7 @@ extension TMDBManager {
         /// - Parameters:
         ///   - username: User's username
         ///   - password: User's password
-        public func createSessionWithLogin(username: String, password: String, completion: @escaping (NilReturn) -> Void) {
+        public func createSessionWithLogin(username: String, password: String, completion: @escaping Handler) {
             guard let requestToken = manager.requestToken else {
                 completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
                 return
@@ -144,7 +144,7 @@ extension TMDBManager {
         /// so you should always make sure it's the end user doing the guest session actions.
         ///
         /// If a guest session is not used for the first time within 24 hours, it will be automatically deleted.
-        public func createGuestSession(completion: @escaping (NilReturn) -> Void) {
+        public func createGuestSession(completion: @escaping Handler) {
             let relativeUrlString = "/authentication/guest_session/new"
             performRequest(path: relativeUrlString) { (result: JSONReturn) in
                 switch result {

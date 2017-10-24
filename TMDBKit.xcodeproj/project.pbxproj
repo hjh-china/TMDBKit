@@ -548,11 +548,11 @@
 		459E5C1D1F96497E00AB28DE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4598FF721F98E38900571DE0 /* Supporting */,
-				451DFBD91F98106900F501EB /* OpenSource */,
 				459E5C1E1F96499200AB28DE /* TMDBManager.swift */,
 				459E5C251F96540E00AB28DE /* Extensions */,
 				450D94641F96A8F4005E2227 /* Models */,
+				451DFBD91F98106900F501EB /* OpenSource */,
+				4598FF721F98E38900571DE0 /* Supporting */,
 				459E5C221F9651D200AB28DE /* Wappers */,
 			);
 			path = Common;
@@ -583,8 +583,8 @@
 				454840D11F9E6D6D0055FC89 /* Search.swift */,
 				454840D51F9E76100055FC89 /* Timezones.swift */,
 				45F664301F9F6081002B98D3 /* TV.swift */,
-				45EA85881F9FBCF4006C651B /* TVSeasons.swift */,
 				45EA858C1F9FC84F006C651B /* TVEpisodes.swift */,
+				45EA85881F9FBCF4006C651B /* TVSeasons.swift */,
 			);
 			path = Wappers;
 			sourceTree = "<group>";

@@ -9,6 +9,12 @@
 import Foundation
 import SwiftyJSON
 
+public typealias ObjectHandler<T: Codable> = (ObjectReturn<T>) -> Void
+public typealias JSONInitableHandler<T: TMDBJsonInitable> = (JSONInitableReturn<T>) -> Void
+public typealias JSONHandler = (JSONReturn) -> Void
+public typealias Handler = (NilReturn) -> Void
+public typealias AnyHandler<T> = (AnyReturn<T>) -> Void
+
 public enum TMDBSortOption: String {
     case createdAtAsc = "created_at.asc"
     case createdAtDesc = "created_at.desc"
@@ -46,6 +52,8 @@ public enum DataReturn {
     case success(data: Data)
     case fail(error: Error?)
 }
+
+public typealias DataHandler = (DataReturn) -> Void
 
 /// Returns a JSON object or an Error in a completion handler closure.
 ///

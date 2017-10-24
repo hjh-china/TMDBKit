@@ -15,7 +15,7 @@ extension TMDBManager {
         ///
         /// - Parameter completion: Completion handler. If `.success`, carrys a value of
         /// `[String: [TMDBCertification]]`, of which key is country code, value is certifications for that country.
-        public func getMovieCertifications(completion: @escaping (ObjectReturn<[String: [TMDBCertification]]>)-> Void) {
+        public func getMovieCertifications(completion: @escaping ObjectHandler<[String: [TMDBCertification]]>) {
             certificationsHelper(0, completion: completion)
         }
         
@@ -24,12 +24,12 @@ extension TMDBManager {
         /// - Parameter completion: Completion handler. If `.success`, carrys a value of
         /// `[String: [TMDBCertification]]`, of which key is country code, value is certifications
         /// for that country.
-        public func getTVCertifications(completion: @escaping (ObjectReturn<[String: [TMDBCertification]]>)-> Void) {
+        public func getTVCertifications(completion: @escaping ObjectHandler<[String: [TMDBCertification]]>) {
             certificationsHelper(1, completion: completion)
         }
         
         func certificationsHelper(_ flag: Int,
-                                  completion: @escaping (ObjectReturn<[String: [TMDBCertification]]>)-> ()) {
+                                  completion: @escaping ObjectHandler<[String: [TMDBCertification]]>) {
             let path = flag == 0 ? "/certification/movie/list" : "/certification/tv/list"
             performRequest(path: path) { (result: ObjectReturn<[String: [String: [TMDBCertification]]]>) in
                 switch result {

@@ -15,7 +15,7 @@ extension TMDBManager {
         ///
         /// Returned dictonary in completion hanlder is `[CountryCode: [Timezone]]`.
         /// - Parameter completion: Completion handler.
-        public func getList(completion: @escaping (ObjectReturn<[String: [String]]>) -> Void) {
+        public func getList(completion: @escaping ObjectHandler<[String: [String]]>) {
             performRequest(path: "/timezones/list", completion: completion)
         }
     }
