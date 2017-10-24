@@ -104,3 +104,4 @@ fastlane/screenshots
 fastlane/test_output
 
 RevealServer.framework
+*.xcuserstate
