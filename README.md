@@ -30,9 +30,9 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 |Jobs           |☑️      |        |        |
 |Keywords       |☑️      |        |        |
 |Lists          |☑️      |        |        |
-|Movies         |☑️      |        |Cresits model. <br>Append to response support|
+|Movies         |☑️      |        |Cresits model. <br>Append to response support.|
 |Networks       |☑️      |        |        |
-|People         |☑️      |        |Append to response support|
+|People         |☑️      |        |Append to response support.|
 |Reviews        |☑️      |        |Append to response support.|
 |Search         |☑️      |        |Multi search.|
 |Timezones      |☑️      |        |        |
@@ -41,7 +41,7 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 |TV Episodes    |☑️      |        |Append to response support. <br>Changes model.|
 |Cleaning job   |☑️      |        |        |
 
-### v4 current progress::
+### v4 current progress:
 Will begin soon.
 
 ## Usage
