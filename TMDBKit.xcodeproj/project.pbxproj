@@ -17,7 +17,6 @@
 		451DFBDB1F9810FD00F501EB /* SwiftyJSON_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */; };
 		451DFBDD1F98111300F501EB /* TraktKit_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDC1F98111300F501EB /* TraktKit_LICENSE */; };
 		4522CA5E1F9A68F7003E9153 /* TMDBKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4522CA551F9A68F6003E9153 /* TMDBKitMac.framework */; };
-		4522CA631F9A68F7003E9153 /* TMDBKitMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CA621F9A68F7003E9153 /* TMDBKitMacTests.swift */; };
 		4522CA651F9A68F7003E9153 /* TMDBKitMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 4522CA571F9A68F6003E9153 /* TMDBKitMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4522CA6C1F9A6923003E9153 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C201F9649FF00AB28DE /* KeyChainManager.swift */; };
 		4522CA6F1F9A6927003E9153 /* TMDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C1E1F96499200AB28DE /* TMDBManager.swift */; };
@@ -44,7 +43,6 @@
 		4522CA891F9A6935003E9153 /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598FF7D1F99F78700571DE0 /* Discover.swift */; };
 		4522CA8A1F9A6935003E9153 /* Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CA471F9A19B2003E9153 /* Find.swift */; };
 		4522CA9A1F9A6969003E9153 /* TMDBKitTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4522CA911F9A6969003E9153 /* TMDBKitTV.framework */; };
-		4522CA9F1F9A6969003E9153 /* TMDBKitTVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CA9E1F9A6969003E9153 /* TMDBKitTVTests.swift */; };
 		4522CAA11F9A6969003E9153 /* TMDBKitTV.h in Headers */ = {isa = PBXBuildFile; fileRef = 4522CA931F9A6969003E9153 /* TMDBKitTV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4522CAA81F9A6981003E9153 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C201F9649FF00AB28DE /* KeyChainManager.swift */; };
 		4522CAAB1F9A6990003E9153 /* TMDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C1E1F96499200AB28DE /* TMDBManager.swift */; };
@@ -87,7 +85,6 @@
 		457B6BEB1F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B6BE91F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift */; };
 		457B6BEC1F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B6BE91F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift */; };
 		459E5C0D1F96497700AB28DE /* TMDBKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459E5C031F96497700AB28DE /* TMDBKit.framework */; };
-		459E5C121F96497700AB28DE /* TMDBKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E5C111F96497700AB28DE /* TMDBKitTests.swift */; };
 		459E5C141F96497700AB28DE /* TMDBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 459E5C061F96497700AB28DE /* TMDBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45A093171F9D157100D0FCC5 /* TMDBChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A093131F9D106800D0FCC5 /* TMDBChanges.swift */; };
 		45A093181F9D157100D0FCC5 /* TMDBMovieDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovieDetailed.swift */; };
@@ -261,14 +258,10 @@
 		4522CA571F9A68F6003E9153 /* TMDBKitMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDBKitMac.h; sourceTree = "<group>"; };
 		4522CA581F9A68F6003E9153 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4522CA5D1F9A68F7003E9153 /* TMDBKitMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDBKitMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4522CA621F9A68F7003E9153 /* TMDBKitMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBKitMacTests.swift; sourceTree = "<group>"; };
-		4522CA641F9A68F7003E9153 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4522CA911F9A6969003E9153 /* TMDBKitTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDBKitTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4522CA931F9A6969003E9153 /* TMDBKitTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDBKitTV.h; sourceTree = "<group>"; };
 		4522CA941F9A6969003E9153 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4522CA991F9A6969003E9153 /* TMDBKitTVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDBKitTVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4522CA9E1F9A6969003E9153 /* TMDBKitTVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBKitTVTests.swift; sourceTree = "<group>"; };
-		4522CAA01F9A6969003E9153 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4522CAC81F9B3632003E9153 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		4522CACA1F9B3858003E9153 /* TMDBGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBGenre.swift; sourceTree = "<group>"; };
 		4524D2A41F9817720037D7E1 /* Changes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Changes.swift; sourceTree = "<group>"; };
@@ -288,8 +281,6 @@
 		459E5C061F96497700AB28DE /* TMDBKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDBKit.h; sourceTree = "<group>"; };
 		459E5C071F96497700AB28DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		459E5C0C1F96497700AB28DE /* TMDBKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDBKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		459E5C111F96497700AB28DE /* TMDBKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBKitTests.swift; sourceTree = "<group>"; };
-		459E5C131F96497700AB28DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		459E5C1E1F96499200AB28DE /* TMDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBManager.swift; sourceTree = "<group>"; };
 		459E5C201F9649FF00AB28DE /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		459E5C231F96520300AB28DE /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -460,15 +451,6 @@
 			path = TMDBKitMac;
 			sourceTree = "<group>";
 		};
-		4522CA611F9A68F7003E9153 /* TMDBKitMacTests */ = {
-			isa = PBXGroup;
-			children = (
-				4522CA621F9A68F7003E9153 /* TMDBKitMacTests.swift */,
-				4522CA641F9A68F7003E9153 /* Info.plist */,
-			);
-			path = TMDBKitMacTests;
-			sourceTree = "<group>";
-		};
 		4522CA921F9A6969003E9153 /* TMDBKitTV */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,15 +458,6 @@
 				4522CA941F9A6969003E9153 /* Info.plist */,
 			);
 			path = TMDBKitTV;
-			sourceTree = "<group>";
-		};
-		4522CA9D1F9A6969003E9153 /* TMDBKitTVTests */ = {
-			isa = PBXGroup;
-			children = (
-				4522CA9E1F9A6969003E9153 /* TMDBKitTVTests.swift */,
-				4522CAA01F9A6969003E9153 /* Info.plist */,
-			);
-			path = TMDBKitTVTests;
 			sourceTree = "<group>";
 		};
 		4598FF721F98E38900571DE0 /* Supporting */ = {
@@ -503,11 +476,8 @@
 				459E5C2C1F96742C00AB28DE /* README.md */,
 				459E5C1D1F96497E00AB28DE /* Common */,
 				459E5C051F96497700AB28DE /* TMDBKit */,
-				459E5C101F96497700AB28DE /* TMDBKitTests */,
 				4522CA561F9A68F6003E9153 /* TMDBKitMac */,
-				4522CA611F9A68F7003E9153 /* TMDBKitMacTests */,
 				4522CA921F9A6969003E9153 /* TMDBKitTV */,
-				4522CA9D1F9A6969003E9153 /* TMDBKitTVTests */,
 				459E5C041F96497700AB28DE /* Products */,
 				FD94F1070EABE4C7B4A97CA6 /* Pods */,
 				4271A6D3C02EF144EDA38D9F /* Frameworks */,
@@ -534,15 +504,6 @@
 				459E5C071F96497700AB28DE /* Info.plist */,
 			);
 			path = TMDBKit;
-			sourceTree = "<group>";
-		};
-		459E5C101F96497700AB28DE /* TMDBKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				459E5C111F96497700AB28DE /* TMDBKitTests.swift */,
-				459E5C131F96497700AB28DE /* Info.plist */,
-			);
-			path = TMDBKitTests;
 			sourceTree = "<group>";
 		};
 		459E5C1D1F96497E00AB28DE /* Common */ = {
@@ -1038,7 +999,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4522CA631F9A68F7003E9153 /* TMDBKitMacTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,7 +1076,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4522CA9F1F9A6969003E9153 /* TMDBKitTVTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,7 +1153,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				459E5C121F96497700AB28DE /* TMDBKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

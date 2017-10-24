@@ -43,16 +43,6 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "459E5C0B1F96497700AB28DE"
-               BuildableName = "TMDBKitTests.xctest"
-               BlueprintName = "TMDBKitTests"
-               ReferencedContainer = "container:TMDBKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
