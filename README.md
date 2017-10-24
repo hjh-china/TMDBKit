@@ -2,6 +2,7 @@
 # TMDBKit
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SR2k/TMDBKit/blob/master/LICENSE)
 [![codebeat badge](https://codebeat.co/badges/4370eef5-bf1b-4b46-82a6-587278edd73a)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
+[![](https://travis-ci.org/SR2k/TMDBKit.svg?branch=master)](https://travis-ci.org/SR2k/TMDBKit/)
 
 The Movie Database API wrapper in Swift.
 
@@ -14,14 +15,14 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 |Section        |Build   |Test    |To-dos  |
 |---------------|:------:|:------:|--------|
 |Shared methods |☑️      |☑️      |        |
-|Account        |☑️      |        |        |
+|Account        |☑️      |👊      |        |
 |Authentication |☑️      |        |        |
 |Certifications |☑️      |        |        |
 |Changes        |☑️      |        |        |
 |Collections    |☑️      |        |        |
 |Companies      |☑️      |        |        |
 |Configuration  |☑️      |        |        |
-|Credits        |☑️      |        |What is credits? I wish I have take English class more seriously😂.|
+|Credits        |☑️      |        |What is credits? <br>I wish I have take English class more seriously😂.|
 |Discover       |☑️      |        |        |
 |Find           |☑️      |        |        |
 |Genres         |☑️      |        |        |
@@ -29,16 +30,16 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 |Jobs           |☑️      |        |        |
 |Keywords       |☑️      |        |        |
 |Lists          |☑️      |        |        |
-|Movies         |☑️      |        |Cresits & append to response support|
+|Movies         |☑️      |        |Cresits model. <br>Append to response support|
 |Networks       |☑️      |        |        |
 |People         |☑️      |        |Append to response support|
-|Reviews        |☑️      |        |        |
-|Search         |☑️      |        |        |
+|Reviews        |☑️      |        |Append to response support.|
+|Search         |☑️      |        |Multi search.|
 |Timezones      |☑️      |        |        |
-|TV             |☑️      |        |        |
-|TV Seasons     |👊      |        |        |
-|TV Episodes    |        |        |        |
-|Cleaning job   |        |        |        |
+|TV             |☑️      |        |Append to response support. <br>Changes model.|
+|TV Seasons     |☑️      |        |Append to response support. <br>Changes model.|
+|TV Episodes    |☑️      |        |Append to response support. <br>Changes model.|
+|Cleaning job   |☑️      |        |        |
 
 ### v4 current progress::
 Will begin soon.
