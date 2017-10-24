@@ -28,12 +28,6 @@ public struct TMDBImage: Codable {
     }
 }
 
-public struct TMDBMovieImages: Codable {
-    public let id: Int
-    public let backdrops: [TMDBImage]
-    public let posters: [TMDBImage]
-}
-
 public struct TMDBImages: Codable {
     public let id: Int
     public let backdrops: [TMDBImage]

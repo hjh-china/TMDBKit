@@ -222,6 +222,12 @@ public class TMDBManager {
     public let search = SearchAPIWrapper()
     /// [Timezones API](https://developers.themoviedb.org/3/timezones) wrapper.
     public let timezones = TimezonesAPIWrapper()
+    /// [TV API](https://developers.themoviedb.org/3/tv) wrapper class.
+    /// - TODO:
+    ///   - Append to response support.
+    ///   - TV changes model.
+    ///   - Credits model.
+    public let tv = TVAPIWrapper()
 }
 
 extension TMDBManager {

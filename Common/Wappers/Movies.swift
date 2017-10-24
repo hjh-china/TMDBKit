@@ -131,7 +131,7 @@ extension TMDBManager {
         public func getImages(forMovie movie: Int,
                               language: String? = nil,
                               includeImageLanguage: String? = nil,
-                              completion: @escaping (ObjectReturn<TMDBMovieImages>) -> Void) {
+                              completion: @escaping (ObjectReturn<TMDBImages>) -> Void) {
             var query = queryMaker(language: language)
             if let includeImageLanguage = includeImageLanguage {
                 query["include_image_language"] = includeImageLanguage
@@ -174,7 +174,7 @@ extension TMDBManager {
         public func getVideos(forMovie movie: Int,
                               language: String? = nil,
                               completion: @escaping (ObjectReturn<TMDBVideos>) -> Void) {
-            performRequest(path: "/movie/{movie_id}/videos",
+            performRequest(path: "/movie/\(movie)/videos",
                            query: queryMaker(language: language),
                            completion: completion)
         }
@@ -227,10 +227,10 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion handler.
-        public func getSimilarMovies(forMovie movie: Int,
-                                     language: String? = nil,
-                                     page: Int? = nil,
-                                     completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
+        public func getSimilar(forMovie movie: Int,
+                               language: String? = nil,
+                               page: Int? = nil,
+                               completion: @escaping (ObjectReturn<TMDBPaged<TMDBMovieGeneral>>) -> Void) {
             performRequest(path: "/movie/\(movie)/similar",
                            query: queryMaker(language: language, page: page),
                            completion: completion)
@@ -297,10 +297,15 @@ extension TMDBManager {
                          rating: Double,
                          authentication: TMDBAuthenticationType,
                          completion: @escaping (NilReturn) -> Void) {
+            guard authentication != .noAuthentication else {
+                completion(.fail(error: "Rate a movie needs authentication.".error(domain: "movies")))
+                return
+            }
             do {
                 performRequest(method: "POST",
                                path: "/movie/\(movie)/rating",
                                data: try JSONEncoder().encode(["value": rating]),
+                               authentication: authentication,
                                expectedStatusCode: 201,
                                completion: completion)
             } catch let error {
@@ -320,8 +325,13 @@ extension TMDBManager {
         public func removeRating(forMovie movie: Int,
                                  authentication: TMDBAuthenticationType,
                                  completion: @escaping (NilReturn) -> Void) {
+            guard authentication != .noAuthentication else {
+                completion(.fail(error: "Remove a rating needs authentication.".error(domain: "movies")))
+                return
+            }
             performRequest(method: "DELETE",
                            path: "/movie/\(movie)/rating",
+                           authentication: authentication,
                            completion: completion)
         }
         

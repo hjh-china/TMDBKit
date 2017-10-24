@@ -10,21 +10,24 @@ import Foundation
 
 extension TMDBManager {
     /// [TV API](https://developers.themoviedb.org/3/tv) wrapper class.
-    /// - TODO: Append to response support.
+    /// - TODO:
+    ///   - Append to response support.
+    ///   - TV changes model.
+    ///   - Credits model.
     public class TVAPIWrapper: APIWrapper {
         /// Get the primary TV show details by id.
         ///
         /// - Parameters:
-        ///   - tv: TV Show's ID.
+        ///   - tvShow: TV Show's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion hanlder.
-        public func getDetails(forTV tv: Int,
+        public func getDetails(forTVShow tvShow: Int,
                                language: String? = nil,
                                completion: @escaping (ObjectReturn<TMDBTVShowDetailed>) -> Void) {
-            performRequest(path: "/tv/\(tv)",
+            performRequest(path: "/tv/\(tvShow)",
                            query: queryMaker(language: language),
                            completion: completion)
         }
@@ -36,17 +39,17 @@ extension TMDBManager {
         /// - If it belongs to your favourite list
         ///
         /// - Parameters:
-        ///   - tv: TV Show's ID.
+        ///   - tvShow: TV Show's ID.
         ///   - authentication: Authentication type. **Accepted values:** `.user`, `.guest`.
         ///   - completion: Completion hanlder.
-        public func getAccountStates(forTV tv: Int,
+        public func getAccountStates(forTVShow tvShow: Int,
                                      authentication: TMDBAuthenticationType,
                                      completion: @escaping (JSONInitableReturn<TMDBAccountStete>) -> Void) {
             guard authentication != .noAuthentication else {
                 completion(.fail(error: "Get account states needs authentication.".error(domain: "tv")))
                 return
             }
-            performRequest(path: "/tv/\(tv)/account_states",
+            performRequest(path: "/tv/\(tvShow)/account_states",
                            authentication: authentication,
                            completion: completion)
         }
@@ -54,16 +57,16 @@ extension TMDBManager {
         /// Returns all of the alternative titles for a TV show.
         ///
         /// - Parameters:
-        ///   - tv: TV Show's ID.
+        ///   - tvShow: TV Show's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion hanlder.
-        public func getAlternativeTitles(forTV tv: Int,
+        public func getAlternativeTitles(forTVShow tvShow: Int,
                                          language: String? = nil,
                                          completion: @escaping (ObjectReturn<TMDBAlternativeTitles>) -> Void) {
-            performRequest(path: "/tv/\(tv)/alternative_titles",
+            performRequest(path: "/tv/\(tvShow)/alternative_titles",
                            query: queryMaker(language: language),
                            completion: completion)
         }
@@ -79,10 +82,8 @@ extension TMDBManager {
         /// [episode changes](https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-changes) methods to
         /// look these up individually.
         ///
-        /// - TODO: TV show changes model (it's just TOO complacated😂).
-        ///
         /// - Parameters:
-        ///   - tv: TV Show's ID.
+        ///   - tvShow: TV Show's ID.
         ///   - startDate: Filter the results with a start date. Formatted in `YYYY-MM-dd`.
         ///   - endDate: Filter the results with a end date. Formatted in `YYYY-MM-dd`.
         ///   - page: Specify which page to query.
@@ -90,12 +91,13 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion hanlder.
-        public func getChanges(forTV tv: Int,
+        public func getChanges(forTVShow tvShow: Int,
                                from startDate: String? = nil,
                                to endDate: String? = nil,
-                               page: Int? = nil, completion: @escaping (ObjectReturn<TMDBTVShowChanges>) -> Void) {
+                               page: Int? = nil,
+                               completion: @escaping (ObjectReturn<[TMDBTVShowChanges]>) -> Void) {
             performRequest(
-                path: "/tv/\(tv)/changes",
+                path: "/tv/\(tvShow)/changes",
                 query: queryMaker(startDate: startDate, endDate: endDate, page: page)
             ){ (result: ObjectReturn<[String: [TMDBTVShowChanges]]>) in
                 switch result {
@@ -114,17 +116,329 @@ extension TMDBManager {
         /// Get the list of content ratings (certifications) that have been added to a TV show.
         ///
         /// - Parameters:
-        ///   - tv: TV Show's ID.
+        ///   - tvShow: TV Show's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion hanlder.
-        public func getContentRatings(forTV tv: Int,
+        public func getContentRatings(forTVShow tvShow: Int,
                                       language: String? = nil,
-                                      completion: @escaping (ObjectReturn<TMDBContentRatings>) -> ()) {
-            performRequest(path: "/tv/\(tv)/content_ratings",
+                                      completion: @escaping (ObjectReturn<TMDBContentRatings>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/content_ratings",
                            query: queryMaker(language: language),
+                           completion: completion)
+        }
+        
+        /// Get the credits (cast and crew) that have been added to a TV show.
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV Show's ID.
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - completion: Completion hanlder.
+        public func getCredits(forTVShow tvShow: Int,
+                               language: String? = nil,
+                               completion: @escaping (JSONReturn) -> ()) {
+            performRequest(path: "/tv/\(tvShow)/credits",
+                           query: queryMaker(language: language),
+                           completion: completion)
+        }
+        
+        /// Get the external ids for a TV show. We currently support the following external sources.
+        ///
+        /// External Sources:
+        /// - IMDB ID
+        /// - Freebase MID
+        /// - Freebase ID
+        /// - TVDB ID
+        /// - TVRage ID
+        ///
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV Show's ID.
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - completion: Completion hanlder.
+        public func getExternalIds(forTVShow tvShow: Int,
+                                   language: String? = nil,
+                                   completion: @escaping (ObjectReturn<TMDBExternalIds>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/external_ids",
+                           query: queryMaker(language: language),
+                           completion: completion)
+        }
+        
+        /// Get the images that belong to a movie.
+        ///
+        /// Querying images with a `language` parameter will filter the results.
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - completion: Completion handler.
+        public func getImages(forTVShow tvShow: Int,
+                              language: String? = nil,
+                              completion: @escaping (ObjectReturn<TMDBImages>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/images",
+                           query: queryMaker(language: language),
+                           completion: completion)
+        }
+        
+        /// Get the keywords that have been added to a TV show.
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - completion: Completion handler.
+        public func getKeywords(forTVShow tvShow: Int,
+                                completion: @escaping (ObjectReturn<TMDBKeywords>) -> Void) {
+            performRequest(path: "tv/\(tvShow)/keywords",
+                           completion: completion)
+        }
+        
+        /// Get the list of TV show recommendations for this item.
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - completion: Completion handler.
+        public func getRecommendations(forTVShow tvShow: Int,
+                                       language: String? = nil,
+                                       page: Int? = nil,
+                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/recommendations",
+                query: queryMaker(language: language, page: page),
+                completion: completion)
+        }
+        
+        /// Get a list of seasons or episodes that have been screened in a film festival or theatre.
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - completion: Completion handler.
+        public func getScreenedTheatrically(forTVShow tvShow: Int,
+                                            completion: @escaping (ObjectReturn<TMDBScreenedTheatricallyShows>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/screened_theatrically",
+                           completion: completion)
+        }
+        
+        /// Get a list of similar TV shows. These items are assembled by looking at keywords and genres.
+        ///
+        /// These items are assembled by looking at keywords and genres.
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - completion: Completion handler.
+        public func getSimilar(forTVShow tvShow: Int,
+                               language: String? = nil,
+                               page: Int? = nil,
+                               completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/similar",
+                query: queryMaker(language: language, page: page),
+                completion: completion)
+        }
+        
+        /// Get a list of the translations that exist for a TV show.
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - completion: Completion handler.
+        public func getTranslations(forTVShow tvShow: Int,
+                                    completion: @escaping (ObjectReturn<TMDBTranslations>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/translations", completion: completion)
+        }
+        
+        /// Get the videos that have been added to a TV show.
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - completion: Completion handler.
+        public func getVideos(forTVShow tvShow: Int,
+                              language: String? = nil,
+                              completion: @escaping (ObjectReturn<TMDBVideos>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/videos",
+                           query: queryMaker(language: language),
+                           completion: completion)
+        }
+        
+        /// Rate a TV show.
+        ///
+        /// A valid session or guest session ID is required. You can read more about how this works
+        /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - rating: This is the value of the rating you want to submit. The value is expected to be
+        /// between 0.5 and 10.0.
+        ///     - minimum: 0.5
+        ///     - maximum: 10
+        ///   - authentication: Authentication type. Accepted `.user` or `.guest`.
+        ///   - completion: Completion handler.
+        public func rate(tvShow: Int,
+                         rating: Double,
+                         authentication: TMDBAuthenticationType,
+                         completion: @escaping (NilReturn) -> Void) {
+            guard authentication != .noAuthentication else {
+                completion(.fail(error: "Rate a TV show needs authentication.".error(domain: "tv")))
+                return
+            }
+            do {
+                performRequest(method: "POST",
+                               path: "/tv/\(tvShow)/rating",
+                               data: try JSONEncoder().encode(["value": rating]),
+                               authentication: authentication,
+                               expectedStatusCode: 201,
+                               completion: completion)
+            } catch let error {
+                completion(.fail(error: error))
+            }
+        }
+        
+        /// Remove your rating for a TV show.
+        ///
+        /// A valid session or guest session ID is required. You can read more about how this works
+        /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
+        ///
+        /// - Parameters:
+        ///   - tvShow: TV show's ID.
+        ///   - authentication: Authentication type. Accepted `.user` or `.guest`.
+        ///   - completion: Completion handler.
+        public func removeRating(forTVShow tvShow: Int,
+                                 authentication: TMDBAuthenticationType,
+                                 completion: @escaping (NilReturn) -> Void) {
+            guard authentication != .noAuthentication else {
+                completion(.fail(error: "Removing rating needs authentication.".error(domain: "tv")))
+                return
+            }
+            performRequest(method: "DELETE",
+                           path: "/tv/\(tvShow)/rating",
+                           authentication: authentication,
+                           completion: completion)
+        }
+        
+        /// Get the most newly created TV show. This is a live response and will continuously change.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - completion: Completion handler.
+        public func getLatest(language: String? = nil,
+                              completion: @escaping (ObjectReturn<TMDBTVShowDetailed>) -> Void) {
+            performRequest(path: "/tv/latest",
+                           query: queryMaker(language: language),
+                           completion: completion)
+        }
+        
+        /// Get a list of TV shows that are airing today. This query is purely day based as we do not
+        /// currently support airing times.
+        ///
+        /// You can specify a timezone to offset the day calculation. Without a specified timezone, this
+        /// query defaults to EST (Eastern Time UTC-05:00).
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - completion: Completion handler.
+        public func getTVAiringToday(language: String? = nil,
+                                     page: Int? = nil,
+                                     completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+            performRequest(path: "/tv/airing_today",
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
+        }
+        
+        /// Get a list of shows that are currently on the air.
+        ///
+        /// This query looks for any TV show that has an episode with an air date in the next 7 days.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - completion: Completion handler.
+        public func getTVOnTheAir(language: String? = nil,
+                                  page: Int? = nil,
+                                  completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+            performRequest(path: "/tv/on_the_air",
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
+        }
+        
+        /// Get a list of the current popular TV shows on TMDb. This list updates daily.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - completion: Completion handler.
+        public func getPopular(language: String? = nil,
+                               page: Int? = nil,
+                               completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+            performRequest(path: "/tv/popular",
+                           query: queryMaker(language: language, page: page),
+                           completion: completion)
+        }
+        
+        /// Get a list of the top rated TV shows on TMDb.
+        ///
+        /// - Parameters:
+        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+        ///     - minLength: 2
+        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
+        ///     - default: en-US
+        ///   - page: Specify which page to query.
+        ///     - minimum: 1
+        ///     - maximum: 1000
+        ///     - default: 1
+        ///   - completion: Completion handler.
+        public func getTopRated(language: String? = nil,
+                                page: Int? = nil,
+                                completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
+            performRequest(path: "/tv/top_rated",
+                           query: queryMaker(language: language, page: page),
                            completion: completion)
         }
     }

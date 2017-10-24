@@ -14,9 +14,11 @@ public struct TMDBTranslations: Codable {
     
     public struct TMDBTranslation: Codable {
         public let language: String
-        public let region: String
         public let name: String
         public let englishName: String
+        
+        /// Only in movies' translations
+        public let region: String?
         
         enum CodingKeys: String, CodingKey {
             case language = "iso_639_1"
