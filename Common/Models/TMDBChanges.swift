@@ -8,7 +8,13 @@
 
 import Foundation
 
-public struct TMDBChanges: Codable {
+public struct TMDBChangeBasic: Codable {
+    public let id: Int
+    public let adult: Bool?
+}
+
+
+public struct TMDBChangeDetailed: Codable {
     public let key: String
     public let items: [TMDBChange]
     
@@ -28,6 +34,17 @@ public struct TMDBChanges: Codable {
             case value
             case originalValue = "original_value"
         }
+    }
+}
+
+public struct TMDBTVShowChanges: Codable {
+    public let key: String
+    public let item: [TMDBTVShowChange]
+    
+    public struct TMDBTVShowChange: Codable {
+        public let id: String
+        public let action: String
+        public let value: [String: String]
     }
 }
 

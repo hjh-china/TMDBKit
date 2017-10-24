@@ -83,11 +83,11 @@ extension TMDBManager {
         public func getChanges(forMovie movie: Int,
                                from startDate: String? = nil,
                                to endDate: String? = nil,
-                               page: Int? = nil, completion: @escaping (ObjectReturn<[TMDBChanges]>) -> Void) {
+                               page: Int? = nil, completion: @escaping (ObjectReturn<[TMDBChangeDetailed]>) -> Void) {
             performRequest(path: "/movie/\(movie)/changes",
                            query: queryMaker(startDate: startDate,
                                              endDate: endDate,
-                                             page: page)) { (result: ObjectReturn<[String: [TMDBChanges]]>) in
+                                             page: page)) { (result: ObjectReturn<[String: [TMDBChangeDetailed]]>) in
                 switch result {
                 case .success(let _results):
                     if let results = _results["changes"] {

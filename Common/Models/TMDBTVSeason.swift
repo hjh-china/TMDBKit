@@ -8,6 +8,22 @@
 
 import Foundation
 
+public struct TMDBTVSeasonBasic: Codable {
+    public let airDate: String
+    public let episodeCount: Int
+    public let id: Int
+    public let posterPath: String?
+    public let seasonNumber: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case airDate = "air_date"
+        case episodeCount = "episode_count"
+        case id
+        case posterPath = "poster_path"
+        case seasonNumber = "season_number"
+    }
+}
+
 public struct TMDBTVSeason: Codable {
     public let _id: String?
     public let airDate: String

@@ -82,7 +82,7 @@ public struct TMDBTaggedImages: TMDBJsonInitable {
         public let width: Int
         public let imageType: String
         public let movie: TMDBMovieGeneral?
-        public let show: TMDBTVShow?
+        public let show: TMDBTVShowGeneral?
         
         init(fromJSON json: JSON) throws {
             let data = try json.rawData()
@@ -112,7 +112,7 @@ public struct TMDBTaggedImages: TMDBJsonInitable {
                 self.show = nil
             } else {
                 self.movie = nil
-                self.show = try JSONDecoder().decode(TMDBTVShow.self, from: mediaData)
+                self.show = try JSONDecoder().decode(TMDBTVShowGeneral.self, from: mediaData)
             }
         }
     }

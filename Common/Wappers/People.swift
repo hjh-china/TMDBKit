@@ -26,7 +26,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getDetails(forPerson person: Int,
                                language: String? = nil,
-                               completion: @escaping (ObjectReturn<TMDBPerson>) -> Void) {
+                               completion: @escaping (ObjectReturn<TMDBPersonGeneral>) -> Void) {
             performRequest(path: "/person/\(person)",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -186,7 +186,7 @@ extension TMDBManager {
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
         ///     - default: en-US
         ///   - completion: Completion handler.
-        public func getLatest(language: String? = nil, completion: @escaping (ObjectReturn<TMDBPerson>) -> Void) {
+        public func getLatest(language: String? = nil, completion: @escaping (ObjectReturn<TMDBPersonGeneral>) -> Void) {
             performRequest(path: "/person/latest",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -206,7 +206,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getPopular(language: String? = nil,
                                page: Int? = nil,
-                               completion: @escaping (JSONInitableReturn<TMDBPersonWithKnownForMedia>) -> Void) {
+                               completion: @escaping (JSONInitableReturn<TMDBPersonDetailed>) -> Void) {
             performRequest(path: "/person/popular",
                            query: queryMaker(language: language, page: page),
                            completion: completion)

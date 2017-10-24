@@ -127,7 +127,7 @@ extension TMDBManager {
                            page: Int? = nil,
                            includeAdult: Bool? = nil,
                            region: String? = nil,
-                           completion: @escaping (JSONInitableReturn<TMDBPersonWithKnownForMedia>) -> Void) {
+                           completion: @escaping (JSONInitableReturn<TMDBPersonDetailed>) -> Void) {
             performRequest(path: "/search/person",
                            query: queryMaker(language: language,
                                              page: page,
@@ -154,7 +154,7 @@ extension TMDBManager {
                            language: String? = nil,
                            page: Int? = nil,
                            firstAirDateYear: Int? = nil,
-                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> Void) {
+                           completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
             var query = queryMaker(language: language, page: page, query: tvShow)
             if let firstAirDateYear = firstAirDateYear {
                 query["first_air_date_year"] = "\(firstAirDateYear)"

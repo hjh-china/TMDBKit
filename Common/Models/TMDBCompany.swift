@@ -8,6 +8,18 @@
 
 import Foundation
 
+public struct TMDBCompanyBasic: Codable {
+    public let name: String
+    public let id: Int
+    public let logoPath: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case id
+        case logoPath = "logo_path"
+    }
+}
+
 public struct TMDBCompany: Codable {
     public let description: String?
     public let headquarters: String
@@ -25,17 +37,5 @@ public struct TMDBCompany: Codable {
         case logoPath = "logo_path"
         case name
         case parentCompany = "parent_company"
-    }
-}
-
-public struct TMDBCompanyBasic: Codable {
-    let name: String
-    let id: Int
-    let logoPath: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case id
-        case logoPath = "logo_path"
     }
 }

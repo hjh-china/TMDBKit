@@ -8,13 +8,13 @@
 
 import Foundation
 
-public struct TMDBPerson: Codable {
+public struct TMDBPersonGeneral: Codable {
     public let adult: Bool
 //    public let alsoKnownAs: []
     public let biography: String
     public let birthday: String?
     public let deathday: String?
-    public let gender: TMDBPersonGender
+    public let gender: TMDBGender
     public let homepage: String?
     public let id: Int
     public let imdbId: String?
@@ -22,12 +22,6 @@ public struct TMDBPerson: Codable {
     public let placeOfBirth: String?
     public let popularity: Double
     public let profilePath: String?
-    
-    public enum TMDBPersonGender: Int, Codable {
-        case notSet = 0
-        case female = 1
-        case male = 2
-    }
     
     enum CodingKeys: String, CodingKey {
         case adult
@@ -46,12 +40,12 @@ public struct TMDBPerson: Codable {
     }
 }
 
-public struct TMDBPersonWithKnownForMedia: TMDBJsonInitable, CustomDebugStringConvertible {
+public struct TMDBPersonDetailed: TMDBJsonInitable, CustomDebugStringConvertible {
     public let profilePath: String?
     public let adult: Bool
     public let id: Int
     public let knownForMovies: [TMDBMovieGeneral]
-    public let knownForTVShows: [TMDBTVShow]
+    public let knownForTVShows: [TMDBTVShowGeneral]
     public let name: String
     public let popularity: Double
     
@@ -72,7 +66,7 @@ public struct TMDBPersonWithKnownForMedia: TMDBJsonInitable, CustomDebugStringCo
         self.popularity  = popularity
         
         var knownForMovies: [TMDBMovieGeneral] = []
-        var knownForTVShows: [TMDBTVShow] = []
+        var knownForTVShows: [TMDBTVShowGeneral] = []
         
         if let arr = json["known_for"].array {
             for obj in arr {
@@ -89,7 +83,7 @@ public struct TMDBPersonWithKnownForMedia: TMDBJsonInitable, CustomDebugStringCo
                     case "tv":
                         do {
                             let data = try obj.rawData()
-                            let tvShow = try JSONDecoder().decode(TMDBTVShow.self, from: data)
+                            let tvShow = try JSONDecoder().decode(TMDBTVShowGeneral.self, from: data)
                             knownForTVShows.append(tvShow)
                         } catch let error {
                             print("Error initing known-for TMDBTVShow from JSON for people \(name), but TMDBPeople should continue to init ;-)\n\(error)")

@@ -89,7 +89,7 @@ extension TMDBManager {
                                        language: String? = nil,
                                        sortBy: TMDBSortOption? = nil,
                                        page: Int? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> Void) {
+                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
             performRequest(path: "/account/\(account)/favorite/tv",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,
@@ -165,7 +165,7 @@ extension TMDBManager {
                                     language: String? = nil,
                                     sortBy: TMDBSortOption? = nil,
                                     page: Int? = nil,
-                                    completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> Void) {
+                                    completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
             performRequest(path: "/account/\(account)/rated/tv",
                            query: queryMaker(language: language, sortBy: sortBy, page: page),
                            authentication: .user,
@@ -190,7 +190,7 @@ extension TMDBManager {
                                        language: String? = nil,
                                        sortBy: TMDBSortOption? = nil,
                                        page: Int? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> Void) {
+                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
             performRequest(path: "/account/\(account)/rated/episodes",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,
@@ -244,7 +244,7 @@ extension TMDBManager {
                                        language: String? = nil,
                                        sortBy: TMDBSortOption? = nil,
                                        page: Int? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShow>>) -> Void) {
+                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBTVShowGeneral>>) -> Void) {
             performRequest(path: "/account/\(account)/watchlist/tv",
                            query: queryMaker(language: language,
                                              sortBy: sortBy,

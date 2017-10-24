@@ -10,8 +10,8 @@ import Foundation
 
 public struct TMDBFindResult: TMDBJsonInitable {
     public let movieResults: [TMDBMovieGeneral]
-    public let personResults: [TMDBPersonWithKnownForMedia]
-    public let tvResults: [TMDBTVShow]
+    public let personResults: [TMDBPersonDetailed]
+    public let tvResults: [TMDBTVShowGeneral]
     public let tvEpisodeResults: [TMDBTVEpisode]
     public let tvSeasonResults: [TMDBTVSeason]
     
@@ -21,16 +21,16 @@ public struct TMDBFindResult: TMDBJsonInitable {
         let movieData = try json["movie_results"].rawData()
         movieResults = try decoder.decode([TMDBMovieGeneral].self, from: movieData)
         let tvData = try json["tv_results"].rawData()
-        tvResults = try decoder.decode([TMDBTVShow].self, from: tvData)
+        tvResults = try decoder.decode([TMDBTVShowGeneral].self, from: tvData)
         let tvEpisodeData = try json["tv_episode_results"].rawData()
         tvEpisodeResults = try decoder.decode([TMDBTVEpisode].self, from: tvEpisodeData)
         let tvSeasonData = try json["tv_season_results"].rawData()
         tvSeasonResults = try decoder.decode([TMDBTVSeason].self, from: tvSeasonData)
         
-        var peopleResults: [TMDBPersonWithKnownForMedia] = []
+        var peopleResults: [TMDBPersonDetailed] = []
         if let people = json["person_results"].array {
             for person in people {
-                peopleResults.append(try TMDBPersonWithKnownForMedia(fromJSON: person))
+                peopleResults.append(try TMDBPersonDetailed(fromJSON: person))
             }
         }
         self.personResults = peopleResults

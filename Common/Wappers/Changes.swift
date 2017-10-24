@@ -26,7 +26,7 @@ extension TMDBManager {
         public func getMovieChangeList(startDate: String? = nil,
                                        endDate: String? = nil,
                                        page: Int? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangesListItem>>) -> Void) {
+                                       completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangeBasic>>) -> Void) {
             performRequest(path: "/movie/changes",
                            query: queryMaker(startDate: startDate,
                                              endDate: endDate,
@@ -49,7 +49,7 @@ extension TMDBManager {
         public func getTVChangeList(from startDate: String? = nil,
                                     to endDate: String? = nil,
                                     page: Int? = nil,
-                                    completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangesListItem>>) -> Void) {
+                                    completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangeBasic>>) -> Void) {
             performRequest(path: "/tv/changes",
                            query: queryMaker(startDate: startDate,
                                              endDate: endDate,
@@ -72,7 +72,7 @@ extension TMDBManager {
         public func getPersonChangeList(from startDate: String? = nil,
                                         to endDate: String? = nil,
                                         page: Int? = nil,
-                                        completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangesListItem>>) -> Void) {
+                                        completion: @escaping (ObjectReturn<TMDBPaged<TMDBChangeBasic>>) -> Void) {
             performRequest(path: "/person/changes",
                            query: queryMaker(startDate: startDate,
                                              endDate: endDate,
