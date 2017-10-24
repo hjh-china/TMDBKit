@@ -1,0 +1,16 @@
+use_frameworks!
+
+target 'TMDBKit' do
+	platform :ios, '8.0'
+  	pod 'SwiftyJSON'
+end
+
+target 'TMDBKitMac' do
+	platform :osx, '10.10'
+  	pod 'SwiftyJSON'
+end
+
+target 'TMDBKitTV' do
+	platform :tvos, '9.0'
+  	pod 'SwiftyJSON'
+end

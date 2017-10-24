@@ -1,6 +1,3 @@
 
 .DS_Store
-podfile
-Podfile.lock
-TMDBKit.xcworkspace
 Pods/
