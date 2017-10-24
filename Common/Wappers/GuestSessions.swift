@@ -75,7 +75,7 @@ extension TMDBManager {
         public func getRatedTVEpisodes(byGuestSessionId guestSessionId: String? = nil,
                                        language: String? = nil,
                                        sortBy: TMDBSortOption? = nil,
-                                       completin: @escaping(ObjectReturn<TMDBPaged<TMDBTVEpisode>>) -> Void) {
+                                       completin: @escaping(ObjectReturn<TMDBPaged<TMDBTVEpisodeBasic>>) -> Void) {
             do {
                 let gsid = try prepare(guestSessionId: guestSessionId)
                 performRequest(path: "/guest_session/\(gsid)/rated/tv/episodes",

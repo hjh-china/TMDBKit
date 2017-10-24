@@ -13,12 +13,11 @@ extension TMDBManager {
     /// - TODO:
     ///   - Append to response support.
     ///   - TV changes model.
-    ///   - Credits model.
     public class TVAPIWrapper: APIWrapper {
         /// Get the primary TV show details by id.
         ///
         /// - Parameters:
-        ///   - tvShow: TV Show's ID.
+        ///   - tvShow: TV show's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
@@ -39,7 +38,7 @@ extension TMDBManager {
         /// - If it belongs to your favourite list
         ///
         /// - Parameters:
-        ///   - tvShow: TV Show's ID.
+        ///   - tvShow: TV show's ID.
         ///   - authentication: Authentication type. **Accepted values:** `.user`, `.guest`.
         ///   - completion: Completion hanlder.
         public func getAccountStates(forTVShow tvShow: Int,
@@ -57,7 +56,7 @@ extension TMDBManager {
         /// Returns all of the alternative titles for a TV show.
         ///
         /// - Parameters:
-        ///   - tvShow: TV Show's ID.
+        ///   - tvShow: TV show's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
@@ -83,7 +82,7 @@ extension TMDBManager {
         /// look these up individually.
         ///
         /// - Parameters:
-        ///   - tvShow: TV Show's ID.
+        ///   - tvShow: TV show's ID.
         ///   - startDate: Filter the results with a start date. Formatted in `YYYY-MM-dd`.
         ///   - endDate: Filter the results with a end date. Formatted in `YYYY-MM-dd`.
         ///   - page: Specify which page to query.
@@ -116,7 +115,7 @@ extension TMDBManager {
         /// Get the list of content ratings (certifications) that have been added to a TV show.
         ///
         /// - Parameters:
-        ///   - tvShow: TV Show's ID.
+        ///   - tvShow: TV show's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
@@ -133,7 +132,7 @@ extension TMDBManager {
         /// Get the credits (cast and crew) that have been added to a TV show.
         ///
         /// - Parameters:
-        ///   - tvShow: TV Show's ID.
+        ///   - tvShow: TV show's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
@@ -141,7 +140,7 @@ extension TMDBManager {
         ///   - completion: Completion hanlder.
         public func getCredits(forTVShow tvShow: Int,
                                language: String? = nil,
-                               completion: @escaping (JSONReturn) -> ()) {
+                               completion: @escaping (ObjectReturn<TMDBCreditsBasic>) -> ()) {
             performRequest(path: "/tv/\(tvShow)/credits",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -158,7 +157,7 @@ extension TMDBManager {
         ///
         ///
         /// - Parameters:
-        ///   - tvShow: TV Show's ID.
+        ///   - tvShow: TV show's ID.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`

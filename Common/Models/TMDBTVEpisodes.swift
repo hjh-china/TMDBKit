@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TMDBTVEpisode: Codable {
+public struct TMDBTVEpisodeBasic: Codable {
     public let _id: String?
     /// Raw **String** returned from TMDB, usually formatted as `yyyy-MM-dd`. Use `airDate` property for **Date**.
     public let rawAirDateString: String?
@@ -45,3 +45,34 @@ public struct TMDBTVEpisode: Codable {
         case rating
     }
 }
+
+public struct TMDBTVEpisodeGeneral: Codable {
+    public let airDate: String?
+    public let crew: [TMDBCrewBasic]?
+    public let episodeNumber: Int
+    public let guestStars: [TMDBCastBasic]?
+    public let name: String
+    public let overview: String
+    public let id: Int
+    public let productionCode: String?
+    public let seasonNumber: Int
+    public let stillPath: String?
+    public let voteAverage: Double
+    public let voteCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case airDate = "air_date"
+        case crew
+        case episodeNumber = "episode_number"
+        case guestStars = "guest_stars"
+        case name
+        case overview
+        case id
+        case productionCode = "production_code"
+        case seasonNumber = "season_number"
+        case stillPath = "still_path"
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
+    }
+}
+

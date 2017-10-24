@@ -106,7 +106,8 @@ extension TMDBManager {
         /// - Parameters:
         ///   - movie: Movie's ID.
         ///   - completion: Completion handler.
-        public func getCredits(forMovie movie: Int, completion: @escaping (JSONReturn) -> Void) {
+        public func getCredits(forMovie movie: Int,
+                               completion: @escaping (ObjectReturn<TMDBCreditsBasic>) -> Void) {
             performRequest(path: "/movie/\(movie)/credits",
                            completion: completion)
         }

@@ -27,6 +27,10 @@ public struct TMDBVideos: Codable {
             case teaser = "Teaser"
             case clip = "Clip"
             case featurette = "Featurette"
+            
+            // TV shows, seasons, episodes only.
+            case opening = "Opening"
+            case credits = "Credits"
         }
         
         enum CodingKeys: String, CodingKey {

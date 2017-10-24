@@ -43,7 +43,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getMovieCredits(forPerson person: Int,
                                     language: String? = nil,
-                                    completion: @escaping (ObjectReturn<TMDBCredits>) -> Void) {
+                                    completion: @escaping (ObjectReturn<TMDBCreditsDetailed>) -> Void) {
             performRequest(path: "/person/\(person)/movie_credits",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -63,7 +63,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getTVCredits(forPerson person: Int,
                                  language: String? = nil,
-                                 completion: @escaping (ObjectReturn<TMDBCredits>) -> Void) {
+                                 completion: @escaping (ObjectReturn<TMDBCreditsDetailed>) -> Void) {
             performRequest(path: "/person/\(person)/tv_credits",
                            query: queryMaker(language: language),
                            completion: completion)
@@ -80,7 +80,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getCombinedCredits(forPerson person: Int,
                                        language: String? = nil,
-                                       completion: @escaping (ObjectReturn<TMDBCredits>) -> Void) {
+                                       completion: @escaping (ObjectReturn<TMDBCreditsDetailed>) -> Void) {
             performRequest(path: "/person/\(person)/combined_credits",
                            query: queryMaker(language: language),
                            completion: completion)

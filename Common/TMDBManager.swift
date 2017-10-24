@@ -208,9 +208,7 @@ public class TMDBManager {
     /// [Lists API](https://developers.themoviedb.org/3/lists) wrapper.
     public let lists = ListsAPIWrapper()
     /// [Movies API](https://developers.themoviedb.org/3/movies) wrapper.
-    /// - TODO:
-    ///   - Credits
-    ///   - append_to_response support
+    /// - TODO: append_to_response support
     public let movies = MoviesAPIWrapper()
     /// [Networks API](https://developers.themoviedb.org/3/networks) wrapper.
     public let networks = NetworksAPIWrapper()
@@ -226,8 +224,12 @@ public class TMDBManager {
     /// - TODO:
     ///   - Append to response support.
     ///   - TV changes model.
-    ///   - Credits model.
     public let tv = TVAPIWrapper()
+    /// [TV seasons API](https://developers.themoviedb.org/3/tv-seasons) wrapper.
+    /// - TODO:
+    ///   - Append to response support.
+    ///   - Changes model.
+    public let tvSeasons = TVSeasonsAPIWrapper()
 }
 
 extension TMDBManager {

@@ -24,10 +24,32 @@ public struct TMDBTVSeasonBasic: Codable {
     }
 }
 
-public struct TMDBTVSeason: Codable {
+public struct TMDBTVSeasonGeneral: Codable {
     public let _id: String?
     public let airDate: String
-    public let episodes: [TMDBTVEpisode]?
+    public let episodes: [TMDBTVEpisodeBasic]?
+    public let name: String
+    public let overview: String
+    public let id: Int
+    public let posterPath: String?
+    public let seasonNumber: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case _id
+        case airDate = "air_date"
+        case episodes
+        case name
+        case overview
+        case id
+        case posterPath = "poster_path"
+        case seasonNumber = "season_number"
+    }
+}
+
+public struct TMDBTVSeasonDetailed: Codable {
+    public let _id: String?
+    public let airDate: String
+    public let episodes: [TMDBTVEpisodeGeneral]?
     public let name: String
     public let overview: String
     public let id: Int
