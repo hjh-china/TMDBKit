@@ -12,7 +12,7 @@ public struct TMDBFindResult: TMDBJsonInitable {
     public let movieResults: [TMDBMovieGeneral]
     public let personResults: [TMDBPersonDetailed]
     public let tvResults: [TMDBTVShowGeneral]
-    public let tvEpisodeResults: [TMDBTVEpisodeBasic]
+    public let tvEpisodeResults: [TMDBTVEpisodeGeneral]
     public let tvSeasonResults: [TMDBTVSeasonGeneral]
     
     public init(fromJSON json: JSON) throws {
@@ -23,7 +23,7 @@ public struct TMDBFindResult: TMDBJsonInitable {
         let tvData = try json["tv_results"].rawData()
         tvResults = try decoder.decode([TMDBTVShowGeneral].self, from: tvData)
         let tvEpisodeData = try json["tv_episode_results"].rawData()
-        tvEpisodeResults = try decoder.decode([TMDBTVEpisodeBasic].self, from: tvEpisodeData)
+        tvEpisodeResults = try decoder.decode([TMDBTVEpisodeGeneral].self, from: tvEpisodeData)
         let tvSeasonData = try json["tv_season_results"].rawData()
         tvSeasonResults = try decoder.decode([TMDBTVSeasonGeneral].self, from: tvSeasonData)
         

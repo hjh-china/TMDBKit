@@ -14,6 +14,36 @@ public struct TMDBCreditsBasic: Codable {
     public let id: Int
 }
 
+public struct TMDBTVEpisodeCredits: Codable {
+    public let airDate: String
+    public let crew: [TMDBCrewBasic]
+    public let episodeNumber: Int
+    public let guestStars: [TMDBCastBasic]
+    public let name: String
+    public let overview: String
+    public let id: Int
+    public let productionCode: String
+    public let seasonNumber: Int
+    public let stillPath: String?
+    public let voteAverage: Double
+    public let voteCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case airDate = "air_date"
+        case crew
+        case episodeNumber = "episode_number"
+        case guestStars = "guest_stars"
+        case name
+        case overview
+        case id
+        case productionCode = "production_code"
+        case seasonNumber = "season_number"
+        case stillPath = "still_path"
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
+    }
+}
+
 public struct TMDBCastBasic: Codable {
     public let id: Int
     public let name: String

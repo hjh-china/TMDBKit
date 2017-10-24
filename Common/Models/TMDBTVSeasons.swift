@@ -27,7 +27,7 @@ public struct TMDBTVSeasonBasic: Codable {
 public struct TMDBTVSeasonGeneral: Codable {
     public let _id: String?
     public let airDate: String
-    public let episodes: [TMDBTVEpisodeBasic]?
+    public let episodes: [TMDBTVEpisodeGeneral]?
     public let name: String
     public let overview: String
     public let id: Int
@@ -49,7 +49,7 @@ public struct TMDBTVSeasonGeneral: Codable {
 public struct TMDBTVSeasonDetailed: Codable {
     public let _id: String?
     public let airDate: String
-    public let episodes: [TMDBTVEpisodeGeneral]?
+    public let episodes: [TMDBTVEpisodeDetailed]?
     public let name: String
     public let overview: String
     public let id: Int

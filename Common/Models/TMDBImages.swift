@@ -39,6 +39,11 @@ public struct TMDBPosters: Codable {
     public let posters: [TMDBImage]
 }
 
+public struct TMDBStills: Codable {
+    public let id: Int
+    public let stills: [TMDBImage]
+}
+
 public struct TMDBTaggedImages: TMDBJsonInitable {
     public let id: Int
     public let page: Int

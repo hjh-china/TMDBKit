@@ -1,5 +1,5 @@
 //
-//  TVSeasons.swift
+//  TVEpisodes.swift
 //  TMDBKit
 //
 //  Created by Siyuan Cao on 2017/10/25.
@@ -8,17 +8,19 @@
 
 import Foundation
 
+
 extension TMDBManager {
-    /// [TV seasons API](https://developers.themoviedb.org/3/tv-seasons) wrapper class.
+    /// [TV episodes API](https://developers.themoviedb.org/3/tv-episodes) wrapper class.
     /// - TODO:
     ///   - Append to response support.
     ///   - Changes model.
-    public class TVSeasonsAPIWrapper: APIWrapper {
-        /// Get the TV season details by id.
+    public class TVEpisodesAPIWrapper: APIWrapper {
+        /// Get the TV episode details by id.
         ///
         /// - Parameters:
         ///   - tvShow: TV show's ID.
         ///   - seasonNum: Season's number.
+        ///   - episodeNum: Episode's number.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
@@ -26,19 +28,20 @@ extension TMDBManager {
         ///   - completion: Completion hanlder.
         public func getDetails(forTVShow tvShow: Int,
                                seasonNum: Int,
+                               episodeNum: Int,
                                language: String? = nil,
-                               completion: @escaping (ObjectReturn<TMDBTVSeasonDetailed>) -> Void) {
-            performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)",
+                               completion: @escaping (ObjectReturn<TMDBTVEpisodeDetailed>) -> Void) {
+            performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/episode/\(episodeNum)",
                            query: queryMaker(language: language),
                            completion: completion)
         }
         
-        /// Get the changes for a TV season. By default only the last 24 hours are returned.
+        /// Get the changes for a TV episode. By default only the last 24 hours are returned.
         ///
         /// You can query up to 14 days in a single query by using the start_date and end_date query parameters.
         ///
         /// - Parameters:
-        ///   - tvSeason: TV season's ID.
+        ///   - tvEpisode: TV episode's ID.
         ///   - startDate: Filter the results with a start date. Formatted in `YYYY-MM-dd`.
         ///   - endDate: Filter the results with a end date. Formatted in `YYYY-MM-dd`.
         ///   - page: Specify which page to query.
@@ -46,13 +49,15 @@ extension TMDBManager {
         ///     - maximum: 1000
         ///     - default: 1
         ///   - completion: Completion hanlder.
-        public func getChanges(forTVSeason tvSeason: Int,
+        public func getChanges(forTVEpisode tvEpisode: Int,
                                from startDate: String? = nil,
                                to endDate: String? = nil,
                                page: Int? = nil,
                                completion: @escaping (JSONReturn) -> Void) {
-            performRequest(path: "/tv/season/\(tvSeason)/changes",
-                           query: queryMaker(startDate: startDate, endDate: endDate, page: page),
+            performRequest(path: "/tv/episode/\(tvEpisode)/changes",
+                           query: queryMaker(startDate: startDate,
+                                             endDate: endDate,
+                                             page: page),
                            completion: completion)
         }
         
@@ -65,26 +70,29 @@ extension TMDBManager {
         /// - Parameters:
         ///   - tvShow: TV show's ID.
         ///   - seasonNum: Season's number.
+        ///   - episodeNum: Episode's number.
         ///   - authentication: Authentication type. **Accepted values:** `.user`, `.guest`.
         ///   - completion: Completion hanlder.
         public func getAccountStates(forTVShow tvShow: Int,
                                      seasonNum: Int,
+                                     episodeNum: Int,
                                      authentication: TMDBAuthenticationType,
                                      completion: @escaping (JSONInitableReturn<TMDBAccountStete>) -> Void) {
             guard authentication != .noAuthentication else {
                 completion(.fail(error: "Get account states needs authentication.".error(domain: "tv")))
                 return
             }
-            performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/account_states",
+            performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/episode/\(episodeNum)/account_states",
                            authentication: authentication,
                            completion: completion)
         }
         
-        /// Get the credits for TV season.
+        /// Get the credits (cast, crew and guest stars) for a TV episode.
         ///
         /// - Parameters:
         ///   - tvShow: TV show's ID.
         ///   - seasonNum: Season's number.
+        ///   - episodeNum: Episode's number.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
@@ -92,16 +100,18 @@ extension TMDBManager {
         ///   - completion: Completion hanlder.
         public func getCredits(forTVShow tvShow: Int,
                                seasonNum: Int,
+                               episodeNum: Int,
                                language: String? = nil,
-                               completion: @escaping (ObjectReturn<TMDBCreditsBasic>) -> ()) {
-            performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/credits",
+                               completion: @escaping (ObjectReturn<TMDBTVEpisodeCredits>) -> ()) {
+            performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/episode/\(episodeNum)/credits",
                            query: queryMaker(language: language),
                            completion: completion)
         }
         
-        /// Get the external ids for a TV season. We currently support the following external sources.
+        /// Get the external ids for a TV episode. We currently support the following external sources.
         ///
         /// External Sources:
+        /// - IMDB ID
         /// - Freebase MID
         /// - Freebase ID
         /// - TVDB ID
@@ -111,23 +121,19 @@ extension TMDBManager {
         /// - Parameters:
         ///   - tvShow: TV show's ID.
         ///   - seasonNum: Season's number.
-        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
-        ///     - minLength: 2
-        ///     - pattern: `([a-z]{2})-([A-Z]{2})`
-        ///     - default: en-US
+        ///   - episodeNum: Episode's number.
         ///   - completion: Completion hanlder.
         public func getExternalIds(forTVShow tvShow: Int,
                                    seasonNum: Int,
-                                   language: String? = nil,
+                                   episodeNum: Int,
                                    completion: @escaping (ObjectReturn<TMDBExternalIds>) -> Void) {
-            performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/external_ids",
-                query: queryMaker(language: language),
-                completion: completion)
+            performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/episode/\(episodeNum)/external_ids",
+                           completion: completion)
         }
         
-        /// Get the images that belong to a TV season.
+        /// Get the images that belong to a TV episode.
         ///
-        /// - NOTE: [TMDB API doc](https://developers.themoviedb.org/3/tv-seasons/get-tv-season-images)
+        /// - NOTE: [TMDB API doc](https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-images)
         /// says there's a `include_image_language` parameter, yet there is no such parameter in the
         /// "Query String" section. And I tested myself, and this parameter seems not working. So please
         /// let me know if you know how this works.
@@ -135,6 +141,7 @@ extension TMDBManager {
         /// - Parameters:
         ///   - tvShow: TV show's ID.
         ///   - seasonNum: Season's number.
+        ///   - episodeNum: Episode's number.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
@@ -149,23 +156,27 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getImages(forTVShow tvShow: Int,
                               seasonNum: Int,
+                              episodeNum: Int,
                               language: String? = nil,
                               includeImageLanguage: String? = nil,
-                              completion: @escaping (ObjectReturn<TMDBPosters>) -> Void) {
+                              completion: @escaping (ObjectReturn<TMDBStills>) -> Void) {
             var query = queryMaker(language: language)
             if let includeImageLanguage = includeImageLanguage {
                 query["include_image_language"] = includeImageLanguage
             }
-            performRequest(path: "/tv/\(tvShow)/sesson/\(seasonNum)/images",
+            performRequest(path: "/tv/\(tvShow)/sesson/\(seasonNum)/episode/\(episodeNum)/images",
                            query: query,
                            completion: completion)
         }
         
-        /// Get the videos that have been added to a TV season.
+        
+        
+        /// Get the videos that have been added to a TV episode.
         ///
         /// - Parameters:
         ///   - tvShow: TV show's ID.
         ///   - seasonNum: Season's number.
+        ///   - episodeNum: Episode's number.
         ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
         ///     - minLength: 2
         ///     - pattern: `([a-z]{2})-([A-Z]{2})`
@@ -173,6 +184,7 @@ extension TMDBManager {
         ///   - completion: Completion handler.
         public func getVideos(forTVShow tvShow: Int,
                               seasonNum: Int,
+                              episodeNum: Int,
                               language: String? = nil,
                               completion: @escaping (ObjectReturn<TMDBVideos>) -> Void) {
             performRequest(path: "/tv/\(tvShow)/sesson/\(seasonNum)/videos",
