@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public struct TMDBFindResult: TMDBJsonInitable {
     public let movieResults: [TMDBMovieGeneral]

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public protocol TMDBJsonInitable {
     init(fromJSON: JSON) throws

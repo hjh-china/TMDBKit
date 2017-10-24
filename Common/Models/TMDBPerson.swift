@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public struct TMDBPersonGeneral: Codable {
     public let adult: Bool

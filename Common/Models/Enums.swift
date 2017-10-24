@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public enum TMDBSortOption: String {
     case createdAtAsc = "created_at.asc"

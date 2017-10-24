@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public struct TMDBAccountStete: TMDBJsonInitable {
     public let id: Int
