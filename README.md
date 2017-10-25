@@ -1,4 +1,4 @@
-![](https://github.com/SR2k/TMDBKit/blob/master/Common/Supporting/Logo.svg)
+![](https://github.com/SR2k/TMDBKit/blob/master/Supporting/Logo.svg)
 # TMDBKit
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SR2k/TMDBKit/blob/master/LICENSE)
 [![codebeat badge](https://codebeat.co/badges/4370eef5-bf1b-4b46-82a6-587278edd73a)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
@@ -45,6 +45,73 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 Will begin soon.
 
 ## Usage
+### Installation
+With CocoaPods:
+```
+use_frameworks!
+
+target 'TMDBKitDemo' do
+    platform :osx, '10.12'
+    pod 'TMDBKit'
+end
+```
+Or simply drag all `.swift` files in `Common` folder to your project (please note that TMDBKit needs SwiftyJSON as dependency).
+
+### Setup the TMDBManager
+In your AppDelegate's `applicationDidFinishLaunching` method:
+``` swift
+TMDBManager.shared.setupClient(withApiKey: "Your-API-key",
+                               persistencePrefix: "com.yourTeamName.yourAppName")
+```
+
+### Get user authentication
+First you need to fetch a request token by:
+``` swift
+TMDBManager.shared.createRequestToken() { result in
+    switch result {
+    case .success:
+        // Forward your user to the authentication page. For macOS:
+        let redirectURL = "yourAppURLScheme://auth_done"
+        NSWorkspace.shared.open(TMDBManager.shared.authentication.authenticationURL(redirectURL: redirectURL)!)
+    case .fail(let error):
+        print(error)
+    }
+}
+```
+And after the user authorizes the request token, fetch a session ID:
+``` swift
+manager.authentication.createSession() { result in
+    switch result {
+    case .success:
+        print(Session ID Fetched: \(TMDBManager.shared.sessionId!))
+    case .fail(let error):
+        print(error)
+    }
+}
+```
+The session ID will be persisted in the keychain.
+
+### Completion hanlders
+Almost all TMDBKit methods needs a `completion` parameter. To those methods that returns data, the handler will pass in a enum by which you can check if the request has been fullfied. It works like this:
+``` swift
+TMDBManager.shared.account.getDetails() { result in
+    // Check if the request has been fullfied
+    switch result {
+    
+    // If success, you will recive a model object
+    case .success(let accountInfo):
+        print(accountInfo)
+        
+    // Otherwise, you will get an optional error
+    case .fail(let error):
+        print(error)
+    }
+}
+```
+
+## Need help?
+All methods are equiped with full documentation comments. All you  need to do is hold your Option⌥ key and click the method name. Or switch to Quick Help Inspector:
+![](https://github.com/SR2k/TMDBKit/blob/master/Supporting/Documentation_Comments.png)
 
 ## License
 TMDBKit is available under the MIT license. See the LICENSE file for more info.
