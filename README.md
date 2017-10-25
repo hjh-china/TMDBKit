@@ -2,13 +2,17 @@
 # TMDBKit
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SR2k/TMDBKit/blob/master/LICENSE)
 [![codebeat badge](https://codebeat.co/badges/4370eef5-bf1b-4b46-82a6-587278edd73a)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
-[![](https://travis-ci.org/SR2k/TMDBKit.svg?branch=master)](https://travis-ci.org/SR2k/TMDBKit/)
+[![Travis CI](https://travis-ci.org/SR2k/TMDBKit.svg?branch=master)](https://travis-ci.org/SR2k/TMDBKit/)
+![CocoaPods](https://img.shields.io/cocoapods/v/TMDBKit.svg)
+![Platforms](https://img.shields.io/badge/platforms-iOS%2010.0+%20%7C%20macOS%2010.12+%20%7C%20tvOS%2010.0+%20%7C%20watchOS%203.0+-.svg)
 
-**This framework is still under development. DO NOT use it... just yet 😂.**
+> **IMPORTANT:**
+This framework is still under development. DO NOT use it... just yet 😂.
+And if you are willing to help, feel free to creat pull requests.
 
 The Movie Database API wrapper in Swift.
 
-I'm just a very beginner to the Swift world. And I decide to take this project as my first step. So all issues and pull requests are welcomed :-)
+I'm just a very beginner to the Swift world. And I decide to take this project as my first step. So any issue and pull request are welcomed :-)
 
 ## Project progress
 
@@ -18,12 +22,12 @@ I'm just a very beginner to the Swift world. And I decide to take this project a
 |Shared methods |☑️      |☑️      |        |
 |Account        |☑️      |☑️      |        |
 |Authentication |☑️      |☑️      |        |
-|Certifications |☑️      |👊        |        |
+|Certifications |☑️      |👊      |        |
 |Changes        |☑️      |        |        |
 |Collections    |☑️      |        |        |
 |Companies      |☑️      |        |        |
 |Configuration  |☑️      |        |        |
-|Credits        |☑️      |        |What is credits? <br>I wish I have take English class more seriously😂.|
+|Credits        |☑️      |        |What are credits? <br>I wish I have take English class more seriously😂.|
 |Discover       |☑️      |        |        |
 |Find           |☑️      |        |        |
 |Genres         |☑️      |        |        |
@@ -58,17 +62,26 @@ end
 ```
 Or simply drag all `.swift` files in `Common` folder to your project (please note that TMDBKit needs SwiftyJSON as dependency).
 
+### Meet TMDBManager
+All you need with TMDBKit is wrapped in the `TMDBManager` singleton instance, like this:
+``` swift
+import TMDBKit
+
+let manager = TMDBManager.shared
+```
+
 ### Setup the TMDBManager
 In your AppDelegate's `applicationDidFinishLaunching` method:
 ``` swift
-TMDBManager.shared.setupClient(withApiKey: "Your-API-key",
-                               persistencePrefix: "com.yourTeamName.yourAppName")
+let manager = TMDBManager.shared
+manager.setupClient(withApiKey: "Your-API-key", persistencePrefix: "com.yourTeamName.yourAppName")
 ```
 
 ### Get user authentication
 First you need to fetch a request token by:
 ``` swift
-TMDBManager.shared.createRequestToken() { result in
+let manager = TMDBManager.shared
+manager.createRequestToken() { result in
     switch result {
     case .success:
         // Forward your user to the authentication page. For macOS:
@@ -81,7 +94,8 @@ TMDBManager.shared.createRequestToken() { result in
 ```
 And after the user authorizes the request token, fetch a session ID:
 ``` swift
-TMDBManager.shared.authentication.createSession() { result in
+let manager = TMDBManager.shared
+manager.authentication.createSession() { result in
     switch result {
     case .success:
         print(Session ID Fetched: \(TMDBManager.shared.sessionId!))
@@ -93,9 +107,10 @@ TMDBManager.shared.authentication.createSession() { result in
 The session ID will be persisted in the keychain.
 
 ### Completion hanlders
-Almost all TMDBKit methods needs a `completion` parameter. To those methods that returns data, the handler will pass in a enum by which you can check if the request has been fullfied. It works like this:
+Almost all TMDBKit methods needs a `completion` parameter. The handler will pass in a enum by which you can check if the request has been fullfied. And to those methods that returns data, the enum will carry a model object. It works like this:
 ``` swift
-TMDBManager.shared.account.getDetails() { result in
+let manager = TMDBManager.shared
+manager.account.getDetails() { result in
     // Check if the request has been fullfied
     switch result {
     
@@ -111,7 +126,7 @@ TMDBManager.shared.account.getDetails() { result in
 ```
 
 ## Need help?
-All methods are equiped with full documentation comments. All you  need to do is hold your Option⌥ key and click the method name. Or switch to Quick Help Inspector:
+All methods are equiped with full documentation comments. All you  need to do is *Option⌥ click* the method name. Or switch to the *Quick Help Inspector*:
 ![](https://github.com/SR2k/TMDBKit/blob/master/Supporting/Documentation_Comments.png)
 
 ## License
