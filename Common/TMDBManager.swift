@@ -261,7 +261,7 @@ extension TMDBManager {
             let guestSessionExpiresAt = guestSessionExpiresAt
         else { return false }
         
-        return guestSessionExpiresAt <= Date()
+        return guestSessionExpiresAt >= Date()
     }
 }
 

@@ -207,7 +207,7 @@ extension TMDBManager {
                               expectedStatusCode: Int) -> AnyReturn<URLRequest> {
             // Check API Key
             guard let apiKey = TMDBManager.shared.apiKey else {
-                return .fail(error: "API Key is nil, call setupClient(withApiKey:keyChainPrefix:) first plz.".error())
+                return .fail(error: "API Key is nil, call setupClient() first please.".error())
             }
             
             // Construct URLComponments
