@@ -4,12 +4,13 @@
 [![codebeat badge](https://codebeat.co/badges/4370eef5-bf1b-4b46-82a6-587278edd73a)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
 [![](https://travis-ci.org/SR2k/TMDBKit.svg?branch=master)](https://travis-ci.org/SR2k/TMDBKit/)
 
+**This framework is still under development. DO NOT use it... just yet 😂.**
+
 The Movie Database API wrapper in Swift.
 
 I'm just a very beginner to the Swift world. And I decide to take this project as my first step. So all issues and pull requests are welcomed :-)
 
 ## Project progress
-This framework is still under development. **DO NOT** use it... just yet 😂.
 
 ### v3 current progress:
 |Section        |Build   |Test    |To-dos  |
@@ -47,7 +48,7 @@ Will begin soon.
 ## Usage
 ### Installation
 With CocoaPods:
-```
+``` ruby
 use_frameworks!
 
 target 'TMDBKitDemo' do
@@ -80,7 +81,7 @@ TMDBManager.shared.createRequestToken() { result in
 ```
 And after the user authorizes the request token, fetch a session ID:
 ``` swift
-manager.authentication.createSession() { result in
+TMDBManager.shared.authentication.createSession() { result in
     switch result {
     case .success:
         print(Session ID Fetched: \(TMDBManager.shared.sessionId!))
