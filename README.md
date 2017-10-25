@@ -1,10 +1,10 @@
 ![](https://github.com/SR2k/TMDBKit/blob/master/Supporting/Logo.svg)
 # TMDBKit
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SR2k/TMDBKit/blob/master/LICENSE)
-[![codebeat badge](https://codebeat.co/badges/4370eef5-bf1b-4b46-82a6-587278edd73a)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
+[![codebeat badge](https://codebeat.co/badges/55e91f84-b824-4985-bf1a-b2f8cbe431b6)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
 [![Travis CI](https://travis-ci.org/SR2k/TMDBKit.svg?branch=master)](https://travis-ci.org/SR2k/TMDBKit/)
 ![CocoaPods](https://img.shields.io/cocoapods/v/TMDBKit.svg)
-![Platforms](https://img.shields.io/badge/platforms-iOS%2010.0+%20%7C%20macOS%2010.12+%20%7C%20tvOS%2010.0+%20%7C%20watchOS%203.0+-.svg)
+![Platforms](https://img.shields.io/badge/platforms-iOS%2010.0+%20%7C%20macOS%2010.12+%20%7C%20tvOS%2010.0+%20%7C%20watchOS%203.0+-213b34.svg)
 
 > **IMPORTANT:**
 This framework is still under development. DO NOT use it... just yet 😂.
@@ -131,5 +131,3 @@ All methods are equiped with full documentation comments. All you  need to do is
 
 ## License
 TMDBKit is available under the MIT license. See the LICENSE file for more info.
-
-License for open source projects invoked can be found under [/Common/OpenSource/ folder](https://github.com/SR2k/TMDBKit/tree/master/Common/OpenSource)
