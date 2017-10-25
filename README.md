@@ -1,4 +1,4 @@
-![](https://github.com/SR2k/TMDBKit/blob/master/Supporting/Logo.svg)
+![](https://github.com/SR2k/TMDBKit/blob/master/Supporting/Logo.png)
 # TMDBKit
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SR2k/TMDBKit/blob/master/LICENSE)
 [![codebeat badge](https://codebeat.co/badges/55e91f84-b824-4985-bf1a-b2f8cbe431b6)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
