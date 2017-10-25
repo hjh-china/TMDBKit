@@ -15,9 +15,9 @@ This framework is still under development. **DO NOT** use it... just yet 😂.
 |Section        |Build   |Test    |To-dos  |
 |---------------|:------:|:------:|--------|
 |Shared methods |☑️      |☑️      |        |
-|Account        |☑️      |👊      |        |
-|Authentication |☑️      |        |        |
-|Certifications |☑️      |        |        |
+|Account        |☑️      |☑️      |        |
+|Authentication |☑️      |☑️      |        |
+|Certifications |☑️      |👊        |        |
 |Changes        |☑️      |        |        |
 |Collections    |☑️      |        |        |
 |Companies      |☑️      |        |        |
