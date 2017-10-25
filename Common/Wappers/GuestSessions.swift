@@ -92,7 +92,7 @@ extension TMDBManager {
             if guestSessionId != nil {
                 gsid = guestSessionId!
             } else {
-                guard let _gsid = manager.guestSessionId else {
+                guard let _gsid = TMDBManager.shared.guestSessionId else {
                     throw "No guest session ID is passed as parameter or persisted with UserDefaults.".error(domain: "guestSessions")
                 }
                 gsid = _gsid

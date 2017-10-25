@@ -41,32 +41,32 @@ extension TMDBManager {
                         print("❌ Fail to get secure (aka https) image base url.")
                     }
                     if let backdropSizes = json["images"]["backdrop_sizes"].arrayObject as? [String] {
-                        self.manager.avaliableBackdropSizes = TMDBAvaliableSizes(backdropSizes)
+                        TMDBManager.shared.avaliableBackdropSizes = TMDBAvaliableSizes(backdropSizes)
                     } else {
                         print("❌ Fail to get image backdrop sizes.")
                     }
                     if let logoSizes = json["images"]["logo_sizes"].arrayObject as? [String] {
-                        self.manager.avaliableLogoSizes = TMDBAvaliableSizes(logoSizes)
+                        TMDBManager.shared.avaliableLogoSizes = TMDBAvaliableSizes(logoSizes)
                     } else {
                         print("❌ Fail to get image logo sizes.")
                     }
                     if let posterSizes = json["images"]["poster_sizes"].arrayObject as? [String] {
-                        self.manager.avaliablePosterSizes = TMDBAvaliableSizes(posterSizes)
+                        TMDBManager.shared.avaliablePosterSizes = TMDBAvaliableSizes(posterSizes)
                     } else {
                         print("❌ Fail to get image poster sizes.")
                     }
                     if let profileSizes = json["images"]["profile_sizes"].arrayObject as? [String] {
-                        self.manager.avaliableProfileSizes = TMDBAvaliableSizes(profileSizes)
+                        TMDBManager.shared.avaliableProfileSizes = TMDBAvaliableSizes(profileSizes)
                     } else {
                         print("❌ Fail to get image profile sizes.")
                     }
                     if let stillSizes = json["images"]["still_sizes"].arrayObject as? [String] {
-                        self.manager.avaliableStillSizes = TMDBAvaliableSizes(stillSizes)
+                        TMDBManager.shared.avaliableStillSizes = TMDBAvaliableSizes(stillSizes)
                     } else {
                         print("❌ Fail to get image still sizes.")
                     }
                     if let changeKeys = json["change_keys"].arrayObject as? [String] {
-                        self.manager.changeKeys = changeKeys
+                        TMDBManager.shared.changeKeys = changeKeys
                     } else {
                         print("❌ Fail to get change keys.")
                     }

@@ -17,7 +17,7 @@ extension TMDBManager {
         /// - Parameter redirectURL: Where your user will be redirected to after authentication.
         /// - Returns: The authentication URL. Can be nil if `requestToken` is nil.
         public func authenticationURL(redirectURL: URL?) -> URL? {
-            guard let requestToken = manager.requestToken  else { return nil }
+            guard let requestToken = TMDBManager.shared.requestToken  else { return nil }
             var baseURLString = "https://www.themoviedb.org/authenticate/\(requestToken)"
             if let redirectURL = redirectURL {
                 baseURLString += "redirect_to=\(redirectURL)"
@@ -40,8 +40,8 @@ extension TMDBManager {
                         let requestToken = json["request_token"].string,
                         let expiresAt = json["expires_at"].string {
                         if success {
-                            self.manager.requestToken = requestToken
-                            self.manager.requestTokenExpiresAt = expiresAt.iso8601Date()
+                            TMDBManager.shared.requestToken = requestToken
+                            TMDBManager.shared.requestTokenExpiresAt = expiresAt.iso8601Date()
                             completion(.success)
                         } else {
                             let err = "TMDB returned fail when creating request token.".error(domain: "authentication")
@@ -64,7 +64,7 @@ extension TMDBManager {
         /// the request token. More information about how this works can be found
         /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
         public func createSession(completion: @escaping Handler) {
-            guard let requestToken = manager.requestToken else {
+            guard let requestToken = TMDBManager.shared.requestToken else {
                 completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
                 return
             }
@@ -78,7 +78,7 @@ extension TMDBManager {
                     if let success = json["success"].bool,
                         let sessionId = json["session_id"].string {
                         if success {
-                            self.manager.sessionId = sessionId
+                            TMDBManager.shared.sessionId = sessionId
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating session".error(domain: "authentication")))
@@ -105,7 +105,7 @@ extension TMDBManager {
         ///   - username: User's username
         ///   - password: User's password
         public func createSessionWithLogin(username: String, password: String, completion: @escaping Handler) {
-            guard let requestToken = manager.requestToken else {
+            guard let requestToken = TMDBManager.shared.requestToken else {
                 completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
                 return
             }
@@ -120,7 +120,7 @@ extension TMDBManager {
                     if let success = json["success"].bool,
                         let sessionId = json["session_id"].string {
                         if success {
-                            self.manager.sessionId = sessionId
+                            TMDBManager.shared.sessionId = sessionId
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating session with login".error(domain: "authentication")))
@@ -153,8 +153,8 @@ extension TMDBManager {
                         let guestSessionId = json["guest_session_id"].string,
                         let expiresAt = json["expires_at"].string {
                         if success {
-                            self.manager.guestSessionId = guestSessionId
-                            self.manager.guestSessionExpiresAt = expiresAt.iso8601Date()
+                            TMDBManager.shared.guestSessionId = guestSessionId
+                            TMDBManager.shared.guestSessionExpiresAt = expiresAt.iso8601Date()
                             completion(.success)
                         } else {
                             completion(.fail(error: "TMDB returned fail when creating guest session".error(domain: "authentication")))

@@ -10,9 +10,7 @@ import Foundation
 import SwiftyJSON
 
 extension TMDBManager {
-    public class APIWrapper {
-        let manager = TMDBManager.shared
-        
+    public class APIWrapper {        
         /// Perform the request with Data returned in complition handler closure.
         func performRequest(method: String = "GET",
                             path: String,
@@ -197,8 +195,7 @@ extension TMDBManager {
             dataTask.resume()
         }
 
-    
-    // MARK: - Request constructers.
+        // MARK: - Request constructers.
 
         /// Construct URLRequest.
         func constructRequest(method: String,
@@ -209,7 +206,7 @@ extension TMDBManager {
                               authentication: TMDBAuthenticationType,
                               expectedStatusCode: Int) -> AnyReturn<URLRequest> {
             // Check API Key
-            guard let apiKey = manager.apiKey else {
+            guard let apiKey = TMDBManager.shared.apiKey else {
                 return .fail(error: "API Key is nil, call setupClient(withApiKey:keyChainPrefix:) first plz.".error())
             }
             
@@ -230,12 +227,12 @@ extension TMDBManager {
             case .noAuthentication:
                 break
             case .guest:
-                guard manager.guestAzuthrozied else {
+                guard TMDBManager.shared.guestAzuthrozied else {
                     return .fail(error: "Guest session ID is nil or expired, grant authentication first plz.".error())
                 }
-                queryItems.append(URLQueryItem(name: "guest_session_id", value: manager.guestSessionId))
+                queryItems.append(URLQueryItem(name: "guest_session_id", value: TMDBManager.shared.guestSessionId))
             case .user:
-                guard let sessionId = manager.sessionId else {
+                guard let sessionId = TMDBManager.shared.sessionId else {
                     return .fail(error: "Session ID is nil, please grant authentication first.".error())
                 }
                 queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
@@ -268,7 +265,7 @@ extension TMDBManager {
             return .success(any: request)
         }
         
-        /// Make query dictionary.
+        /// Make the "query" dictionary.
         func queryMaker(language: String? = nil,
                         sortBy: TMDBSortOption? = nil,
                         startDate: String? = nil,
