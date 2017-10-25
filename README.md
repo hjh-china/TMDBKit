@@ -6,9 +6,7 @@
 ![CocoaPods](https://img.shields.io/cocoapods/v/TMDBKit.svg)
 ![Platforms](https://img.shields.io/badge/platforms-iOS%2010.0+%20%7C%20macOS%2010.12+%20%7C%20tvOS%2010.0+%20%7C%20watchOS%203.0+-213b34.svg)
 
-> **IMPORTANT:**
-This framework is still under development. DO NOT use it... just yet 😂.
-And if you are willing to help, feel free to creat pull requests.
+> **IMPORTANT:**<br>This framework is still under development. **DO NOT** use it... just yet 😂.<br>And if you are willing to help, feel free to creat pull requests.
 
 The Movie Database API wrapper in Swift.
 
