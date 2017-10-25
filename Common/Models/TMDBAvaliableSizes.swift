@@ -19,7 +19,7 @@ public class TMDBAvaliableSizes: NSObject, NSCoding {
     ///
     /// There is also a `heights` property and "original" size avaliable.
     public lazy var widths: [Int] = {
-        return rawSizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
+        return self.rawSizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
     }()
     
     /// Avaliable heights. Use this method to get this value:
@@ -29,7 +29,7 @@ public class TMDBAvaliableSizes: NSObject, NSCoding {
     ///
     /// There is also a `widths` property and "original" size avaliable.
     public lazy var heights: [Int] = {
-        return rawSizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
+        return self.rawSizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
     }()
     
     convenience public init(_ rawSizes: [String]) {

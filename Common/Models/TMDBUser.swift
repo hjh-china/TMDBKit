@@ -9,7 +9,7 @@
 import Foundation
 
 public struct TMDBUser: Codable {
-    public let avatar: Gravatar
+    public let avatar: Avatar
     public let id: Int
     public let language: String
     public let region: String
@@ -17,8 +17,12 @@ public struct TMDBUser: Codable {
     public let includeAdult: Bool
     public let username: String
     
-    public struct Gravatar: Codable {
-        let hash: String?
+    public struct Avatar: Codable {
+        public let gravatar: Gravatar
+        
+        public struct Gravatar: Codable {
+            let hash: String?
+        }
     }
     
     enum CodingKeys: String, CodingKey {
