@@ -42,7 +42,6 @@ I'm just a very beginner to the Swift world. And I decide to take this project a
 |TV             |☑️      |        |Append to response support. <br>Changes model.|
 |TV Seasons     |☑️      |        |Append to response support. <br>Changes model.|
 |TV Episodes    |☑️      |        |Append to response support. <br>Changes model.|
-|Cleaning job   |☑️      |        |        |
 
 ### v4 current progress:
 Will begin soon.
