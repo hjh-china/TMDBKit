@@ -17,6 +17,18 @@ public struct TMDBUser: Codable {
     public let includeAdult: Bool
     public let username: String
     
+    /// Returns the user's Gravatar URL
+    public func gravatarUrl(size: Int?) -> URL? {
+        guard let hash = self.avatar.gravatar.hash else {
+            return nil
+        }
+        var path = "https://www.gravatar.com/avatar/\(hash)"
+        if let size = size {
+            path += "&size = \(size)"
+        }
+        return URL(string: path)
+    }
+    
     public struct Avatar: Codable {
         public let gravatar: Gravatar
         
