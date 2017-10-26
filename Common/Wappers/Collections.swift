@@ -40,7 +40,7 @@ extension TMDBManager {
         public func getImages(forCollection collectionId: Int,
                               language: String? = nil,
                               completion: @escaping ObjectHandler<TMDBImages>) {
-            performRequest(path: "/collection/\(collectionId)",
+            performRequest(path: "/collection/\(collectionId)/images",
                            query: queryMaker(language: language),
                            completion: completion)
         }
