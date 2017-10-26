@@ -267,15 +267,17 @@ extension TMDBManager {
 
 extension TMDBManager {
     func getImageSizes(_ type: String) -> TMDBAvaliableSizes? {
-        return persistencePrefix == nil ?
-            nil :
-            UserDefaults.standard.object(forKey: "\(persistencePrefix!).\(type)") as? TMDBAvaliableSizes
+        guard
+            let rawSizes = UserDefaults.standard.object(forKey: "\(persistencePrefix!).\(type)") as? [String]
+        else { return nil }
+        
+        return TMDBAvaliableSizes(rawSizes)
     }
     
     func setImageSizes(_ type: String, _ newValue: TMDBAvaliableSizes?) {
         guard let persistencePrefix = persistencePrefix else { return }
         if let newValue = newValue {
-            UserDefaults.standard.set(newValue, forKey: "\(persistencePrefix).\(type)")
+            UserDefaults.standard.set(newValue.rawSizes, forKey: "\(persistencePrefix).\(type)")
         } else {
             UserDefaults.standard.removeObject(forKey: "\(persistencePrefix).\(type)")
         }

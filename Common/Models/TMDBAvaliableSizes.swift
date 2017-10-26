@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class TMDBAvaliableSizes: NSObject, NSCoding {
+public struct TMDBAvaliableSizes {
     
     internal(set) public var rawSizes: [String] = []
     
@@ -18,9 +18,9 @@ public class TMDBAvaliableSizes: NSObject, NSCoding {
     /// ```
     ///
     /// There is also a `heights` property and "original" size avaliable.
-    public lazy var widths: [Int] = {
+    public var widths: [Int] {
         return self.rawSizes.flatMap({ size in size.sizeFormatted(wOrH: "w") })
-    }()
+    }
     
     /// Avaliable heights. Use this method to get this value:
     /// ```
@@ -28,24 +28,11 @@ public class TMDBAvaliableSizes: NSObject, NSCoding {
     /// ```
     ///
     /// There is also a `widths` property and "original" size avaliable.
-    public lazy var heights: [Int] = {
+    public var heights: [Int] {
         return self.rawSizes.flatMap({ size in size.sizeFormatted(wOrH: "h") })
-    }()
+    }
     
-    convenience public init(_ rawSizes: [String]) {
-        self.init()
+    init(_ rawSizes: [String]) {
         self.rawSizes = rawSizes
-    }
-    
-    override public init() {
-        super.init()
-    }
-    
-    public func encode(with aCoder: NSCoder) {
-        aCoder.encode(rawSizes, forKey: "rawSizes")
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        self.rawSizes = aDecoder.decodeObject(forKey: "rawSizes") as? [String] ?? []
     }
 }
