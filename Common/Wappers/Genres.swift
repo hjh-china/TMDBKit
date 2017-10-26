@@ -43,6 +43,13 @@ extension TMDBManager {
         }
         
         /// - IMPORTANT: This method is **deprecated**.
+        /// - NOTE: I tried myself, and TMDB will return:
+        /// ``` json
+        /// {
+        ///   "status_code": 34,
+        ///   "status_message": "The resource you requested could not be found."
+        /// }
+        /// ```
         ///
         /// We highly recommend using
         /// [movie discover](https://developers.themoviedb.org/3/discover/movie-discover) instead of this method

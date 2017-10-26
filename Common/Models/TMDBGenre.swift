@@ -9,7 +9,7 @@
 import Foundation
 
 public struct TMDBGenre: Codable {
-    public let id: String
+    public let id: Int
     public let name: String
 }
 
