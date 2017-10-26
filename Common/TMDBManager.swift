@@ -177,59 +177,59 @@ public class TMDBManager {
     }
     
     /// [Account API](https://developers.themoviedb.org/3/account) wrapper.
-    public let account = AccountAPIWrapper()
+    public let account = TMKAccountAPIWrapper()
     /// [Authentication API](https://developers.themoviedb.org/3/authentication) wrapper.
-    public let authentication = AuthenticationAPIWrapper()
+    public let authentication = TMKAuthenticationAPIWrapper()
     /// [Certifications API](https://developers.themoviedb.org/3/certifications) wrapper.
-    public let certifications = CertificationsAPIWrapper()
+    public let certifications = TMKCertificationsAPIWrapper()
     /// [Changes API](https://developers.themoviedb.org/3/changes) wrapper.
-    public let changes = ChangesAPIWrapper()
+    public let changes = TMKChangesAPIWrapper()
     /// [Collections API](https://developers.themoviedb.org/3/collections) wrapper.
-    public let collections = CollectionsAPIWrapper()
+    public let collections = TMKCollectionsAPIWrapper()
     /// [Companies API](https://developers.themoviedb.org/3/companies) wrapper.
-    public let companies = CompaniesAPIWrapper()
+    public let companies = TMKCompaniesAPIWrapper()
     /// [Configuration API](https://developers.themoviedb.org/3/configuration) wrapper.
-    public let configuration = ConfigurationAPIWrapper()
+    public let configuration = TMKConfigurationAPIWrapper()
     /// [Credits API](https://developers.themoviedb.org/3/credits) wrapper.
     /// - TODO: A lot 😂
-    public let credits = CreditsAPIWrapper()
+    public let credits = TMKCreditsAPIWrapper()
     /// [Discover API](https://developers.themoviedb.org/3/discover) wrapper.
-    public let discover = DiscoverAPIWrapper()
+    public let discover = TMKDiscoverAPIWrapper()
     /// [Find API](https://developers.themoviedb.org/3/find) wrapper.
-    public let find = FindAPIWrapper()
+    public let find = TMKFindAPIWrapper()
     /// [Genres API](https://developers.themoviedb.org/3/genres) wrapper.
-    public let genres = GenresAPIWrapper()
+    public let genres = TMKGenresAPIWrapper()
     /// [Guest Sessions API](https://developers.themoviedb.org/3/guest-sessions) wrapper.
-    public let guestSession = GuestSessionAPIWrapper()
+    public let guestSession = TMKGuestSessionAPIWrapper()
     /// [Jobs API](https://developers.themoviedb.org/3/jobs) wrapper.
-    public let jobs = JobsAPIWrapper()
+    public let jobs = TMKJobsAPIWrapper()
     /// [Keywords API](https://developers.themoviedb.org/3/keywords) wrapper.
-    public let keywords = KeywordsAPIWrapper()
+    public let keywords = TMKKeywordsAPIWrapper()
     /// [Lists API](https://developers.themoviedb.org/3/lists) wrapper.
-    public let lists = ListsAPIWrapper()
+    public let lists = TMKListsAPIWrapper()
     /// [Movies API](https://developers.themoviedb.org/3/movies) wrapper.
     /// - TODO: append_to_response support
-    public let movies = MoviesAPIWrapper()
+    public let movies = TMKMoviesAPIWrapper()
     /// [Networks API](https://developers.themoviedb.org/3/networks) wrapper.
-    public let networks = NetworksAPIWrapper()
+    public let networks = TMKNetworksAPIWrapper()
     /// [People API](https://developers.themoviedb.org/3/people) wrapper.
     /// - TODO: append_to_response support
-    public let people = PeopleAPIWrapper()
+    public let people = TMKPeopleAPIWrapper()
     /// [Search API](https://developers.themoviedb.org/3/search) wrapper class.
     /// - TODO: Multi search.
-    public let search = SearchAPIWrapper()
+    public let search = TMKSearchAPIWrapper()
     /// [Timezones API](https://developers.themoviedb.org/3/timezones) wrapper.
-    public let timezones = TimezonesAPIWrapper()
+    public let timezones = TMKTimezonesAPIWrapper()
     /// [TV API](https://developers.themoviedb.org/3/tv) wrapper class.
     /// - TODO:
     ///   - Append to response support.
     ///   - TV changes model.
-    public let tv = TVAPIWrapper()
+    public let tv = TMKTVAPIWrapper()
     /// [TV seasons API](https://developers.themoviedb.org/3/tv-seasons) wrapper.
     /// - TODO:
     ///   - Append to response support.
     ///   - Changes model.
-    public let tvSeasons = TVSeasonsAPIWrapper()
+    public let tvSeasons = TMKTVSeasonsAPIWrapper()
 }
 
 extension TMDBManager {

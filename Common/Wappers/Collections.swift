@@ -8,41 +8,39 @@
 
 import Foundation
 
-extension TMDBManager {
-    /// [Collections API](https://developers.themoviedb.org/3/collections) wrapper class.
-    public class CollectionsAPIWrapper: APIWrapper {
-        /// Get collection details by id.
-        ///
-        /// - Parameters:
-        ///   - collectionId: Collection's ID.
-        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
-        ///     - minLength: 2
-        ///     - pattern: ([a-z]{2})-([A-Z]{2})
-        ///     - default: en-US
-        ///   - completion: Completion handler.
-        public func getDetails(forCollection collectionId: Int,
-                               language: String? = nil,
-                               completion: @escaping ObjectHandler<TMDBCollection>) {
-            performRequest(path: "/collection/\(collectionId)",
-                           query: queryMaker(language: language),
-                           completion: completion)
-        }
-        
-        /// Get the images for a collection by id.
-        ///
-        /// - Parameters:
-        ///   - collectionId: Collection's ID.
-        ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
-        ///     - minLength: 2
-        ///     - pattern: ([a-z]{2})-([A-Z]{2})
-        ///     - default: en-US
-        ///   - completion: Completion handler.
-        public func getImages(forCollection collectionId: Int,
-                              language: String? = nil,
-                              completion: @escaping ObjectHandler<TMDBImages>) {
-            performRequest(path: "/collection/\(collectionId)/images",
-                           query: queryMaker(language: language),
-                           completion: completion)
-        }
+/// [Collections API](https://developers.themoviedb.org/3/collections) wrapper class.
+public class TMKCollectionsAPIWrapper: TMKAPIWrapper {
+    /// Get collection details by id.
+    ///
+    /// - Parameters:
+    ///   - collectionId: Collection's ID.
+    ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+    ///     - minLength: 2
+    ///     - pattern: ([a-z]{2})-([A-Z]{2})
+    ///     - default: en-US
+    ///   - completion: Completion handler.
+    public func getDetails(forCollection collectionId: Int,
+                           language: String? = nil,
+                           completion: @escaping TMKObjectHandler<TMDBCollection>) {
+        performRequest(path: "/collection/\(collectionId)",
+                       query: queryMaker(language: language),
+                       completion: completion)
+    }
+    
+    /// Get the images for a collection by id.
+    ///
+    /// - Parameters:
+    ///   - collectionId: Collection's ID.
+    ///   - language: Pass a ISO 639-1 value to display translated data for the fields that support it.
+    ///     - minLength: 2
+    ///     - pattern: ([a-z]{2})-([A-Z]{2})
+    ///     - default: en-US
+    ///   - completion: Completion handler.
+    public func getImages(forCollection collectionId: Int,
+                          language: String? = nil,
+                          completion: @escaping TMKObjectHandler<TMDBImages>) {
+        performRequest(path: "/collection/\(collectionId)/images",
+                       query: queryMaker(language: language),
+                       completion: completion)
     }
 }

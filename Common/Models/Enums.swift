@@ -9,11 +9,11 @@
 import Foundation
 import SwiftyJSON
 
-public typealias ObjectHandler<T: Codable> = (ObjectReturn<T>) -> Void
-public typealias JSONInitableHandler<T: TMDBJsonInitable> = (JSONInitableReturn<T>) -> Void
-public typealias JSONHandler = (JSONReturn) -> Void
-public typealias Handler = (NilReturn) -> Void
-public typealias AnyHandler<T> = (AnyReturn<T>) -> Void
+public typealias TMKObjectHandler<T: Codable> = (TMKObjectReturn<T>) -> Void
+public typealias TMKJSONInitableHandler<T: TMDBJsonInitable> = (TMKJSONInitableReturn<T>) -> Void
+public typealias TMKJSONHandler = (TMKJSONReturn) -> Void
+public typealias TMKHandler = (TMKReturn) -> Void
+public typealias TMKAnyHandler<T> = (TMKAnyReturn<T>) -> Void
 
 public enum TMDBSortOption: String {
     case createdAtAsc = "created_at.asc"
@@ -30,7 +30,7 @@ public enum TMDBAuthenticationType {
 ///
 /// - success: Request was successfully fullfiled, and returns a TMDBKit object.
 /// - fail: Request failed, and returns an Error.
-public enum ObjectReturn<T: Codable> {
+public enum TMKObjectReturn<T: Codable> {
     case success(object: T)
     case fail(error: Error?)
 }
@@ -39,7 +39,7 @@ public enum ObjectReturn<T: Codable> {
 ///
 /// - success: Request was successfully fullfiled, and returns a TMDBKit object.
 /// - fail: Request failed, and returns an Error.
-public enum JSONInitableReturn<T: TMDBJsonInitable> {
+public enum TMKJSONInitableReturn<T: TMDBJsonInitable> {
     case success(object: T)
     case fail(error: Error?)
 }
@@ -48,18 +48,18 @@ public enum JSONInitableReturn<T: TMDBJsonInitable> {
 ///
 /// - success: Request was successfully fullfiled, and returns raw data from the server.
 /// - fail: Request failed, and returns an Error.
-public enum DataReturn {
+public enum TMKDataReturn {
     case success(data: Data)
     case fail(error: Error?)
 }
 
-public typealias DataHandler = (DataReturn) -> Void
+public typealias DataHandler = (TMKDataReturn) -> Void
 
 /// Returns a JSON object or an Error in a completion handler closure.
 ///
 /// - success: Request was successfully fullfiled, and returns a JSON object.
 /// - fail: Request failed, and returns an Error.
-public enum JSONReturn {
+public enum TMKJSONReturn {
     case success(json: JSON)
     case fail(error: Error?)
 }
@@ -68,7 +68,7 @@ public enum JSONReturn {
 ///
 /// - success: Request was successfully fullfiled.
 /// - fail: Request failed, and returns an Error.
-public enum NilReturn {
+public enum TMKReturn {
     case success
     case fail(error: Error?)
 }
@@ -77,7 +77,7 @@ public enum NilReturn {
 ///
 /// - success: Request was successfully fullfiled, and returns an object.
 /// - fail: Request failed, and returns an Error.
-public enum AnyReturn<T> {
+public enum TMKAnyReturn<T> {
     case success(any: T)
     case fail(error: Error?)
 }

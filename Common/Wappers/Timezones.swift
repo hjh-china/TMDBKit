@@ -8,15 +8,13 @@
 
 import Foundation
 
-extension TMDBManager {
-    /// [Timezones API](https://developers.themoviedb.org/3/timezones) wrapper class.
-    public class TimezonesAPIWrapper: APIWrapper {
-        /// Get the list of supported timezones on TMDb.
-        ///
-        /// Returned dictonary in completion hanlder is `[CountryCode: [Timezone]]`.
-        /// - Parameter completion: Completion handler.
-        public func getList(completion: @escaping ObjectHandler<[String: [String]]>) {
-            performRequest(path: "/timezones/list", completion: completion)
-        }
+/// [Timezones API](https://developers.themoviedb.org/3/timezones) wrapper class.
+public class TMKTimezonesAPIWrapper: TMKAPIWrapper {
+    /// Get the list of supported timezones on TMDb.
+    ///
+    /// Returned dictonary in completion hanlder is `[CountryCode: [Timezone]]`.
+    /// - Parameter completion: Completion handler.
+    public func getList(completion: @escaping TMKObjectHandler<[String: [String]]>) {
+        performRequest(path: "/timezones/list", completion: completion)
     }
 }

@@ -8,18 +8,16 @@
 
 import Foundation
 
-extension TMDBManager {
-    /// [Networks API](https://developers.themoviedb.org/3/networks) wrapper class.
-    public class NetworksAPIWrapper: APIWrapper {
-        /// Get the details of a network.
-        ///
-        /// - Parameters:
-        ///   - network: Network's ID.
-        ///   - completion: Completion handler.
-        public func getDetails(forNetwork network: Int,
-                               completion: @escaping ObjectHandler<TMDBNetwork>) {
-            performRequest(path: "/network/\(network)",
-                           completion: completion)
-        }
+/// [Networks API](https://developers.themoviedb.org/3/networks) wrapper class.
+public class TMKNetworksAPIWrapper: TMKAPIWrapper {
+    /// Get the details of a network.
+    ///
+    /// - Parameters:
+    ///   - network: Network's ID.
+    ///   - completion: Completion handler.
+    public func getDetails(forNetwork network: Int,
+                           completion: @escaping TMKObjectHandler<TMDBNetwork>) {
+        performRequest(path: "/network/\(network)",
+                       completion: completion)
     }
 }
