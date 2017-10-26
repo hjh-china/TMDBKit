@@ -20,9 +20,9 @@ I'm just a very beginner to the Swift world. And I decide to take this project a
 |Shared methods |☑️      |☑️      |        |
 |Account        |☑️      |☑️      |        |
 |Authentication |☑️      |☑️      |        |
-|Certifications |☑️      |👊      |        |
-|Changes        |☑️      |        |        |
-|Collections    |☑️      |        |        |
+|Certifications |☑️      |☑️    |        |
+|Changes        |☑️      |☑️    |        |
+|Collections    |☑️      |☑️    |        |
 |Companies      |☑️      |        |        |
 |Configuration  |☑️      |        |        |
 |Credits        |☑️      |        |What are credits? <br>I wish I have take English class more seriously😂.|
