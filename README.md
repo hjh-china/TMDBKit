@@ -28,7 +28,7 @@ I'm just a very beginner to the Swift world. And I decide to take this project a
 |Credits        |☑️      |        |What are credits? <br>I wish I have take English class more seriously😂.|
 |Discover       |☑️      |        |        |
 |Find           |☑️      |        |        |
-|Genres         |☑️      |☑️      |Get movies by genre is deprecated.|
+|Genres         |☑️      |☑️      |[Get movies by genre](https://developers.themoviedb.org/3/genres/get-movies-by-genre) API is deprecated.|
 |Guest Sessions |☑️      |        |        |
 |Jobs           |☑️      |        |        |
 |Keywords       |☑️      |        |        |
