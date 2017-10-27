@@ -10,7 +10,8 @@
 
 The Movie Database API wrapper in Swift.
 
-I'm just a very beginner to the Swift world. And I decide to take this project as my first step. So any issue and pull request are welcomed :-)
+I'm just a very beginner to the Swift world. And I decide to take this project as my first step.
+So, any issue and pull request are welcomed :-)
 
 ## Project progress
 
@@ -57,7 +58,6 @@ target 'TMDBKitDemo' do
     pod 'TMDBKit'
 end
 ```
-Or simply drag all `.swift` files in `Common` folder to your project (please note that TMDBKit needs SwiftyJSON as dependency).
 
 ### Meet TMDBManager
 Everything you need with TMDBKit is wrapped in the `TMDBManager` singleton instance, you can get a reference like this:
@@ -98,37 +98,44 @@ let manager = TMDBManager.shared
 manager.authentication.createSession() { result in
     switch result {
     case .success:
-        print(Session ID Fetched: \(TMDBManager.shared.sessionId!))
+        print(Session ID Fetched: \(self.manager.sessionId!))
     case .fail(let error):
         print(error.data?.toString(.utf8))
         print(error.error)
     }
 }
 ```
-The session ID will be persisted in the keychain.
+The session ID will be persisted in the keychain. For those methods that needs  user authentication,
+TMDBKit will automatically add the persisted session ID for HTTP headers,
+so usually you don't need to use it directly.
 
 ### Completion hanlders
-Almost all TMDBKit methods needs a `completion` parameter. The handler will pass in a enum by which you can check if the request has been fullfied. And to those methods that returns data, the enum will carry a model object. It works like this:
+Almost all TMDBKit methods needs a `completion` parameter. The handler will pass in a enum
+by which you can check if the request has been fullfied. And to those methods that returns data,
+the enum will carry a model object. It works like this:
 ``` swift
 let manager = TMDBManager.shared
 manager.account.getDetails() { result in
     // Check if the request has been fullfied
     switch result {
     
-    // If success, you will recive a model object
+    // If success, you will recive a model object:
     case .success(let accountInfo):
         print(accountInfo)
         
-    // Otherwise, you will get the raw data returned from TMDB, and an optional error describing the situation.
+    // If some error occurs:
     case .fail(let error):
+        // You will get the raw data returned from TMDB server (and there's a extended helper method to get the string):
         print(error.data?.toString(.utf8))
+        // Also an optional error describing the situation:
         print(error.error)
     }
 }
 ```
 
 ## Need help?
-All methods are equiped with full documentation comments. All you  need to do is *Option⌥ click* the method name. Or switch to the *Quick Help Inspector*:
+All methods are equiped with full documentation comments. All you  need to do is *Option⌥ click* the method name.
+Or switch to the *Quick Help Inspector*:
 ![](https://github.com/SR2k/TMDBKit/blob/master/Supporting/Documentation_Comments.png)
 
 ## License
