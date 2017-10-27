@@ -18,10 +18,10 @@ public class TMKJobsAPIWrapper: TMKAPIWrapper {
                     completion(.success(object: jobs))
                 } else {
                     let msg = "Data returned from TMDB dosen't contains \"Jobs\" array."
-                    completion(.fail(error: msg.error(domain: "jobs")))
+                    completion(.fail(data: _jobs.data(), error: msg.error(domain: "jobs")))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }

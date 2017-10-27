@@ -44,7 +44,7 @@ public class TMKMoviesAPIWrapper: TMKAPIWrapper {
                                  authentication: TMDBAuthenticationType,
                                  completion: @escaping TMKJSONInitableHandler<TMDBAccountStete>) {
         guard authentication != .noAuthentication else {
-            completion(.fail(error: "Get account states needs authentication.".error(domain: "movies")))
+            completion(.fail(data: nil, error: "Get account states needs authentication.".error(domain: "movies")))
             return
         }
         performRequest(path: "/movie/\(movie)/account_states",
@@ -92,10 +92,10 @@ public class TMKMoviesAPIWrapper: TMKAPIWrapper {
                 if let results = _results["changes"] {
                     completion(.success(object: results))
                 } else {
-                    completion(.fail(error: "Error get changes for movie.".error(domain: "movies")))
+                    completion(.fail(data: _results.data(), error: "Error get changes for movie.".error(domain: "movies")))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }
@@ -291,7 +291,7 @@ public class TMKMoviesAPIWrapper: TMKAPIWrapper {
                      authentication: TMDBAuthenticationType,
                      completion: @escaping TMKHandler) {
         guard authentication != .noAuthentication else {
-            completion(.fail(error: "Rate a movie needs authentication.".error(domain: "movies")))
+            completion(.fail(data: nil, error: "Rate a movie needs authentication.".error(domain: "movies")))
             return
         }
         do {
@@ -302,7 +302,7 @@ public class TMKMoviesAPIWrapper: TMKAPIWrapper {
                            expectedStatusCode: 201,
                            completion: completion)
         } catch let error {
-            completion(.fail(error: error))
+            completion(.fail(data: nil, error: error))
         }
     }
     
@@ -319,7 +319,7 @@ public class TMKMoviesAPIWrapper: TMKAPIWrapper {
                              authentication: TMDBAuthenticationType,
                              completion: @escaping TMKHandler) {
         guard authentication != .noAuthentication else {
-            completion(.fail(error: "Remove a rating needs authentication.".error(domain: "movies")))
+            completion(.fail(data: nil, error: "Remove a rating needs authentication.".error(domain: "movies")))
             return
         }
         performRequest(method: "DELETE",

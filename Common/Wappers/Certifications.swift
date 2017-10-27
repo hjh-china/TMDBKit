@@ -36,10 +36,11 @@ public class TMKCertificationsAPIWrapper: TMKAPIWrapper {
                 if let certifications = _certifications["certifications"] {
                     completion(.success(object: certifications))
                 } else {
-                    completion(.fail(error: "Error getting certifications.".error(domain: "certifications")))
+                    let msg = "Error getting certifications."
+                    completion(.fail(data: _certifications.data(), error: msg.error(domain: "certifications")))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }

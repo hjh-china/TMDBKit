@@ -31,7 +31,7 @@ public class TMKAPIWrapper {
         case .success(let request):
             performRequest(request: request, expectedStatusCode: expectedStatusCode, completion: completion)
         case .fail(let error):
-            completion(.fail(error: error))
+            completion(.fail(data: error.data, error: error.error))
         }
         
     }
@@ -57,7 +57,7 @@ public class TMKAPIWrapper {
                 let json = JSON(data: data)
                 completion(.success(json: json))
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }
@@ -84,10 +84,10 @@ public class TMKAPIWrapper {
                     let object = try JSONDecoder().decode(T.self, from: data)
                     completion(.success(object: object))
                 } catch let error {
-                    completion(.fail(error: error))
+                    completion(.fail(data: data, error: error))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }
@@ -114,10 +114,10 @@ public class TMKAPIWrapper {
                 do {
                     completion(.success(object: try T(fromJSON: json)))
                 } catch let error {
-                    completion(.fail(error: error))
+                    completion(.fail(data: json.data(), error: error))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }
@@ -142,7 +142,7 @@ public class TMKAPIWrapper {
             case .success:
                 completion(.success)
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }
@@ -160,7 +160,7 @@ public class TMKAPIWrapper {
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             
             guard error == nil else {
-                completion(.fail(error: error))
+                completion(.fail(data: nil, error: error))
                 return
             }
             
@@ -177,14 +177,12 @@ public class TMKAPIWrapper {
                     } else if
                         let httpResponse = response as? HTTPURLResponse,
                         httpResponse.statusCode != expectedStatusCode {
-                        message += "Response status code: \(httpResponse.statusCode), "
-                            + "yet expecting \(expectedStatusCode). "
-                            + "TMDB returned: \(String(describing: String(data: data!, encoding: .utf8)))"
+                        message += "Response code: \(httpResponse.statusCode), " + "yet \(expectedStatusCode) expected."
                     } else {
-                        completion(.fail(error: nil))
+                        completion(.fail(data: data, error: nil))
                         return
                     }
-                    completion(.fail(error: message.error()))
+                    completion(.fail(data: data, error: message.error()))
                     return
             }
             
@@ -206,7 +204,7 @@ public class TMKAPIWrapper {
                           expectedStatusCode: Int) -> TMKAnyReturn<URLRequest> {
         // Check API Key
         guard let apiKey = TMDBManager.shared.apiKey else {
-            return .fail(error: "API Key is nil, call setupClient() first please.".error())
+            return .fail(data: nil, error: "API Key is nil, call setupClient() first please.".error())
         }
         
         // Construct URLComponments
@@ -214,7 +212,7 @@ public class TMKAPIWrapper {
             let baseUrl = URL(string: "https://api.themoviedb.org/3"),
             var componments = URLComponents(string: baseUrl.absoluteString)
             else {
-                return .fail(error: "Invalid path.".error())
+                return .fail(data: nil, error: "Invalid path.".error())
         }
         componments.path += path
         
@@ -227,12 +225,12 @@ public class TMKAPIWrapper {
             break
         case .guest:
             guard TMDBManager.shared.guestAzuthrozied else {
-                return .fail(error: "Guest session ID is nil or expired, grant authentication first plz.".error())
+                return .fail(data: nil, error: "Guest session ID is nil or expired, grant authentication first plz.".error())
             }
             queryItems.append(URLQueryItem(name: "guest_session_id", value: TMDBManager.shared.guestSessionId))
         case .user:
             guard let sessionId = TMDBManager.shared.sessionId else {
-                return .fail(error: "Session ID is nil, please grant authentication first.".error())
+                return .fail(data: nil, error: "Session ID is nil, please grant authentication first.".error())
             }
             queryItems.append(URLQueryItem(name: "session_id", value: sessionId))
         }
@@ -246,7 +244,7 @@ public class TMKAPIWrapper {
         
         // Construct request
         guard let componmentsUrl = componments.url else {
-            return .fail(error: "Fail constructing URLComponments".error())
+            return .fail(data: nil, error: "Fail constructing URLComponments".error())
         }
         var request = URLRequest(url: componmentsUrl)
         

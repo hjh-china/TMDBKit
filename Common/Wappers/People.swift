@@ -160,19 +160,20 @@ public class TMKPeopleAPIWrapper: TMKAPIWrapper {
                            to endDate: String? = nil,
                            page: Int? = nil,
                            completion: @escaping TMKObjectHandler<[TMDBPersonChanges]>) {
-        performRequest(
-            path: "/movie/\(person)/changes",
-            query: queryMaker(startDate: startDate, endDate: endDate, page: page)
-        ){ (result: TMKObjectReturn<[String: [TMDBPersonChanges]]>) in
+        performRequest(path: "/movie/\(person)/changes",
+                       query: queryMaker(startDate: startDate,
+                                         endDate: endDate,
+                                         page: page)){ (result: TMKObjectReturn<[String: [TMDBPersonChanges]]>) in
             switch result {
             case .success(let _results):
                 if let results = _results["changes"] {
                     completion(.success(object: results))
                 } else {
-                    completion(.fail(error: "Error get changes for person.".error(domain: "movies")))
+                    let msg = "Error get changes for person."
+                    completion(.fail(data: _results.data(), error: msg.error(domain: "movies")))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }

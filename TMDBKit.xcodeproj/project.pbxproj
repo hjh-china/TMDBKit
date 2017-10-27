@@ -102,7 +102,7 @@
 		45692E6F1FA0A4EF009B5B3B /* TMDBKeywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A093561F9D19CD00D0FCC5 /* TMDBKeywords.swift */; };
 		45692E701FA0A4EF009B5B3B /* TMDBList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D94671F96AD49005E2227 /* TMDBList.swift */; };
 		45692E711FA0A4EF009B5B3B /* TMDBMediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D946B1F96BEAF005E2227 /* TMDBMediaObject.swift */; };
-		45692E721FA0A4EF009B5B3B /* TMDBMovieDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovieDetailed.swift */; };
+		45692E721FA0A4EF009B5B3B /* TMDBMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovies.swift */; };
 		45692E731FA0A4EF009B5B3B /* TMDBNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EBF69E1F9D3FF800D0AA62 /* TMDBNetwork.swift */; };
 		45692E741FA0A4EF009B5B3B /* TMDBPaged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDDB1F980645008BE58F /* TMDBPaged.swift */; };
 		45692E751FA0A4EF009B5B3B /* TMDBPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C28AAA1F9D4264002526DF /* TMDBPerson.swift */; };
@@ -148,15 +148,19 @@
 		457B6BE81F9CFE330058EDD0 /* TMDBAccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B6BE51F9CFE330058EDD0 /* TMDBAccountState.swift */; };
 		457B6BEB1F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B6BE91F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift */; };
 		457B6BEC1F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B6BE91F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift */; };
+		459494FE1FA3526E00D12776 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459494FD1FA3526E00D12776 /* Encodable.swift */; };
+		459494FF1FA3526E00D12776 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459494FD1FA3526E00D12776 /* Encodable.swift */; };
+		459495001FA3526E00D12776 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459494FD1FA3526E00D12776 /* Encodable.swift */; };
+		459495011FA3526E00D12776 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459494FD1FA3526E00D12776 /* Encodable.swift */; };
 		459E5C0D1F96497700AB28DE /* TMDBKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459E5C031F96497700AB28DE /* TMDBKit.framework */; };
 		459E5C141F96497700AB28DE /* TMDBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 459E5C061F96497700AB28DE /* TMDBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45A093171F9D157100D0FCC5 /* TMDBChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A093131F9D106800D0FCC5 /* TMDBChanges.swift */; };
-		45A093181F9D157100D0FCC5 /* TMDBMovieDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovieDetailed.swift */; };
+		45A093181F9D157100D0FCC5 /* TMDBMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovies.swift */; };
 		45A093191F9D157100D0FCC5 /* TMDBImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A093151F9D148700D0FCC5 /* TMDBImages.swift */; };
 		45A0931A1F9D157100D0FCC5 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF361F9C9E2400D925E8 /* Movies.swift */; };
 		45A0931B1F9D157100D0FCC5 /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B6BE31F9CFBF60058EDD0 /* APIWrapper.swift */; };
 		45A0931C1F9D157E00D0FCC5 /* TMDBChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A093131F9D106800D0FCC5 /* TMDBChanges.swift */; };
-		45A0931D1F9D157E00D0FCC5 /* TMDBMovieDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovieDetailed.swift */; };
+		45A0931D1F9D157E00D0FCC5 /* TMDBMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovies.swift */; };
 		45A0931E1F9D157E00D0FCC5 /* TMDBImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A093151F9D148700D0FCC5 /* TMDBImages.swift */; };
 		45A0931F1F9D157E00D0FCC5 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF361F9C9E2400D925E8 /* Movies.swift */; };
 		45A093201F9D157E00D0FCC5 /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B6BE31F9CFBF60058EDD0 /* APIWrapper.swift */; };
@@ -175,7 +179,7 @@
 		45A093331F9D17B600D0FCC5 /* TMDBJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049811F9BB440005A4D74 /* TMDBJob.swift */; };
 		45A093351F9D17B600D0FCC5 /* TMDBList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D94671F96AD49005E2227 /* TMDBList.swift */; };
 		45A093361F9D17B600D0FCC5 /* TMDBMediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D946B1F96BEAF005E2227 /* TMDBMediaObject.swift */; };
-		45A093381F9D17B600D0FCC5 /* TMDBMovieDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovieDetailed.swift */; };
+		45A093381F9D17B600D0FCC5 /* TMDBMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8DF381F9C9FC500D925E8 /* TMDBMovies.swift */; };
 		45A093391F9D17B600D0FCC5 /* TMDBPaged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AECDDB1F980645008BE58F /* TMDBPaged.swift */; };
 		45A0933B1F9D17B600D0FCC5 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522269D1F9B683900A433F8 /* Enums.swift */; };
 		45A0933C1F9D17B600D0FCC5 /* TMDBAccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B6BE51F9CFE330058EDD0 /* TMDBAccountState.swift */; };
@@ -232,6 +236,10 @@
 		45D049BA1F9BCB3F005A4D74 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522CAC81F9B3632003E9153 /* Genres.swift */; };
 		45D049BB1F9BCB3F005A4D74 /* GuestSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522269B1F9B649700A433F8 /* GuestSessions.swift */; };
 		45D049BC1F9BCB3F005A4D74 /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D049831F9BB4B1005A4D74 /* Jobs.swift */; };
+		45E7FDAD1FA34EDE008C474B /* JSON+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E7FDAC1FA34EDE008C474B /* JSON+.swift */; };
+		45E7FDAE1FA34EDE008C474B /* JSON+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E7FDAC1FA34EDE008C474B /* JSON+.swift */; };
+		45E7FDAF1FA34EDE008C474B /* JSON+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E7FDAC1FA34EDE008C474B /* JSON+.swift */; };
+		45E7FDB01FA34EDE008C474B /* JSON+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E7FDAC1FA34EDE008C474B /* JSON+.swift */; };
 		45EA85851F9FA439006C651B /* TMDBScreenedTheatricallyShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA85841F9FA439006C651B /* TMDBScreenedTheatricallyShows.swift */; };
 		45EA85861F9FA439006C651B /* TMDBScreenedTheatricallyShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA85841F9FA439006C651B /* TMDBScreenedTheatricallyShows.swift */; };
 		45EA85871F9FA439006C651B /* TMDBScreenedTheatricallyShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA85841F9FA439006C651B /* TMDBScreenedTheatricallyShows.swift */; };
@@ -340,6 +348,7 @@
 		457B6BE31F9CFBF60058EDD0 /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
 		457B6BE51F9CFE330058EDD0 /* TMDBAccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAccountState.swift; sourceTree = "<group>"; };
 		457B6BE91F9D01EF0058EDD0 /* TMDBAlternativeTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAlternativeTitles.swift; sourceTree = "<group>"; };
+		459494FD1FA3526E00D12776 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		4598FF6E1F98A5E600571DE0 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4598FF701F98AC9300571DE0 /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		4598FF7D1F99F78700571DE0 /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
@@ -366,7 +375,7 @@
 		45B671BC1FA2546700FEF809 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45C28AAA1F9D4264002526DF /* TMDBPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBPerson.swift; sourceTree = "<group>"; };
 		45C8DF361F9C9E2400D925E8 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
-		45C8DF381F9C9FC500D925E8 /* TMDBMovieDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBMovieDetailed.swift; sourceTree = "<group>"; };
+		45C8DF381F9C9FC500D925E8 /* TMDBMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBMovies.swift; sourceTree = "<group>"; };
 		45D049811F9BB440005A4D74 /* TMDBJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBJob.swift; sourceTree = "<group>"; };
 		45D049831F9BB4B1005A4D74 /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		45D049851F9BCA8E005A4D74 /* KeyWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyWords.swift; sourceTree = "<group>"; };
@@ -374,6 +383,7 @@
 		45D254DE1F98430000155882 /* TMDBCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBCollection.swift; sourceTree = "<group>"; };
 		45D254E21F989F4B00155882 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		45D254E41F989FD700155882 /* TMDBCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBCompany.swift; sourceTree = "<group>"; };
+		45E7FDAC1FA34EDE008C474B /* JSON+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSON+.swift"; sourceTree = "<group>"; };
 		45EA85841F9FA439006C651B /* TMDBScreenedTheatricallyShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBScreenedTheatricallyShows.swift; sourceTree = "<group>"; };
 		45EA85881F9FBCF4006C651B /* TVSeasons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSeasons.swift; sourceTree = "<group>"; };
 		45EA858C1F9FC84F006C651B /* TVEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVEpisodes.swift; sourceTree = "<group>"; };
@@ -495,7 +505,7 @@
 				45A093561F9D19CD00D0FCC5 /* TMDBKeywords.swift */,
 				450D94671F96AD49005E2227 /* TMDBList.swift */,
 				450D946B1F96BEAF005E2227 /* TMDBMediaObject.swift */,
-				45C8DF381F9C9FC500D925E8 /* TMDBMovieDetailed.swift */,
+				45C8DF381F9C9FC500D925E8 /* TMDBMovies.swift */,
 				45EBF69E1F9D3FF800D0AA62 /* TMDBNetwork.swift */,
 				45AECDDB1F980645008BE58F /* TMDBPaged.swift */,
 				45C28AAA1F9D4264002526DF /* TMDBPerson.swift */,
@@ -635,6 +645,8 @@
 			isa = PBXGroup;
 			children = (
 				459E5C261F96541800AB28DE /* String+.swift */,
+				45E7FDAC1FA34EDE008C474B /* JSON+.swift */,
+				459494FD1FA3526E00D12776 /* Encodable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1096,6 +1108,7 @@
 				4522CA731F9A692F003E9153 /* TMDBCollection.swift in Sources */,
 				4522CA741F9A692F003E9153 /* TMDBCompany.swift in Sources */,
 				4522CA751F9A692F003E9153 /* TMDBDiscoverOption.swift in Sources */,
+				45E7FDAE1FA34EDE008C474B /* JSON+.swift in Sources */,
 				4522CA761F9A692F003E9153 /* TMDBFindResult.swift in Sources */,
 				450EC1341F9E967B00B45852 /* Protocols.swift in Sources */,
 				45D049B11F9BCB2D005A4D74 /* TMDBGenre.swift in Sources */,
@@ -1109,7 +1122,7 @@
 				45F6643A1F9F61BE002B98D3 /* TMDBGender.swift in Sources */,
 				45EBF6A01F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */,
 				45F664421F9F68B3002B98D3 /* TMDBContentRatings.swift in Sources */,
-				45A093181F9D157100D0FCC5 /* TMDBMovieDetailed.swift in Sources */,
+				45A093181F9D157100D0FCC5 /* TMDBMovies.swift in Sources */,
 				45A093641F9D237F00D0FCC5 /* TMDBTranslations.swift in Sources */,
 				4522CA7B1F9A692F003E9153 /* TMDBPaged.swift in Sources */,
 				45D049B21F9BCB2D005A4D74 /* Enums.swift in Sources */,
@@ -1132,6 +1145,7 @@
 				454840D31F9E6D6D0055FC89 /* Search.swift in Sources */,
 				4522CA871F9A6935003E9153 /* Configuration.swift in Sources */,
 				45A0935C1F9D1A8900D0FCC5 /* TMDBReleaseDates.swift in Sources */,
+				459494FF1FA3526E00D12776 /* Encodable.swift in Sources */,
 				45EBF69C1F9D3F4700D0AA62 /* Networks.swift in Sources */,
 				4522CA881F9A6935003E9153 /* Credits.swift in Sources */,
 				454840CB1F9E16E10055FC89 /* TMDBExternalIds.swift in Sources */,
@@ -1173,6 +1187,7 @@
 				4522CAAF1F9A6990003E9153 /* TMDBCollection.swift in Sources */,
 				4522CAB01F9A6990003E9153 /* TMDBCompany.swift in Sources */,
 				4522CAB11F9A6990003E9153 /* TMDBDiscoverOption.swift in Sources */,
+				45E7FDAF1FA34EDE008C474B /* JSON+.swift in Sources */,
 				4522CAB21F9A6990003E9153 /* TMDBFindResult.swift in Sources */,
 				450EC1351F9E967B00B45852 /* Protocols.swift in Sources */,
 				45D049B71F9BCB3F005A4D74 /* TMDBGenre.swift in Sources */,
@@ -1186,7 +1201,7 @@
 				45F6643B1F9F61BE002B98D3 /* TMDBGender.swift in Sources */,
 				45EBF6A11F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */,
 				45F664431F9F68B3002B98D3 /* TMDBContentRatings.swift in Sources */,
-				45A0931D1F9D157E00D0FCC5 /* TMDBMovieDetailed.swift in Sources */,
+				45A0931D1F9D157E00D0FCC5 /* TMDBMovies.swift in Sources */,
 				45A093651F9D237F00D0FCC5 /* TMDBTranslations.swift in Sources */,
 				4522CAB71F9A6990003E9153 /* TMDBPaged.swift in Sources */,
 				45D049B81F9BCB3F005A4D74 /* Enums.swift in Sources */,
@@ -1209,6 +1224,7 @@
 				454840D41F9E6D6D0055FC89 /* Search.swift in Sources */,
 				4522CAC31F9A6990003E9153 /* Configuration.swift in Sources */,
 				45A0935D1F9D1A8900D0FCC5 /* TMDBReleaseDates.swift in Sources */,
+				459495001FA3526E00D12776 /* Encodable.swift in Sources */,
 				45EBF69D1F9D3F4700D0AA62 /* Networks.swift in Sources */,
 				4522CAC41F9A6990003E9153 /* Credits.swift in Sources */,
 				454840CC1F9E16E10055FC89 /* TMDBExternalIds.swift in Sources */,
@@ -1250,6 +1266,7 @@
 				45692E651FA0A4EF009B5B3B /* TMDBCollection.swift in Sources */,
 				45692E661FA0A4EF009B5B3B /* TMDBCompany.swift in Sources */,
 				45692E671FA0A4EF009B5B3B /* TMDBCredits.swift in Sources */,
+				45E7FDB01FA34EDE008C474B /* JSON+.swift in Sources */,
 				45692E681FA0A4EF009B5B3B /* TMDBDiscoverOption.swift in Sources */,
 				45692E691FA0A4EF009B5B3B /* TMDBExternalIds.swift in Sources */,
 				45692E6A1FA0A4EF009B5B3B /* TMDBFindResult.swift in Sources */,
@@ -1260,7 +1277,7 @@
 				45692E6F1FA0A4EF009B5B3B /* TMDBKeywords.swift in Sources */,
 				45692E701FA0A4EF009B5B3B /* TMDBList.swift in Sources */,
 				45692E711FA0A4EF009B5B3B /* TMDBMediaObject.swift in Sources */,
-				45692E721FA0A4EF009B5B3B /* TMDBMovieDetailed.swift in Sources */,
+				45692E721FA0A4EF009B5B3B /* TMDBMovies.swift in Sources */,
 				45692E731FA0A4EF009B5B3B /* TMDBNetwork.swift in Sources */,
 				45692E741FA0A4EF009B5B3B /* TMDBPaged.swift in Sources */,
 				45692E751FA0A4EF009B5B3B /* TMDBPerson.swift in Sources */,
@@ -1286,6 +1303,7 @@
 				45692E891FA0A4EF009B5B3B /* Collections.swift in Sources */,
 				45692E8A1FA0A4EF009B5B3B /* Companies.swift in Sources */,
 				45692E8B1FA0A4EF009B5B3B /* Configuration.swift in Sources */,
+				459495011FA3526E00D12776 /* Encodable.swift in Sources */,
 				45692E8C1FA0A4EF009B5B3B /* Credits.swift in Sources */,
 				45692E8D1FA0A4EF009B5B3B /* Discover.swift in Sources */,
 				45692E8E1FA0A4EF009B5B3B /* Find.swift in Sources */,
@@ -1320,6 +1338,7 @@
 				45A0932C1F9D17B600D0FCC5 /* TMDBCollection.swift in Sources */,
 				45A0932D1F9D17B600D0FCC5 /* TMDBCompany.swift in Sources */,
 				45A0932E1F9D17B600D0FCC5 /* TMDBDiscoverOption.swift in Sources */,
+				45E7FDAD1FA34EDE008C474B /* JSON+.swift in Sources */,
 				45A0932F1F9D17B600D0FCC5 /* TMDBFindResult.swift in Sources */,
 				450EC1331F9E967B00B45852 /* Protocols.swift in Sources */,
 				45A093301F9D17B600D0FCC5 /* TMDBGenre.swift in Sources */,
@@ -1333,7 +1352,7 @@
 				45F664391F9F61BE002B98D3 /* TMDBGender.swift in Sources */,
 				45EBF69F1F9D3FF800D0AA62 /* TMDBNetwork.swift in Sources */,
 				45F664411F9F68B3002B98D3 /* TMDBContentRatings.swift in Sources */,
-				45A093381F9D17B600D0FCC5 /* TMDBMovieDetailed.swift in Sources */,
+				45A093381F9D17B600D0FCC5 /* TMDBMovies.swift in Sources */,
 				45A093631F9D237F00D0FCC5 /* TMDBTranslations.swift in Sources */,
 				45A093391F9D17B600D0FCC5 /* TMDBPaged.swift in Sources */,
 				45A0933B1F9D17B600D0FCC5 /* Enums.swift in Sources */,
@@ -1356,6 +1375,7 @@
 				454840D21F9E6D6D0055FC89 /* Search.swift in Sources */,
 				45A093481F9D17B600D0FCC5 /* Configuration.swift in Sources */,
 				45A0935B1F9D1A8900D0FCC5 /* TMDBReleaseDates.swift in Sources */,
+				459494FE1FA3526E00D12776 /* Encodable.swift in Sources */,
 				45EBF69B1F9D3F4700D0AA62 /* Networks.swift in Sources */,
 				45A093491F9D17B600D0FCC5 /* Credits.swift in Sources */,
 				454840CA1F9E16E10055FC89 /* TMDBExternalIds.swift in Sources */,
@@ -1407,7 +1427,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B8BB6C72AF63BA5C5512990 /* Pods-TMDBKitMac.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1432,7 +1452,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2717289F78113A540A188C98 /* Pods-TMDBKitMac.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1577,7 +1597,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1606,7 +1626,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";

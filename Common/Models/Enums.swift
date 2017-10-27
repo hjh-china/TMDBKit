@@ -32,7 +32,7 @@ public enum TMDBAuthenticationType {
 /// - fail: Request failed, and returns an Error.
 public enum TMKObjectReturn<T: Codable> {
     case success(object: T)
-    case fail(error: Error?)
+    case fail(data: Data?, error: Error?)
 }
 
 /// Returns a TMDBKit object or an Error in a completion handler closure.
@@ -41,7 +41,7 @@ public enum TMKObjectReturn<T: Codable> {
 /// - fail: Request failed, and returns an Error.
 public enum TMKJSONInitableReturn<T: TMDBJsonInitable> {
     case success(object: T)
-    case fail(error: Error?)
+    case fail(data: Data?, error: Error?)
 }
 
 /// Returns raw data or an Error in a completion handler closure.
@@ -50,7 +50,7 @@ public enum TMKJSONInitableReturn<T: TMDBJsonInitable> {
 /// - fail: Request failed, and returns an Error.
 public enum TMKDataReturn {
     case success(data: Data)
-    case fail(error: Error?)
+    case fail(data: Data?, error: Error?)
 }
 
 public typealias DataHandler = (TMKDataReturn) -> Void
@@ -61,7 +61,7 @@ public typealias DataHandler = (TMKDataReturn) -> Void
 /// - fail: Request failed, and returns an Error.
 public enum TMKJSONReturn {
     case success(json: JSON)
-    case fail(error: Error?)
+    case fail(data: Data?, error: Error?)
 }
 
 /// Returns nothing when succeed or an Error when failed in a completion handler closure.
@@ -70,7 +70,7 @@ public enum TMKJSONReturn {
 /// - fail: Request failed, and returns an Error.
 public enum TMKReturn {
     case success
-    case fail(error: Error?)
+    case fail(data: Data?, error: Error?)
 }
 
 /// Returns any type of object or an Error in a completion handler closure.
@@ -79,5 +79,5 @@ public enum TMKReturn {
 /// - fail: Request failed, and returns an Error.
 public enum TMKAnyReturn<T> {
     case success(any: T)
-    case fail(error: Error?)
+    case fail(data: Data?, error: Error?)
 }

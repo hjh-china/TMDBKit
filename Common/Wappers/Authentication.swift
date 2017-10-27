@@ -43,14 +43,14 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
                         completion(.success)
                     } else {
                         let err = "TMDB returned fail when creating request token.".error(domain: "authentication")
-                        completion(.fail(error: err))
+                        completion(.fail(data: json.data(), error: err))
                     }
                 } else {
                     let err = "JSON data returned from TMDB for creating request token cannot be serialized.".error(domain: "authentication")
-                    completion(.fail(error: err))
+                    completion(.fail(data: json.data(), error: err))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
                 #if debug
                     print("Error Creating Request Token: \(error)")
                 #endif
@@ -63,7 +63,8 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
     /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
     public func createSession(completion: @escaping TMKHandler) {
         guard let requestToken = TMDBManager.shared.requestToken else {
-            completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
+            let msg = "Request Token is nil, please call createRequestToken(completion:) ahead to create one."
+            completion(.fail(data: nil, error: msg.error(domain: "authentication")))
             return
         }
         
@@ -79,13 +80,15 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
                         TMDBManager.shared.sessionId = sessionId
                         completion(.success)
                     } else {
-                        completion(.fail(error: "TMDB returned fail when creating session".error(domain: "authentication")))
+                        let msg = "TMDB returned fail when creating session."
+                        completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
                     }
                 } else {
-                    completion(.fail(error: "JSON data returned from TMDB for creating session cannot be serialized.".error(domain: "authentication")))
+                    let msg = "JSON data returned from TMDB for creating session cannot be serialized."
+                    completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
                 #if debug
                     print("Error Creating Session: \(error)")
                 #endif
@@ -104,7 +107,8 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
     ///   - password: User's password
     public func createSessionWithLogin(username: String, password: String, completion: @escaping TMKHandler) {
         guard let requestToken = TMDBManager.shared.requestToken else {
-            completion(.fail(error: "Request Token is nil, please call createRequestToken(completion:) ahead to create one.".error(domain: "authentication")))
+            let msg = "Request Token is nil, please call createRequestToken(completion:) ahead to create one."
+            completion(.fail(data: nil, error: msg.error(domain: "authentication")))
             return
         }
         
@@ -121,13 +125,15 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
                         TMDBManager.shared.sessionId = sessionId
                         completion(.success)
                     } else {
-                        completion(.fail(error: "TMDB returned fail when creating session with login".error(domain: "authentication")))
+                        let msg = "TMDB returned fail when creating session with login."
+                        completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
                     }
                 } else {
-                    completion(.fail(error: "JSON data returned from TMDB for creating session with login cannot be serialized.".error(domain: "authentication")))
+                    let msg = "JSON data returned from TMDB for creating session with login cannot be serialized."
+                    completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }
@@ -155,13 +161,15 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
                         TMDBManager.shared.guestSessionExpiresAt = expiresAt.iso8601Date()
                         completion(.success)
                     } else {
-                        completion(.fail(error: "TMDB returned fail when creating guest session".error(domain: "authentication")))
+                        let msg = "TMDB returned fail when creating guest session."
+                        completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
                     }
                 } else {
-                    completion(.fail(error: "JSON data returned from TMDB for creating guest session cannot be serialized.".error(domain: "authentication")))
+                    let msg = "JSON data returned from TMDB for creating guest session cannot be serialized."
+                    completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }

@@ -115,7 +115,7 @@ public class TMKAccountAPIWrapper: TMKAPIWrapper {
                        expectedStatusCode: mediaObject.favorite ? 201 : 200,
                        completion: completion)
         } catch let error {
-            completion(.fail(error: error))
+            completion(.fail(data: nil, error: error))
         }
     }
     
@@ -270,7 +270,7 @@ public class TMKAccountAPIWrapper: TMKAPIWrapper {
                            expectedStatusCode: mediaObject.watchlist ? 201 : 200,
                            completion: completion)
         } catch let error {
-            completion(.fail(error: error))
+            completion(.fail(data: nil, error: error))
         }
         
     }

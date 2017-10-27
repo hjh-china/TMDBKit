@@ -77,7 +77,7 @@ public class TMKTVEpisodesAPIWrapper: TMKAPIWrapper {
                                  authentication: TMDBAuthenticationType,
                                  completion: @escaping TMKJSONInitableHandler<TMDBAccountStete>) {
         guard authentication != .noAuthentication else {
-            completion(.fail(error: "Get account states needs authentication.".error(domain: "tv")))
+            completion(.fail(data: nil, error: "Get account states needs authentication.".error(domain: "tv")))
             return
         }
         performRequest(path: "/tv/\(tvShow)/season/\(seasonNum)/episode/\(episodeNum)/account_states",

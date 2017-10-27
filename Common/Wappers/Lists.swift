@@ -81,16 +81,16 @@ public class TMKListsAPIWrapper: TMKAPIWrapper {
                         success == true,
                         let listId = json["list_id"].int
                     else {
-                        completion(.fail(error: "Error creating list.".error(domain: "lists")))
+                        completion(.fail(data: json.data(), error: "Error creating list.".error(domain: "lists")))
                         return
                     }
                     completion(.success(any: listId))
                 case .fail(let error):
-                    completion(.fail(error: error))
+                    completion(.fail(data: error.data, error: error.error))
                 }
             }
         } catch let error {
-            completion(.fail(error: error))
+            completion(.fail(data: nil, error: error))
         }
     }
     
@@ -109,7 +109,7 @@ public class TMKListsAPIWrapper: TMKAPIWrapper {
                            expectedStatusCode: 201,
                            completion: completion)
         } catch let error {
-            completion(.fail(error: error))
+            completion(.fail(data: nil, error: error))
         }
     }
     
@@ -128,7 +128,7 @@ public class TMKListsAPIWrapper: TMKAPIWrapper {
                            expectedStatusCode: 201,
                            completion: completion)
         } catch let error {
-            completion(.fail(error: error))
+            completion(.fail(data: nil, error: error))
         }
     }
     

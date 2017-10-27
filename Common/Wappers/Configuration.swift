@@ -71,7 +71,7 @@ public class TMKConfigurationAPIWrapper: TMKAPIWrapper {
                 }
                 completion(.success)
             case .fail(let error):
-                completion(.fail(error: error ?? "Error getting API configurations".error(domain: "configuration")))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }

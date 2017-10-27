@@ -44,7 +44,7 @@ public class TMKTVAPIWrapper: TMKAPIWrapper {
                                  authentication: TMDBAuthenticationType,
                                  completion: @escaping TMKJSONInitableHandler<TMDBAccountStete>) {
         guard authentication != .noAuthentication else {
-            completion(.fail(error: "Get account states needs authentication.".error(domain: "tv")))
+            completion(.fail(data: nil, error: "Get account states needs authentication.".error(domain: "tv")))
             return
         }
         performRequest(path: "/tv/\(tvShow)/account_states",
@@ -103,10 +103,11 @@ public class TMKTVAPIWrapper: TMKAPIWrapper {
                 if let results = _results["changes"] {
                     completion(.success(object: results))
                 } else {
-                    completion(.fail(error: "Error get changes for tv.".error(domain: "movies")))
+                    let msg = "Error get changes for tv."
+                    completion(.fail(data: _results.data(), error: msg.error(domain: "movies")))
                 }
             case .fail(let error):
-                completion(.fail(error: error))
+                completion(.fail(data: error.data, error: error.error))
             }
         }
     }
@@ -302,7 +303,7 @@ public class TMKTVAPIWrapper: TMKAPIWrapper {
                      authentication: TMDBAuthenticationType,
                      completion: @escaping TMKHandler) {
         guard authentication != .noAuthentication else {
-            completion(.fail(error: "Rate a TV show needs authentication.".error(domain: "tv")))
+            completion(.fail(data: nil, error: "Rate a TV show needs authentication.".error(domain: "tv")))
             return
         }
         do {
@@ -313,7 +314,7 @@ public class TMKTVAPIWrapper: TMKAPIWrapper {
                            expectedStatusCode: 201,
                            completion: completion)
         } catch let error {
-            completion(.fail(error: error))
+            completion(.fail(data: nil, error: error))
         }
     }
     
@@ -330,7 +331,7 @@ public class TMKTVAPIWrapper: TMKAPIWrapper {
                              authentication: TMDBAuthenticationType,
                              completion: @escaping TMKHandler) {
         guard authentication != .noAuthentication else {
-            completion(.fail(error: "Removing rating needs authentication.".error(domain: "tv")))
+            completion(.fail(data: nil, error: "Removing rating needs authentication.".error(domain: "tv")))
             return
         }
         performRequest(method: "DELETE",

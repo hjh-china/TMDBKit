@@ -31,7 +31,7 @@ public class TMKGuestSessionAPIWrapper: TMKAPIWrapper {
                            query: queryMaker(language: language, sortBy: sortBy),
                            completion: completin)
         } catch let error {
-            completin(.fail(error: error))
+            completin(.fail(data: nil, error: error))
         }
     }
     
@@ -56,7 +56,7 @@ public class TMKGuestSessionAPIWrapper: TMKAPIWrapper {
                            query: queryMaker(language: language, sortBy: sortBy),
                            completion: completin)
         } catch let error {
-            completin(.fail(error: error))
+            completin(.fail(data: nil, error: error))
         }
     }
     
@@ -81,7 +81,7 @@ public class TMKGuestSessionAPIWrapper: TMKAPIWrapper {
                            query: queryMaker(language: language, sortBy: sortBy),
                            completion: completin)
         } catch let error {
-            completin(.fail(error: error))
+            completin(.fail(data: nil, error: error))
         }
     }
     
