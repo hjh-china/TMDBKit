@@ -4,7 +4,7 @@
 [![codebeat badge](https://codebeat.co/badges/55e91f84-b824-4985-bf1a-b2f8cbe431b6)](https://codebeat.co/projects/github-com-sr2k-tmdbkit-master)
 [![Travis CI](https://travis-ci.org/SR2k/TMDBKit.svg?branch=master)](https://travis-ci.org/SR2k/TMDBKit/)
 ![CocoaPods](https://img.shields.io/cocoapods/v/TMDBKit.svg)
-![Platforms](https://img.shields.io/badge/platforms-iOS%2010.0+%20%7C%20macOS%2010.12+%20%7C%20tvOS%2010.0+%20%7C%20watchOS%203.0+-213b34.svg)
+![Platforms](https://img.shields.io/badge/platforms-iOS%2010+%20%7C%20macOS%2010.12+%20%7C%20tvOS%2010+%20%7C%20watchOS%203+-213b34.svg)
 
 > **IMPORTANT:**<br>This framework is still under development. **DO NOT** use it... just yet 😂.<br>And if you are willing to help, feel free to creat pull requests.
 
@@ -60,14 +60,14 @@ end
 Or simply drag all `.swift` files in `Common` folder to your project (please note that TMDBKit needs SwiftyJSON as dependency).
 
 ### Meet TMDBManager
-All you need with TMDBKit is wrapped in the `TMDBManager` singleton instance, like this:
+Everything you need with TMDBKit is wrapped in the `TMDBManager` singleton instance, you can het a reference like this:
 ``` swift
 import TMDBKit
 
 let manager = TMDBManager.shared
 ```
 
-### Setup the TMDBManager
+### Setup the manager
 In your AppDelegate's `applicationDidFinishLaunching` method:
 ``` swift
 let manager = TMDBManager.shared
@@ -82,8 +82,10 @@ manager.createRequestToken() { result in
     switch result {
     case .success:
         // Forward your user to the authentication page. For macOS:
-        let redirectURL = "yourAppURLScheme://auth_done"
-        NSWorkspace.shared.open(TMDBManager.shared.authentication.authenticationURL(redirectURL: redirectURL)!)
+        let redirectURL = "someURLScheme://somePath"
+        if let authUrl = manager.authentication.authenticationURL(redirectURL: redirectURL) {
+            NSWorkspace.shared.open(authUrl)
+        }
     case .fail(let error):
         print(error)
     }
