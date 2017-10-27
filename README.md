@@ -110,13 +110,13 @@ TMDBKit will automatically add the persisted session ID for HTTP headers,
 so usually you don't need to use it directly.
 
 ### Completion hanlders
-Almost all TMDBKit methods needs a `completion` parameter. The handler will pass in a enum
-by which you can check if the request has been fullfied. And to those methods that returns data,
+Almost all TMDBKit methods needs a `completion` parameter. The handler will pass in an enum
+by which you can check if the request has been fulfilled. And to those methods that returns data,
 the enum will carry a model object. It works like this:
 ``` swift
 let manager = TMDBManager.shared
 manager.account.getDetails() { result in
-    // Check if the request has been fullfied
+    // Check if the request has been fulfilled:
     switch result {
     
     // If success, you will recive a model object:
