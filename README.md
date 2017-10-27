@@ -60,7 +60,7 @@ end
 Or simply drag all `.swift` files in `Common` folder to your project (please note that TMDBKit needs SwiftyJSON as dependency).
 
 ### Meet TMDBManager
-Everything you need with TMDBKit is wrapped in the `TMDBManager` singleton instance, you can het a reference like this:
+Everything you need with TMDBKit is wrapped in the `TMDBManager` singleton instance, you can get a reference like this:
 ``` swift
 import TMDBKit
 
@@ -87,7 +87,7 @@ manager.createRequestToken() { result in
             NSWorkspace.shared.open(authUrl)
         }
     case .fail(let error):
-        print(error.data)
+        print(error.data?.string(.utf8))
         print(error.error)
     }
 }
@@ -100,7 +100,7 @@ manager.authentication.createSession() { result in
     case .success:
         print(Session ID Fetched: \(TMDBManager.shared.sessionId!))
     case .fail(let error):
-        print(error.data)
+        print(error.data?.string(.utf8))
         print(error.error)
     }
 }
@@ -121,7 +121,7 @@ manager.account.getDetails() { result in
         
     // Otherwise, you will get the raw data returned from TMDB, and an optional error describing the situation.
     case .fail(let error):
-        print(error.data)
+        print(error.data?.string(.utf8))
         print(error.error)
     }
 }
