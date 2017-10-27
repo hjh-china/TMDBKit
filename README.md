@@ -87,7 +87,8 @@ manager.createRequestToken() { result in
             NSWorkspace.shared.open(authUrl)
         }
     case .fail(let error):
-        print(error)
+        print(error.data)
+        print(error.error)
     }
 }
 ```
@@ -99,7 +100,8 @@ manager.authentication.createSession() { result in
     case .success:
         print(Session ID Fetched: \(TMDBManager.shared.sessionId!))
     case .fail(let error):
-        print(error)
+        print(error.data)
+        print(error.error)
     }
 }
 ```
@@ -117,9 +119,10 @@ manager.account.getDetails() { result in
     case .success(let accountInfo):
         print(accountInfo)
         
-    // Otherwise, you will get an optional error
+    // Otherwise, you will get the raw data returned from TMDB, and an optional error describing the situation.
     case .fail(let error):
-        print(error)
+        print(error.data)
+        print(error.error)
     }
 }
 ```
