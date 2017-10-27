@@ -28,9 +28,9 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
     /// [here](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id).
     public func createRequestToken(completion: @escaping TMKHandler) {
         
-        let relativeUrlString = "/authentication/token/new"
+        let path = "/authentication/token/new"
         
-        performRequest(path: relativeUrlString) { (result: TMKJSONReturn) in
+        performRequest(path: path) { (result: TMKJSONReturn) in
             switch result {
             case .success(let json):
                 if let success = json["success"].bool,
@@ -64,10 +64,10 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
             return
         }
         
-        let relativeUrlString = "/authentication/session/new"
+        let path = "/authentication/session/new"
         let query = ["request_token": requestToken]
         
-        performRequest(path: relativeUrlString, query: query) { (result: TMKJSONReturn) in
+        performRequest(path: path, query: query) { (result: TMKJSONReturn) in
             self.sessionIDHelper(result: result, completion: completion)
         }
     }
@@ -88,11 +88,11 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
             return
         }
         
-        let relativeUrlString = "/authentication/token/validate_with_login"
+        let path = "/authentication/token/validate_with_login"
         let query = ["username": username,
                      "password": password,
                      "request_token": requestToken]
-        performRequest(path: relativeUrlString, query: query) { (result: TMKJSONReturn) in
+        performRequest(path: path, query: query) { (result: TMKJSONReturn) in
             self.sessionIDHelper(result: result, completion: completion)
         }
     }
@@ -108,8 +108,8 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
     ///
     /// If a guest session is not used for the first time within 24 hours, it will be automatically deleted.
     public func createGuestSession(completion: @escaping TMKHandler) {
-        let relativeUrlString = "/authentication/guest_session/new"
-        performRequest(path: relativeUrlString) { (result: TMKJSONReturn) in
+        let path = "/authentication/guest_session/new"
+        performRequest(path: path) { (result: TMKJSONReturn) in
             switch result {
             case .success(let json):
                 if let success = json["success"].bool,
