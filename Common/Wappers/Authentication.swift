@@ -72,27 +72,7 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
         let query = ["request_token": requestToken]
         
         performRequest(path: relativeUrlString, query: query) { (result: TMKJSONReturn) in
-            switch result {
-            case .success(let json):
-                if let success = json["success"].bool,
-                    let sessionId = json["session_id"].string {
-                    if success {
-                        TMDBManager.shared.sessionId = sessionId
-                        completion(.success)
-                    } else {
-                        let msg = "TMDB returned fail when creating session."
-                        completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
-                    }
-                } else {
-                    let msg = "JSON data returned from TMDB for creating session cannot be serialized."
-                    completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
-                }
-            case .fail(let error):
-                completion(.fail(data: error.data, error: error.error))
-                #if debug
-                    print("Error Creating Session: \(error)")
-                #endif
-            }
+            self.sessionIDHelper(result: result, completion: completion)
         }
     }
     
@@ -117,24 +97,7 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
                      "password": password,
                      "request_token": requestToken]
         performRequest(path: relativeUrlString, query: query) { (result: TMKJSONReturn) in
-            switch result {
-            case .success(let json):
-                if let success = json["success"].bool,
-                    let sessionId = json["session_id"].string {
-                    if success {
-                        TMDBManager.shared.sessionId = sessionId
-                        completion(.success)
-                    } else {
-                        let msg = "TMDB returned fail when creating session with login."
-                        completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
-                    }
-                } else {
-                    let msg = "JSON data returned from TMDB for creating session with login cannot be serialized."
-                    completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
-                }
-            case .fail(let error):
-                completion(.fail(data: error.data, error: error.error))
-            }
+            self.sessionIDHelper(result: result, completion: completion)
         }
     }
     
@@ -171,6 +134,29 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
             case .fail(let error):
                 completion(.fail(data: error.data, error: error.error))
             }
+        }
+    }
+}
+
+extension TMKAuthenticationAPIWrapper {
+    func sessionIDHelper(result: TMKJSONReturn, completion: @escaping TMKHandler) {
+        switch result {
+        case .success(let json):
+            if let success = json["success"].bool,
+                let sessionId = json["session_id"].string {
+                if success {
+                    TMDBManager.shared.sessionId = sessionId
+                    completion(.success)
+                } else {
+                    let msg = "TMDB returned fail when creating session with login."
+                    completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
+                }
+            } else {
+                let msg = "JSON data returned from TMDB for creating session with login cannot be serialized."
+                completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
+            }
+        case .fail(let error):
+            completion(.fail(data: error.data, error: error.error))
         }
     }
 }
