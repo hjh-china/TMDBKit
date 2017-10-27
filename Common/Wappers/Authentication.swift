@@ -20,7 +20,6 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
         if let redirectURL = redirectURL {
             baseURLString += "redirect_to=\(redirectURL)"
         }
-        
         return URL(string: baseURLString)
     }
     
@@ -42,18 +41,15 @@ public class TMKAuthenticationAPIWrapper: TMKAPIWrapper {
                         TMDBManager.shared.requestTokenExpiresAt = expiresAt.iso8601Date()
                         completion(.success)
                     } else {
-                        let err = "TMDB returned fail when creating request token.".error(domain: "authentication")
-                        completion(.fail(data: json.data(), error: err))
+                        let msg = "TMDB returned fail when creating request token."
+                        completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
                     }
                 } else {
-                    let err = "JSON data returned from TMDB for creating request token cannot be serialized.".error(domain: "authentication")
-                    completion(.fail(data: json.data(), error: err))
+                    let msg = "JSON data returned from TMDB for creating request token cannot be serialized."
+                    completion(.fail(data: json.data(), error: msg.error(domain: "authentication")))
                 }
             case .fail(let error):
                 completion(.fail(data: error.data, error: error.error))
-                #if debug
-                    print("Error Creating Request Token: \(error)")
-                #endif
             }
         }
     }
