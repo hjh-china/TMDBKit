@@ -18,31 +18,31 @@ So, any issue and pull request are welcomed :-)
 ### v3 current progress:
 |Section        |Build   |Test    |To-dos  |
 |---------------|:------:|:------:|--------|
-|Shared methods |☑️      |☑️      |        |
-|Account        |☑️      |☑️      |        |
-|Authentication |☑️      |☑️      |        |
-|Certifications |☑️      |☑️      |        |
-|Changes        |☑️      |☑️      |        |
-|Collections    |☑️      |☑️      |        |
-|Companies      |☑️      |☑️      |        |
-|Configuration  |☑️      |☑️      |        |
-|Credits        |☑️      |        |What are credits? <br>I wish I have take English class more seriously😂.|
-|Discover       |☑️      |        |        |
-|Find           |☑️      |        |        |
-|Genres         |☑️      |☑️      |[Get movies by genre](https://developers.themoviedb.org/3/genres/get-movies-by-genre) API is deprecated.|
-|Guest Sessions |☑️      |        |        |
-|Jobs           |☑️      |        |        |
-|Keywords       |☑️      |        |        |
-|Lists          |☑️      |        |        |
-|Movies         |☑️      |        |Cresits model. <br>Append to response support.|
-|Networks       |☑️      |        |        |
-|People         |☑️      |        |Append to response support.|
-|Reviews        |☑️      |        |Append to response support.|
-|Search         |☑️      |        |Multi search.|
-|Timezones      |☑️      |        |        |
-|TV             |☑️      |        |Append to response support. <br>Changes model.|
-|TV Seasons     |☑️      |        |Append to response support. <br>Changes model.|
-|TV Episodes    |☑️      |        |Append to response support. <br>Changes model.|
+|Shared methods |☑️       |☑️       |        |
+|Account        |☑️       |☑️       |        |
+|Authentication |☑️       |☑️       |        |
+|Certifications |☑️       |☑️       |        |
+|Changes        |☑️       |☑️       |        |
+|Collections    |☑️       |☑️       |        |
+|Companies      |☑️       |☑️       |        |
+|Configuration  |☑️       |☑️       |        |
+|Credits        |☑️       |        |What are credits? <br>I wish I have take English class more seriously😂.|
+|Discover       |☑️       |☑️       |        |
+|Find           |☑️       |☑️       |        |
+|Genres         |☑️       |☑️       |[Get movies by genre](https://developers.themoviedb.org/3/genres/get-movies-by-genre) API is deprecated.|
+|Guest Sessions |☑️       |        |        |
+|Jobs           |☑️       |☑️       |        |
+|Keywords       |☑️       |☑️       |        |
+|Lists          |☑️       |        |        |
+|Movies         |☑️       |        |Cresits model. <br>Append to response support.|
+|Networks       |☑️       |        |        |
+|People         |☑️       |        |Append to response support.|
+|Reviews        |☑️       |        |Append to response support.|
+|Search         |☑️       |        |Multi search.|
+|Timezones      |☑️       |        |        |
+|TV             |☑️       |        |Append to response support. <br>Changes model.|
+|TV Seasons     |☑️       |        |Append to response support. <br>Changes model.|
+|TV Episodes    |☑️       |        |Append to response support. <br>Changes model.|
 
 ### v4 current progress:
 Will begin soon.
