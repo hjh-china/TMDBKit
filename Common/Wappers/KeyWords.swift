@@ -15,7 +15,7 @@ public class TMKKeywordsAPIWrapper: TMKAPIWrapper {
     /// - Parameters:
     ///   - keywordId: Keyword's ID.
     ///   - completion: Completion handler.
-    public func getDetails(forKeywordId keywordId: Int,
+    public func getDetails(forKeyword keywordId: Int,
                            completion: @escaping TMKObjectHandler<TMDBKeyword>) {
         performRequest(path: "/keyword/\(keywordId)", completion: completion)
     }
@@ -34,11 +34,11 @@ public class TMKKeywordsAPIWrapper: TMKAPIWrapper {
     ///     - default: en-US
     ///   - includeAdult: Choose whether to inlcude adult (pornography) content in the results.
     ///   - completion: Completion handler.
-    public func getMovies(forKeywordId keywordId: Int,
+    public func getMovies(forKeyword keywordId: Int,
                           language: String? = nil,
                           includeAdult: Bool? = nil,
                           completion: @escaping TMKObjectHandler<TMDBPaged<TMDBMovieGeneral>>) {
-        performRequest(path: "/keyword/{keyword_id}/movies",
+        performRequest(path: "/keyword/\(keywordId)/movies",
                        query: queryMaker(language: language, includeAdult: includeAdult),
                        completion: completion)
     }
