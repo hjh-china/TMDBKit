@@ -13,7 +13,6 @@
 		450EC1371F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */; };
 		450EC1381F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */; };
 		450EC1391F9EA05300B45852 /* TMDBAvaliableSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */; };
-		451DFBD81F98101500F501EB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBD71F98101500F501EB /* LICENSE */; };
 		451DFBDB1F9810FD00F501EB /* SwiftyJSON_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */; };
 		451DFBDD1F98111300F501EB /* TraktKit_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 451DFBDC1F98111300F501EB /* TraktKit_LICENSE */; };
 		4522CA5E1F9A68F7003E9153 /* TMDBKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4522CA551F9A68F6003E9153 /* TMDBKitMac.framework */; };
@@ -322,7 +321,6 @@
 		450D946B1F96BEAF005E2227 /* TMDBMediaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBMediaObject.swift; sourceTree = "<group>"; };
 		450EC1321F9E967B00B45852 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		450EC1361F9EA05300B45852 /* TMDBAvaliableSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAvaliableSizes.swift; sourceTree = "<group>"; };
-		451DFBD71F98101500F501EB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		451DFBDA1F9810FD00F501EB /* SwiftyJSON_LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftyJSON_LICENSE; sourceTree = "<group>"; };
 		451DFBDC1F98111300F501EB /* TraktKit_LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = TraktKit_LICENSE; sourceTree = "<group>"; };
 		4522269B1F9B649700A433F8 /* GuestSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestSessions.swift; sourceTree = "<group>"; };
@@ -365,7 +363,6 @@
 		459E5C201F9649FF00AB28DE /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		459E5C231F96520300AB28DE /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		459E5C261F96541800AB28DE /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		459E5C2C1F96742C00AB28DE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		45A093131F9D106800D0FCC5 /* TMDBChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBChanges.swift; sourceTree = "<group>"; };
 		45A093151F9D148700D0FCC5 /* TMDBImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBImages.swift; sourceTree = "<group>"; };
 		45A093561F9D19CD00D0FCC5 /* TMDBKeywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBKeywords.swift; sourceTree = "<group>"; };
@@ -567,8 +564,6 @@
 		459E5BF91F96497700AB28DE = {
 			isa = PBXGroup;
 			children = (
-				451DFBD71F98101500F501EB /* LICENSE */,
-				459E5C2C1F96742C00AB28DE /* README.md */,
 				459E5C1D1F96497E00AB28DE /* Common */,
 				459E5C051F96497700AB28DE /* TMDBKit */,
 				4522CA561F9A68F6003E9153 /* TMDBKitMac */,
@@ -950,7 +945,6 @@
 			files = (
 				451DFBDB1F9810FD00F501EB /* SwiftyJSON_LICENSE in Resources */,
 				451DFBDD1F98111300F501EB /* TraktKit_LICENSE in Resources */,
-				451DFBD81F98101500F501EB /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
