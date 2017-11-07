@@ -39,7 +39,7 @@ So, any issue and pull request are welcomed :-)
 |People         |☑️       |        |Append to response support.|
 |Reviews        |☑️       |        |Append to response support.|
 |Search         |☑️       |        |Multi search.|
-|Timezones      |☑️       |        |        |
+|Timezones      |☑️       |☑️       |        |
 |TV             |☑️       |        |Append to response support. <br>Changes model.|
 |TV Seasons     |☑️       |        |Append to response support. <br>Changes model.|
 |TV Episodes    |☑️       |        |Append to response support. <br>Changes model.|
